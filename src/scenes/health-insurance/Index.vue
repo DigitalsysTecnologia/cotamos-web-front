@@ -219,7 +219,7 @@ import Footer from "../../components/Footer";
 import apiClientProvider from "../../providers/apiClientProvider";
 import SimpleVueValidation from "simple-vue-validator";
 import moment from "moment";
-import _ from "lodash"
+
 const Validator = SimpleVueValidation.Validator;
 export default {
   name: "HealthInsurance",
@@ -232,6 +232,7 @@ export default {
     },
     updateProposal: async function() {
         await apiClientProvider.updateProposal(this.proposal)
+        this.$router.push('/plano-de-saude/opcoes')
     }
   },
   data() {
