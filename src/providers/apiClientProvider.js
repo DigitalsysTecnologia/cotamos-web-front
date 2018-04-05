@@ -1,7 +1,7 @@
 const axios = require('axios')
 const urlJoin = require('url-join')
 
-const baseUrl = 'http://localhost:4444/api/v1'
+const baseUrl = 'https://backend.cotamos.com/api/v1'
 
 function internalRequest (method, url, data) {
   return axios({
