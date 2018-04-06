@@ -292,7 +292,7 @@ export default {
     console.log(`beforeMount`);
   },
   async mounted() {
-    //const existingProposal = await apiClientProvider.generateProposal(2);
+    const existingProposal = await apiClientProvider.generateProposal(2);
     this.proposal._id = existingProposal._id
   },
   components: {

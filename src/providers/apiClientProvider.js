@@ -1,7 +1,19 @@
 const axios = require('axios')
 const urlJoin = require('url-join')
 
-const baseUrl = 'https://backend.cotamos.com/api/v1'
+function getBaseUrl () {
+
+  switch (window.location.host) {
+    case 'www.cotamos.com':
+      return 'https://backend.cotamos.com/api/v1'
+    default:
+      return 'http://localhost:3000/api/v1'
+  }
+}
+
+const baseUrl = getBaseUrl()
+
+console.log('window.location', window.location)
 
 function internalRequest (method, url, data) {
   return axios({
