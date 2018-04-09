@@ -2,13 +2,9 @@
     <div class="col-xs-12 col-md-3">
         <div class="bloco-resultado">
             <div class="row">
-                <div class="col-sm-4 col-xs-12">
+                <div class="col-sm-12 col-xs-12">
                     <img :src="offer.companyLogo" alt="Plano de saúde" class="img-responsive"/>
                 </div>
-                <div class="col-sm-8 col-xs-12">
-                    <h3>{{offer.name}}</h3>
-                </div>
-                
                 <div class="col-xs-12">
                     <hr/>
                     <p class="desc-resultado">
