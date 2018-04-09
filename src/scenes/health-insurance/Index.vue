@@ -16,7 +16,11 @@
                 <div class="container">
                     <div class="row">
                         <section class="col-xs-12 formulario-cotacao">
-                            <div class="col-sm-12 col-xs-12 box-cotacao">
+                            <div class="col-sm-12 col-xs-12 box-cotacao" v-if="loading">
+                                <Loading  v-bind:messages="this.loadingMessages" v-bind:completePercent="this.loadingCompletePercent"/>
+                            </div>
+                            
+                            <div class="col-sm-12 col-xs-12 box-cotacao" v-else>
                                 <h3>Simule aqui</h3>
 
                                 <div class="form-group">
@@ -34,18 +38,18 @@
                                     <div class="message">{{ validation.firstError('proposal.proposer.name') }}</div>
                                 </div>
 
-                                                                <div class="form-group">
+                                <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-at" aria-hidden="true"/>
                                         </div>
                                         <input type="email" 
-                                               class="form-control"
-                                               v-model.trim="proposal.proposer.email"
-                                               id="proposal.proposer.email" 
-                                               name="proposal.proposer.email"
-                                               placeholder="E-mail" 
-                                               required/>
+                                            class="form-control"
+                                            v-model.trim="proposal.proposer.email"
+                                            id="proposal.proposer.email" 
+                                            name="proposal.proposer.email"
+                                            placeholder="E-mail" 
+                                            required/>
                                     </div>
                                 </div>
 
@@ -122,7 +126,7 @@
                                             <i class="fa fa-calendar" aria-hidden="true"/>
                                         </div>
                                         <input type="text"
-                                                class="form-control date"
+                                    lo            class="form-control date"
                                                 id="proposal.proposer.dateOfBirth"
                                                 name="proposal.proposer.dateOfBirth"
                                                 v-model.trim="proposal.proposer.dateOfBirth"
@@ -187,7 +191,7 @@
                                             </div>
                                         </div>
                                     </div>
- 
+
                                     <div class="col-sm-4 col-xs-12 pd-l">
                                         <button v-on:click="removeDependent(index)" class="btn btn-danger btn-block" >Remover</button>
                                     </div>
@@ -215,12 +219,23 @@
 </template>
 
 <script>
+import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
 import apiClientProvider from "../../providers/apiClientProvider";
 import SimpleVueValidation from "simple-vue-validator";
 import moment from "moment";
 
 const Validator = SimpleVueValidation.Validator;
+
+
+function sleep(time) { 
+    return new Promise((resolve) =>  {
+        setTimeout(function() {
+            resolve();
+        }, time)
+    })
+}
+
 export default {
   name: "HealthInsurance",
   methods: {
@@ -228,12 +243,37 @@ export default {
       this.proposal.proposer.dependents.push({});
     },
     removeDependent: function(index) {
-        this.proposal.proposer.dependents.splice(index, 1);
+      this.proposal.proposer.dthis.ependents.splice(index, 1);
     },
     updateProposal: async function() {
+        this.loading = true;
+
+        this.loadingMessages = ['Enviando informações de proposta, aguarde...']
+        this.loadingCompletePercent = 1;
         await apiClientProvider.updateProposal(this.proposal)
+
+        this.loadingMessages = ['Enviando proposta para nossos parceiros...']
+        this.loadingCompletePercent = 25;
+        await apiClientProvider.setNextState(this.proposal, 10);
+
+        this.loadingMessages = ['Aguardando resposta dos parceiros...']
+        this.loadingCompletePercent = 50;
+        
+        await sleep(5000);
+        this.loadingMessages = ['Enviando para página de resultados...']
+        
+        await sleep(5000);
+        this.loadingCompletePercent = 100;
         this.$router.push('/plano-de-saude/opcoes')
     }
+  },
+  computed: {
+      isLoading: function() {
+          return this.loading;
+      },
+      loadingMessageCollection: function() {
+          return this.loadingMessages
+      }
   },
   data() {
     return {
@@ -245,31 +285,34 @@ export default {
           profession: {},
           dependents: []
         }
-      }
+      },
+      loading: false,
+      loadingMessages: '',
+      loadingCompletePercent: 0
     };
   },
   validators: {
-    'proposal.proposer.name': function(value) {
+    "proposal.proposer.name": function(value) {
       return Validator.value(value).required(
         "Por favor, nos informe o seu nome."
       );
     },
-    'proposal.proposer.homeAddress.zipCode': function(value) {
+    "proposal.proposer.homeAddress.zipCode": function(value) {
       return Validator.value(value)
         .required("Por favor, nos informe o seu CEP")
         .custom(function() {});
     },
-    'proposal.proposer.homeAddress.state': function(value) {
+    "proposal.proposer.homeAddress.state": function(value) {
       return Validator.value(value).required(
         "Por favor, nos informe o seu estado."
       );
     },
-    'proposal.proposer.homeAddress.city': function(value) {
+    "proposal.proposer.homeAddress.city": function(value) {
       return Validator.value(value).required(
         "Por favor, nos informe a sua cidade."
       );
     },
-    'proposal.proposer.dateOfBirth': function(value) {
+    "proposal.proposer.dateOfBirth": function(value) {
       return Validator.value(value)
         .required("Por favor, nos informe a sua data de nascimento.")
         .custom(function() {
@@ -293,12 +336,13 @@ export default {
   },
   async mounted() {
     const existingProposal = await apiClientProvider.generateProposal(2);
-    this.proposal._id = existingProposal._id
+    this.proposal._id = existingProposal._id;
   },
   components: {
-    Footer: Footer
+    Footer: Footer,
+    Loading: Loading
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
