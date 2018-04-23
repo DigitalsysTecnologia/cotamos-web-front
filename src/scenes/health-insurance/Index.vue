@@ -374,6 +374,7 @@ export default {
     this.existingProposal = await apiClientProvider.generateProposal(2);
     this.proposal._id = this.existingProposal._id;
     this.proposal.product = this.existingProposal.product;
+    this.proposal.createdAt = this.existingProposal.createdAt;
   },
   components: {
     Footer: Footer,
