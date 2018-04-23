@@ -126,7 +126,7 @@
                                             <i class="fa fa-calendar" aria-hidden="true"/>
                                         </div>
                                         <input type="text"
-                                    lo            class="form-control date"
+                                                class="form-control date"
                                                 id="proposal.proposer.dateOfBirth"
                                                 name="proposal.proposer.dateOfBirth"
                                                 v-model.trim="proposal.proposer.dateOfBirth"
@@ -137,24 +137,47 @@
                                     <div class="message">{{ validation.firstError('proposal.proposer.dateOfBirth') }}</div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-phone" aria-hidden="true"/></div>
-                                        <input type="text"
-                                                class="form-control sp_celphones"
-                                                maxLength="15"
-                                                id="proposal.proposer.phones[0].number"
-                                                name="proposal.proposer.phones[0].number"
-                                                v-model.trim.lazy="proposal.proposer.phones[0].number"
-                                                v-mask="'(##) #####-####'"
-                                                placeholder="Celular ou Telefone (Com DDD)"/>
+                                <div class="col-md-12" style="padding-left:0px">
+                                    <div class="col-md-2 col-sm-2 col-xs-12 pd-l" style="padding-left:0px">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-phone" aria-hidden="true"/>
+                                                </div>
+                                                <input type="text"
+                                                        class="form-control sp_celphones"
+                                                        maxLength="2"
+                                                        id="proposal.proposer.phones[0].areaCode"
+                                                        name="proposal.proposer.phones[0].areaCode"
+                                                        v-model.trim.lazy="proposal.proposer.phones[0].areaCode"
+                                                        v-mask="'##'"
+                                                        placeholder="DDD"/>
 
+                                            </div>
+                                            <div class="message">{{ validation.firstError('proposal.proposer.phones[0].areaCode') }}</div>
+                                        </div>
                                     </div>
-                                    <div class="message">{{ validation.firstError('proposal.proposer.phones[0].number') }}</div>
+                                    <div class="offset-md-1 offset-sm-1 col-md-10 col-sm-10 col-xs-12 pd-l">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-phone" aria-hidden="true"/></div>
+                                                <input type="text"
+                                                        class="form-control sp_celphones"
+                                                        maxLength="15"
+                                                        id="proposal.proposer.phones[0].number"
+                                                        name="proposal.proposer.phones[0].number"
+                                                        v-model.trim.lazy="proposal.proposer.phones[0].number"
+                                                        v-mask="getPhoneMask(proposal.proposer.phones[0].number)"
+                                                        placeholder="Celular ou Telefone"/>
+
+                                            </div>
+                                            <div class="message">{{ validation.firstError('proposal.proposer.phones[0].number') }}</div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <p class="dependente-p">Caso necessário inclua dependentes abaixo</p>
+                                <p class="dependente-p" style="display:block">Caso necessário inclua dependentes abaixo</p>
 
                                 <div v-for="(dependent, index) in proposal.proposer.dependents" :key="`dependent-${index}`" class="row" style="margin-left:  0px; margin-bottom:25px;">
                                     <div class="col-sm-4 col-xs-12 pd-r">
@@ -227,53 +250,66 @@ import moment from "moment";
 
 const Validator = SimpleVueValidation.Validator;
 
-
-function sleep(time) { 
-    return new Promise((resolve) =>  {
-        setTimeout(function() {
-            resolve();
-        }, time)
-    })
+function sleep(time) {
+  return new Promise(resolve => {
+    setTimeout(function() {
+      resolve();
+    }, time);
+  });
 }
 
 export default {
   name: "HealthInsurance",
   methods: {
+    getPhoneMask: function(phone) {
+      let phoneNumber = null;
+      if (phone) {
+        phoneNumber = phone.replace(/\D/g, "");
+      } else {
+        phoneNumber = "";
+      }
+
+      if (phoneNumber.length <= 8) {
+        return "####-####";
+      } else {
+        return "#####-####";
+      }
+    },
     addDependent: function() {
       this.proposal.proposer.dependents.push({});
     },
     removeDependent: function(index) {
-      this.proposal.proposer.dthis.ependents.splice(index, 1);
+      this.proposal.proposer.dependents.splice(index, 1);
     },
     updateProposal: async function() {
-        this.loading = true;
+      this.loading = true;
 
-        this.loadingMessages = ['Enviando informações de proposta, aguarde...']
-        this.loadingCompletePercent = 1;
-        await apiClientProvider.updateProposal(this.proposal)
+      this.loadingMessages = ["Enviando informações de proposta, aguarde..."];
+      this.loadingCompletePercent = 1;
+      await apiClientProvider.updateProposal(this.proposal);
 
-        this.loadingMessages = ['Enviando proposta para nossos parceiros...']
-        this.loadingCompletePercent = 25;
-        await apiClientProvider.setNextState(this.proposal, 10);
+      this.loadingMessages = ["Enviando proposta para nossos parceiros..."];
+      this.loadingCompletePercent = 25;
+      await apiClientProvider.setNextState(this.proposal, 10);
 
-        this.loadingMessages = ['Aguardando resposta dos parceiros...']
-        this.loadingCompletePercent = 50;
-        
-        await sleep(5000);
-        this.loadingMessages = ['Enviando para página de resultados...']
-        
-        await sleep(5000);
-        this.loadingCompletePercent = 100;
-        this.$router.push('/plano-de-saude/opcoes')
+      this.loadingMessages = ["Aguardando resposta dos parceiros..."];
+      this.loadingCompletePercent = 50;
+
+      await sleep(5000);
+      this.loadingMessages = ["Enviando para páginaproposal de resultados..."];
+
+      await sleep(5000);
+      this.loadingCompletePercent = 100;
+      this.$router.push("/plano-de-saude/opcoes");
     }
-  },
+  },    // this.proposal = Object.assign(this.proposal, existingProposal)
   computed: {
-      isLoading: function() {
-          return this.loading;
-      },
-      loadingMessageCollection: function() {
-          return this.loadingMessages
-      }
+    isLoading: function() {
+      return this.loading;
+    },
+    loadingMessageCollection: function() {
+      return this.loadingMessages;
+    }
   },
   data() {
     return {
@@ -287,12 +323,12 @@ export default {
         }
       },
       loading: false,
-      loadingMessages: '',
+      loadingMessages: "",
       loadingCompletePercent: 0
     };
   },
   validators: {
-    "proposal.proposer.name": function(value) {
+    "proposal.proposer.name": function(value) {proposal
       return Validator.value(value).required(
         "Por favor, nos informe o seu nome."
       );
@@ -335,8 +371,9 @@ export default {
     console.log(`beforeMount`);
   },
   async mounted() {
-    const existingProposal = await apiClientProvider.generateProposal(2);
-    this.proposal._id = existingProposal._id;
+    this.existingProposal = await apiClientProvider.generateProposal(2);
+    this.proposal._id = this.existingProposal._id;
+    this.proposal.product = this.existingProposal.product;
   },
   components: {
     Footer: Footer,
