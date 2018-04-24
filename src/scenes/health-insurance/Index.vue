@@ -16,6 +16,7 @@
                 <div class="container">
                     <div class="row">
                         <section class="col-xs-12 formulario-cotacao">
+
                             <div class="col-sm-12 col-xs-12 box-cotacao" v-if="loading">
                                 <Loading  v-bind:messages="this.loadingMessages" v-bind:completePercent="this.loadingCompletePercent"/>
                             </div>
@@ -51,58 +52,65 @@
                                             placeholder="E-mail" 
                                             required/>
                                     </div>
+                                    <div class="message">{{ validation.firstError('proposal.proposer.email') }}</div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-map-marker" aria-hidden="true"/>
-                                        </div>
-                                        <input type="text"
-                                                class="form-control"
-                                                id="proposal.proposer.homeAddress.zipCode"
-                                                v-model.trim="proposal.proposer.homeAddress.zipCode"
-                                                name="proposal.proposer.homeAddress.zipCode"
-                                                v-mask="'#####-###'"
-                                                placeholder="CEP" required/>
-                                    </div>
-                                    <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.zipCode') }}</div>
-                                </div>
-
-                                <div class="col-sm-3 col-xs-12 pd-r">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-marker" aria-hidden="true"/>
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"/>
+                                                </div>
+                                                <input type="text"
+                                                        class="form-control"
+                                                        id="proposal.proposer.homeAddress.zipCode"
+                                                        v-model.trim="proposal.proposer.homeAddress.zipCode"
+                                                        name="proposal.proposer.homeAddress.zipCode"
+                                                        v-mask="'#####-###'"
+                                                        placeholder="CEP" required/>
                                             </div>
-                                            <input type="text"
-                                                    maxLength="2"
-                                                    class="form-control"
-                                                    v-model.trim.lazy="proposal.proposer.homeAddress.state"
-                                                    id="proposal.proposer.homeAddress.state"
-                                                    name="proposal.proposer.homeAddress.state"
-                                                    placeholder="UF"
-                                                    required/>
+                                            <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.zipCode') }}</div>
                                         </div>
-                                        <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.state') }}</div>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-9 col-xs-12 pd-l">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-map-marker" aria-hidden="true"/>
+                                <div class="row">
+                                    <div class="col-sm-3 col-xs-12">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"/>
+                                                </div>
+                                                <input type="text"
+                                                        maxLength="2"
+                                                        class="form-control"
+                                                        v-model.trim="proposal.proposer.homeAddress.state"
+                                                        id="proposal.proposer.homeAddress.state"
+                                                        name="proposal.proposer.homeAddress.state"
+                                                        placeholder="UF"
+                                                        required/>
                                             </div>
-                                            <input type="text"
-                                                    class="form-control"
-                                                    v-model.trim.lazy="proposal.proposer.homeAddress.city"
-                                                    id="proposal.proposer.homeAddress.city"
-                                                    name="proposal.proposer.homeAddress.city"
-                                                    placeholder="Cidade"
-                                                    required/>
+                                            <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.state') }}</div>
                                         </div>
-                                        <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.city') }}</div>
+                                    </div>
+
+                                    <div class="col-sm-9 col-xs-12 pd-l">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-map-marker" aria-hidden="true"/>
+                                                </div>
+                                                <input type="text"
+                                                        class="form-control"
+                                                        v-model.trim.lazy="proposal.proposer.homeAddress.city"
+                                                        id="proposal.proposer.homeAddress.city"
+                                                        name="proposal.proposer.homeAddress.city"
+                                                        placeholder="Cidade"
+                                                        required/>
+                                            </div>
+                                            <!-- <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.city') }}</div> -->
+                                        </div>
                                     </div>
                                 </div>
 
@@ -112,8 +120,8 @@
                                             <i class="fa fa-cogs" aria-hidden="true"/>
                                         </div>
                                         <input type="text" class="form-control" 
-                                                id=""
-                                                name=""
+                                                id="proposal.proposer.profession.name"
+                                                name="proposal.proposer.profession.name"
                                                 v-model.trim="proposal.proposer.profession.name"
                                                 placeholder="Profissão"/>
                                     </div>
@@ -123,7 +131,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">
-                                            <i class="fa fa-calendar" aria-hidden="true"/>
+                                            <i class="fa fa-calendar" aria-hiddenname="true"/>
                                         </div>
                                         <input type="text"
                                                 class="form-control date"
@@ -137,8 +145,8 @@
                                     <div class="message">{{ validation.firstError('proposal.proposer.dateOfBirth') }}</div>
                                 </div>
 
-                                <div class="col-md-12" style="padding-left:0px">
-                                    <div class="col-md-2 col-sm-2 col-xs-12 pd-l" style="padding-left:0px">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-3 col-xs-12">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
@@ -147,17 +155,17 @@
                                                 <input type="text"
                                                         class="form-control sp_celphones"
                                                         maxLength="2"
-                                                        id="proposal.proposer.phones[0].areaCode"
-                                                        name="proposal.proposer.phones[0].areaCode"
-                                                        v-model.trim.lazy="proposal.proposer.phones[0].areaCode"
+                                                        id="proposal.proposer.phones.0.areaCode"
+                                                        name="proposal.proposer.phones.0.areaCode"
+                                                        v-model.trim="proposal.proposer.phones[0].areaCode"
                                                         v-mask="'##'"
                                                         placeholder="DDD"/>
 
                                             </div>
-                                            <div class="message">{{ validation.firstError('proposal.proposer.phones[0].areaCode') }}</div>
+                                            <div class="message">{{ validation.firstError('proposal.proposer.phones.0.areaCode') }}</div>
                                         </div>
                                     </div>
-                                    <div class="offset-md-1 offset-sm-1 col-md-10 col-sm-10 col-xs-12 pd-l">
+                                    <div class="offset-md-1 offset-sm-1 col-md-10 col-sm-9 col-xs-12">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
@@ -165,14 +173,14 @@
                                                 <input type="text"
                                                         class="form-control sp_celphones"
                                                         maxLength="15"
-                                                        id="proposal.proposer.phones[0].number"
-                                                        name="proposal.proposer.phones[0].number"
-                                                        v-model.trim.lazy="proposal.proposer.phones[0].number"
+                                                        id="proposal.proposer.phones.0.number"
+                                                        name="proposal.proposer.phones.0.number"
+                                                        v-model.trim="proposal.proposer.phones[0].number"
                                                         v-mask="getPhoneMask(proposal.proposer.phones[0].number)"
                                                         placeholder="Celular ou Telefone"/>
 
                                             </div>
-                                            <div class="message">{{ validation.firstError('proposal.proposer.phones[0].number') }}</div>
+                                            <div class="message">{{ validation.firstError('proposal.proposer.phones.0.number') }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +234,7 @@
                                     </button>
                                 </div>
 
-                                <button v-on:click="updateProposal" class="btn-envio btn btn-default pull-right"
+                                <button @click="updateProposal" class="btn-envio btn btn-default pull-right"
                                         title="Enviar">
                                     <img src="/static/img/envio_icone.png" alt="Enviar"
                                             class="img-responsive center-block"/>
@@ -282,15 +290,30 @@ export default {
       this.proposal.proposer.dependents.splice(index, 1);
     },
     updateProposal: async function() {
+      try {
+        console.log("validando..");
+        const success = await this.$validate();
+        console.log("validado.");
+
+        console.log("Validação realizada com sucesso?", success);
+        if (!success) {
+          return;
+        }
+      } catch (err) {
+        console.error(err);
+        return;
+      }
+
       this.loading = true;
+      const proposal = Object.assign(this.existingProposal, this.proposal);
 
       this.loadingMessages = ["Enviando informações de proposta, aguarde..."];
       this.loadingCompletePercent = 1;
-      await apiClientProvider.updateProposal(this.proposal);
+      await apiClientProvider.updateProposal(proposal);
 
       this.loadingMessages = ["Enviando proposta para nossos parceiros..."];
       this.loadingCompletePercent = 25;
-      await apiClientProvider.setNextState(this.proposal, 10);
+      await apiClientProvider.setNextState(proposal, 10);
 
       this.loadingMessages = ["Aguardando resposta dos parceiros..."];
       this.loadingCompletePercent = 50;
@@ -302,7 +325,7 @@ export default {
       this.loadingCompletePercent = 100;
       this.$router.push("/plano-de-saude/opcoes");
     }
-  },    // this.proposal = Object.assign(this.proposal, existingProposal)
+  },
   computed: {
     isLoading: function() {
       return this.loading;
@@ -313,12 +336,26 @@ export default {
   },
   data() {
     return {
+      existingProposal: {},
       proposal: {
         proposer: {
+          dateOfBirth: "",
           name: "",
-          homeAddress: {},
-          phones: [{}],
-          profession: {},
+          email: "",
+          homeAddress: {
+            zipCode: "",
+            state: "",
+            city: ""
+          },
+          phones: {
+            0: {
+              areaCode: "",
+              number: ""
+            }
+          },
+          profession: {
+            name: ""
+          },
           dependents: []
         }
       },
@@ -328,30 +365,53 @@ export default {
     };
   },
   validators: {
-    "proposal.proposer.name": function(value) {proposal
+    "proposal.proposer.name": function(value) {
+      return Validator.value(value)
+        .required("Por favor, nos informe o seu nome.")
+        .minLength(5, "Por favor, nos informe o seu nome.");
+    },
+    "proposal.proposer.email": function(value) {
+      return Validator.value(value)
+        .required("Por favor, nos informe o seu e-mail.")
+        .email("E-mail inválido");
+    },
+    "proposal.proposer.profession.name": function(value) {
       return Validator.value(value).required(
-        "Por favor, nos informe o seu nome."
+        "Por favor, nos informe sua profissão"
       );
     },
     "proposal.proposer.homeAddress.zipCode": function(value) {
       return Validator.value(value)
         .required("Por favor, nos informe o seu CEP")
-        .custom(function() {});
+        .custom(function() {
+          if (!value) {
+            return null;
+          }
+          const num = value.replace(/\D/g, "");
+          if (num.length < 8) {
+            return "CEP inválido.";
+          }
+        });
     },
     "proposal.proposer.homeAddress.state": function(value) {
-      return Validator.value(value).required(
-        "Por favor, nos informe o seu estado."
-      );
+      console.log("proposal.proposer.homeAddress.state");
+      return Validator.value(value)
+        .required("Por favor, nos informe o seu estado.")
+        .minLength(2, "Inválido");
     },
     "proposal.proposer.homeAddress.city": function(value) {
+      console.log("proposal.proposer.homeAddress.city");
       return Validator.value(value).required(
         "Por favor, nos informe a sua cidade."
       );
     },
     "proposal.proposer.dateOfBirth": function(value) {
+      console.log("proposal.proposer.dateOfBirth");
+      console.log("proposal.proposer.dateOfBirth", "value", value);
       return Validator.value(value)
         .required("Por favor, nos informe a sua data de nascimento.")
         .custom(function() {
+          console.log("checking custom value dateOfBirth");
           if (value == null) {
             return null;
           }
@@ -365,17 +425,26 @@ export default {
           }
           return null;
         });
+    },
+    "proposal.proposer.phones.0.areaCode": function(value) {
+      console.log("proposal.proposer.phones.0.areaCode");
+      return Validator.value(value)
+        .required("Por favor, nos informe seu DDD.")
+        .minLength(2, "Favor Informar o DDD com 2 dígitos");
+    },
+    "proposal.proposer.phones.0.number": function(value) {
+      console.log("proposal.proposer.phones.0.number");
+      const val = value.replace(/\D/g, "");
+      return Validator.value(val)
+        .required("Por favor, nos informe seu telefone.")
+        .minLength(8, "Favor Informar o telefone completo");
     }
   },
-  beforeMount() {
+  async beforeMount() {
+    this.existingProposal = await apiClientProvider.generateProposal(2);
     console.log(`beforeMount`);
   },
-  async mounted() {
-    this.existingProposal = await apiClientProvider.generateProposal(2);
-    this.proposal._id = this.existingProposal._id;
-    this.proposal.product = this.existingProposal.product;
-    this.proposal.createdAt = this.existingProposal.createdAt;
-  },
+  async mounted() {},
   components: {
     Footer: Footer,
     Loading: Loading
@@ -385,5 +454,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+.form-line {
+  margin-left: 0px;
+}
 </style>
