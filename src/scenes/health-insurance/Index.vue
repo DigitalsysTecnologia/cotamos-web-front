@@ -95,7 +95,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-9 col-xs-12 pd-l">
+                                    <div class="col-sm-9 col-xs-12">
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
