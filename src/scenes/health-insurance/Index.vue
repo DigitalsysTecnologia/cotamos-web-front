@@ -91,8 +91,10 @@
                                     <div class="col-md-12">
                                         <FormInput  label="Data de nascimento" 
                                                     icon="fa-calendar" 
-                                                    type="text"
                                                     id="proposal.proposer.dateOfBirth"
+                                                    mask="#####-####"
+                                                    pattern="*" 
+                                                    type="number"
                                                     :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
                                                     v-model="proposal.proposer.dateOfBirth" />
                                     </div>
@@ -103,7 +105,7 @@
                                         <FormInput  label="DDD" 
                                                     icon="fa-phone" 
                                                     type="number"
-                                                    pattern="[0-9]*" 
+                                                    pattern="*" 
                                                     id="proposal.proposer.phones.0.areaCode"
                                                     maxLength="2"
                                                     :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
@@ -116,8 +118,8 @@
                                                    id="proposal.proposer.phones.0.number"
                                                    maxLength="15"
                                                    mask="#####-####"
-                                                   pattern="[0-9]*" 
-                                                   type="tel"
+                                                   pattern="*" 
+                                                   type="number"
                                                    :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
                                                    v-model.trim="proposal.proposer.phones[0].number" />
                                     </div>
@@ -138,7 +140,7 @@
                                                     icon="fa-calendar" 
                                                     id="dependent.dateOfBirth"
                                                     type="number"
-                                                    pattern="[0-9]*" 
+                                                    pattern="*" 
                                                     v-model="dependent.dateOfBirth" 
                                                     mask="##/##/####"/>
                                     </div>
