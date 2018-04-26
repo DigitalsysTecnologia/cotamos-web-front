@@ -48,8 +48,7 @@
                                     <div class="col-sm-12 col-xs-12">
                                         <FormInput  label="CEP" 
                                                     icon="fa-map-marker" 
-                                                    type="number"
-                                                    pattern="[0-9]*" 
+                                                    type="text"
                                                     id="proposal.proposer.homeAddress.zipCode"
                                                     :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
                                                     mask="#####-###"
@@ -93,8 +92,7 @@
                                                     icon="fa-calendar" 
                                                     id="proposal.proposer.dateOfBirth"
                                                     mask="#####-####"
-                                                    pattern="*" 
-                                                    type="number"
+                                                    type="text"
                                                     :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
                                                     v-model="proposal.proposer.dateOfBirth" />
                                     </div>
@@ -104,8 +102,7 @@
                                     <div class="col-md-2 col-sm-3 col-xs-12">
                                         <FormInput  label="DDD" 
                                                     icon="fa-phone" 
-                                                    type="number"
-                                                    pattern="*" 
+                                                    type="text"
                                                     id="proposal.proposer.phones.0.areaCode"
                                                     maxLength="2"
                                                     :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
@@ -118,8 +115,7 @@
                                                    id="proposal.proposer.phones.0.number"
                                                    maxLength="15"
                                                    mask="#####-####"
-                                                   pattern="*" 
-                                                   type="number"
+                                                   type="text"
                                                    :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
                                                    v-model.trim="proposal.proposer.phones[0].number" />
                                     </div>
@@ -139,7 +135,7 @@
                                         <FormInput  label="Data de nascimento"
                                                     icon="fa-calendar" 
                                                     id="dependent.dateOfBirth"
-                                                    type="number"
+                                                    type="text"
                                                     pattern="*" 
                                                     v-model="dependent.dateOfBirth" 
                                                     mask="##/##/####"/>
