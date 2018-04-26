@@ -4,15 +4,18 @@
             <div class="input-group-addon">
                 <i :class="`fa ${icon}`" aria-hidden="true"/>
             </div>
-            <input  type="type" 
+            <input  :type="type" 
                     class="form-control"
                     :id="id"
                     :name="id"
                     :placeholder="label"
                     @input="updateValue()"
                     :maxLength="maxLength"
-                    xstyle="border-right-color: red"
-                    ref="inputValue"/>
+                    ref="inputValue"
+                    :pattern="pattern" 
+                    novalidate
+                    
+                    />
         </div>
         <div class="message"> {{ validationMessage  }}</div>
     </div>
@@ -52,6 +55,11 @@ export default {
       required: false
     },
     maxLength: {
+      type: String,
+      default: "",
+      required: false
+    },
+    pattern: {
       type: String,
       default: "",
       required: false

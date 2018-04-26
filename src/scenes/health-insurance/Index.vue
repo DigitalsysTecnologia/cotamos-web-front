@@ -49,6 +49,7 @@
                                         <FormInput  label="CEP" 
                                                     icon="fa-map-marker" 
                                                     type="number"
+                                                    pattern="[0-9]*" 
                                                     id="proposal.proposer.homeAddress.zipCode"
                                                     :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
                                                     mask="#####-###"
@@ -102,6 +103,7 @@
                                         <FormInput  label="DDD" 
                                                     icon="fa-phone" 
                                                     type="number"
+                                                    pattern="[0-9]*" 
                                                     id="proposal.proposer.phones.0.areaCode"
                                                     maxLength="2"
                                                     :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
@@ -114,6 +116,7 @@
                                                    id="proposal.proposer.phones.0.number"
                                                    maxLength="15"
                                                    mask="#####-####"
+                                                   pattern="[0-9]*" 
                                                    type="tel"
                                                    :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
                                                    v-model.trim="proposal.proposer.phones[0].number" />
@@ -135,6 +138,7 @@
                                                     icon="fa-calendar" 
                                                     id="dependent.dateOfBirth"
                                                     type="number"
+                                                    pattern="[0-9]*" 
                                                     v-model="dependent.dateOfBirth" 
                                                     mask="##/##/####"/>
                                     </div>
