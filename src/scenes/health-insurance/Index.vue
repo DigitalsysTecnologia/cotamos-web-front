@@ -18,170 +18,104 @@
                         <section class="col-xs-12 formulario-cotacao">
 
                             <div class="col-sm-12 col-xs-12 box-cotacao" v-if="loading">
-                                <Loading  v-bind:messages="this.loadingMessages" v-bind:completePercent="this.loadingCompletePercent"/>
+                                <Loading  :messages="this.loadingMessages" :completePercent="this.loadingCompletePercent"/>
                             </div>
                             
                             <div class="col-sm-12 col-xs-12 box-cotacao" v-else>
                                 <h3>Simule aqui</h3>
 
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-user" aria-hidden="true"/>
-                                        </div>
-                                        <input type="text"
-                                                class="form-control"
-                                                id="proposal.proposer.name"
-                                                v-model.trim="proposal.proposer.name"
-                                                name="proposal.proposer.name"
-                                                placeholder="Nome"/>
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <FormInput  label="Nome"
+                                                    icon="fa-user" 
+                                                    id="proposal.proposer.name"
+                                                    :validationMessage="validation.firstError('proposal.proposer.name')"
+                                                    v-model.trim="proposal.proposer.name" />
                                     </div>
-                                    <div class="message">{{ validation.firstError('proposal.proposer.name') }}</div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-at" aria-hidden="true"/>
-                                        </div>
-                                        <input type="email" 
-                                            class="form-control"
-                                            v-model.trim="proposal.proposer.email"
-                                            id="proposal.proposer.email" 
-                                            name="proposal.proposer.email"
-                                            placeholder="E-mail" 
-                                            required/>
-                                    </div>
-                                    <div class="message">{{ validation.firstError('proposal.proposer.email') }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-map-marker" aria-hidden="true"/>
-                                                </div>
-                                                <input type="text"
-                                                        class="form-control"
-                                                        id="proposal.proposer.homeAddress.zipCode"
-                                                        v-model.trim="proposal.proposer.homeAddress.zipCode"
-                                                        name="proposal.proposer.homeAddress.zipCode"
-                                                        v-mask="'#####-###'"
-                                                        placeholder="CEP" required/>
-                                            </div>
-                                            <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.zipCode') }}</div>
-                                        </div>
+                                        <FormInput  label="E-mail" 
+                                                    icon="fa-at" 
+                                                    id="proposal.proposer.email"
+                                                    :validationMessage="validation.firstError('proposal.proposer.email')"
+                                                    v-model.trim="proposal.proposer.email" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <FormInput  label="CEP" 
+                                                    icon="fa-map-marker" 
+                                                    id="proposal.proposer.homeAddress.zipCode"
+                                                    :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
+                                                    mask="#####-###"
+                                                    v-model.trim="proposal.proposer.homeAddress.zipCode" />
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-sm-3 col-xs-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-map-marker" aria-hidden="true"/>
-                                                </div>
-                                                <input type="text"
-                                                        maxLength="2"
-                                                        class="form-control"
-                                                        v-model.trim="proposal.proposer.homeAddress.state"
-                                                        id="proposal.proposer.homeAddress.state"
-                                                        name="proposal.proposer.homeAddress.state"
-                                                        placeholder="UF"
-                                                        required/>
-                                            </div>
-                                            <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.state') }}</div>
-                                        </div>
+                                        <FormInput  label="UF" 
+                                                    icon="fa-map-marker" 
+                                                    id="proposal.proposer.homeAddress.state"
+                                                    maxLength="2"
+                                                    :validationMessage="validation.firstError('proposal.proposer.homeAddress.state')"
+                                                    v-model.trim="proposal.proposer.homeAddress.state" />
                                     </div>
 
                                     <div class="col-sm-9 col-xs-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-map-marker" aria-hidden="true"/>
-                                                </div>
-                                                <input type="text"
-                                                        class="form-control"
-                                                        v-model.trim.lazy="proposal.proposer.homeAddress.city"
-                                                        id="proposal.proposer.homeAddress.city"
-                                                        name="proposal.proposer.homeAddress.city"
-                                                        placeholder="Cidade"
-                                                        required/>
-                                            </div>
-                                            <!-- <div class="message">{{ validation.firstError('proposal.proposer.homeAddress.city') }}</div> -->
-                                        </div>
+                                        <FormInput  label="Cidade" 
+                                                    icon="fa-map-marker" 
+                                                    id="proposal.proposer.homeAddress.city"
+                                                    :validationMessage="validation.firstError('proposal.proposer.homeAddress.city')"
+                                                    v-model.trim.lazy="proposal.proposer.homeAddress.city" />
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-cogs" aria-hidden="true"/>
-                                        </div>
-                                        <input type="text" class="form-control" 
-                                                id="proposal.proposer.profession.name"
-                                                name="proposal.proposer.profession.name"
-                                                v-model.trim="proposal.proposer.profession.name"
-                                                placeholder="Profissão"/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <FormInput  label="Profissão" 
+                                                    icon="fa-cogs" 
+                                                    type="text"
+                                                    id="proposal.proposer.profession.name"
+                                                    :validationMessage="validation.firstError('proposal.proposer.profession.name')"
+                                                    v-model="proposal.proposer.profession.name" />
                                     </div>
-                                    <div class="message">{{ validation.firstError('proposal.proposer.profession.name') }}</div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar" aria-hiddenname="true"/>
-                                        </div>
-                                        <input type="text"
-                                                class="form-control date"
-                                                id="proposal.proposer.dateOfBirth"
-                                                name="proposal.proposer.dateOfBirth"
-                                                v-model.trim="proposal.proposer.dateOfBirth"
-                                                v-mask="'##/##/####'"
-                                                placeholder="Data de nascimento"
-                                                required/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <FormInput  label="Data de nascimento" 
+                                                    icon="fa-calendar" 
+                                                    type="text"
+                                                    id="proposal.proposer.dateOfBirth"
+                                                    :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
+                                                    v-model="proposal.proposer.dateOfBirth" />
                                     </div>
-                                    <div class="message">{{ validation.firstError('proposal.proposer.dateOfBirth') }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-2 col-sm-3 col-xs-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-phone" aria-hidden="true"/>
-                                                </div>
-                                                <input type="text"
-                                                        class="form-control sp_celphones"
-                                                        maxLength="2"
-                                                        id="proposal.proposer.phones.0.areaCode"
-                                                        name="proposal.proposer.phones.0.areaCode"
-                                                        v-model.trim="proposal.proposer.phones[0].areaCode"
-                                                        v-mask="'##'"
-                                                        placeholder="DDD"/>
-
-                                            </div>
-                                            <div class="message">{{ validation.firstError('proposal.proposer.phones.0.areaCode') }}</div>
-                                        </div>
+                                        <FormInput  label="DDD" 
+                                                    icon="fa-phone" 
+                                                    type="text"
+                                                    id="proposal.proposer.phones.0.areaCode"
+                                                    maxLength="2"
+                                                    :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
+                                                    v-model.trim="proposal.proposer.phones[0].areaCode" />
                                     </div>
-                                    <div class="offset-md-1 offset-sm-1 col-md-10 col-sm-9 col-xs-12">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-phone" aria-hidden="true"/></div>
-                                                <input type="text"
-                                                        class="form-control sp_celphones"
-                                                        maxLength="15"
-                                                        id="proposal.proposer.phones.0.number"
-                                                        name="proposal.proposer.phones.0.number"
-                                                        v-model.trim="proposal.proposer.phones[0].number"
-                                                        v-mask="getPhoneMask(proposal.proposer.phones[0].number)"
-                                                        placeholder="Celular ou Telefone"/>
 
-                                            </div>
-                                            <div class="message">{{ validation.firstError('proposal.proposer.phones.0.number') }}</div>
-                                        </div>
+                                    <div class="offset-md-1 offset-sm-1 col-md-10 col-sm-9 col-xs-12">
+                                        <FormInput label="Celular ou Telefone" 
+                                                   icon="fa-phone" 
+                                                   type="text"
+                                                   id="proposal.proposer.phones.0.number"
+                                                   maxLength="15"
+                                                   mask="#####-####"
+                                                   :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
+                                                   v-model.trim="proposal.proposer.phones[0].number" />
                                     </div>
                                 </div>
 
@@ -189,38 +123,18 @@
 
                                 <div v-for="(dependent, index) in proposal.proposer.dependents" :key="`dependent-${index}`" class="row" style="margin-left:  0px; margin-bottom:25px;">
                                     <div class="col-sm-4 col-xs-12 pd-r">
-                                        <div class="form-group" style="margin-bottom: 0px;">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-user" aria-hidden="true"/>
-                                                </div>
-                                                <input type="text"
-                                                        class="form-control"
-                                                        id="dependent.name"
-                                                        v-model="dependent.name"
-                                                        name="dependent.name"
-                                                        placeholder="Nome"
-                                                        required/>
-                                            </div>
-                                        </div>
+                                        <FormInput  label="Nome"
+                                                    icon="fa-user" 
+                                                    id="dependent.name"
+                                                    v-model="dependent.name" />
                                     </div>
 
                                     <div class="col-sm-4 col-xs-12 pd-l">
-                                        <div class="form-group" style="margin-bottom: 0px;">
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar" aria-hidden="true"/>
-                                                </div>
-                                                <input type="text"
-                                                        class="form-control date"
-                                                        id="dependent.dateOfBirth"
-                                                        name="dependent.dateOfBirth"
-                                                        v-model="dependent.dateOfBirth"
-                                                        v-mask="'##/##/####'"
-                                                        placeholder="Data de nascimento"
-                                                        required/>
-                                            </div>
-                                        </div>
+                                        <FormInput  label="Data de nascimento"
+                                                    icon="fa-calendar" 
+                                                    id="dependent.dateOfBirth"
+                                                    v-model="dependent.dateOfBirth" 
+                                                    v-mask="'##/##/####'"/>
                                     </div>
 
                                     <div class="col-sm-4 col-xs-12 pd-l">
@@ -252,6 +166,7 @@
 <script>
 import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
+import FormInput from "../../components/FormInput";
 import apiClientProvider from "../../providers/apiClientProvider";
 import SimpleVueValidation from "simple-vue-validator";
 import moment from "moment";
@@ -447,7 +362,8 @@ export default {
   async mounted() {},
   components: {
     Footer: Footer,
-    Loading: Loading
+    Loading: Loading,
+    FormInput: FormInput
   }
 };
 </script>
