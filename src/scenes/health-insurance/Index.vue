@@ -48,6 +48,7 @@
                                     <div class="col-sm-12 col-xs-12">
                                         <FormInput  label="CEP" 
                                                     icon="fa-map-marker" 
+                                                    type="number"
                                                     id="proposal.proposer.homeAddress.zipCode"
                                                     :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
                                                     mask="#####-###"
@@ -100,7 +101,7 @@
                                     <div class="col-md-2 col-sm-3 col-xs-12">
                                         <FormInput  label="DDD" 
                                                     icon="fa-phone" 
-                                                    type="text"
+                                                    type="number"
                                                     id="proposal.proposer.phones.0.areaCode"
                                                     maxLength="2"
                                                     :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
@@ -110,10 +111,10 @@
                                     <div class="offset-md-1 offset-sm-1 col-md-10 col-sm-9 col-xs-12">
                                         <FormInput label="Celular ou Telefone" 
                                                    icon="fa-phone" 
-                                                   type="text"
                                                    id="proposal.proposer.phones.0.number"
                                                    maxLength="15"
                                                    mask="#####-####"
+                                                   type="tel"
                                                    :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
                                                    v-model.trim="proposal.proposer.phones[0].number" />
                                     </div>
@@ -133,8 +134,9 @@
                                         <FormInput  label="Data de nascimento"
                                                     icon="fa-calendar" 
                                                     id="dependent.dateOfBirth"
+                                                    type="number"
                                                     v-model="dependent.dateOfBirth" 
-                                                    v-mask="'##/##/####'"/>
+                                                    mask="##/##/####"/>
                                     </div>
 
                                     <div class="col-sm-4 col-xs-12 pd-l">
