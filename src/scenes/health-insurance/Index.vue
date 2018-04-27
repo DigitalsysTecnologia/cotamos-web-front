@@ -136,7 +136,6 @@
                                                     icon="fa-calendar" 
                                                     id="dependent.dateOfBirth"
                                                     type="text"
-                                                    pattern="*" 
                                                     v-model="dependent.dateOfBirth" 
                                                     mask="##/##/####"/>
                                     </div>
