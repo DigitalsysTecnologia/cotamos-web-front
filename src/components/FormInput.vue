@@ -70,11 +70,6 @@ export default {
     return {};
   },
   computed: {
-    computedMask: {
-      get() {
-        return mask || "";
-      }
-    },
     computedMaxLength: {
       get() {
         return maxLength || "";
@@ -82,22 +77,34 @@ export default {
     }
   },
   methods: {
-    maskString(mask, value) {
+    maskString(mask, value, truncate) {
+      if (!mask) {
+        return value;
+      }
+
       var formatter = new StringMask(mask);
       value = value.replace(/[^a-z0-9]/gim, "");
       value = formatter.apply(value);
-      value = value.substring(0, mask.length);
-      return value;
-    },
-    updateValue() {
-      if (this.mask) {
-        this.$refs.inputValue.value = this.maskString(
-          this.mask,
-          this.$refs.inputValue.value
-        );
+
+      if (truncate) {
+        return value.substring(0, mask.length);
+      } else {
+        return value;
       }
+    },
+    async updateValue(truncate) {
+      this.$refs.inputValue.value = this.maskString(
+        this.mask,
+        this.$refs.inputValue.value,
+        truncate
+      );
 
       this.$emit("input", this.$refs.inputValue.value);
+
+      let self = this;
+      setTimeout(function() {
+        self.updateValue(true);
+      }, 1000);
     }
   }
 };

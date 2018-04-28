@@ -91,7 +91,7 @@
                                         <FormInput  label="Data de nascimento" 
                                                     icon="fa-calendar" 
                                                     id="proposal.proposer.dateOfBirth"
-                                                    mask="#####-####"
+                                                    mask="##/##/####"
                                                     type="text"
                                                     :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
                                                     v-model="proposal.proposer.dateOfBirth" />
@@ -114,7 +114,7 @@
                                                    icon="fa-phone" 
                                                    id="proposal.proposer.phones.0.number"
                                                    maxLength="15"
-                                                   mask="#####-####"
+                                                   :mask="getPhoneMask(proposal.proposer.phones[0].number)"
                                                    type="text"
                                                    :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
                                                    v-model.trim="proposal.proposer.phones[0].number" />
@@ -209,11 +209,8 @@ export default {
     },
     updateProposal: async function() {
       try {
-        console.log("validando..");
         const success = await this.$validate();
-        console.log("validado.");
 
-        console.log("Validação realizada com sucesso?", success);
         if (!success) {
           return;
         }
@@ -329,7 +326,6 @@ export default {
       return Validator.value(value)
         .required("Por favor, nos informe a sua data de nascimento.")
         .custom(function() {
-          console.log("checking custom value dateOfBirth");
           if (value == null) {
             return null;
           }
@@ -351,7 +347,6 @@ export default {
         .minLength(2, "Favor Informar o DDD com 2 dígitos");
     },
     "proposal.proposer.phones.0.number": function(value) {
-      console.log("proposal.proposer.phones.0.number");
       const val = value.replace(/\D/g, "");
       return Validator.value(val)
         .required("Por favor, nos informe seu telefone.")
