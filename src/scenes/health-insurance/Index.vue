@@ -77,17 +77,6 @@
 
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <FormInput  label="Profissão" 
-                                                    icon="fa-cogs" 
-                                                    type="text"
-                                                    id="proposal.proposer.profession.name"
-                                                    :validationMessage="validation.firstError('proposal.proposer.profession.name')"
-                                                    v-model="proposal.proposer.profession.name" />
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
                                         <FormInput  label="Data de nascimento" 
                                                     icon="fa-calendar" 
                                                     id="proposal.proposer.dateOfBirth"
@@ -104,7 +93,7 @@
                                                     icon="fa-phone" 
                                                     type="text"
                                                     id="proposal.proposer.phones.0.areaCode"
-                                                    maxLength="2"
+                                                    mask="##"
                                                     :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
                                                     v-model.trim="proposal.proposer.phones[0].areaCode" />
                                     </div>
@@ -123,26 +112,8 @@
 
                                 <p class="dependente-p" style="display:block">Caso necessário inclua dependentes abaixo</p>
 
-                                <div v-for="(dependent, index) in proposal.proposer.dependents" :key="`dependent-${index}`" class="row" style="margin-left:  0px; margin-bottom:25px;">
-                                    <div class="col-sm-4 col-xs-12 pd-r">
-                                        <FormInput  label="Nome"
-                                                    icon="fa-user" 
-                                                    id="dependent.name"
-                                                    v-model="dependent.name" />
-                                    </div>
-
-                                    <div class="col-sm-4 col-xs-12 pd-l">
-                                        <FormInput  label="Data de nascimento"
-                                                    icon="fa-calendar" 
-                                                    id="dependent.dateOfBirth"
-                                                    type="text"
-                                                    v-model="dependent.dateOfBirth" 
-                                                    mask="##/##/####"/>
-                                    </div>
-
-                                    <div class="col-sm-4 col-xs-12 pd-l">
-                                        <button v-on:click="removeDependent(index)" class="btn btn-danger btn-block" >Remover</button>
-                                    </div>
+                                <div v-for="(dependent, index) in proposal.proposer.dependents" :key="`dependent-${index}`" style="margin-left:  0px; margin-bottom:25px;">
+                                   <Dependent :value="dependent" ref="childs"/>
                                 </div>
 
                                 <div class="input_fields_wrap">
@@ -170,6 +141,7 @@
 import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
 import FormInput from "../../components/FormInput";
+import Dependent from "./components/Dependent";
 import apiClientProvider from "../../providers/apiClientProvider";
 import SimpleVueValidation from "simple-vue-validator";
 import moment from "moment";
@@ -202,16 +174,35 @@ export default {
       }
     },
     addDependent: function() {
-      this.proposal.proposer.dependents.push({});
+      this.proposal.proposer.dependents.push({
+        name: "",
+        dateOfBirth: ""
+      });
     },
     removeDependent: function(index) {
       this.proposal.proposer.dependents.splice(index, 1);
     },
     updateProposal: async function() {
       try {
-        const success = await this.$validate();
+        const validations = [];
+        validations.push(this.$validate());
 
-        if (!success) {
+        // Se tiver componentes-filho (como dependentes), faz a validação também nos componentes-filho
+        if (this.$refs.childs) {
+          this.$refs.childs.forEach(child => {
+            validations.push(child.validate());
+          });
+        }
+
+        const validationResults = await Promise.all(validations);
+
+        const hasValidationErrors = validationResults.some(function(
+          validation
+        ) {
+          return validation === false;
+        });
+
+        if (hasValidationErrors) {
           return;
         }
       } catch (err) {
@@ -234,11 +225,15 @@ export default {
       this.loadingCompletePercent = 50;
 
       await sleep(5000);
-      this.loadingMessages = ["Enviando para páginaproposal de resultados..."];
+      this.loadingMessages = ["Enviando para página de resultados..."];
 
       await sleep(5000);
       this.loadingCompletePercent = 100;
-      this.$router.push("/plano-de-saude/opcoes");
+      // this.$router.push("/plano-de-saude/opcoes");
+      this.$router.push({
+        name: "HealthInsuranceResult",
+        params: { proposalId: proposal._id }
+      });
     }
   },
   computed: {
@@ -268,9 +263,6 @@ export default {
               number: ""
             }
           },
-          profession: {
-            name: ""
-          },
           dependents: []
         }
       },
@@ -290,11 +282,6 @@ export default {
         .required("Por favor, nos informe o seu e-mail.")
         .email("E-mail inválido");
     },
-    "proposal.proposer.profession.name": function(value) {
-      return Validator.value(value).required(
-        "Por favor, nos informe sua profissão"
-      );
-    },
     "proposal.proposer.homeAddress.zipCode": function(value) {
       return Validator.value(value)
         .required("Por favor, nos informe o seu CEP")
@@ -312,7 +299,7 @@ export default {
       console.log("proposal.proposer.homeAddress.state");
       return Validator.value(value)
         .required("Por favor, nos informe o seu estado.")
-        .minLength(2, "Inválido");
+        .minLength(2, "Estado Inválido");
     },
     "proposal.proposer.homeAddress.city": function(value) {
       console.log("proposal.proposer.homeAddress.city");
@@ -321,8 +308,6 @@ export default {
       );
     },
     "proposal.proposer.dateOfBirth": function(value) {
-      console.log("proposal.proposer.dateOfBirth");
-      console.log("proposal.proposer.dateOfBirth", "value", value);
       return Validator.value(value)
         .required("Por favor, nos informe a sua data de nascimento.")
         .custom(function() {
@@ -334,16 +319,34 @@ export default {
             return "Data inválida";
           }
 
-          if (!moment(value, "DD/MM/YYYY").isValid()) {
+          const dateOfBirth = moment(value, "DD/MM/YYYY");
+          if (!dateOfBirth.isValid()) {
             return "Data inválida";
           }
+
+          const now = moment();
+          const duration = moment.duration(now.diff(dateOfBirth));
+          const ageInYears = duration.asYears();
+
+          if (ageInYears <= 0) {
+            return "Data inválida";
+          }
+
+          if (ageInYears < 18) {
+            return "Não é possível solicitar seguro para menores de idade";
+          }
+
+          if (ageInYears > 90) {
+            return "Data inválida";
+          }
+
           return null;
         });
     },
     "proposal.proposer.phones.0.areaCode": function(value) {
-      console.log("proposal.proposer.phones.0.areaCode");
       return Validator.value(value)
         .required("Por favor, nos informe seu DDD.")
+        .digit("DDD com valor não-numérico")
         .minLength(2, "Favor Informar o DDD com 2 dígitos");
     },
     "proposal.proposer.phones.0.number": function(value) {
@@ -355,13 +358,13 @@ export default {
   },
   async beforeMount() {
     this.existingProposal = await apiClientProvider.generateProposal(2);
-    console.log(`beforeMount`);
   },
   async mounted() {},
   components: {
     Footer: Footer,
     Loading: Loading,
-    FormInput: FormInput
+    FormInput: FormInput,
+    Dependent: Dependent
   }
 };
 </script>

@@ -24,7 +24,7 @@ export default new Router({
       component: HealthInsurance
     },
     {
-      path: '/plano-de-saude/opcoes',
+      path: '/plano-de-saude/opcoes/:proposalId',
       name: 'HealthInsuranceResult',
       component: HealthInsuranceOffers
     }

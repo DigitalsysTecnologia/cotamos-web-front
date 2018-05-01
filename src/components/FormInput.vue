@@ -10,11 +10,11 @@
                     :name="id"
                     :placeholder="label"
                     @input="updateValue()"
-                    :maxLength="maxLength"
+                    :maxLenvalidationMessagegth="maxLength"
                     ref="inputValue"
                     :pattern="pattern" 
                     novalidate
-                    
+                    :value="value"
                     />
         </div>
         <div class="message"> {{ validationMessage  }}</div>
@@ -34,6 +34,11 @@ export default {
     icon: {
       type: String,
       required: false
+    },
+    value: {
+      type: String,
+      required: false,
+      default: ""
     },
     id: {
       type: String,
@@ -93,6 +98,11 @@ export default {
       }
     },
     async updateValue(truncate) {
+
+      if(!this.$refs.inputValue) {
+        return;
+      }
+      
       this.$refs.inputValue.value = this.maskString(
         this.mask,
         this.$refs.inputValue.value,
@@ -128,5 +138,12 @@ export default {
 }
 .message {
   color: red;
+}
+.input-group {
+  height: 42px;
+}
+
+.input-group input{
+  height: 42px;
 }
 </style>
