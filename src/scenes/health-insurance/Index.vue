@@ -113,7 +113,7 @@
                                 <p class="dependente-p" style="display:block">Caso necessário inclua dependentes abaixo</p>
 
                                 <div v-for="(dependent, index) in proposal.proposer.dependents" :key="`dependent-${index}`" style="margin-left:  0px; margin-bottom:25px;">
-                                   <Dependent :value="dependent" ref="childs"/>
+                                   <Dependent :value="dependent" ref="childs" @onRemove="removeDependent(index)"/>
                                 </div>
 
                                 <div class="input_fields_wrap">
@@ -206,7 +206,7 @@ export default {
           return;
         }
       } catch (err) {
-        console.error(err);
+        
         return;
       }
 
@@ -296,13 +296,13 @@ export default {
         });
     },
     "proposal.proposer.homeAddress.state": function(value) {
-      console.log("proposal.proposer.homeAddress.state");
+      
       return Validator.value(value)
         .required("Por favor, nos informe o seu estado.")
         .minLength(2, "Estado Inválido");
     },
     "proposal.proposer.homeAddress.city": function(value) {
-      console.log("proposal.proposer.homeAddress.city");
+      
       return Validator.value(value).required(
         "Por favor, nos informe a sua cidade."
       );

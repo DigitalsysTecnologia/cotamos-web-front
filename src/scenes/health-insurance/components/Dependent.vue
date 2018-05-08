@@ -18,7 +18,7 @@
     </div>
 
     <div class="col-sm-4 col-xs-12 pd-l">
-        <button v-on:click="removeDependent(index)" class="btn btn-danger btn-block" >Remover</button>
+        <button v-on:click="$emit('onRemove')" class="btn btn-danger btn-block" >Remover</button>
     </div>
   </div>
 </template>
