@@ -58,14 +58,13 @@
 
                                 <div class="row">
                                     <div class="col-sm-3 col-xs-12">
-                                        <FormInput  label="UF" 
+                                      <FormSelect  label="UF" 
                                                     icon="fa-map-marker" 
                                                     id="proposal.proposer.homeAddress.state"
-                                                    maxLength="2"
                                                     :validationMessage="validation.firstError('proposal.proposer.homeAddress.state')"
-                                                    v-model.trim="proposal.proposer.homeAddress.state" />
+                                                    v-model="proposal.proposer.homeAddress.state" 
+                                                    :options="['AC','AL','AM','AP','BA','CE','DF','ES','GO','MA','MG','MS','MT','PA','PB','PE','PI','PR','RJ','RN','RO','RR','RS','SC','SE','SP','TO']" />
                                     </div>
-
                                     <div class="col-sm-9 col-xs-12">
                                         <FormInput  label="Cidade" 
                                                     icon="fa-map-marker" 
@@ -141,6 +140,7 @@
 import Loading from "../../components/Loading";
 import Footer from "../../components/Footer";
 import FormInput from "../../components/FormInput";
+import FormSelect from "../../components/FormSelect.vue";
 import Dependent from "./components/Dependent";
 import apiClientProvider from "../../providers/apiClientProvider";
 import SimpleVueValidation from "simple-vue-validator";
@@ -373,7 +373,8 @@ export default {
     Footer: Footer,
     Loading: Loading,
     FormInput: FormInput,
-    Dependent: Dependent
+    Dependent: Dependent,
+    FormSelect: FormSelect
   }
 };
 </script>

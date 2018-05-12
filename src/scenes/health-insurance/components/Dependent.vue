@@ -51,7 +51,7 @@ export default {
     },
     "value.dateOfBirth": function(value) {
       return Validator.value(value)
-        .required("Por favor, nos informe a sua data de nascimento.")
+        .required("Por favor, nos informe data de nascimento do dependente.")
         .custom(function() {
           if (value == null) {
             return null;

@@ -762,10 +762,13 @@ Página de cotação
   border-left: 0px;
   box-shadow: none;
   color:#000;
-  padding-top: 19px;
-  padding-bottom: 19px;
   border-radius: 0px;
   border-color: rgb(166, 166, 166);
+}
+
+.box-cotacao input.form-control  {
+  padding-top: 19px;
+  padding-bottom: 19px;
 }
 
 .box-cotacao .form-control:focus {

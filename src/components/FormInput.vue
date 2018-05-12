@@ -10,7 +10,7 @@
                     :name="id"
                     :placeholder="label"
                     @input="updateValue()"
-                    :maxLenvalidationMessagegth="maxLength"
+                    :maxLength="maxLength"
                     ref="inputValue"
                     :pattern="pattern" 
                     novalidate
@@ -71,7 +71,6 @@ export default {
     }
   },
   data() {
-    23;
     return {};
   },
   computed: {
