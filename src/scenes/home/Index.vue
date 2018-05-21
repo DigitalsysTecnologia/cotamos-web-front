@@ -30,8 +30,13 @@
                     <form action="">
                         <div class="col-sm-11 col-xs-10 box-formulario">
                             <h3>Faça uma cotação</h3>
-                            <p>O que você quer assegurar? Digite abaixo o que você precisa</p>
-                            <input type="text" placeholder="Ex: Carro" class="form-control"/>
+                            <p>O que você quer assegurar? Selecione abaixo o que você precisa</p>
+                            <select class="form-control">
+                                <option>Quero um plano de saúde para minha Familia</option>
+                                <option>Quero um plano de saúde para minha Empresa</option>
+                                <option disabled="disabled">Quero um seguro para o meu carro (Em breve)</option>
+                            </select>
+                            <!-- <input type="text" placeholder="Ex: Carro" class="form-control"/> -->
                         </div>
                         <button type="submit" class="btn-envio btn btn-default col-sm-1 col-xs-2">
                             <img src="/static/img/envio_icone.png" alt="Enviar" class="img-responsive center-block"/>
@@ -135,10 +140,10 @@
 </template>
 
 <script>
-import Footer from '../components/Footer'
-import NavBar from '../components/NavBar'
+import Footer from '../../components/Footer'
+import NavBar from '../../components/NavBar'
 export default {
-  name: 'Main',
+  name: 'Home',
   data () {
     return {}
   },

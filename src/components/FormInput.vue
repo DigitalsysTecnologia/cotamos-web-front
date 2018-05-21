@@ -54,6 +54,11 @@ export default {
       default: "text",
       required: false
     },
+    maskReverse: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     mask: {
       type: String,
       default: "",
@@ -86,7 +91,7 @@ export default {
         return value;
       }
 
-      var formatter = new StringMask(mask);
+      var formatter = new StringMask(mask, { reverse: this.maskReverse });
       value = value.replace(/[^a-z0-9]/gim, "");
       value = formatter.apply(value);
 
@@ -97,11 +102,10 @@ export default {
       }
     },
     async updateValue(truncate) {
-
-      if(!this.$refs.inputValue) {
+      if (!this.$refs.inputValue) {
         return;
       }
-      
+
       this.$refs.inputValue.value = this.maskString(
         this.mask,
         this.$refs.inputValue.value,
@@ -109,8 +113,8 @@ export default {
       );
 
       this.$emit("input", this.$refs.inputValue.value);
-
       let self = this;
+
       setTimeout(function() {
         self.updateValue(true);
       }, 1000);
@@ -142,7 +146,7 @@ export default {
   height: 42px;
 }
 
-.input-group input{
+.input-group input {
   height: 42px;
 }
 </style>

@@ -1,12 +1,149 @@
-const ApiClient = require('@cotamos/cotamos-api-client')
+'use strict';
 
-function getBaseUrl () {
-  switch (window.location.host) {
-    case 'www.cotamos.com':
-      return 'https://backend.cotamos.com/api/v1'
-    default:
-      return 'http://localhost:3000/api/v1'
+const axios = require('axios');
+const urljoin = require('url-join');
+var apiKey = null;
+let apiSettings = {};
+let baseUrl = '';
+
+
+if (window.location.host.indexOf('localhost') != -1) {
+  baseUrl = 'http://localhost:3000/api/v1'
+}
+else {
+  baseUrl = 'https://backend.cotamos.com/api/v1'
+}
+
+function internalRequest(method, url, data) {
+  return axios({
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+      'apiKey': apiKey
+    },
+    url: urljoin(baseUrl, url),
+    data: data
+  }).then(function (res) {
+    if (res.data)
+      return res.data;
+
+    return null;
+  }).catch(function (err) {
+    var exception = {};
+
+    if (err.response && err.response.data) {
+      exception.data = err.response.data;
+      exception.statusCode = err.response.status
+    }
+
+    throw exception;
+  });
+}
+
+function internalDelete(url, data) {
+  return internalRequest('delete', url, null);
+}
+
+function internalGet(url) {
+  return internalRequest('get', url, null);
+}
+
+function internalPost(url, data) {
+  return internalRequest('post', url, data);
+}
+
+function internalPut(url, data) {
+  return internalRequest('put', url, data);
+}
+
+class ApiClient {
+  createUser(user) {
+    return internalPost('user', user);
+  }
+
+  createChatBotLog(chatBotLog) {
+    return internalPost('chatBotLog', chatBotLog);
+  }
+
+  generateProposal(productCode) {
+    return internalGet(`proposal/generate/?product=${productCode}`);
+  }
+
+  getProposalByFilter(filter) {
+    return internalPost('proposal/list-by-filter', filter);
+  }
+
+  getProposalById(proposalId) {
+    return internalGet(`proposal/?proposalId=${proposalId}`);
+  }
+
+  getAddressByZipCode(zipCode) {
+    return internalGet(urljoin('address', 'by-zipcode', `?zipCode=${zipCode}`));
+  }
+
+  login(login, password) {
+    const payload = {
+      login: login,
+      password: password
+    }
+
+    return internalPost(urljoin('user', 'login'), payload);
+  }
+  updateProposal(proposal) {
+    return internalPut(urljoin('proposal'), proposal);
+  }
+
+  setNextState(proposal, nextState) {
+    const payload = {
+      proposalId: proposal._id,
+      nextState: nextState
+    }
+    return internalPost(urljoin('proposal', 'set-next-state'), payload);
+  }
+
+  checkSession(token) {
+    const payload = {
+      token: token
+    };
+
+    return internalPost(urljoin('user-token', 'check-session'), payload)
+  }
+
+  getAllUsers() {
+    return internalGet('user')
+  }
+
+  getAllCompanies() {
+    return internalGet('company')
+  }
+
+  getUserById(userId) {
+    return internalGet(urljoin('user', userId));
+  }
+
+  getCompanyById(companyId) {
+    return internalGet(urljoin('company', companyId));
+  }
+
+  updateCompany(company) {
+    return internalPut('company', company);
+  }
+
+  updateUser(user) {
+    return internalPut('user', user);
+  }
+
+  createCompany(company) {
+    return internalPost('company', company);
+  }
+
+  getAllProducts() {
+    return internalGet('product')
+  }
+
+  getAllProfessions() {
+    return internalGet('profession')
   }
 }
 
-export default new ApiClient({url: getBaseUrl()})
+export default new ApiClient();

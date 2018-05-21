@@ -6,7 +6,11 @@
             </div>
             <select class="form-control custom-select" :id="id" @input="updateValue()" ref="inputValue" >
               <option selected="true" disabled="disabled">{{ label }}</option>
-              <option v-for="(option) in options" :key="option"> {{option}} </option>
+              <option v-for="(option) in options" 
+                      :key="option.id || option" 
+                      :value="option.id || option"> 
+                {{ option.text || option}} 
+              </option>
             </select>
         </div>
         <div class="message"> {{ validationMessage  }}</div>
