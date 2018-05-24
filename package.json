@@ -14,7 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@cotamos/cotamos-api-client": "git+ssh://git@gitlab.com/cotamos/cotamos-api-client.git",
+    "@cotamos/cotamos-api-client": "https://eduardo.welton:rZaBjPtyizSjeCppQsUE@gitlab.com/cotamos/cotamos-api-client.git",
     "axios": "^0.18.0",
     "cpf_cnpj": "^0.2.0",
     "imagemin-webpack-plugin": "^2.1.1",
