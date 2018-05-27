@@ -121,10 +121,8 @@
                                     </button>
                                 </div>
 
-                                <button @click="updateProposal" class="btn-envio btn btn-default pull-right"
-                                        title="Enviar">
-                                    <img src="/static/img/envio_icone.png" alt="Enviar"
-                                            class="img-responsive center-block"/>
+                                <button @click="updateProposal" class="btn-envio btn btn-default pull-right" title="Enviar">
+                                    <img src="/static/img/envio_icone.png" alt="Enviar" class="img-responsive center-block"/>
                                 </button>
                             </div>
                         </section>
@@ -208,26 +206,11 @@ export default {
 
       this.loading = true;
       const proposal = Object.assign(this.existingProposal, this.proposal);
-
-      this.loadingMessages = ["Enviando informações de proposta, aguarde..."];
-      this.loadingCompletePercent = 1;
       await apiClientProvider.updateProposal(proposal);
-
-      this.loadingMessages = ["Enviando proposta para nossos parceiros..."];
-      this.loadingCompletePercent = 25;
       await apiClientProvider.setNextState(proposal, 10);
 
-      this.loadingMessages = ["Aguardando resposta dos parceiros..."];
-      this.loadingCompletePercent = 50;
-
-      await sleep(5000);
-      this.loadingMessages = ["Enviando para página de resultados..."];
-
-      await sleep(5000);
-      this.loadingCompletePercent = 100;
-      // this.$router.push("/plano-de-saude/opcoes");
       this.$router.push({
-        name: "HealthInsuranceResult",
+        name: "ProposalResult",
         params: { proposalId: proposal._id }
       });
     }
@@ -279,7 +262,7 @@ export default {
     "proposal.proposer.dateOfBirth": value =>
       validator.validateDateOfBirth(value),
     "proposal.proposer.phones.0.areaCode": value =>
-      validator.validatePhoneAreaCode(valu8e),
+      validator.validatePhoneAreaCode(value),
     "proposal.proposer.phones.0.number": value =>
       validator.validatePhoneNumber(value)
   },

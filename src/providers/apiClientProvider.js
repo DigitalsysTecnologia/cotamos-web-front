@@ -8,7 +8,7 @@ let baseUrl = '';
 
 
 if (window.location.host.indexOf('localhost') != -1) {
-  baseUrl = 'http://localhost:3000/api/v1'
+  baseUrl = 'http://localhost:3333/api/v1'
 }
 else {
   baseUrl = 'https://backend.cotamos.com/api/v1'

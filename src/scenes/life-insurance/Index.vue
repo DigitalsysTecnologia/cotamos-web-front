@@ -114,7 +114,7 @@ function sleep(time) {
 }
 
 export default {
-  name: "HealthInsurance",
+  name: "LifeInsurance",
   methods: {
     updateProposal: async function() {
       try {
@@ -140,7 +140,7 @@ export default {
         return;
       }
 
-      console.log('teste');
+      
       this.loading = true;
       const proposal = Object.assign(this.existingProposal, this.proposal);
 
@@ -161,7 +161,7 @@ export default {
       await sleep(5000);
       this.loadingCompletePercent = 100;
       this.$router.push({
-        name: "HealthInsuranceResult",
+        name: "ProposalResult",
         params: { proposalId: proposal._id }
       });
     }

@@ -4,7 +4,7 @@ import VueMask from 'v-mask'
 import SimpleVueValidation from 'simple-vue-validator'
 import Main from '@/scenes/home/Index'
 import HealthInsurance from '@/scenes/health-insurance/Index'
-import HealthInsuranceOffers from '@/scenes/health-insurance/Offers'
+import ProposalResult from '@/scenes/proposal-result/Index'
 import LifeInsurance from '@/scenes/life-insurance/Index'
 
 Vue.use(SimpleVueValidation)
@@ -30,9 +30,9 @@ export default new Router({
       component: LifeInsurance
     },
     {
-      path: '/plano-de-saude/opcoes/:proposalId',
-      name: 'HealthInsuranceResult',
-      component: HealthInsuranceOffers
+      path: '/ofertas/:proposalId',
+      name: 'ProposalResult',
+      component: ProposalResult
     }
   ]
 })

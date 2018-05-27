@@ -31,14 +31,15 @@
                         <div class="col-sm-11 col-xs-10 box-formulario">
                             <h3>Faça uma cotação</h3>
                             <p>O que você quer assegurar? Selecione abaixo o que você precisa</p>
-                            <select class="form-control">
-                                <option>Quero um plano de saúde para minha Familia</option>
-                                <option>Quero um plano de saúde para minha Empresa</option>
+                            <select class="form-control" v-model="product">
+                                <option value='0'>Quero um plano de saúde para minha Familia</option>
+                                <option value='3'>Quero um seguro de vida para mim</option>
+                                <option disabled="disabled">Quero uma previdência para mim</option>
+                                <option disabled="disabled">Quero uma previdência para meu/minha filho(a)</option>
                                 <option disabled="disabled">Quero um seguro para o meu carro (Em breve)</option>
                             </select>
-                            <!-- <input type="text" placeholder="Ex: Carro" class="form-control"/> -->
                         </div>
-                        <button type="submit" class="btn-envio btn btn-default col-sm-1 col-xs-2">
+                        <button class="btn-envio btn btn-default col-sm-1 col-xs-2" @click="GoToInsuranceFormPage">
                             <img src="/static/img/envio_icone.png" alt="Enviar" class="img-responsive center-block"/>
                         </button>
                     </form>
@@ -140,21 +141,35 @@
 </template>
 
 <script>
-import Footer from '../../components/Footer'
-import NavBar from '../../components/NavBar'
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 export default {
-  name: 'Home',
-  data () {
-    return {}
+  name: "Home",
+  data() {
+    return {
+      product: null
+    };
+  },
+  methods: {
+    GoToInsuranceFormPage(e) {
+      e.preventDefault();
+      switch (this.product) {
+        case "0":
+          this.$router.push({ name: "HealthInsurance" });
+          break;
+        case "3":
+          this.$router.push({ name: "LifeInsurance" });
+          break;
+      }
+    }
   },
   components: {
-    'Footer': Footer,
-    'NavBar': NavBar
+    Footer: Footer,
+    NavBar: NavBar
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
