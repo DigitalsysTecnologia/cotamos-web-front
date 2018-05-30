@@ -34,9 +34,10 @@
                             <select class="form-control" v-model="product">
                                 <option value='0'>Quero um plano de saúde para minha Familia</option>
                                 <option value='3'>Quero um seguro de vida para mim</option>
-                                <option disabled="disabled">Quero uma previdência para mim</option>
-                                <option disabled="disabled">Quero uma previdência para meu/minha filho(a)</option>
-                                <option disabled="disabled">Quero um seguro para o meu carro (Em breve)</option>
+                                <option disabled="disabled">Quero um plano de saúde para meu pet - EM BREVE</option>
+                                <option disabled="disabled">Quero uma previdência para mim - EM BREVE</option>
+                                <option disabled="disabled">Quero uma previdência para meu/minha filho(a) - EM BREVE</option>
+                                <option disabled="disabled">Quero um seguro para o meu carro - EM BREVE</option>
                             </select>
                         </div>
                         <button class="btn-envio btn btn-default col-sm-1 col-xs-2" @click="GoToInsuranceFormPage">

@@ -6,6 +6,7 @@ import Main from '@/scenes/home/Index'
 import HealthInsurance from '@/scenes/health-insurance/Index'
 import ProposalResult from '@/scenes/proposal-result/Index'
 import LifeInsurance from '@/scenes/life-insurance/Index'
+import ProductSelector from '@/scenes/product-selector/Index'
 
 Vue.use(SimpleVueValidation)
 Vue.use(Router)
@@ -33,6 +34,12 @@ export default new Router({
       path: '/ofertas/:proposalId',
       name: 'ProposalResult',
       component: ProposalResult
-    }
+    },
+    {
+      path: '/escolha-produto',
+      name: 'ProductSelector',
+      component: ProductSelector
+    },
+    
   ]
 })

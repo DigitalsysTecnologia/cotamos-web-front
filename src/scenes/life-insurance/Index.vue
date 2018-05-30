@@ -82,8 +82,7 @@
                                     </div>                                    
                                 </div>
 
-                                <button @click="updateProposal" class="btn-envio btn btn-default pull-right"
-                                        title="Enviar">
+                                <button @click="updateProposal" class="btn-envio btn btn-default pull-right" title="Enviar">
                                     <img src="/static/img/envio_icone.png" alt="Enviar"
                                             class="img-responsive center-block"/>
                                 </button>
@@ -118,13 +117,12 @@ export default {
   methods: {
     updateProposal: async function() {
       try {
-        
         const validations = [];
         validations.push(this.$validate());
 
         const validationResults = await Promise.all(validations);
 
-        console.log('validationResults', JSON.stringify(validationResults));
+        console.log("validationResults", JSON.stringify(validationResults));
 
         const hasValidationErrors = validationResults.some(function(
           validation
@@ -133,37 +131,31 @@ export default {
         });
 
         if (hasValidationErrors) {
-          console.log('hasValidationErrors', hasValidationErrors)
+          console.log("hasValidationErrors", hasValidationErrors);
           return;
         }
       } catch (err) {
         return;
       }
 
-      
-      this.loading = true;
-      const proposal = Object.assign(this.existingProposal, this.proposal);
+      if (this.loading) {
+        true;
+      }
 
-      this.loadingMessages = ["Enviando informações de proposta, aguarde..."];
-      this.loadingCompletePercent = 1;
-      await apiClientProvider.updateProposal(proposal);
+      try {
+        this.loading = true;
+        this.existingProposal = await apiClientProvider.generateProposal(3);
+        const proposal = Object.assign(this.existingProposal, this.proposal);
+        await apiClientProvider.updateProposal(proposal);
+        await apiClientProvider.setNextState(proposal, 10);
 
-      this.loadingMessages = ["Enviando proposta para nossos parceiros..."];
-      this.loadingCompletePercent = 25;
-      await apiClientProvider.setNextState(proposal, 10);
-
-      this.loadingMessages = ["Aguardando resposta dos parceiros..."];
-      this.loadingCompletePercent = 50;
-
-      await sleep(5000);
-      this.loadingMessages = ["Enviando para página de resultados..."];
-
-      await sleep(5000);
-      this.loadingCompletePercent = 100;
-      this.$router.push({
-        name: "ProposalResult",
-        params: { proposalId: proposal._id }
-      });
+        this.$router.push({
+          name: "ProposalResult",
+          params: { proposalId: proposal._id }
+        });
+      } finally {
+        this.loading = false;
+      }
     }
   },
   computed: {
@@ -212,17 +204,17 @@ export default {
   },
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
-    
+
     "proposal.proposer.email": value => validator.validateEmail(value),
-    
+
     "proposal.proposer.cpf": value => validator.validateCpf(value),
 
-    "proposal.proposer.dateOfBirth": value => validator.validateDateOfBirth(value),
+    "proposal.proposer.dateOfBirth": value =>
+      validator.validateDateOfBirth(value),
 
     "proposal.proposer.profession": value => validator.validateProfession(value)
   },
   async beforeMount() {
-    this.existingProposal = await apiClientProvider.generateProposal(3);
     this.professionList = await apiClientProvider.getAllProfessions();
   },
   components: {

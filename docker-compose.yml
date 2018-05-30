@@ -40,11 +40,11 @@ services:
       APICLIENT_URL: "http://localhost:3333/api/v1/"
       RABBITMQ_URL: "amqp://rabbitmq:rabbitmq@rabbit:5672/"
       SLACK_URL: ""
-    restart: always
     depends_on:
+      - rabbit
       - db
     # Aguarda até que o postgres (porta 5432) e rabbit (porta 5672) estarem prontos e operantes
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done;while !</dev/tcp/rabbit/5672; do sleep 1; done; npm run dev'
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 30; done;while !</dev/tcp/rabbit/5672; do sleep 30; done; npm run dev'
 
   integration-tokio-marine:
     image: cotamos/private:integration-tokio-marine
@@ -56,5 +56,4 @@ services:
     depends_on:
       - rabbit
     # Aguarda até que o postgres (porta 5432) e rabbit (porta 5672) estarem prontos e operantes
-    command: bash -c 'while !</dev/tcp/rabbit/5672; do sleep 10; done; npm start'
-        
+    command: bash -c 'while !</dev/tcp/rabbit/5672; do sleep 30; done; npm start'       

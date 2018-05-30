@@ -204,15 +204,23 @@ export default {
         return;
       }
 
-      this.loading = true;
-      const proposal = Object.assign(this.existingProposal, this.proposal);
-      await apiClientProvider.updateProposal(proposal);
-      await apiClientProvider.setNextState(proposal, 10);
+      if (this.loading) {
+        true;
+      }
 
-      this.$router.push({
-        name: "ProposalResult",
-        params: { proposalId: proposal._id }
-      });
+      try {
+        this.loading = true;
+        this.existingProposal = await apiClientProvider.generateProposal(2);
+        const proposal = Object.assign(this.existingProposal, this.proposal);
+        await apiClientProvider.updateProposal(proposal);
+        await apiClientProvider.setNextState(proposal, 10);
+        this.$router.push({
+          name: "ProposalResult",
+          params: { proposalId: proposal._id }
+        });
+      } finally {
+        this.loading = false;
+      }
     }
   },
   computed: {
@@ -265,9 +273,6 @@ export default {
       validator.validatePhoneAreaCode(value),
     "proposal.proposer.phones.0.number": value =>
       validator.validatePhoneNumber(value)
-  },
-  async beforeMount() {
-    this.existingProposal = await apiClientProvider.generateProposal(2);
   },
   async mounted() {},
   components: {
