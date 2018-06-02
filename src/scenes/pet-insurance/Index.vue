@@ -141,13 +141,10 @@
         <Section :id="'info2'" :backgroundColor="'#00899C'">
           <div>
             <h1>O que está incluso nos planos:</h1>
-            <div style="margin-top:60px;">
-              <div>
+            <div style="margin-top:60px;" class="included-on-plans">
               <span>
                 Rede referenciada : Consultas em uma rede de clínicas, hospitais, diagnósticos e profissionais veterinários especializados
               </span>
-              </div>
-              <br/>
               <span>
                 Cobertura a: Exames, internações, tratamentos complexos e aplicação das principais vacinas
               </span>
@@ -371,6 +368,9 @@ export default {
 .faq-question {
   display: block;
   font-weight: bold;
+}
+.included-on-plans span {
+  display: block;
 }
 .faq-answer {
 }
