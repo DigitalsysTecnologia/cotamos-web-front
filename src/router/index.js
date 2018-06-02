@@ -6,6 +6,7 @@ import Main from '@/scenes/home/Index'
 import HealthInsurance from '@/scenes/health-insurance/Index'
 import ProposalResult from '@/scenes/proposal-result/Index'
 import LifeInsurance from '@/scenes/life-insurance/Index'
+import PetInsurance from '../scenes/pet-insurance/Index'
 import ProductSelector from '@/scenes/product-selector/Index'
 
 Vue.use(SimpleVueValidation)
@@ -26,6 +27,11 @@ export default new Router({
       component: HealthInsurance
     },
     {
+      path: '/plano-de-saude-pet',
+      name: 'PetInsurance',
+      component: PetInsurance
+    },
+    {
       path: '/seguro-vida',
       name: 'LifeInsurance',
       component: LifeInsurance
@@ -40,6 +46,6 @@ export default new Router({
       name: 'ProductSelector',
       component: ProductSelector
     },
-    
+
   ]
 })

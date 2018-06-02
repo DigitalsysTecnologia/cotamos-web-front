@@ -53,6 +53,14 @@ export default {
                 }
             });
     },
+    validatePetName: (value) => {
+        return Validator.value(value)
+        .required("Nome é obrigatório.")
+    },
+    validatePetAge: (value) => {
+        return Validator.value(value)
+        .required("Idade é obrigatória.")
+    },
     validateClientName: (value) => {
         return Validator.value(value)
             .required("Por favor, nos informe o seu nome")
