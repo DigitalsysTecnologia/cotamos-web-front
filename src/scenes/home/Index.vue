@@ -11,14 +11,14 @@
             <div class="carousel-inner" role="listbox">
                 <div class="item active" style="backgroundImage: url(static/img/bg1.jpg)">
                     <div class="carousel-caption">
-                        <h1>SEGURO SEM COMPLICAÇÃO</h1>
+                        <h1>VOCÊ! SEGURADO TODOS OS DIAS, O DIA TODO.</h1>
                         <h2>Adquira, acompanhe e solicite seu seguro, totalmente online, na hora que você precisar.</h2>
                     </div>
                 </div>
 
                 <div class="item" style="backgroundImage: url(static/img/bg2.jpg)">
                     <div class="carousel-caption">
-                        <h1>SUAS CONQUISTAS PROTEGIDAS</h1>
+                        <h1>A COTAMOS.COM É DIGITAL, MAS A SUA PROTEÇÃO É REAL!</h1>
                         <h2>A melhor maneira de aproveitar a vida sem medos.</h2>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             <select class="form-control" v-model="product">
                                 <option value='0'>Quero um plano de saúde para minha Familia</option>
                                 <option value='3'>Quero um seguro de vida para mim</option>
-                                <option disabled="disabled">Quero um plano de saúde para meu pet - EM BREVE</option>
+                                <option value="5">Quero um plano de saúde para meu pet</option>
                                 <option disabled="disabled">Quero uma previdência para mim - EM BREVE</option>
                                 <option disabled="disabled">Quero uma previdência para meu/minha filho(a) - EM BREVE</option>
                                 <option disabled="disabled">Quero um seguro para o meu carro - EM BREVE</option>
@@ -160,6 +160,9 @@ export default {
           break;
         case "3":
           this.$router.push({ name: "LifeInsurance" });
+          break;
+        case "5":
+            this.$router.push({ name: "PetInsurance" });
           break;
       }
     }
