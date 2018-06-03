@@ -10,13 +10,14 @@
                 </header>
             </div>
         </main>
-        <section class="container-fluid" style="margin-bottom:50px;">
+
+        <section class="container-fluid">
             <div class="row">
                 <div class="container">
                     <div class="row">
                         <section class="col-xs-12 formulario-cotacao">
                           <div class="col-sm-12 col-xs-12 box-cotacao" v-if="loading">
-                              <Loading  :messages="this.loadingMessages" :completePercent="this.loadingCompletePercent"/>
+                              <Loading :messages="this.loadingMessages" :completePercent="this.loadingCompletePercent"/>
                           </div>
                         
                         <div class="col-sm-12 col-xs-12 box-cotacao" v-else>
@@ -114,105 +115,168 @@
                     </div>
                 </div>
             </div>
+        </section>        
+
+        <section class="container-fluid section-color">
+          <div class="row section-header">
+            <div class="col-sm-12 text-center">
+                <h1>Dúvidas? Veja nosso vídeo explicativo</h1>
+            </div>
+          </div>
+          
+          <div class="row section-body">
+            <div class="col-sm-offset-2 col-sm-8 col-xs-12">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rfdywIq45gU?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+
         </section>
-        
-        <Section :id="'info1'" :textColor="'#00899C'">
-          <div>
-            <h1>Plano de saúde para cão ou gato? Por quê?</h1>
-            <div style="margin-top:40px;" class="body">
-              <span class="text" style="display:block;margin-bottom:10px;">
+
+        <section class="container-fluid section-white">
+          <div class="row section-header">
+            <div class="col-sm-12 text-center">
+                <h1>Plano de saúde para cão ou gato? Por quê?</h1>
+            </div>
+          </div>
+          
+          <div class="row section-body">
+            <div class="col-sm-offset-2 col-sm-8 col-xs-12">
+              <p>
                 Os bichinhos de estimação já são parte da família, né? 
-              </span>
-              <span style="display:block;margin-bottom:10px;">
+              </p>
+              <p>
                 Tem quem use apelidos carinhosos para falar com eles, quem chame de filho ou filha... é muito amor envolvido! E, como diz a música, quem ama cuida! 
-              </span>
-
-              <span style="display:block;margin-bottom:10px;">
+              </p>
+              <p>
                 É aqui que entra a Health for Pet, desenvolvida por especialistas em planos de saúde de medicina veterinária. 
-              </span>
-
-              <span style="display:block;margin-bottom:10px;">
+              </p>
+              <p style="display:block;margin-bottom:10px;">
                 Oferecemos toda a estrutura para deixar seu cachorro ou gato mais feliz e saudável. Com o acompanhamento veterinário adequado, ele pode viver muito mais aventuras ao seu lado.
-              </span>
+              </p>
             </div>
           </div>
-        </Section>
 
-        <Section :id="'info2'" :backgroundColor="'#00899C'">
-          <div>
-            <h1>O que está incluso nos planos:</h1>
-            <div style="margin-top:60px;" class="included-on-plans">
-              <span>
-                Rede referenciada : Consultas em uma rede de clínicas, hospitais, diagnósticos e profissionais veterinários especializados
-              </span>
-              <span>
-                Cobertura a: Exames, internações, tratamentos complexos e aplicação das principais vacinas
-              </span>
-              <br/>
-              <span>
-                PetHome: Atendimento veterinário em sua residência
-              </span>
-              <br/>
-              <span>
-                PetPhone Serviço de teleatendimento com veterinários de plantão (24h por dia)
-              </span>
-              <br/>
-              <span>
-                DigiPet Prontuário eletrônico que dá fácil acesso ao histórico de vacinas, procedimentos e exames
-              </span>
-              <br/>
-              <span>
-                PetClub Clube de vantagens que oferece diversos descontos em produtos e serviços veterinários
-              </span>
+        </section>
 
+        <section class="container-fluid section-color">
+          <div class="row section-header">
+            <div class="col-sm-12 text-center">
+                <h1>O que está incluso nos planos:</h1>
             </div>
           </div>
-        </Section>
 
-        <Section :id="'info3'" :textColor="'#00899C'">
-          <div>
-            <h1 class="text-center">Dúvidas Frequentes</h1>
-            <div style="margin-top:40px;" class="body">
+          <div class="row section-body">
+            <div class="col-sm-offset-2 col-sm-8 col-xs-12">
+              <p>
+                <span style="display:block;font-weight:bold;">
+                  Rede referenciada : 
+                </span>
+                <span  style="display:block;">
+                  Consultas em uma rede de clínicas, hospitais, diagnósticos e profissionais veterinários especializados
+                </span>
+              </p>
               
-              <div class="faq">
+              <p>
+                <span style="display:block;font-weight:bold;">
+                  Cobertura a: 
+                </span>
+                <span  style="display:block;">
+                  Exames, internações, tratamentos complexos e aplicação das principais vacinas
+                </span>
+              </p>
+
+              <p>
+                <span style="display:block;font-weight:bold;">
+                  PetHome: 
+                </span>
+                <span  style="display:block;">
+                  Atendimento veterinário em sua residência
+                </span>
+              </p>
+                            
+              <p>
+                <span style="display:block;font-weight:bold;">
+                  PetPhone: 
+                </span>
+                <span  style="display:block;">
+                  Serviço de teleatendimento com veterinários de plantão (24h por dia)
+                </span>
+              </p>
+
+              <p>
+                <span style="display:block;font-weight:bold;">
+                  DigiPet: 
+                </span>
+                <span  style="display:block;">
+                  Prontuário eletrônico que dá fácil acesso ao histórico de vacinas, procedimentos e exames
+                </span>
+              </p>
+              
+              <p>
+                <span style="display:block;font-weight:bold;">
+                  PetClub: 
+                </span>
+                <span  style="display:block;">
+                  Clube de vantagens que oferece diversos descontos em produtos e serviços veterinários
+                </span>
+              </p>
+
+            </div>
+          </div>
+
+        </section>
+
+        <section class="container-fluid section-white">
+          <div class="row section-header">
+            <div class="col-sm-12 text-center">
+                <h1>Dúvidas Frequentes</h1>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-sm-offset-2 col-sm-8 col-xs-12">
+             <p class="faq">
                 <span class="faq-question">
                   Quanto custa?
                 </span>
                 <span class="faq-answer">
                   - Ihhh... então né.. vai depender da idade do seu bichinho e também da cobertura desejada, mas se você quiser, pode fazer uma simulação e te damos o valor na hora e sem compromisso.
                 </span>
-              </div>
+              </p>
 
-              <div class="faq">
+              <p class="faq">
                 <span class="faq-question">
                   Qualquer animal pode ter um plano de saúde?
                 </span>
                 <span class="faq-answer">
                   - Atualmente, apenas cães e gatos são aceitos para plano de saúde
                 </span>
-              </div>
+              </p>
 
-              <div class="faq">
+              <p class="faq">
                 <span class="faq-question">
                   Meu animal idoso pode ter um plano de saúde?
                 </span>
                 <span class="faq-answer">
                   - Sim, animais idosos (com mais de 9 anos) também podem ter um plano de saúde, entretanto, as coberturas mais abrangentes são para os pets entre 1 e 8 anos.
                 </span>
-              </div>
+              </p>
 
-              <div class="faq">
+              <p class="faq">
                 <span class="faq-question">
                   Então, quando meu animal ficar idoso, perderei os benefícios?
                 </span>
                 <span class="faq-answer">
                   - Não não, pode se tranquilizar! O seu bichinho continua com os mesmos benefícios após completar os 9 anos, por isso é muito importante fazer o plano de saúde do seu bichinho o quanto antes.
                 </span>
-              </div>
+              </p>
 
             </div>
           </div>
-        </Section>
+
+        </section>
 
         <Footer/>
     </div>
@@ -239,7 +303,6 @@ export default {
   name: "PetInsurance",
   methods: {
     updateProposal: async function() {
-      
       const validations = [];
       validations.push(this.$validate());
 
@@ -248,8 +311,7 @@ export default {
       const hasValidationErrors = validationResults.some(function(validation) {
         return validation === false;
       });
-      console.log('validationResults', JSON.stringify(validationResults))
-      console.log('hasValidationErrors',hasValidationErrors)
+
       if (hasValidationErrors) {
         return;
       }
@@ -314,40 +376,36 @@ export default {
   },
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
-
     "proposal.proposer.email": value => validator.validateEmail(value),
-
     "proposal.proposer.cpf": value => validator.validateCpf(value),
-
     "proposal.proposer.dateOfBirth": value =>
       validator.validateDateOfBirth(value),
-
     "proposal.petInsuranceData.name": value => validator.validatePetName(value),
-
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
-
-    'proposal.petInsuranceData.petType': value => validator.validatePetType(value),
-    'proposal.petInsuranceData.gender': value => validator.validatePetGender(value),
+    "proposal.petInsuranceData.petType": value =>
+      validator.validatePetType(value),
+    "proposal.petInsuranceData.gender": value =>
+      validator.validatePetGender(value)
   },
   async beforeMount() {},
   components: {
     Footer: Footer,
     Loading: Loading,
     FormInput: FormInput,
-    FormSelect: FormSelect,
-    Section: Section
+    FormSelect: FormSelect
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+body {
+  font-family: "Raleway", sans-serif;
+}
 .form-line {
   margin-left: 0px;
 }
-.box-cotacao {
-  padding-bottom: 15px;
-}
+
 .banner-pgs {
   background-color: #000;
   padding-top: 100px;
@@ -356,15 +414,33 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.faq {
-  margin-top: 20px;
-  margin-bottom: 20px;
+.section-body {
+  margin-top: 30px;
 }
+.section-white {
+  padding-top: 30px;
+  background-color: #fff;
+  color: rgb(0, 137, 156);
+}
+.section-color {
+  padding-top: 30px;
+  background-color: rgb(0, 137, 156);
+  color: #fff;
+}
+.background-linear {
+  background-color: rgb(0, 137, 156);
+  color: #fff;
+}
+
+section {
+  padding-bottom: 30px;
+}
+
 .faq-question {
   display: block;
   font-weight: bold;
 }
-.included-on-plans span {
-  display: block;
+.faq-answer {
+  margin-bottom: 10px;
 }
 </style>

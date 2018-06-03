@@ -1,5 +1,5 @@
 <template>
-    <section class="header" :id="id" :style="headerStyle">
+    <section class="header" :id="id" :style="headerStyle" style="display:block;">
         <div class="header-content" :style="contentStyle">
             <div class="header-content-inner">
                 <slot/>
