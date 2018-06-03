@@ -372,6 +372,4 @@ export default {
 .included-on-plans span {
   display: block;
 }
-.faq-answer {
-}
 </style>
