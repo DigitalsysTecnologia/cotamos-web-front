@@ -90,9 +90,9 @@
                               <div class="col-sm-6 col-xs-12">
                                         <FormSelect  label="Tipo" 
                                                       icon="fa-paw " 
-                                                      id="proposal.petInsuranceData.type"
-                                                      :validationMessage="validation.firstError('proposal.petInsuranceData.type')"
-                                                      v-model="proposal.petInsuranceData.type" 
+                                                      id="proposal.petInsuranceData.petType"
+                                                      :validationMessage="validation.firstError('proposal.petInsuranceData.petType')"
+                                                      v-model="proposal.petInsuranceData.petType" 
                                                       :options="['Cão','Gato']" />
                               </div>
                               <div class="col-sm-6 col-xs-12">
@@ -239,22 +239,18 @@ export default {
   name: "PetInsurance",
   methods: {
     updateProposal: async function() {
-      try {
-        const validations = [];
-        validations.push(this.$validate());
+      
+      const validations = [];
+      validations.push(this.$validate());
 
-        const validationResults = await Promise.all(validations);
+      const validationResults = await Promise.all(validations);
 
-        const hasValidationErrors = validationResults.some(function(
-          validation
-        ) {
-          return validation === false;
-        });
-
-        if (hasValidationErrors) {
-          return;
-        }
-      } catch (err) {
+      const hasValidationErrors = validationResults.some(function(validation) {
+        return validation === false;
+      });
+      console.log('validationResults', JSON.stringify(validationResults))
+      console.log('hasValidationErrors',hasValidationErrors)
+      if (hasValidationErrors) {
         return;
       }
 
@@ -307,7 +303,7 @@ export default {
         petInsuranceData: {
           name: "",
           age: "",
-          type: "" ,
+          petType: "",
           gender: ""
         }
       },
@@ -326,13 +322,12 @@ export default {
     "proposal.proposer.dateOfBirth": value =>
       validator.validateDateOfBirth(value),
 
-    "proposal.proposer.profession": value => validator.validateProfession(value),
+    "proposal.petInsuranceData.name": value => validator.validatePetName(value),
 
-    'proposal.petInsuranceData.name': value => validator.validatePetName(value),
+    "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
 
-    'proposal.petInsuranceData.age': value => validator.validatePetAge(value),
-
-    
+    'proposal.petInsuranceData.petType': value => validator.validatePetType(value),
+    'proposal.petInsuranceData.gender': value => validator.validatePetGender(value),
   },
   async beforeMount() {},
   components: {

@@ -81,6 +81,16 @@ export default {
             .required("Por favor, nos informe o seu estado.")
             .minLength(2, "Estado Inválido");
     },
+    validatePetType: (value) => {
+        return Validator.value(value).required(
+            "Tipo do pet é obrigatório."
+        );
+    },
+    validatePetGender: (value) => {
+        return Validator.value(value).required(
+            "Sexo do pet é obrigatório."
+        );
+    },
     validateHomeAddressCity: (value) => {
         return Validator.value(value).required(
             "Por favor, nos informe a sua cidade."

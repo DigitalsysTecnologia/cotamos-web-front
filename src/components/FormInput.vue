@@ -115,9 +115,11 @@ export default {
       this.$emit("input", this.$refs.inputValue.value);
       let self = this;
 
-      setTimeout(function() {
-        self.updateValue(true);
-      }, 1000);
+      if (!truncate) {
+        setTimeout(function() {
+          self.updateValue(true);
+        }, 1000);
+      }
     }
   }
 };
