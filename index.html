@@ -50,7 +50,9 @@
   <script src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous"></script>
   <script type="text/javascript">
     $(document).ready(function () {
-      Raven.config('https://b4d892cee59f4d8a8c0c004468573e0d@sentry.io/239315').install()
+      if(window.location.hostname.indexOf("cotamos.com") != -1)
+        Raven.config('https://e8138f91975247d9a0dbe6605b316939@sentry.io/1218323').install();
+        
     });
   </script>
 
