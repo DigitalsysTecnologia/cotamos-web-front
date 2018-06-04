@@ -26,7 +26,7 @@
         </div>
         <section class="container">
             <div class="row">
-                <section class="col-xs-12 formulario-hp">
+                <section class="col-xs-12 formulario-hp" id="product-select">
                     <form action="">
                         <div class="col-sm-11 col-xs-10 box-formulario">
                             <h3>Faça uma cotação</h3>
@@ -83,7 +83,7 @@
                         <li><i class="fa fa-check-square-o" aria-hidden="true"/>Sem buracracia</li>
                         <li><i class="fa fa-check-square-o" aria-hidden="true"/>Longe de stress</li>
                     </ul>
-                    <router-link title="Quero um seguro" to="/plano-de-saude" class="btn btn-default btn-1-s">Quer o seu seguro? Clique aqui</router-link>
+                    <a title="Quer o seu seguro?" href="#product-select" class="btn btn-default btn-1-s">Quer o seu seguro? Clique aqui</a>
                 </div>
             </div>
         </section>
@@ -107,7 +107,8 @@
                         <li><i class="fa fa-check-square-o" aria-hidden="true"/>Com a certeza do melhor negócio.</li>
                         <li><i class="fa fa-check-square-o" aria-hidden="true"/>De maneira fácil e rápida.</li>
                     </ul>
-                    <router-link title="Quer o seu seguro?" to="/plano-de-saude" class="btn btn-default btn-1-s">Quer o seu seguro?</router-link>
+
+                    <a title="Quer o seu seguro?" href="#product-select" class="btn btn-default btn-1-s">Quer o seu seguro? Clique aqui</a>
                 </div>
             </div>
         </section>
@@ -131,7 +132,7 @@
                         <li><i class="fa fa-check-square-o" aria-hidden="true"/>Processos automatizados.</li>
                         <li><i class="fa fa-check-square-o" aria-hidden="true"/>Acesso exclusivo do cliente.</li>
                     </ul>
-                    <router-link title="Quer o seu seguro?" to="/plano-de-saude" class="btn btn-default btn-1-s">Quer o seu seguro?</router-link>
+                    <a title="Quer o seu seguro?" href="#product-select" class="btn btn-default btn-1-s">Quer o seu seguro? Clique aqui</a>
                 </div>
             </div>
         </section>
