@@ -151,6 +151,22 @@ export default {
       product: null
     };
   },
+  watch: {
+    product: function() {
+      console.log(`passei por aqui e estou com o valor ${this.product}`);
+      switch (this.product) {
+        case "0":
+          this.$router.push({ name: "HealthInsurance" });
+          break;
+        case "3":
+          this.$router.push({ name: "LifeInsurance" });
+          break;
+        case "5":
+          this.$router.push({ name: "PetInsurance" });
+          break;
+      }
+    }
+  },
   methods: {
     GoToInsuranceFormPage(e) {
       e.preventDefault();
@@ -162,7 +178,7 @@ export default {
           this.$router.push({ name: "LifeInsurance" });
           break;
         case "5":
-            this.$router.push({ name: "PetInsurance" });
+          this.$router.push({ name: "PetInsurance" });
           break;
       }
     }

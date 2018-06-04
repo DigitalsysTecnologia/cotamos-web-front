@@ -1,5 +1,6 @@
 <template>
     <div>
+        <NavBar />
         <main class="container-fluid">
             <div class="row">
                 <header class="col-xs-12 banner-pgs"
@@ -20,7 +21,7 @@
                               <Loading :messages="this.loadingMessages" :completePercent="this.loadingCompletePercent"/>
                           </div>
                         
-                        <div class="col-sm-12 col-xs-12 box-cotacao" v-else>
+                        <div class="col-sm-12 col-xs-12 box-cotacao" id="form-proposal" v-else>
                             <h3>Simule aqui</h3>
                             
                             <h3>Suas Informações</h3>
@@ -132,6 +133,12 @@
             </div>
           </div>
 
+          <div class="row center" style="margin-top:20px;">
+            <div class="col-sm-12 center text-center">
+              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
+            </div>
+          </div>
+
         </section>
 
         <section class="container-fluid section-white">
@@ -155,6 +162,12 @@
               <p style="display:block;margin-bottom:10px;">
                 Oferecemos toda a estrutura para deixar seu cachorro ou gato mais feliz e saudável. Com o acompanhamento veterinário adequado, ele pode viver muito mais aventuras ao seu lado.
               </p>
+            </div>
+          </div>
+
+          <div class="row center" style="margin-top:20px;">
+            <div class="col-sm-12 center text-center">
+              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
             </div>
           </div>
 
@@ -226,6 +239,12 @@
             </div>
           </div>
 
+          <div class="row center" style="margin-top:20px;">
+            <div class="col-sm-12 center text-center">
+              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
+            </div>
+          </div>
+
         </section>
 
         <section class="container-fluid section-white">
@@ -276,6 +295,12 @@
             </div>
           </div>
 
+          <div class="row center" style="margin-top:20px;">
+            <div class="col-sm-12 center text-center">
+              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
+            </div>
+          </div>
+
         </section>
 
         <Footer/>
@@ -290,6 +315,7 @@ import FormSelect from "../../components/FormSelect";
 import Section from "../../components/Section";
 import apiClientProvider from "../../providers/apiClientProvider";
 import validator from "../../utils/validator";
+import NavBar from "../../components/NavBar";
 
 function sleep(time) {
   return new Promise(resolve => {
@@ -392,7 +418,8 @@ export default {
     Footer: Footer,
     Loading: Loading,
     FormInput: FormInput,
-    FormSelect: FormSelect
+    FormSelect: FormSelect,
+    NavBar: NavBar
   }
 };
 </script>
