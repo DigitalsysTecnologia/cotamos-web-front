@@ -12,135 +12,6 @@
             </div>
         </main>
 
-        <section class="container-fluid">
-            <div class="row">
-                <div class="container">
-                    <div class="row">
-                        <section class="col-xs-12 formulario-cotacao">
-                          <div class="col-sm-12 col-xs-12 box-cotacao" v-if="loading">
-                              <Loading :messages="this.loadingMessages" :completePercent="this.loadingCompletePercent"/>
-                          </div>
-                        
-                        <div class="col-sm-12 col-xs-12 box-cotacao" id="form-proposal" v-else>
-                            <h3>Simule aqui</h3>
-                            
-                            <h3>Suas Informações</h3>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <FormInput  label="Nome"
-                                                icon="fa-user" 
-                                                id="proposal.proposer.name"
-                                                :validationMessage="validation.firstError('proposal.proposer.name')"
-                                                v-model.trim="proposal.proposer.name" />
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <FormInput  label="E-mail" 
-                                                icon="fa-at" 
-                                                id="proposal.proposer.email"
-                                                :validationMessage="validation.firstError('proposal.proposer.email')"
-                                                v-model.trim="proposal.proposer.email" />
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <FormInput  label="CPF" 
-                                                icon="fa-address-card " 
-                                                id="proposal.proposer.cpf"
-                                                mask="###.###.###-##"
-                                                :validationMessage="validation.firstError('proposal.proposer.cpf')"
-                                                v-model.trim="proposal.proposer.cpf" />
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <FormInput  label="Data de nascimento" 
-                                                icon="fa-calendar" 
-                                                id="proposal.proposer.dateOfBirth"
-                                                mask="##/##/####"
-                                                type="text"
-                                                :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
-                                                v-model="proposal.proposer.dateOfBirth" />
-                                </div>
-                            </div>
-
-                            <h3>Sobre seu bichinho</h3>
-
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <FormInput  label="Nome"
-                                                icon="fa-user" 
-                                                id="proposal.petInsuranceData.name"
-                                                :validationMessage="validation.firstError('proposal.petInsuranceData.name')"
-                                                v-model.trim="proposal.petInsuranceData.name" />
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                  <FormSelect label="Idade (em anos)" 
-                                              icon="fa-hourglass " 
-                                              id="proposal.petInsuranceData.age"
-                                              :validationMessage="validation.firstError('proposal.petInsuranceData.age')"
-                                              v-model="proposal.petInsuranceData.age" 
-                                              :options="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" />
-                                </div>
-                            </div>
-
-                            
-
-                            <div class="row">
-                              <div class="col-sm-6 col-xs-12">
-                                        <FormSelect  label="Tipo" 
-                                                      icon="fa-paw " 
-                                                      id="proposal.petInsuranceData.petType"
-                                                      :validationMessage="validation.firstError('proposal.petInsuranceData.petType')"
-                                                      v-model="proposal.petInsuranceData.petType" 
-                                                      :options="['Cão','Gato']" />
-                              </div>
-                              <div class="col-sm-6 col-xs-12">
-                                        <FormSelect  label="Sexo" 
-                                                      icon="fa-transgender-alt " 
-                                                      id="proposal.petInsuranceData.gender"
-                                                      :validationMessage="validation.firstError('proposal.petInsuranceData.gender')"
-                                                      v-model="proposal.petInsuranceData.gender" 
-                                                      :options="['Macho','Fêmea']" />
-                              </div>
-                            </div>
-                        
-                            <button @click="updateProposal" class="btn-envio btn btn-default pull-right" title="Enviar">
-                              <img src="/static/img/envio_icone.png" alt="Enviar" class="img-responsive center-block"/>
-                            </button>
-                        </div>                            
-                        </section>
-                        
-                    </div>
-                </div>
-            </div>
-        </section>        
-
-        <section class="container-fluid section-color">
-          <div class="row section-header">
-            <div class="col-sm-12 text-center">
-                <h1>Dúvidas? Veja nosso vídeo explicativo</h1>
-            </div>
-          </div>
-          
-          <div class="row section-body">
-            <div class="col-sm-offset-2 col-sm-8 col-xs-12">
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rfdywIq45gU?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-
-          <div class="row center" style="margin-top:20px;">
-            <div class="col-sm-12 center text-center">
-              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
-            </div>
-          </div>
-
-        </section>
-
         <section class="container-fluid section-white">
           <div class="row section-header">
             <div class="col-sm-12 text-center">
@@ -167,13 +38,36 @@
 
           <div class="row center" style="margin-top:20px;">
             <div class="col-sm-12 center text-center">
-              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
+              <a href="#" v-on:click="openForm" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
             </div>
           </div>
 
         </section>
 
         <section class="container-fluid section-color">
+          <div class="row section-header">
+            <div class="col-sm-12 text-center">
+                <h1>Dúvidas? Veja nosso vídeo explicativo</h1>
+            </div>
+          </div>
+          
+          <div class="row section-body">
+            <div class="col-sm-offset-2 col-sm-8 col-xs-12">
+              <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/rfdywIq45gU?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+
+          <div class="row center" style="margin-top:20px;">
+            <div class="col-sm-12 center text-center">
+              <a href="#" v-on:click="openForm" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="container-fluid section-white">
           <div class="row section-header">
             <div class="col-sm-12 text-center">
                 <h1>O que está incluso nos planos:</h1>
@@ -241,13 +135,13 @@
 
           <div class="row center" style="margin-top:20px;">
             <div class="col-sm-12 center text-center">
-              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
+              <a href="#" v-on:click="openForm" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
             </div>
           </div>
 
         </section>
 
-        <section class="container-fluid section-white">
+        <section class="container-fluid section-color">
           <div class="row section-header">
             <div class="col-sm-12 text-center">
                 <h1>Dúvidas Frequentes</h1>
@@ -297,7 +191,7 @@
 
           <div class="row center" style="margin-top:20px;">
             <div class="col-sm-12 center text-center">
-              <a href="#form-proposal" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
+              <a href="#" v-on:click="openForm" class="btn btn-default btn-1-s" title="Quero um seguro">Quero fazer uma simulação </a>
             </div>
           </div>
 
@@ -326,8 +220,13 @@ function sleep(time) {
 }
 
 export default {
-  name: "PetInsurance",
+  name: "PetInsuranceIndex",
   methods: {
+    openForm: function(event) {
+      console.log('Chamou!');
+      event.preventDefault();
+      this.$router.push({ name: "PetInsuranceForm" });
+    },
     updateProposal: async function() {
       const validations = [];
       validations.push(this.$validate());

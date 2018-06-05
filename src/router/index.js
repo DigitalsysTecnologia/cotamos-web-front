@@ -7,6 +7,7 @@ import HealthInsurance from '@/scenes/health-insurance/Index'
 import ProposalResult from '@/scenes/proposal-result/Index'
 import LifeInsurance from '@/scenes/life-insurance/Index'
 import PetInsurance from '../scenes/pet-insurance/Index'
+import PetInsuranceForm from '../scenes/pet-insurance/Form'
 import ProductSelector from '@/scenes/product-selector/Index'
 
 Vue.use(SimpleVueValidation)
@@ -30,6 +31,12 @@ export default new Router({
       path: '/plano-de-saude-pet',
       name: 'PetInsurance',
       component: PetInsurance
+    },
+    // PetInsuranceForm
+    {
+      path: '/plano-de-saude-pet/simulacao',
+      name: 'PetInsuranceForm',
+      component: PetInsuranceForm
     },
     {
       path: '/seguro-vida',
