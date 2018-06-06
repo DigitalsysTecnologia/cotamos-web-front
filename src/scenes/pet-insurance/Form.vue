@@ -22,9 +22,9 @@
                           </div>
                         
                         <div class="col-sm-12 col-xs-12 box-cotacao" id="form-proposal" v-else>
-                            <h3>Simule aqui</h3>
+                            <h3>Quer saber mais detalhes?</h3>
                             
-                            <h3>Suas Informações</h3>
+                            <h3>Fique tranquilo, aqui você pode obter mais informações sem compromisso a respeito do plano de saúde do seu pet.</h3>
 
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
@@ -47,23 +47,34 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <FormInput  label="CPF" 
-                                                icon="fa-address-card " 
-                                                id="proposal.proposer.cpf"
-                                                mask="###.###.###-##"
-                                                :validationMessage="validation.firstError('proposal.proposer.cpf')"
-                                                v-model.trim="proposal.proposer.cpf" />
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <FormInput  label="Data de nascimento" 
-                                                icon="fa-calendar" 
-                                                id="proposal.proposer.dateOfBirth"
-                                                mask="##/##/####"
-                                                type="text"
-                                                :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
-                                                v-model="proposal.proposer.dateOfBirth" />
-                                </div>
+                              <div class="col-sm-4 col-xs-12">
+                                  <FormInput  label="Data de nascimento" 
+                                              icon="fa-calendar" 
+                                              id="proposal.proposer.dateOfBirth"
+                                              mask="##/##/####"
+                                              type="text"
+                                              :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
+                                              v-model="proposal.proposer.dateOfBirth" />
+                              </div>
+                              <div class="col-sm-3 col-xs-12">
+                                <FormInput  label="DDD" 
+                                            icon="fa-phone" 
+                                            type="text"
+                                            id="proposal.proposer.phones.0.areaCode"
+                                            mask="##"
+                                            :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
+                                            v-model.trim="proposal.proposer.phones[0].areaCode" />
+                              </div>
+                              <div class="col-sm-5 col-xs-12">
+                                <FormInput label="Celular ou Telefone" 
+                                            icon="fa-phone" 
+                                            id="proposal.proposer.phones.0.number"
+                                            maxLength="15"
+                                            :mask="getPhoneMask(proposal.proposer.phones[0].number)"
+                                            type="text"
+                                            :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
+                                            v-model.trim="proposal.proposer.phones[0].number" />
+                              </div>
                             </div>
 
                             <h3>Sobre seu bichinho</h3>
@@ -85,8 +96,6 @@
                                               :options="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]" />
                                 </div>
                             </div>
-
-                            
 
                             <div class="row">
                               <div class="col-sm-6 col-xs-12">
@@ -143,6 +152,20 @@ function sleep(time) {
 export default {
   name: "PetInsuranceForm",
   methods: {
+    getPhoneMask: function(phone) {
+      let phoneNumber = null;
+      if (phone) {
+        phoneNumber = phone.replace(/\D/g, "");
+      } else {
+        phoneNumber = "";
+      }
+
+      if (phoneNumber.length <= 8) {
+        return "####-####";
+      } else {
+        return "#####-####";
+      }
+    },
     updateProposal: async function() {
       const validations = [];
       validations.push(this.$validate());
@@ -165,6 +188,8 @@ export default {
         this.loading = true;
         this.existingProposal = await apiClientProvider.generateProposal(5);
         const proposal = Object.assign(this.existingProposal, this.proposal);
+        
+        proposal.petInsuranceData.planId = this.$route.query.planId;
         await apiClientProvider.updateProposal(proposal);
         await apiClientProvider.setNextState(proposal, 10);
 
@@ -218,7 +243,6 @@ export default {
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
-    "proposal.proposer.cpf": value => validator.validateCpf(value),
     "proposal.proposer.dateOfBirth": value =>
       validator.validateDateOfBirth(value),
     "proposal.petInsuranceData.name": value => validator.validatePetName(value),
@@ -226,7 +250,11 @@ export default {
     "proposal.petInsuranceData.petType": value =>
       validator.validatePetType(value),
     "proposal.petInsuranceData.gender": value =>
-      validator.validatePetGender(value)
+      validator.validatePetGender(value),
+    "proposal.proposer.phones.0.areaCode": value =>
+      validator.validatePhoneAreaCode(value),
+    "proposal.proposer.phones.0.number": value =>
+      validator.validatePhoneNumber(value)
   },
   async beforeMount() {},
   components: {

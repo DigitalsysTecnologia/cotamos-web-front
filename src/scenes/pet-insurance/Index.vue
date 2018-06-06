@@ -225,8 +225,8 @@ export default {
     openForm: function(event) {
       console.log('Chamou!');
       event.preventDefault();
-      window.location = "http://bit.ly/cotamos-health-for-pet";
-      // this.$router.push({ name: "PetInsuranceForm" });
+      //window.location = "http://bit.ly/cotamos-health-for-pet";
+      this.$router.push({ name: "PetInsuranceSimulator" });
     },
     updateProposal: async function() {
       const validations = [];

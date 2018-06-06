@@ -5,8 +5,8 @@
                     <header class='col-xs-12 banner-pgs'
                             style='backgroundImage: url(/static/img/bg_outros.jpg)'>
                         <div class='container'>
-                            <h1>Suas opções estão aqui</h1>
-                            <h2>Veja aqui as suas ofertas.</h2>
+                            <h1>Cotamos</h1>
+                            <h2>Em breve, mais detalhes sobre sua proposta.</h2>
                         </div>
                     </header>
                 </div>
@@ -21,13 +21,13 @@
                                     <div class="col-md-8 col-md-offset-2 col-xs-12">
                                         <div class="text-center" style="paddingTop:25px; paddingBottom:25px">
                                             <p style="color: #00899C">
-                                                Ótimo, já estamos verificando o orçamento com nossos parceiros.
+                                                Muito obrigado!
                                             </p>
                                             <p>
-                                                Esse processo pode demorar alguns minutos, de acordo com o parceiro.
+                                                Em breve entraremos em contato para mais detalhes do seu pedido.
                                             </p>
                                             <p>
-                                                Dentro de alguns minutos lhe enviaremos todas as opções por e-mail.
+                                                Não se preocupe, o processo é sem compromisso e você só .
                                             </p>
                                         </div>
                                     </div>
@@ -63,22 +63,12 @@ export default {
         {
           messages: ["Validando as informações de proposta, aguarde..."],
           percent: 1,
-          timeToWait: 3000
+          timeToWait: 5000
         },
         {
           messages: ["Salvando as informações em nosso banco de dados..."],
           percent: 33,
-          timeToWait: 3000
-        },
-        {
-          messages: ["Selecionando parceiros para a proposta ..."],
-          percent: 66,
-          timeToWait: 3000
-        },
-        {
-          messages: ["Enviando proposta para os parceiros..."],
-          percent: 88,
-          timeToWait: 3000
+          timeToWait: 4000
         },
         {
           messages: ["Obtendo resultados..."],
