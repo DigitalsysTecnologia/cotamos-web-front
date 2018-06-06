@@ -225,7 +225,8 @@ export default {
     openForm: function(event) {
       console.log('Chamou!');
       event.preventDefault();
-      this.$router.push({ name: "PetInsuranceForm" });
+      window.location = "http://bit.ly/cotamos-health-for-pet";
+      // this.$router.push({ name: "PetInsuranceForm" });
     },
     updateProposal: async function() {
       const validations = [];
@@ -314,10 +315,10 @@ export default {
       validator.validatePetGender(value)
   },
   async beforeMount() {
-     if( Math.floor((Math.random() * 100) + 1) > 50 ) {
-        this.redirect = true;
-        window.location = "http://bit.ly/cotamos-health-for-pet";
-     };
+    //  if( Math.floor((Math.random() * 100) + 1) > 50 ) {
+    //     this.redirect = true;
+    //     window.location = "http://bit.ly/cotamos-health-for-pet";
+    //  };
      
   },
   components: {
