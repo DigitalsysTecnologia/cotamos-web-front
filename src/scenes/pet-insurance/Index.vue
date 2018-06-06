@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="!redirect">
         <NavBar />
         <main class="container-fluid">
             <div class="row">
@@ -269,6 +269,7 @@ export default {
   data() {
     return {
       existingProposal: {},
+      redirect: false,
       proposal: {
         proposer: {
           dateOfBirth: "",
@@ -312,7 +313,13 @@ export default {
     "proposal.petInsuranceData.gender": value =>
       validator.validatePetGender(value)
   },
-  async beforeMount() {},
+  async beforeMount() {
+     if( Math.floor((Math.random() * 100) + 1) > 50 ) {
+        this.redirect = true;
+        window.location = "http://bit.ly/cotamos-health-for-pet";
+     };
+     
+  },
   components: {
     Footer: Footer,
     Loading: Loading,
