@@ -57,8 +57,7 @@
                             
                           </div>
                           <div class="col-sm-12 col-xs-12 text-center">
-                            <router-link  class="btn btn-default btn-1-s" :to="{name: 'PetInsuranceForm', query: {planId: plan.internalId}}" value="Tenho interesse">Tenho interesse</router-link>
-                          <!-- <a href="#" class="btn btn-default btn-1-s" title="Quero um seguro">Tenho interesse </a> -->
+                            <router-link  class="btn btn-default btn-1-s" :to="{name: 'PetInsuranceForm', query: {planId: plan.internalId}}">Quero saber mais</router-link>
                         </div>
                       </div>
  
