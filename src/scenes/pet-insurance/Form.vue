@@ -27,36 +27,36 @@
                             <h3>Fique tranquilo, aqui você pode obter mais informações sem compromisso a respeito do plano de saúde do seu pet.</h3>
 
                             <div class="row">
-                                <div class="col-sm-12 col-xs-12">
+                                <div class="col-sm-6 col-xs-12">
                                     <FormInput  label="Nome"
                                                 icon="fa-user" 
                                                 id="proposal.proposer.name"
                                                 :validationMessage="validation.firstError('proposal.proposer.name')"
                                                 v-model.trim="proposal.proposer.name" />
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
+                                <div class="col-sm-4 col-xs-12">
                                     <FormInput  label="E-mail" 
                                                 icon="fa-at" 
                                                 id="proposal.proposer.email"
                                                 :validationMessage="validation.firstError('proposal.proposer.email')"
                                                 v-model.trim="proposal.proposer.email" />
                                 </div>
+
+                                <div class="col-sm-2 col-xs-12">
+                                  <FormInput  label="CEP" 
+                                    icon="fa-map-marker" 
+                                    type="text"
+                                    id="proposal.proposer.homeAddress.zipCode"
+                                    :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
+                                    mask="#####-###"
+                                    v-model.trim="proposal.proposer.homeAddress.zipCode" />
+                                </div>
                             </div>
 
                             <div class="row">
-                              <div class="col-sm-4 col-xs-12">
-                                  <FormInput  label="Data de nascimento" 
-                                              icon="fa-calendar" 
-                                              id="proposal.proposer.dateOfBirth"
-                                              mask="##/##/####"
-                                              type="text"
-                                              :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
-                                              v-model="proposal.proposer.dateOfBirth" />
-                              </div>
-                              <div class="col-sm-3 col-xs-12">
+                              
+                              <div class="col-sm-2 col-xs-12">
                                 <FormInput  label="DDD" 
                                             icon="fa-phone" 
                                             type="text"
@@ -65,7 +65,7 @@
                                             :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
                                             v-model.trim="proposal.proposer.phones[0].areaCode" />
                               </div>
-                              <div class="col-sm-5 col-xs-12">
+                              <div class="col-sm-4 col-xs-12">
                                 <FormInput label="Celular ou Telefone" 
                                             icon="fa-phone" 
                                             id="proposal.proposer.phones.0.number"
@@ -243,8 +243,8 @@ export default {
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
-    "proposal.proposer.dateOfBirth": value =>
-      validator.validateDateOfBirth(value),
+    "proposal.proposer.homeAddress.zipCode": value =>
+      validator.validateZipCode(value),
     "proposal.petInsuranceData.name": value => validator.validatePetName(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
     "proposal.petInsuranceData.petType": value =>
