@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import VueMask from 'v-mask'
 import SimpleVueValidation from 'simple-vue-validator'
+import VueLocalStorage from 'vue-localstorage'
 import Main from '@/scenes/home/Index'
 import HealthInsurance from '@/scenes/health-insurance/Index'
 import ProposalResult from '@/scenes/proposal-result/Index'
@@ -11,6 +12,7 @@ import PetInsuranceForm from '../scenes/pet-insurance/Form'
 import PetInsuranceSimulator from '../scenes/pet-insurance/Simulator'
 import ProductSelector from '@/scenes/product-selector/Index'
 
+Vue.use(VueLocalStorage)
 Vue.use(SimpleVueValidation)
 Vue.use(Router)
 Vue.use(VueMask)

@@ -315,11 +315,7 @@ export default {
       validator.validatePetGender(value)
   },
   async beforeMount() {
-    //  if( Math.floor((Math.random() * 100) + 1) > 50 ) {
-    //     this.redirect = true;
-    //     window.location = "http://bit.ly/cotamos-health-for-pet";
-    //  };
-     
+    this.$localStorage.set('url_query',  JSON.stringify(this.$route.query));
   },
   components: {
     Footer: Footer,
