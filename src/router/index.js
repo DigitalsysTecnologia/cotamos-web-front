@@ -37,7 +37,7 @@ export default new Router({
       path: '/plano-de-saude-pet',
       // name: 'PetInsurance',
       // component: PetInsurance
-      name: 'LandingPetInsuranceV1',
+      name: 'PetInsurance',
       component: LandingPetInsuranceV1
     },
     {
