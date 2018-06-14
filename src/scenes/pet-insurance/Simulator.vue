@@ -16,12 +16,12 @@
     <div class="row">
         <div class="container">
             <div class="row">
-                <section class="col-xs-12 formulario-cotacao">
+              <section class="col-xs-12 formulario-cotacao">
                   <div class="col-sm-12 col-xs-12 box-cotacao" v-if="loading">
                       <Loading :messages="this.loadingMessages" :completePercent="this.loadingCompletePercent"/>
                   </div>
                 
-                <div class="col-sm-12 col-xs-12 box-cotacao" id="form-proposal" v-else>
+                 <div class="col-sm-12 col-xs-12 box-cotacao" id="form-proposal" v-else>
                     <h3>Qual a idade de seu pet?</h3>
           
                     <div class="row">
@@ -64,7 +64,8 @@
                     </div>
 
                 </div>
-                </section>
+              </section>
+
             </div>
         </div>
     </div>

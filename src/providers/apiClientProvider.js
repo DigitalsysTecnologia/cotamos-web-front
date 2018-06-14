@@ -100,7 +100,9 @@ class ApiClient {
     }
     return internalPost(urljoin('proposal', 'set-next-state'), payload);
   }
-
+  getServiceArea(proposalId) {
+    return internalGet(urljoin('proposal', 'get-service-area', proposalId));
+  }
   checkSession(token) {
     const payload = {
       token: token

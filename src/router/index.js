@@ -10,6 +10,9 @@ import LifeInsurance from '@/scenes/life-insurance/Index'
 import PetInsurance from '../scenes/pet-insurance/Index'
 import PetInsuranceForm from '../scenes/pet-insurance/Form'
 import PetInsuranceSimulator from '../scenes/pet-insurance/Simulator'
+import LandingPetInsuranceV1 from '../scenes/landings/pet-insurance/v1/Index'
+import LandingPetInsuranceV1Result from '../scenes/landings/pet-insurance/v1/Result'
+import PetInsuranceLandingV1Finish from '../scenes/landings/pet-insurance/v1/Finish'
 import ProductSelector from '@/scenes/product-selector/Index'
 
 Vue.use(VueLocalStorage)
@@ -60,6 +63,21 @@ export default new Router({
       name: 'ProductSelector',
       component: ProductSelector
     },
-
+    {
+      path: '/lp/saude-pet/v1',
+      name: 'LandingPetInsuranceV1',
+      component: LandingPetInsuranceV1
+    },
+    {
+      path: '/lp/saude-pet/v1/resultado/:proposalId',
+      name: 'LandingPetInsuranceV1Result',
+      component: LandingPetInsuranceV1Result
+    },
+    {
+      path: '/lp/saude-pet/v1/ok',
+      name: 'PetInsuranceLandingV1Finish',
+      component: PetInsuranceLandingV1Finish
+    }
+    
   ]
 })

@@ -223,7 +223,6 @@ export default {
   name: "PetInsuranceIndex",
   methods: {
     openForm: function(event) {
-      console.log('Chamou!');
       event.preventDefault();
       //window.location = "http://bit.ly/cotamos-health-for-pet";
       this.$router.push({ name: "PetInsuranceSimulator" });
@@ -329,9 +328,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-body {
-  font-family: "Raleway", sans-serif;
-}
 .form-line {
   margin-left: 0px;
 }

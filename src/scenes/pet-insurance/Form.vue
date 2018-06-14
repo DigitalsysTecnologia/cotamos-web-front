@@ -189,13 +189,13 @@ export default {
         this.existingProposal = await apiClientProvider.generateProposal(5);
         const proposal = Object.assign(this.existingProposal, this.proposal);
 
+        try {
+          let queryParams = this.$localStorage.get("url_query", "{}");
+          queryParams = JSON.parse(queryParams);
+          proposal.query = queryParams;
+        } catch (err) {
+        }
 
-        let queryParams = this.$localStorage.get('url_query', "{}");
-        queryParams = JSON.parse(queryParams);
-        proposal.query = queryParams;
-
-        
-        
         proposal.petInsuranceData.planId = this.$route.query.planId;
         await apiClientProvider.updateProposal(proposal);
         await apiClientProvider.setNextState(proposal, 10);
