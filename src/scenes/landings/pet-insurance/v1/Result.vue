@@ -465,16 +465,17 @@ export default {
     apiClientProvider.getServiceArea(this.proposal._id).then(area => {
       this.serviceArea = area;
     });
-    
+
     // TODO: Tira essa gambeta.
     router = this.$router;
-    
+
     if (!this.proposal.petInsuranceData.ageRange) {
       this.proposal.petInsuranceData.ageRange = 2;
     }
 
-    switch (this.proposal.petInsuranceData.ageRange) {
+    switch (parseInt(this.proposal.petInsuranceData.ageRange)) {
       case 1:
+        console.log("case 1");
         this.plans = [
           {
             logo: "/static/img/pet-insurance/icon_pet_basic.png",
@@ -519,6 +520,7 @@ export default {
         ];
         break;
       case 2:
+        console.log("case 2");
         this.plans = [
           {
             logo: "/static/img/pet-insurance/icon_pet_basic.png",
@@ -563,6 +565,7 @@ export default {
         ];
         break;
       case 3:
+        console.log("case 3");
         this.plans = [
           {
             logo: "/static/img/pet-insurance/icon_pet_senior.png",
@@ -574,8 +577,10 @@ export default {
           }
         ];
         break;
+      default:
+        console.log("deu merda");
     }
-
+    console.log("this.plans", this.plans);
     this.loading = false;
   },
   components: {
