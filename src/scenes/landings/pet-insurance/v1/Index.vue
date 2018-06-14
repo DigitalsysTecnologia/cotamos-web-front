@@ -4,16 +4,78 @@
       <main class="container-fluid">
           <div class="row">
             <div class="col-xs-12 color-background" style="height:80px;">
-              <!-- <div class="container">
-                  <h1>Plano de Saúde Pet</h1>
-              </div> -->
             </div>
           </div>
 
           <section class="container-fluid" style="margin-bottom:0px;">
             <div class="row">
               <div class="col-sm-12 text-center">
-                <h2>Verifique on-line os planos disponíveis</h2>
+                  <h2 class="subtitle">O que é Plano de Saúde PET?</h2>
+              </div>
+              
+              <div class="row section">
+                <div class="col-md-offset-2 col-md-4 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center">
+                  <img src="/static/img/cao_cofrinho.png" class="img-responsive center-block" />
+                </div>
+                <div class="col-md-4 col-md-12 col-md-offset-0 col-xs-12 col-xs-offset-0" style="padding-top:50px;padding-bottom:15px;">
+                  <p>
+                    É a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
+                  </p>
+
+                  <p>
+                    Em resumo, plano de saúde pet é uma forma  inteligente para proporcionar: 
+                    <ul>
+                      <li><span style="font-weight:bold;">Economia</span>;</li>
+                      <li><span style="font-weight:bold;">Segurança</span>;</li>
+                      <li><span style="font-weight:bold;">Tranquilidade</span>.</li>
+                    </ul>
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </section>   
+
+          <div class="row color-background text-center" style="padding-bottom:15px;padding-top:15px;">
+              <div class="col-sm-12">
+                <h2> Como funciona a contratação? </h2>
+                <div class="row proposal-flow">
+                  <div class="col-md-offset-2 col-md-8">
+
+                    <div class="flow-step">
+                      <i class="fa fa-laptop flow-icon"></i>
+                      <p>
+                        1. Preencha seu cadastro em nosso site
+                      </p>
+                    </div>
+
+                    <!-- <div class="flow-step-next">
+                      <i class="fa fa-arrow-right"></i>
+                    </div> -->
+
+                    <div class="flow-step">
+                      <i class="fa fas fa-file-alt  flow-icon"></i>
+                      <p>2. Escolha o plano para seu pet</p>
+                    </div>
+
+                    <!-- <div class="flow-step-next">
+                      <i class="fa fa-arrow-right"></i>
+                    </div> -->
+
+                    <div class="flow-step">
+                      <i class="far fa-clock flow-icon"></i>
+                      <p>3. Agende o check-up do seu pet.</p>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <section class="container-fluid" style="margin-bottom:0px;">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <h2 class="subtitle">Verifique on-line os planos disponíveis</h2>
               </div>
               <div class="col-sm-6">
                 <img class="img-responsive center-block hidden-xs" src="/static/img/cao_olhando.jpg"/>
@@ -69,71 +131,6 @@
               </div>
             </div>
           </section>
-
-          <div class="row color-background text-center" style="padding-bottom:15px;padding-top:15px;">
-              <div class="col-sm-12">
-                <h2> Como funciona a contratação? </h2>
-                <div class="row proposal-flow">
-                  <div class="col-md-offset-2 col-md-8">
-
-                    <div class="flow-step">
-                      <i class="fa fa-laptop flow-icon"></i>
-                      <p>
-                        1. Preencha seu cadastro em nosso site
-                      </p>
-                    </div>
-
-                    <!-- <div class="flow-step-next">
-                      <i class="fa fa-arrow-right"></i>
-                    </div> -->
-
-                    <div class="flow-step">
-                      <i class="fa fas fa-file-alt  flow-icon"></i>
-                      <p>2. Escolha o plano para seu pet</p>
-                    </div>
-
-                    <!-- <div class="flow-step-next">
-                      <i class="fa fa-arrow-right"></i>
-                    </div> -->
-
-                    <div class="flow-step">
-                      <i class="far fa-clock flow-icon"></i>
-                      <p>3. Agende o check-up do seu pet.</p>
-                    </div>
-                    
-                  </div>
-                </div>
-              </div>
-          </div>
-
-          <section class="container-fluid" style="margin-bottom:0px;">
-            <div class="row">
-              <div class="col-sm-12 text-center">
-                  <h2 class="subtitle">O que é Plano de Saúde PET?</h2>
-              </div>
-              
-              <div class="row section">
-                <div class="col-md-offset-2 col-md-4 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 text-center">
-                  <img src="/static/img/cao_cofrinho.png" class="img-responsive center-block" />
-                </div>
-                <div class="col-md-4 col-md-12 col-md-offset-0 col-xs-12 col-xs-offset-0" style="padding-top:50px;padding-bottom:15px;">
-                  <p>
-                    É a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
-                  </p>
-
-                  <p>
-                    Em resumo, plano de saúde pet é uma forma  inteligente para proporcionar: 
-                    <ul>
-                      <li><span style="font-weight:bold;">Economia</span>;</li>
-                      <li><span style="font-weight:bold;">Segurança</span>;</li>
-                      <li><span style="font-weight:bold;">Tranquilidade</span>.</li>
-                    </ul>
-                  </p>
-
-                </div>
-              </div>
-            </div>
-          </section>          
 
           <div class="row color-background text-center" style="padding-bottom:15px;padding-top:15px;">
           </div>
