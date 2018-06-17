@@ -123,6 +123,14 @@ class ApiClient {
     return internalGet(urljoin('user', userId));
   }
 
+  checkAvailabilityForProduct(product, zipCode) {
+    const payload = {
+      product:product, 
+      zipCode:zipCode
+    };
+    return internalPost(urljoin('product', 'check-availability'), payload);
+  }
+
   getCompanyById(companyId) {
     return internalGet(urljoin('company', companyId));
   }

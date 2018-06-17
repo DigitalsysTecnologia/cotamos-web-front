@@ -86,15 +86,15 @@ export default {
 }
 .input-group {
   position: relative;
-display: table;
-border-collapse: separate;
+  display: table;
+  border-collapse: separate;
 }
 .input-group input {
   height: 42px;
 }
-.input-group-addon{
+.input-group-addon {
   border-radius: 0px;
-  color: #00899C;
+  color: #00899c;
   border-right: 0px;
   border-right-color: currentcolor;
   background-color: #fff;

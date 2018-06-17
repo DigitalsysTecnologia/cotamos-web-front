@@ -31,10 +31,10 @@
 </template>
 
 <script>
-import FormInput from "../../../../components/FormInput";
-import FormSelect from "../../../../components/FormSelect";
-import Footer from "../../../../components/Footer";
-import NavBar from "../../../../components/NavBar";
+import FormInput from "../../../components/FormInput.vue";
+import FormSelect from "../../../components/FormSelect";
+import Footer from "../../../components/Footer";
+import NavBar from "../../../components/NavBar";
 
 export default {
   name: "PetInsuranceLandingV1Finish",

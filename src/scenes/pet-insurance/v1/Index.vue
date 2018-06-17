@@ -180,12 +180,12 @@
 </template>
 
 <script>
-import apiClientProvider from "../../../../providers/apiClientProvider";
-import FormInput from "../../../../components/FormInput";
-import FormSelect from "../../../../components/FormSelect";
-import Footer from "../../../../components/Footer";
-import validator from "../../../../utils/validator";
-import NavBar from "../../../../components/NavBar";
+import apiClientProvider from "../../../providers/apiClientProvider";
+import FormInput from "../../../components/FormInput";
+import FormSelect from "../../../components/FormSelect";
+import Footer from "../../../components/Footer";
+import validator from "../../../utils/validator";
+import NavBar from "../../../components/NavBar";
 
 export default {
   name: "PetInsuranceLandingV1",

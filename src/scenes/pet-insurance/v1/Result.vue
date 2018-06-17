@@ -3,13 +3,8 @@
     <NavBar />
       <main class="container-fluid">
           <div class="row">
-            <div class="col-xs-12 color-background" style="height:80px;">
-              <!-- <div class="container">
-                  <h1>Plano de Saúde Pet</h1>
-              </div> -->
-            </div>
+            <div class="col-xs-12 color-background" style="height:80px;"/>
           </div>
-
           <div v-if="loading">
             <div class="text-center loading-container">
               <img src="/static/img/loading.gif" class="img-responsive center-block" />
@@ -37,42 +32,36 @@
                 <div class="col-sm-12 text-center">
                   <h2>Planos Disponíveis</h2>
                 </div>
-
                 <div class="row" v-for="plan in availablePlans" :key="plan.logo">
                   <div class="plan-card col-sm-offset-2 col-sm-8">
-
                     <div class="row">
-                    <div class="col-md-2 text-center">
-                      <img class="img-responsive center-block" :src="plan.logo" width="43" height="41" />
-                      <p :style="{color: plan.color, marginTop: '10px'}" class="hidden-xs hidden-sm">{{plan.name}}</p>
-                    </div>
-
-                    <div class="col-md-10">
-                      <p :style="{color: plan.color}" class="text-center hidden-md hidden-lg">{{plan.name}}</p>
-                      <p>{{plan.description}}</p>
-                    </div>
-                    </div>
-                    
-                    <div class="row">
-                    <div class="col-md-offset-2 col-md-8 text-center">
-                      <div class="col-xs-12 col-sm-4">
-                        <span class="plan-value">
-                          {{ formatCurrency(plan.value) }}
-                        </span>
+                      <div class="col-md-2 text-center">
+                        <img class="img-responsive center-block" :src="plan.logo" width="43" height="41" />
+                        <p :style="{color: plan.color, marginTop: '10px'}" class="hidden-xs hidden-sm">{{plan.name}}</p>
                       </div>
-
-                      <div class="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-2">
-                        <div>
-                          <button class="btn call-to-action" v-on:click="finishProposal(proposal, plan)"> Tenho Interesse</button>
+                      <div class="col-md-10">
+                        <p :style="{color: plan.color}" class="text-center hidden-md hidden-lg">{{plan.name}}</p>
+                        <p>{{plan.description}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-offset-2 col-md-8 text-center">
+                        <div class="col-xs-12 col-sm-4">
+                          <span class="plan-value">
+                            {{ formatCurrency(plan.value) }}
+                          </span>
                         </div>
+
+                        <div class="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-2">
+                          <div>
+                            <button class="btn call-to-action" v-on:click="finishProposal(proposal, plan)"> Tenho Interesse</button>
+                          </div>
+                        </div>
+
                       </div>
-
                     </div>
-                    </div>
-
                   </div>
                 </div>
-
               </div>
             </section>
             <section class="container-fluid">
@@ -101,10 +90,8 @@
                             <span v-if="map.neighborhood">{{map.city}} </span>
                           </p>
                         </div>
-
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -125,14 +112,12 @@
                   </div>
                   <div class="col-sm-offset-2 col-sm-8 text-center">
                     <googleMap :center="mapCenter" :zoom="10" style="width: 100%; height: 500px" v-if="mapData">
-                      <!-- <gmap-info-window :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
-                              {{infoContent}}
-                      </gmap-info-window> -->
                       <googleMarker v-for="(m,idx) in mapMarkers" 
-                        :key="idx" 
-                        :position="m.position" :clickable="true" 
-                        :draggable="true"
-                        @click="center=m.position">
+                                    :key="idx" 
+                                    :position="m.position" 
+                                    :clickable="false" 
+                                    :draggable="false"
+                                    @click="center=m.position">
                         </googleMarker>
                     </googleMap>
                   </div>
@@ -154,7 +139,6 @@
                     <h2>Coberturas</h2>
                   </div>
                   <div class="col-md-8 col-md-offset-2">
-
                     <table class="table table-hover">
                       <thead>
                         <tr>
@@ -196,35 +180,26 @@
                         </tr>
                       </tbody>
                     </table>
-
                   </div>
                 </div>
               </div>
             </section>
           </div>
-
       </main>
     <Footer/>
   </div>
 </template>
 
 <script>
-import apiClientProvider from "../../../../providers/apiClientProvider";
-import FormInput from "../../../../components/FormInput";
-import FormSelect from "../../../../components/FormSelect";
-import Footer from "../../../../components/Footer";
-import validator from "../../../../utils/validator";
-import NavBar from "../../../../components/NavBar";
+import apiClientProvider from "../../../providers/apiClientProvider";
+import FormInput from "../../../components/FormInput";
+import FormSelect from "../../../components/FormSelect";
+import Footer from "../../../components/Footer";
+import validator from "../../../utils/validator";
+import NavBar from "../../../components/NavBar";
 import Vue from "vue";
 import * as VueGoogleMaps from "vue2-google-maps";
 
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw"
-  },
-  // Demonstrating how we can customize the name of the components
-  installComponents: false
-});
 let router = {};
 
 export default {

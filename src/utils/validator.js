@@ -41,7 +41,6 @@ export default {
             });
     },
     validateZipCode: (value) => {
-        console.log('validateZipCode', value)
         return Validator.value(value)
             .required("Por favor, nos informe o seu CEP")
             .custom(function () {
@@ -81,6 +80,14 @@ export default {
         return Validator.value(value)
             .required("Por favor, nos informe o seu e-mail.")
             .email("E-mail inválido");
+    },
+    validateHomeAddressStreet: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe o seu logradouro.")
+    },
+    validateHomeAddressNumber: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe o número.")
     },
     validateHomeAddressState: (value) => {
         return Validator.value(value)
