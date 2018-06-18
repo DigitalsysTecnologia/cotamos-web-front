@@ -1,24 +1,15 @@
 <template>
   <div>
-    <h3>Simule aqui</h3>
-    <div class="col-xs-12">
-      <FormInput label="Nome do Pet"
+    <h3>Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
+    <h3>Para isso, vamos precisar de algumas informações</h3>
+    <div class="col-xs-12 col-sm-6">
+      <FormInput label="Nome do seu pet"
                   icon="fa-paw" 
                   id="proposal.petInsuranceData.name"
                   :validationMessage="validation.firstError('proposal.petInsuranceData.name')"
                   v-model="proposal.petInsuranceData.name"/>
     </div>
     
-    <div class="col-sm-6 col-xs-12">
-      <FormInput  label="CEP"
-                  icon="fa-map-marker" 
-                  type="text"
-                  id="proposal.proposer.homeAddress.zipCode"
-                  :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
-                  mask="#####-###"
-                  v-model.trim="proposal.proposer.homeAddress.zipCode" />
-    </div>
-
     <div class="col-sm-6 col-xs-12">
       <FormInput label="Idade do pet (em anos)" 
                   icon="fa-hourglass " 
@@ -28,8 +19,18 @@
                   v-model="proposal.petInsuranceData.age"/>
     </div>
 
+    <div class="col-sm-6 col-xs-12">
+      <FormInput  label="CEP da sua residência"
+                  icon="fa-map-marker" 
+                  type="text"
+                  id="proposal.proposer.homeAddress.zipCode"
+                  :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
+                  mask="#####-###"
+                  v-model.trim="proposal.proposer.homeAddress.zipCode" />
+    </div>
+
     <div class="col-xs-12">
-      <CallToAction className='pull-right' v-on:click="submitProposal">
+      <CallToAction className='pull-left' v-on:click="submitProposal">
         Próximo &nbsp;
         <i class="fas fa-forward"/>
       </CallToAction>
