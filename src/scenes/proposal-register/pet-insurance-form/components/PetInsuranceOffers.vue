@@ -3,7 +3,7 @@
     <h3>Ofertas Disponíveis para seu Pet</h3>
 
     <section class="container-fluid" >
-      <div class="row">
+      <div class="row" v-if="false">
         <div class="col-sm-offset-2 col-sm-8">
           <div class="col-sm-8 text-center">
             <h3>Escolha a forma de pagamento</h3>
@@ -124,7 +124,7 @@ export default {
   name: "PetInsuranceOffers",
   data() {
     return {
-      paymentMethod: 0,
+      paymentMethod: 1,
       serviceArea: null
     };
   },
