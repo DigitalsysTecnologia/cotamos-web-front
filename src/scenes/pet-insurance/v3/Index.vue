@@ -91,12 +91,12 @@
                   <div class="row">
                     <div class="col-xs-12 col-md-2">
                       <span class="plan-value">
-                        <!-- {{ formatCurrency(plan.value) }} -->
+                        {{ formatCurrency(plan.value) }}
                       </span>
                     </div>
 
                     <div class="col-xs-12 col-xs-offset-0 col-md-10">
-                        <button class="btn call-to-action" v-on:click="GoToForm"> Tenho Interesse</button>
+                        <button class="btn call-to-action" v-on:click="GoToForm"> Saiba Mais</button>
                     </div>
                   </div>
                   

@@ -19,15 +19,14 @@ import ProposalRegister from '@/scenes/proposal-register/Index';
 
 import VueScrollTo from 'vue-scrollto';
 import * as VueGoogleMaps from "vue2-google-maps";
-import VueGtm from 'vue-gtm'
 
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw"
   },
-  // Demonstrating how we can customize the name of the components
   installComponents: false
 });
+
 Vue.use(VueScrollTo)
 Vue.use(VueLocalStorage)
 Vue.use(SimpleVueValidation)
@@ -126,15 +125,8 @@ function importDefaultRoutes() {
 
   return routes;
 }
-const router =  new Router({
+
+export default new Router({
   mode: 'history',
   routes: importDefaultRoutes()
-})
-
-// Vue.use(VueGtm, {
-//   enabled: true,
-//   debug: true,
-//   vueRouter: router,
-// })
-
-export default router;
+});
