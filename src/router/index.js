@@ -131,10 +131,10 @@ const router =  new Router({
   routes: importDefaultRoutes()
 })
 
-Vue.use(VueGtm, {
-  enabled: true,
-  debug: true,
-  vueRouter: router,
-})
+// Vue.use(VueGtm, {
+//   enabled: true,
+//   debug: true,
+//   vueRouter: router,
+// })
 
 export default router;
