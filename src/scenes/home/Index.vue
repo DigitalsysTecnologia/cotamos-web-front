@@ -154,7 +154,6 @@ export default {
   },
   watch: {
     product: function() {
-      console.log(`passei por aqui e estou com o valor ${this.product}`);
       switch (this.product) {
         case "0":
           this.$router.push({ name: "HealthInsurance" });

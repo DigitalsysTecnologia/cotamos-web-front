@@ -247,6 +247,7 @@ import FormSelect from "@/components/FormSelect.vue";
 import apiClientProvider from "@/providers/apiClientProvider";
 import validator from "@/utils/validator";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
+import utils from "@/utils/index";
 
 let router = null;
 
@@ -265,7 +266,7 @@ export default {
   computed: {
     availablePlans: {
       get() {
-        return petInsuranceProvider.getAllPlans();;
+        return petInsuranceProvider.getAllPlans();
       }
     }
   },
@@ -276,6 +277,7 @@ export default {
   },
   async beforeMount() {
     router = this.$router;
+    utils.saveLandingQueryParams(this.$route.query);
   },
   components: {
     NavBar: NavBar,

@@ -58,6 +58,7 @@ import DeniedProposalForm from "./components/DeniedProposalForm";
 import ProposerDataForm from "./components/ProposerDataForm";
 import apiClientProvider from "@/providers/apiClientProvider";
 import factory from "@/utils/factory";
+import utils from "@/utils/index";
 
 export default {
   name: "PetInsuranceForm",
@@ -75,7 +76,6 @@ export default {
     currentStep: {
       get: function() {
         return this.step;
-        // return 3;
       }
     },
     isDenied: {
@@ -139,6 +139,7 @@ export default {
               5
             );
             this.proposal = Object.assign(existingProposal, this.proposal);
+            this.proposal.queryParams = utils.getLandingQueryParams();
           }
 
           await apiClientProvider.updateProposal(this.proposal);
