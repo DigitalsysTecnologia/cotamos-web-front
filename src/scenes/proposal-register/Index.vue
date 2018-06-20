@@ -1,5 +1,5 @@
-<template>
-    <div>
+<template >
+    <div v-if="currentProduct == 5">
         <NavBar />
         <main class="container-fluid">
             <div class="row">
@@ -17,7 +17,7 @@
                     <div class="row">
                         <section class="col-xs-12 formulario-cotacao">
                             <div class="col-sm-12 col-xs-12 box-cotacao">
-                                  <PetInsuranceForm v-if="currentProduct == 5"/>
+                                  <PetInsuranceForm />
                             </div>
                         </section>
                     </div>
@@ -26,11 +26,20 @@
         </section>
         <Footer/>
     </div>
+    <div v-else-if="currentProduct == 6">
+      <TravelInsuranceRegister />
+    </div>
+    <div v-else-if="currentProduct == 7">
+      <PortoCarroFacil />
+    </div>
 </template>
+
 
 <script>
 import Footer from "@/components/Footer";
 import PetInsuranceForm from "./pet-insurance-form/Index";
+import TravelInsuranceRegister from "./travel-insurance/Index";
+import PortoCarroFacil from "./porto-carro-facil/Index"
 import NavBar from "@/components/NavBar";
 
 export default {
@@ -43,7 +52,9 @@ export default {
   components: {
     Footer: Footer,
     PetInsuranceForm: PetInsuranceForm,
-    NavBar:NavBar
+    TravelInsuranceRegister: TravelInsuranceRegister,
+    PortoCarroFacil:PortoCarroFacil,
+    NavBar: NavBar
   },
   computed: {
     currentProduct: function() {
@@ -74,7 +85,7 @@ export default {
 @media (max-width: 500px) {
   .banner {
     background-position-x: -1000px;
-    background-position-y: 0px; 
+    background-position-y: 0px;
   }
 }
 </style>
