@@ -8,6 +8,7 @@ import HealthInsurance from '@/scenes/health-insurance/Index';
 import ProposalResult from '@/scenes/proposal-result/Index';
 import LifeInsurance from '@/scenes/life-insurance/Index';
 import ProductSelector from '@/scenes/product-selector/Index';
+import TravelInsurance from '@/scenes/proposal-register/travel-insurance/Index'
 
 import LandingPetInsuranceV1 from '@/scenes/pet-insurance/v1/Index';
 import LandingPetInsuranceV1Result from '@/scenes/pet-insurance/v1/Result';
@@ -99,6 +100,11 @@ function importDefaultRoutes() {
       name: 'HealthInsurance',
       component: HealthInsurance
     },
+    {
+      path: '/seguro-viagem',
+      name: 'TravelInsurance',
+      component: TravelInsurance
+    },    
     {
       path: '/seguro-vida',
       name: 'LifeInsurance',
