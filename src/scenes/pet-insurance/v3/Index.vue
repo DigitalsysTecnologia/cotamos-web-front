@@ -65,6 +65,14 @@
         <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
+              <button class="btn btn-lg btn-block call-to-action" v-on:click="GoToForm"> CONHEÇA NOSSOS PLANOS</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
                 <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapsePlans" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <span class="hidden-xs">QUERO CONHECER OS PLANOS</span>
                 <span class="hidden-sm hidden-md hidden-lg hidden-xl">VER PLANOS</span>
@@ -165,7 +173,7 @@
               </div>
             </div>
           </div>
-        </section>
+        </section> -->
 
         <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
             <div class="row">
@@ -313,11 +321,12 @@ export default {
 .call-to-action {
   border: 1px solid transparent;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
   letter-spacing: -0.5px;
   border-radius: 100px;
   cursor: pointer;
-  padding: 5px 30px;
+  padding: 15px 30px;
   text-align: center;
   color: #fff;
   background-image: linear-gradient(to bottom, orange, #ff8400);
