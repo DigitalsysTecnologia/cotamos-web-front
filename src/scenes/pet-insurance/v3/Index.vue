@@ -65,7 +65,7 @@
         <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
-              <button class="btn btn-lg btn-block call-to-action" v-on:click="GoToForm"> CONHEÇA NOSSOS PLANOS</button>
+              <button class="btn btn-lg btn-block call-to-action" v-on:click="GoToForm"> CONHEÇA OS PLANOS DISPONÍVEIS</button>
             </div>
           </div>
         </section>
