@@ -201,7 +201,7 @@
 
         </section>
 
-        <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
+        <!-- <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
             <div class="row">
               <div class="col-md-offset-2 col-md-8 text-center">
                 <h2 class="subtitle">Atendimento</h2>
@@ -240,7 +240,7 @@
               
             </div>
 
-        </section>
+        </section> -->
 
         <Footer/>
     </div>
