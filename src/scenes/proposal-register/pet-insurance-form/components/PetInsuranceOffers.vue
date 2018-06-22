@@ -2,58 +2,13 @@
   <div>
     <h3>Ofertas Disponíveis para seu Pet</h3>
 
-    <section class="container-fluid" >
-      <div class="row" v-if="false">
-        <div class="col-sm-offset-2 col-sm-8">
-          <div class="col-sm-8 text-center">
-            <h3>Escolha a forma de pagamento</h3>
-          </div>
-          <div class="col-sm-4 col-xs-12" style="margin-bottom:15px;">
-            <FormSelect  label=""
-                          icon="fas fa-money-check-alt" 
-                          id="proposal.petInsuranceData.paymentMethod"
-                          v-model="paymentMethod"
-                          :options="paymentMethods" />
-          </div>
-        </div>
-      </div>
-
-      <div class="row" v-for="plan in availablePlans" :key="plan.logo" v-if="paymentMethod">
-        <div class="plan-card col-sm-offset-2 col-sm-8">
-          <div class="row">
-            <div class="col-md-2 text-center">
-              <img class="img-responsive center-block" :src="plan.logo" width="43" height="41" />
-              <p :style="{color: plan.color, marginTop: '10px'}" class="hidden-xs hidden-sm">{{plan.name}}</p>
-            </div>
-            <div class="col-md-10">
-              <p :style="{color: plan.color}" class="text-center hidden-md hidden-lg">{{plan.name}}</p>
-              <p>{{plan.description}}</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8 text-center">
-              <div class="col-xs-12 col-sm-4">
-                <span class="plan-value">
-                  {{ formatCurrency(plan.value) }}
-                </span>
-              </div>
-              <div class="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-2">
-                <div>
-                  <CallToAction v-on:click="selectPlan(plan)"> Quero contratar</CallToAction>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <h3>Você tem <span style="font-weight: bold;color: black;">4</span> clínicas próximas a sua residência</h3>
     <section class="container-fluid"  v-if="mapData">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
             <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseCoverage" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <span class="hidden-xs">REDE CREDENCIADA</span>
-            <span class="hidden-sm hidden-md hidden-lg hidden-xl">REDE CREDENCIADA</span>
+            <span class="hidden-xs">VER CLÍNICAS PRÓXIMAS</span>
+            <span class="hidden-sm hidden-md hidden-lg hidden-xl">VER CLÍNICAS PRÓXIMAS</span>
           </a>
         </div>
       </div>
@@ -85,12 +40,68 @@
       </div>
     </section>
 
+    <section class="container-fluid" style="margin-top:15px;">
+      <div class="row" v-if="false">
+        <div class="col-sm-offset-2 col-sm-8">
+          <div class="col-sm-8 text-center">
+            <h3>Escolha a forma de pagamento</h3>
+          </div>
+          <div class="col-sm-4 col-xs-12" style="margin-bottom:15px;">
+            <FormSelect  label=""
+                          icon="fas fa-money-check-alt" 
+                          id="proposal.petInsuranceData.paymentMethod"
+                          v-model="paymentMethod"
+                          :options="paymentMethods" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
+            <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapsePrices" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <span class="hidden-xs">VER PREÇOS</span>
+            <span class="hidden-sm hidden-md hidden-lg hidden-xl">VER PREÇOS</span>
+          </a>
+        </div>
+      </div>
+      <div class="collapse" id="collapsePrices">
+        <div class="row" v-for="plan in availablePlans" :key="plan.logo" v-if="paymentMethod">
+          <div class="plan-card col-sm-offset-2 col-sm-8">
+            <div class="row">
+              <div class="col-md-2 text-center">
+                <img class="img-responsive center-block" :src="plan.logo" width="43" height="41" />
+                <p :style="{color: plan.color, marginTop: '10px'}" class="hidden-xs hidden-sm">{{plan.name}}</p>
+              </div>
+              <div class="col-md-10">
+                <p :style="{color: plan.color}" class="text-center hidden-md hidden-lg">{{plan.name}}</p>
+                <p>{{plan.description}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-offset-2 col-md-8 text-center">
+                <div class="col-xs-12 col-sm-4">
+                  <span class="plan-value">
+                    {{ formatCurrency(plan.value) }}
+                  </span>
+                </div>
+                <div class="col-xs-12 col-xs-offset-0 col-sm-4 col-sm-offset-2">
+                  <div>
+                    <CallToAction v-on:click="selectPlan(plan)"> Quero contratar</CallToAction>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="container-fluid" style="margin-top:15px;" v-if="mapData">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
             <a class="btn btn-primary btn-lg btn-block" data-toggle="collapse" href="#collapseMap" role="button" aria-expanded="false" aria-controls="collapseExample">
-            <span class="hidden-xs">MAPA COBERTURA</span>
-            <span class="hidden-sm hidden-md hidden-lg hidden-xl">MAPA COBERTURA</span>
+            <span class="hidden-xs">VER MAPA</span>
+            <span class="hidden-sm hidden-md hidden-lg hidden-xl">VER MAPA</span>
           </a>
         </div>
       </div>

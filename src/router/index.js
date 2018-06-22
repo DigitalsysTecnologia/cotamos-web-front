@@ -132,7 +132,16 @@ function importDefaultRoutes() {
   return routes;
 }
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   routes: importDefaultRoutes()
 });
+
+router.beforeEach(function (to, from, next) { 
+  setTimeout(() => {
+      window.scrollTo(0, 0);
+  }, 100);
+  next();
+});
+
+export default router
