@@ -67,11 +67,15 @@
                     <span style="font-weight: bold;"> Nome: </span> 
                     <span> {{map.name}}</span>
                     <br/>
-                    <span style="font-weight: bold;"> Bairro: </span> 
-                    <span v-if="map.neighborhood">{{map.neighborhood}} </span>
+
+                    <span style="font-weight: bold;"> Endereço: </span> 
+                    <span v-if="map.neighborhood">{{formatAddress(map)}} </span>
                     <br/>
-                    <span style="font-weight: bold;"> Cidade: </span> 
-                    <span v-if="map.neighborhood">{{map.city}} </span>
+
+                    <br/>
+                    <span style="font-weight: bold;"> Distância: </span> 
+                    <span> {{formatDistance(map.distance)}} </span>
+                    <br/>
                   </p>
                 </div>
               </div>
@@ -193,6 +197,14 @@ export default {
     }
   },
   methods: {
+    formatDistance: function(distance) {
+      let result = distance.toFixed(2);
+      result = result.replace(".", ",");
+      return result + " Km";
+    },
+    formatAddress: function(mapItem) {
+      return mapItem.street + ", " + mapItem.number + ", " + mapItem.neighborhood + " - " + mapItem.city + ", " + mapItem.state;
+    },
     nextStep: async function() {
       const isValid = await this.$validate();
       if (isValid) {
