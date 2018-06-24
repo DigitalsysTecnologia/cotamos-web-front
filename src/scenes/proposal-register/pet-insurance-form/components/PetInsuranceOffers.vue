@@ -2,7 +2,7 @@
   <div>
     <h3>Ofertas Disponíveis para seu Pet</h3>
 
-    <h3>Você tem <span style="font-weight: bold;color: black;">4</span> clínicas próximas a sua residência</h3>
+    <h3 v-if="places">Você tem <span style="font-weight: bold;color: black;">{{places.length}}</span> clínicas próximas a sua residência</h3>
     <section class="container-fluid"  v-if="mapData">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
@@ -214,7 +214,17 @@ export default {
       return result + " Km";
     },
     formatAddress: function(mapItem) {
-      return mapItem.street + ", " + mapItem.number + ", " + mapItem.neighborhood + " - " + mapItem.city + ", " + mapItem.state;
+      return (
+        mapItem.street +
+        ", " +
+        mapItem.number +
+        ", " +
+        mapItem.neighborhood +
+        " - " +
+        mapItem.city +
+        ", " +
+        mapItem.state
+      );
     },
     nextStep: async function() {
       const isValid = await this.$validate();

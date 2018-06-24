@@ -16,6 +16,7 @@ import LandingPetInsuranceV1Finish from '@/scenes/pet-insurance/v1/Finish';
 
 import LandingPetInsuranceV2 from '@/scenes/pet-insurance/v2/Index';
 import LandingPetInsuranceV3 from '@/scenes/pet-insurance/v3/Index';
+import LandingPetInsuranceV4 from '@/scenes/pet-insurance/v4/Index';
 import ProposalRegister from '@/scenes/proposal-register/Index';
 
 import VueScrollTo from 'vue-scrollto';
@@ -46,7 +47,7 @@ function importPetInsuranceLandings(routes) {
     , {
       path: '/plano-de-saude-pet',
       name: 'PetInsurance',
-      component: LandingPetInsuranceV3
+      component: LandingPetInsuranceV4
     }
     ///////////////////// Default Landings /////////////////////
 
@@ -82,6 +83,14 @@ function importPetInsuranceLandings(routes) {
       component: LandingPetInsuranceV3
     }
     ///////////////////// V3 /////////////////////
+
+    ///////////////////// V4 /////////////////////
+    , {
+      path: '/lp/saude-pet/v4',
+      name: 'LandingPetInsuranceV4',
+      component: LandingPetInsuranceV4
+    }
+    ///////////////////// V4 /////////////////////
 
   );
 }
