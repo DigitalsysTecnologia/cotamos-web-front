@@ -49,6 +49,11 @@ function importPetInsuranceLandings(routes) {
       name: 'PetInsurance',
       component: LandingPetInsuranceV4
     }
+    , {
+      path: '/pet',
+      name: 'PetInsuranceAbbrev',
+      component: LandingPetInsuranceV4
+    }
     ///////////////////// Default Landings /////////////////////
 
     ///////////////////// V1 /////////////////////
@@ -91,6 +96,7 @@ function importPetInsuranceLandings(routes) {
       component: LandingPetInsuranceV4
     }
     ///////////////////// V4 /////////////////////
+
 
   );
 }
