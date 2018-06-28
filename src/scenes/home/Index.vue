@@ -1,6 +1,6 @@
 <template>
     <div style="display:unset">
-        <NavBar/>
+        <!-- <NavBar/> -->
 
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">

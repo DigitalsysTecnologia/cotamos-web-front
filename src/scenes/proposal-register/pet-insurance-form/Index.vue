@@ -150,8 +150,10 @@ export default {
           );
 
           if (availability.isAvailable) {
+            await apiClientProvider.setNextState(this.proposal, 10);
             this.step++;
           } else {
+            await apiClientProvider.setNextState(this.proposal, 21);
             this.denied = true;
           }
 

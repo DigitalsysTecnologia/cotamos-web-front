@@ -1,19 +1,9 @@
 <template>
     <div>
-        <NavBar />
-        
-        <main class="container-fluid">
-            <div class="row">
-                <header class="col-xs-12 banner-pgs"
-                        style="backgroundImage: url(/static/img/bg_pet.jpg); backgroundSize: cover;">
-                    <div class="container">
-                        <h1>Plano de Saúde Pet</h1>
-                    </div>
-                </header>
-            </div>
-        </main>
+        <!-- <section class="container-fluid bg-outros" style="backgroundColor:red;">
+          <h1>Teste</h1>
+        </section> -->
 
-        
         <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
             <div class="row">
               <div class="col-md-offset-2 col-md-8 text-center">
@@ -28,7 +18,7 @@
 
               <div class="col-md-6 col-sm-12 col-sm-offset-0">
                 <p>
-                  É a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
+                  O plano de saúde pet <span style="font-weight:bold;">para cães e gatos</span> é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
                 </p>
 
                 <p>
@@ -46,9 +36,49 @@
         </section>
 
         <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
+            <div class="row">
+              <div class="col-md-offset-2 col-md-8 text-center">
+                <h2 class="subtitle">Por que eu deveria contratar um plano de saúde pet?</h2>
+              </div>
+            </div>
+            
+            <div class="row" style="padding-top:15px;">
+              <div class="col-md-offset-2 col-md-8 col-sm-12">
+                <p>
+                  Assim como os humanos, os pets também tem necessidades de cuidados com a saúde. 
+                  Com os planos de saúde, você tem acesso a uma série de clínicas para tratamento veterinário.
+                </p>
+              </div>
+
+            </div>
+
+        </section>
+
+        <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
-              <button class="btn btn-lg btn-block call-to-action" v-on:click="GoToForm"> CONHEÇA OS PLANOS DISPONÍVEIS</button>
+              <h3>PARA OS FILHOTES</h3>
+              <p>
+                Quando um filhote canino ou felino passa por fases delicadas, como a construção da imunidade e adaptação à sua nova alimentação, ele epode ficar mais predisposto à instabilidades gastrointestinais e algumas alergias, gerando mais idas ao veterinário. 
+                A descoberta do mundo e de sua nova casa também podem expor seu pet a riscos bastante comuns, como acidentes ou a ingestão de corpos estranhos. Esses incidentes ocorrem em 1 a cada 3 pets por ano.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
+              <h2 class="subtitle">FAÇA UMA COTAÇÃO ON-LINE</h2>
+              <BasicForm v-on:submitProposal="submitProposal"/>
+            </div>
+          </div>
+        </section>
+
+        <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
+              <button class="btn btn-lg btn-block call-to-action" v-on:click="GoToForm">PLANOS DISPONÍVEIS</button>
             </div>
           </div>
         </section>
@@ -233,6 +263,7 @@
 import Loading from "@/components/Loading";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
+import BasicForm from "@/scenes/pet-insurance/components/Basic Form.vue"
 import FormInput from "@/components/FormInput";
 import FormSelect from "@/components/FormSelect.vue";
 import apiClientProvider from "@/providers/apiClientProvider";
@@ -252,6 +283,9 @@ export default {
     },
     GoToForm(event) {
       router.push({ name: "ProposalRegister", query: { product: 5 } });
+    },
+    submitProposal(proposal) {
+      console.log('proposal', proposal)
     }
   },
   computed: {
@@ -275,7 +309,8 @@ export default {
     Footer: Footer,
     Loading: Loading,
     FormInput: FormInput,
-    FormSelect: FormSelect
+    FormSelect: FormSelect,
+    BasicForm:BasicForm
   }
 };
 </script>

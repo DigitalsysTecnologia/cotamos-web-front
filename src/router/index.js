@@ -47,12 +47,12 @@ function importPetInsuranceLandings(routes) {
     , {
       path: '/plano-de-saude-pet',
       name: 'PetInsurance',
-      component: LandingPetInsuranceV4
+      component: LandingPetInsuranceV3
     }
     , {
       path: '/pet',
       name: 'PetInsuranceAbbrev',
-      component: LandingPetInsuranceV4
+      component: LandingPetInsuranceV3
     }
     ///////////////////// Default Landings /////////////////////
 

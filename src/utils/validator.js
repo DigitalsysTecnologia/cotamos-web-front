@@ -68,11 +68,11 @@ export default {
     },
     validateClientName: (value) => {
         return Validator.value(value)
-            .required("Por favor, nos informe o seu nome")
-            .minLength(5, "Por favor, nos informe o seu nome.")
+            .required("Por favor, nos informe o seu nome completo.")
+            .minLength(5, "Por favor, nos informe o seu nome completo.")
             .custom(function () {
                 if (value.split(" ").length - 1 < 1) {
-                    return "Por favor, nos informe o seu nome.";
+                    return "Por favor, nos informe o seu nome completo.";
                 }
             });
     },

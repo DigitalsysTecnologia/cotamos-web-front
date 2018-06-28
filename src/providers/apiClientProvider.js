@@ -14,6 +14,8 @@ else {
   baseUrl = 'https://backend.cotamos.com/api/v1'
 }
 
+// baseUrl = 'https://backend.cotamos.com/api/v1'
+
 function internalRequest(method, url, data) {
   return axios({
     method: method,
