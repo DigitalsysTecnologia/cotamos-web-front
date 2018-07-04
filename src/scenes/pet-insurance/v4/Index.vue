@@ -56,7 +56,7 @@
 
         <section class="container-fluid bg-outros" style="padding-top:15px;padding-bottom:25px;">
           <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
               <h3>PARA OS FILHOTES</h3>
               <p>
                 Quando um filhote canino ou felino passa por fases delicadas, como a construção da imunidade e adaptação à sua nova alimentação, ele epode ficar mais predisposto à instabilidades gastrointestinais e algumas alergias, gerando mais idas ao veterinário. 

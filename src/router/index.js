@@ -9,6 +9,7 @@ import ProposalResult from '@/scenes/proposal-result/Index';
 import LifeInsurance from '@/scenes/life-insurance/Index';
 import ProductSelector from '@/scenes/product-selector/Index';
 import TravelInsurance from '@/scenes/proposal-register/travel-insurance/Index'
+import InsuranceOffers from '@/scenes/insurance-offers/Index.vue'
 
 import LandingPetInsuranceV1 from '@/scenes/pet-insurance/v1/Index';
 import LandingPetInsuranceV1Result from '@/scenes/pet-insurance/v1/Result';
@@ -18,6 +19,8 @@ import LandingPetInsuranceV2 from '@/scenes/pet-insurance/v2/Index';
 import LandingPetInsuranceV3 from '@/scenes/pet-insurance/v3/Index';
 import LandingPetInsuranceV4 from '@/scenes/pet-insurance/v4/Index';
 import ProposalRegister from '@/scenes/proposal-register/Index';
+import PetInsuranceOffersSuccess from '@/scenes/pet-insurance-offers/Success'
+import PetInsuranceOffers from '@/scenes/pet-insurance-offers/PetInsuranceOffers.vue'
 
 import VueScrollTo from 'vue-scrollto';
 import * as VueGoogleMaps from "vue2-google-maps";
@@ -119,11 +122,16 @@ function importDefaultRoutes() {
       path: '/seguro-viagem',
       name: 'TravelInsurance',
       component: TravelInsurance
-    },    
+    },
     {
       path: '/seguro-vida',
       name: 'LifeInsurance',
       component: LifeInsurance
+    },
+    {
+      path: '/ofertas',
+      name: 'InsuranceOffers',
+      component: InsuranceOffers
     },
     {
       path: '/ofertas/:proposalId',
@@ -139,7 +147,18 @@ function importDefaultRoutes() {
       path: '/cadastro-completo',
       name: 'ProposalRegister',
       component: ProposalRegister
-    }
+    }, 
+    {
+      path: '/ofertas-pet',
+      name: 'PetInsuranceOffers',
+      component: PetInsuranceOffers
+    },
+    {
+      path: '/ofertas-pet/sucesso',
+      name: 'PetInsuranceOffersSuccess',
+      component: PetInsuranceOffersSuccess
+    },
+    // 
   );
 
   importPetInsuranceLandings(routes)
@@ -147,14 +166,14 @@ function importDefaultRoutes() {
   return routes;
 }
 
-const router =  new Router({
+const router = new Router({
   mode: 'history',
   routes: importDefaultRoutes()
 });
 
-router.beforeEach(function (to, from, next) { 
+router.beforeEach(function (to, from, next) {
   setTimeout(() => {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, 100);
   next();
 });
