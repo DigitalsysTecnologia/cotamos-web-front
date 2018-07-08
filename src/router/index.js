@@ -151,7 +151,7 @@ function importDefaultRoutes() {
     {
       path: '/ofertas-pet',
       name: 'PetInsuranceOffers',
-      component: PetInsuranceOffers
+      component: InsuranceOffers
     },
     {
       path: '/ofertas-pet/sucesso',

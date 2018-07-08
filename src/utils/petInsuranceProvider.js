@@ -22,7 +22,7 @@ export default {
                 pet_basic: true,
                 pet_light: true,
                 pet_plus: true,
-                pet_total: true,
+                pet_total:true,
                 pet_premium: true
             },
             {
@@ -172,11 +172,12 @@ export default {
             case 1:
                 return [
                     {
+                        code: 'pet_basic',
                         logo: "/static/img/pet-insurance/icon_pet_basic.png",
                         name: "PET BASIC (Ambulatorial)",
                         color: "rgb(241, 218, 0)",
                         description:
-                            "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental. O PET BASIC cobre consultas clínicas (exceto consultas com especialista), exames laboratoriais (exceto hormonais), vacinas, procedimentos ambulatoriais, incluindo urgências e emergências.",
+                            "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental.",
                         value: {
                             bankSlip: 73.64,
                             creditCard: 66.28,
@@ -184,6 +185,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_light',
                         logo: "/static/img/pet-insurance/icon_pet_light.png",
                         name: "PET LIGHT (Ambulatorial)",
                         color: "rgb(141, 198, 63)",
@@ -196,6 +198,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_plus',
                         logo: "/static/img/pet-insurance/icon_pet_plus.png",
                         name: "PET PLUS (Ambulatorial + Hospitalar)",
                         color: "rgb(133, 96, 168)",
@@ -208,6 +211,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_total',
                         logo: "/static/img/pet-insurance/icon_pet_total.png",
                         name: "PET TOTAL (Completo)",
                         color: "rgb(247, 148, 29)",
@@ -220,6 +224,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_premium',
                         logo: "/static/img/pet-insurance/icon_pet_premium.png",
                         name: "PET PREMIUM (Completo + Reembolso)",
                         color: "rgb(67, 132, 193)",
@@ -235,11 +240,12 @@ export default {
             case 2:
                 return [
                     {
+                        code: 'pet_basic',
                         logo: "/static/img/pet-insurance/icon_pet_basic.png",
                         name: "PET BASIC (Ambulatorial)",
                         color: "rgb(241, 218, 0)",
                         description:
-                            "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental. O PET BASIC cobre consultas clínicas (exceto consultas com especialista), exames laboratoriais (exceto hormonais), vacinas, procedimentos ambulatoriais, incluindo urgências e emergências.",
+                            "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental.",
                         value: {
                             bankSlip: 61.86,
                             creditCard: 55.67,
@@ -247,6 +253,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_light',
                         logo: "/static/img/pet-insurance/icon_pet_light.png",
                         name: "PET LIGHT (Ambulatorial)",
                         color: "rgb(141, 198, 63)",
@@ -259,6 +266,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_plus',
                         logo: "/static/img/pet-insurance/icon_pet_plus.png",
                         name: "PET PLUS (Ambulatorial + Hospitalar)",
                         color: "rgb(133, 96, 168)",
@@ -271,6 +279,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_total',
                         logo: "/static/img/pet-insurance/icon_pet_total.png",
                         name: "PET TOTAL (Completo)",
                         color: "rgb(247, 148, 29)",
@@ -283,6 +292,7 @@ export default {
                         }
                     },
                     {
+                        code: 'pet_premium',
                         logo: "/static/img/pet-insurance/icon_pet_premium.png",
                         name: "PET PREMIUM (Completo + Reembolso)",
                         color: "rgb(67, 132, 193)",
@@ -298,6 +308,7 @@ export default {
             case 3:
                 return [
                     {
+                        code: 'pet_senior',
                         logo: "/static/img/pet-insurance/icon_pet_senior.png",
                         name: "PET SENIOR",
                         color: "rgb(174, 143, 68)",
@@ -331,7 +342,7 @@ export default {
                 name: "PET BASIC (Ambulatorial)",
                 color: "rgb(241, 218, 0)",
                 description:
-                    "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental. O PET BASIC cobre consultas clínicas (exceto consultas com especialista), exames laboratoriais (exceto hormonais), vacinas, procedimentos ambulatoriais, incluindo urgências e emergências.",
+                    "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental.",
                 value: 61.86
             },
             {

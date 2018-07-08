@@ -151,7 +151,8 @@ export default {
 
           if (availability.isAvailable) {
             await apiClientProvider.setNextState(this.proposal, 10);
-            this.step++;
+            this.$router.push({path: '/ofertas', query: { id: this.proposal._id }});
+            
           } else {
             await apiClientProvider.setNextState(this.proposal, 21);
             this.denied = true;
