@@ -158,6 +158,7 @@ export default {
         "Aguarde um instante por favor..."
       ];
       this.loading = true;
+      await apiClientProvider.updateProposal(this.existingProposal);
       await apiClientProvider.setNextState(this.existingProposal, 20);
       this.existingProposal.state = 20;
       this.loading = false;
