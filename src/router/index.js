@@ -10,19 +10,16 @@ import LifeInsurance from '@/scenes/life-insurance/Index';
 import ProductSelector from '@/scenes/product-selector/Index';
 import TravelInsurance from '@/scenes/proposal-register/travel-insurance/Index'
 import InsuranceOffers from '@/scenes/insurance-offers/Index.vue'
-
-import LandingPetInsuranceV1 from '@/scenes/pet-insurance/v1/Index';
-import LandingPetInsuranceV1Result from '@/scenes/pet-insurance/v1/Result';
-import LandingPetInsuranceV1Finish from '@/scenes/pet-insurance/v1/Finish';
-
-import LandingPetInsuranceV2 from '@/scenes/pet-insurance/v2/Index';
 import LandingPetInsuranceV3 from '@/scenes/pet-insurance/v3/Index';
-import LandingPetInsuranceV4 from '@/scenes/pet-insurance/v4/Index';
 import ProposalRegister from '@/scenes/proposal-register/Index';
 import PetInsuranceOffersSuccess from '@/scenes/pet-insurance-offers/Success'
-import PetInsuranceOffers from '@/scenes/pet-insurance-offers/PetInsuranceOffers.vue'
-
 import VueScrollTo from 'vue-scrollto';
+import FillInsuranceProposal from '@/scenes/fill-insurance-proposal/Index.vue';
+// import BasicProposalData from '@/scenes/sales-flow/BasicProposalData';
+// import ProposalOffers from '@/scenes/sales-flow/Offers';
+// import FullProposalData from '@/scenes/sales-flow/FullProposalData'
+// import FinishSalesFlow from '@/scenes/sales-flow/Finish'
+import SalesFlow from '@/scenes/sales-flow/Index';
 import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.use(VueGoogleMaps, {
@@ -43,11 +40,6 @@ function importPetInsuranceLandings(routes) {
   routes.push(
     ///////////////////// Default Landings /////////////////////
     {
-      path: '/lp/saude-pet',
-      name: 'LandingPetInsurance',
-      component: LandingPetInsuranceV3
-    }
-    , {
       path: '/plano-de-saude-pet',
       name: 'PetInsurance',
       component: LandingPetInsuranceV3
@@ -58,49 +50,6 @@ function importPetInsuranceLandings(routes) {
       component: LandingPetInsuranceV3
     }
     ///////////////////// Default Landings /////////////////////
-
-    ///////////////////// V1 /////////////////////
-    , {
-      path: '/lp/saude-pet/v1',
-      name: 'LandingPetInsuranceV1',
-      component: LandingPetInsuranceV1
-    }
-    , {
-      path: '/lp/saude-pet/v1/resultado/:proposalId',
-      name: 'LandingPetInsuranceV1Result',
-      component: LandingPetInsuranceV1Result
-    }
-    , {
-      path: '/lp/saude-pet/v1/ok',
-      name: 'PetInsuranceLandingV1Finish',
-      component: LandingPetInsuranceV1Finish
-    }
-
-    ///////////////////// V2 /////////////////////
-    , {
-      path: '/lp/saude-pet/v2',
-      name: 'LandingPetInsuranceV2',
-      component: LandingPetInsuranceV2
-    }
-    ///////////////////// V2 /////////////////////
-
-    ///////////////////// V3 /////////////////////
-    , {
-      path: '/lp/saude-pet/v3',
-      name: 'LandingPetInsuranceV3',
-      component: LandingPetInsuranceV3
-    }
-    ///////////////////// V3 /////////////////////
-
-    ///////////////////// V4 /////////////////////
-    , {
-      path: '/lp/saude-pet/v4',
-      name: 'LandingPetInsuranceV4',
-      component: LandingPetInsuranceV4
-    }
-    ///////////////////// V4 /////////////////////
-
-
   );
 }
 
@@ -129,9 +78,19 @@ function importDefaultRoutes() {
       component: LifeInsurance
     },
     {
+      path: '/fluxo-vendas',
+      name: 'SalesFlow',
+      component: SalesFlow
+    },
+    {
       path: '/ofertas',
       name: 'InsuranceOffers',
-      component: InsuranceOffers
+      component: SalesFlow
+    },
+    {
+      path: '/completar-cadastro',
+      name: 'FillInsuranceProposal',
+      component: FillInsuranceProposal
     },
     {
       path: '/ofertas/:proposalId',
@@ -147,17 +106,38 @@ function importDefaultRoutes() {
       path: '/cadastro-completo',
       name: 'ProposalRegister',
       component: ProposalRegister
-    }, 
+    },
     {
       path: '/ofertas-pet',
       name: 'PetInsuranceOffers',
-      component: InsuranceOffers
+      component: SalesFlow
     },
     {
       path: '/ofertas-pet/sucesso',
       name: 'PetInsuranceOffersSuccess',
       component: PetInsuranceOffersSuccess
-    },
+    },   
+    // {
+    //   path: '/fluxo-vendas/cadastro-basico',
+    //   name: 'BasicProposalData',
+    //   component: BasicProposalData
+    // },
+    // {
+    //   path: '/fluxo-vendas/ofertas',
+    //   name: 'ProposalOffers',
+    //   component: ProposalOffers
+    // },
+    // {
+    //   path: '/fluxo-vendas/cadastro-completo',
+    //   name: 'FullProposalData',
+    //   component: FullProposalData
+    // },
+    // {
+    //   path: '/fluxo-vendas/finalizacao',
+    //   name: 'FinishSalesFlow',
+    //   component: FinishSalesFlow
+    // },
+    
     // 
   );
 

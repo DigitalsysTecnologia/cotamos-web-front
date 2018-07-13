@@ -8,7 +8,8 @@ export default {
                 homeAddress: {
                     zipCode: "",
                     state: "",
-                    city: ""
+                    city: "",
+                    number:0
                 },
                 phones: {
                     0: {
@@ -23,7 +24,8 @@ export default {
                 age: "",
                 petType: "",
                 gender: ""
-            }
+            },
+            state:0
         }
     }
 }

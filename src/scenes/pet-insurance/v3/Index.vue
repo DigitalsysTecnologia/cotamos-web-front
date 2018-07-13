@@ -268,7 +268,7 @@ export default {
       return `R$ ${value}`;
     },
     GoToForm(event) {
-      router.push({ name: "ProposalRegister", query: { product: 5 } });
+      router.push({ name: "SalesFlow", query: { product: 5 } });
     }
   },
   computed: {
