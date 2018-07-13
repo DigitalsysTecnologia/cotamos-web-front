@@ -119,11 +119,7 @@ export default {
     }
   },
   mounted: function() {
-    this.proposal.proposer.name = "Eduardo Andrade";
-    this.proposal.petInsuranceData.name = "Sherlock";
-     this.proposal.petInsuranceData.age = "5";
-    this.proposal.proposer.homeAddress.zipCode = "05141-160";
-    this.proposal.proposer.email = "eduardo@andrade.com";
+
   },
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
