@@ -9,7 +9,7 @@ export default {
                     zipCode: "",
                     state: "",
                     city: "",
-                    number:0
+                    number:""
                 },
                 phones: {
                     0: {
