@@ -11,14 +11,11 @@ import ProductSelector from '@/scenes/product-selector/Index';
 import TravelInsurance from '@/scenes/proposal-register/travel-insurance/Index'
 import InsuranceOffers from '@/scenes/insurance-offers/Index.vue'
 import LandingPetInsuranceV3 from '@/scenes/pet-insurance/v3/Index';
+import LandingPetInsuranceV4 from '@/scenes/pet-insurance/v4/Index'
 import ProposalRegister from '@/scenes/proposal-register/Index';
 import PetInsuranceOffersSuccess from '@/scenes/pet-insurance-offers/Success'
 import VueScrollTo from 'vue-scrollto';
 import FillInsuranceProposal from '@/scenes/fill-insurance-proposal/Index.vue';
-// import BasicProposalData from '@/scenes/sales-flow/BasicProposalData';
-// import ProposalOffers from '@/scenes/sales-flow/Offers';
-// import FullProposalData from '@/scenes/sales-flow/FullProposalData'
-// import FinishSalesFlow from '@/scenes/sales-flow/Finish'
 import SalesFlow from '@/scenes/sales-flow/Index';
 import * as VueGoogleMaps from "vue2-google-maps";
 
@@ -42,12 +39,12 @@ function importPetInsuranceLandings(routes) {
     {
       path: '/plano-de-saude-pet',
       name: 'PetInsurance',
-      component: LandingPetInsuranceV3
+      component: LandingPetInsuranceV4
     }
     , {
       path: '/pet',
       name: 'PetInsuranceAbbrev',
-      component: LandingPetInsuranceV3
+      component: LandingPetInsuranceV4
     }
     ///////////////////// Default Landings /////////////////////
   );
@@ -116,29 +113,7 @@ function importDefaultRoutes() {
       path: '/ofertas-pet/sucesso',
       name: 'PetInsuranceOffersSuccess',
       component: PetInsuranceOffersSuccess
-    },   
-    // {
-    //   path: '/fluxo-vendas/cadastro-basico',
-    //   name: 'BasicProposalData',
-    //   component: BasicProposalData
-    // },
-    // {
-    //   path: '/fluxo-vendas/ofertas',
-    //   name: 'ProposalOffers',
-    //   component: ProposalOffers
-    // },
-    // {
-    //   path: '/fluxo-vendas/cadastro-completo',
-    //   name: 'FullProposalData',
-    //   component: FullProposalData
-    // },
-    // {
-    //   path: '/fluxo-vendas/finalizacao',
-    //   name: 'FinishSalesFlow',
-    //   component: FinishSalesFlow
-    // },
-    
-    // 
+    }
   );
 
   importPetInsuranceLandings(routes)

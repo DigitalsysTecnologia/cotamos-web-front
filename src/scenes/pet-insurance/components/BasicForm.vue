@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div class="row form-container">
+    <div class="row form-container" v-if="isLoading">
+      <Loading :messages="['Submetendo proposta,', 'Aguarde um instante por favor...']"/>
+    </div>
+
+    <div class="row form-container" v-else>
       <div class="col-xs-12 col-sm-12">
         <FormInput label="Nome do seu pet"
                     icon="fa-paw" 
@@ -58,8 +62,8 @@
       </div>
 
       <div class="col-xs-12">
-        <CallToAction className='pull-left' v-on:click="submitProposal">
-          Próximo &nbsp;
+        <CallToAction className='pull-right' v-on:click="submitProposal">
+          Ver Ofertas &nbsp;
           <i class="fas fa-forward"/>
         </CallToAction>
       </div>
@@ -69,16 +73,18 @@
 </template>
 
 <script>
+import Loading from "@/components/Loading";
 import FormInput from "@/components/FormInput";
-import FormSelect from "@/components/FormSelect.vue";
+import FormSelect from "@/components/FormSelect";
 import validator from "@/utils/validator";
-import factory from "@/utils/factory";
-import CallToAction from "@/components/CallToAction.vue";
+import CallToAction from "@/components/CallToAction";
+import apiClientProvider from "@/providers/apiClientProvider";
 
 export default {
   name: "BasicPetInsuranceForm",
   data() {
     return {
+      loading: false,
       proposal: {
         petInsuranceData: {
           name: "",
@@ -99,12 +105,43 @@ export default {
       }
     };
   },
+  computed: {
+    isLoading: {
+      get() {
+        return this.loading;
+      }
+    }
+  },
   methods: {
     submitProposal: async function() {
       const isValid = await this.$validate();
-      if (isValid) {
-        this.$emit("next", null);
+
+      if (!isValid) {
+        return;
       }
+
+      this.loading = true;
+
+      if (!this.proposal._id) {
+        let newProposal = await apiClientProvider.generateProposal(5);
+        this.proposal = Object.assign(newProposal, this.proposal);
+      }
+
+      await apiClientProvider.updateProposal(this.proposal);
+      const product = await apiClientProvider.checkAvailabilityForProduct(
+        5,
+        this.proposal.proposer.homeAddress.zipCode
+      );
+
+      if (!product.isAvailable) {
+        await apiClientProvider.setNextState(this.proposal, 21);
+        this.proposal.state = 21;
+      } else {
+        await apiClientProvider.setNextState(this.proposal, 3);
+        this.proposal.state = 3;
+      }
+
+      this.$emit("submitProposal", this.proposal);
     },
     getPhoneMask: function(phone) {
       let phoneNumber = null;
@@ -135,7 +172,8 @@ export default {
   components: {
     FormInput: FormInput,
     FormSelect: FormSelect,
-    CallToAction: CallToAction
+    CallToAction: CallToAction,
+    Loading: Loading
   }
 };
 </script>
@@ -147,7 +185,7 @@ export default {
 .form-container {
   border: 2px solid rgb(5, 62, 66);
   border-radius: 20px;
-  background-color: white; 
+  background-color: white;
   margin-left: 1px;
   margin-right: 1px;
   padding-top: 20px;
