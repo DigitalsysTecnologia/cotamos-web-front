@@ -59,7 +59,20 @@ export default {
     },
     validatePetAge: (value) => {
         return Validator.value(value)
-            .required("Idade é obrigatória.")
+            .required("Idade do pet é obrigatória.")
+            .custom(function () {
+                const petAge = parseInt(value);
+                
+                if (isNaN(petAge)) {
+                    return "Idade inválida";
+                }
+
+                if (petAge >= 13) {
+                    return "Idade inválida";
+                }
+
+                return null;
+            });
     },
     validatePetAgeRange: (value) => {
         return Validator.value(value)
