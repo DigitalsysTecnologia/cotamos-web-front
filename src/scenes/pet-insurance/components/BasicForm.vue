@@ -4,7 +4,7 @@
       <Loading :messages="['Submetendo proposta,', 'Aguarde um instante por favor...']"/>
     </div>
 
-    <div class="row form-container" v-else>
+    <div class="row form-container text-left" v-else>
       <div class="col-xs-12 col-sm-12">
         <FormInput label="Nome do seu pet"
                     icon="fa-paw" 

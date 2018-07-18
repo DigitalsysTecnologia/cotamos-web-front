@@ -1,5 +1,6 @@
 <template>
     <div :class="{'form-group': true, 'error': validationMessage}">
+        <label class="input-label">{{label}}:</label>
         <div class="input-group">
             <div class="input-group-addon">
                 <i :class="`fa ${icon}`" aria-hidden="true"/>
@@ -8,7 +9,7 @@
                     class="form-control"
                     :id="id"
                     :name="id"
-                    :placeholder="label"
+                    
                     @input="updateValue()"
                     :maxLength="maxLength"
                     ref="inputValue"
@@ -149,15 +150,15 @@ export default {
 }
 .input-group {
   position: relative;
-display: table;
-border-collapse: separate;
+  display: table;
+  border-collapse: separate;
 }
 .input-group input {
   height: 42px;
 }
-.input-group-addon{
+.input-group-addon {
   border-radius: 0px;
-  color: #00899C;
+  color: #00899c;
   border-right: 0px;
   border-right-color: currentcolor;
   background-color: #fff;
@@ -176,5 +177,10 @@ border-collapse: separate;
   color: #000;
   border-radius: 0px;
   border-color: rgb(166, 166, 166);
+}
+.input-label {
+  margin-left: 5px;
+  margin-bottom: 0px;
+  color: #017787;
 }
 </style>
