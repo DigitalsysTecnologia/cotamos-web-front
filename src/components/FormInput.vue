@@ -1,6 +1,6 @@
 <template>
     <div :class="{'form-group': true, 'error': validationMessage}">
-        <label class="input-label">{{label}}:</label>
+        <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
         <div class="input-group">
             <div class="input-group-addon">
                 <i :class="`fa ${icon}`" aria-hidden="true"/>
@@ -141,6 +141,9 @@ export default {
   border-bottom-color: red;
   border-top-color: red;
   color: red;
+}
+.label-error {
+  color: red !important;
 }
 .message {
   color: red;
