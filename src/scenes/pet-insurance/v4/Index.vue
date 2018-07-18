@@ -86,7 +86,7 @@
           <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
             <h3>PARA OS ADULTOS</h3>
           </div>
-          <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
             <img src="/static/img/adulto_cao_gato.jpg" class="img-responsive center-block" />
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12 text-center">
