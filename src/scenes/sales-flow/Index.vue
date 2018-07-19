@@ -41,6 +41,7 @@ import WaitingForAvailability from "./components/WaitingForAvailability";
 import factory from "../../utils/factory";
 import apiClientProvider from "@/providers/apiClientProvider";
 import utils from "../../utils/index";
+let router = null;
 
 export default {
   name: "SalesFlow",
@@ -101,6 +102,7 @@ export default {
         code: plan.code
       };
       
+      await apiClientProvider.updateProposal(this.existingProposal);
       await apiClientProvider.setNextState(this.existingProposal, 2);
       this.existingProposal.state = 2;
     },
@@ -129,6 +131,8 @@ export default {
         await apiClientProvider.setNextState(this.existingProposal, 3);
         this.existingProposal.state = 3;
       }
+
+      router.push({ name: "SalesFlow", query: { id: this.existingProposal._id } });
 
       this.loading = false;
     },
@@ -175,6 +179,7 @@ export default {
     // console.log("mounted");
   },
   async beforeMount() {
+    router = this.$router;
     const { query } = this.$route;
 
     this.loadingMessage = ["Carregando...", "Aguarde um instante por favor..."];

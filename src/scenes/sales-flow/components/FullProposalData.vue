@@ -111,6 +111,53 @@
         </div>
     </div>
 
+    <div class="row" style="margin-top:30px;">
+      <div class="col-xs-12">
+        <h3>Dados de seu Pet:</h3>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+          <FormInput  label="Data de nascimento do Pet" 
+                      icon="fa-calendar" 
+                      id="proposal.petInsuranceData.dateOfBirth"
+                      mask="##/##/####"
+                      type="text"
+                      :validationMessage="validation.firstError('proposal.petInsuranceData.dateOfBirth')"
+                      v-model="proposal.petInsuranceData.dateOfBirth" />
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <FormSelect  label="Sexo do Pet" 
+                    icon="fa-transgender" 
+                    id="proposal.petInsuranceData.gender"
+                    :validationMessage="validation.firstError('proposal.petInsuranceData.gender')"
+                    v-model="proposal.petInsuranceData.gender" 
+                    :options="['Macho', 'Fêmea']" />
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <FormSelect  label="Espécie do Pet" 
+                    icon="fa-paw" 
+                    id="proposal.petInsuranceData.specie"
+                    :validationMessage="validation.firstError('proposal.petInsuranceData.specie')"
+                    v-model="proposal.petInsuranceData.specie" 
+                    :options="['Canino', 'Felino']" />
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-bottom:15px;">
+      <div class="col-xs-12">
+        <h3>Pagamento:</h3>
+      </div>
+
+      <div class="col-sm-4 col-xs-12">
+        <FormSelect  label="Forma de Pagamento" 
+                    icon="fa-money-bill" 
+                    id="proposal.petInsuranceData.paymentMethod"
+                    :validationMessage="validation.firstError('proposal.petInsuranceData.paymentMethod')"
+                    v-model="proposal.petInsuranceData.paymentMethod" 
+                    :options="['Boleto', 'Cartão de Crédito', 'Débito em Conta']" />
+      </div>
+    </div>
+
     <div class="row" style="margin-bottom:15px;">
       <div class="col-xs-12">
         <CallToAction className='pull-right' v-on:click="submitProposal">
@@ -203,12 +250,74 @@ export default {
       validator.validateHomeAddressCity(value),
     "proposal.proposer.dateOfBirth": value =>
       validator.validateDateOfBirth(value),
+    "proposal.petInsuranceData.dateOfBirth": value =>
+      validator.validatePetDateOfBirth(value),
     "proposal.proposer.phones.0.areaCode": value =>
       validator.validatePhoneAreaCode(value),
     "proposal.proposer.phones.0.number": value =>
-      validator.validatePhoneNumber(value)
+      validator.validatePhoneNumber(value),
+    "proposal.petInsuranceData.gender": value =>
+      validator.validatePetGender(value),
+    "proposal.petInsuranceData.specie": value =>
+      validator.validatePetSpecie(value)
   },
   async beforeMount() {
+    if (!this.proposal.proposer.name) {
+      this.proposal.proposer.name = "";
+    }
+
+    if (!this.proposal.proposer.email) {
+      this.proposal.proposer.email = "";
+    }
+
+    if (!this.proposal.proposer.cpf) {
+      this.proposal.proposer.cpf = "";
+    }
+
+    if (!this.proposal.proposer.homeAddress.street) {
+      this.proposal.proposer.homeAddress.street = "";
+    }
+
+    if (!this.proposal.proposer.homeAddress.number) {
+      this.proposal.proposer.homeAddress.number = "";
+    }
+
+    if (!this.proposal.proposer.homeAddress.zipCode) {
+      this.proposal.proposer.homeAddress.zipCode = "";
+    }
+
+    if (!this.proposal.proposer.homeAddress.state) {
+      this.proposal.proposer.homeAddress.state = "";
+    }
+
+    if (!this.proposal.proposer.homeAddress.city) {
+      this.proposal.proposer.homeAddress.city = "";
+    }
+
+    if (!this.proposal.proposer.dateOfBirth) {
+      this.proposal.proposer.dateOfBirth = "";
+    }
+
+    if (!this.proposal.petInsuranceData.dateOfBirth) {
+      this.proposal.petInsuranceData.dateOfBirth = "";
+    }
+
+    if (!this.proposal.proposer.phones[0].areaCode) {
+      this.proposal.proposer.phones[0].areaCode = "";
+    }
+
+    if (!this.proposal.proposer.phones[0].number) {
+      this.proposal.proposer.phones[0].number = "";
+    }
+
+    if (!this.proposal.petInsuranceData.gender) {
+      this.proposal.petInsuranceData.gender = "";
+    }
+
+    if (!this.proposal.petInsuranceData.specie) {
+      this.proposal.petInsuranceData.specie = "";
+    }
+
     this.getAddressByZipCode(this.proposal.proposer.homeAddress.zipCode);
   },
   components: {

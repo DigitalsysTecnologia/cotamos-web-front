@@ -4,6 +4,38 @@ const Validator = SimpleVueValidation.Validator;
 const CPF = require("cpf_cnpj").CPF;
 
 export default {
+    validatePetDateOfBirth: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe a data de nascimento do pet.")
+            .custom(function () {
+                if (value == null) {
+                    return null;
+                }
+
+                if (value.length !== 10) {
+                    return "Data inválida";
+                }
+
+                const dateOfBirth = moment(value, "DD/MM/YYYY");
+                if (!dateOfBirth.isValid()) {
+                    return "Data inválida";
+                }
+
+                const now = moment();
+                const duration = moment.duration(now.diff(dateOfBirth));
+                const ageInYears = duration.asYears();
+
+                if (ageInYears <= 0) {
+                    return "Data inválida";
+                }
+
+                if (ageInYears > 14) {
+                    return "Data inválida";
+                }
+
+                return null;
+            });
+    },
     validateDateOfBirth: (value) => {
         return Validator.value(value)
             .required("Por favor, nos informe a sua data de nascimento.")
@@ -40,6 +72,18 @@ export default {
                 return null;
             });
     },
+    validatePaymentMethod: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe a forma de pagamento.")
+    },
+    validatePetGender: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe o sexo do seu pet")
+    },
+    validatePetSpecie: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe a espécie do seu pet")
+    },
     validateZipCode: (value) => {
         return Validator.value(value)
             .required("Por favor, nos informe o seu CEP")
@@ -62,7 +106,7 @@ export default {
             .required("Idade do pet é obrigatória.")
             .custom(function () {
                 const petAge = parseInt(value);
-                
+
                 if (isNaN(petAge)) {
                     return "Idade inválida";
                 }

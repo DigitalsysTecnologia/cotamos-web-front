@@ -1,11 +1,12 @@
 <template>
     <div :class="{'form-group': true, 'error': validationMessage}">
+      <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
         <div class="input-group">
             <div class="input-group-addon">
                 <i :class="`fa ${icon}`" aria-hidden="true"/>
             </div>
             <select class="form-control custom-select" :id="id" @input="updateValue()" ref="inputValue" >
-              <option selected="true" disabled="disabled">{{ label }}</option>
+              <option selected="true" disabled="disabled"></option>
               <option v-for="(option) in options" 
                       :key="option.id || option" 
                       :value="option.id || option"> 
@@ -75,6 +76,9 @@ export default {
   border-top-color: red;
   color: red;
 }
+.label-error {
+  color: red !important;
+}
 .message {
   color: red;
 }
@@ -113,5 +117,10 @@ export default {
   color: #000;
   border-radius: 0px;
   border-color: rgb(166, 166, 166);
+}
+.input-label {
+  margin-left: 5px;
+  margin-bottom: 0px;
+  color: #017787;
 }
 </style>
