@@ -6,6 +6,14 @@
 
     <div class="row form-container text-left" v-else>
       <div class="col-xs-12 col-sm-12">
+        <FormInput label="Seu Nome"
+                   icon="fa-user" 
+                   id="proposal.proposer.name"
+                   :validationMessage="validation.firstError('proposal.proposer.name')"
+                   v-model="proposal.proposer.name"/>
+      </div>
+
+      <div class="col-xs-12 col-sm-12">
         <FormInput label="Nome do seu pet"
                     icon="fa-paw" 
                     id="proposal.petInsuranceData.name"
@@ -159,6 +167,7 @@ export default {
     }
   },
   validators: {
+    "proposal.proposer.name": value => validator.validateClientName(value),
     "proposal.petInsuranceData.name": value => validator.validatePetName(value),
     "proposal.proposer.homeAddress.zipCode": value =>
       validator.validateZipCode(value),
