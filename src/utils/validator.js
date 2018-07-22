@@ -255,6 +255,12 @@ export default {
             .required("Por favor, nos informe seu telefone.")
             .minLength(8, "Favor Informar o telefone completo");
     },
+    validateFullPhoneNumber: (value) => {
+        const val = value.replace(/\D/g, "");
+        return Validator.value(val)
+            .required("Por favor, nos informe seu telefone.")
+            .minLength(10, "Favor Informar o telefone completo");
+    },
     validateCpf: (value) => {
         return Validator.value(value)
             .custom(function () {

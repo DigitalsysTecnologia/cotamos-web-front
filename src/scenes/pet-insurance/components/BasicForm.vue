@@ -48,7 +48,7 @@
                     v-model.trim="proposal.proposer.email" />
       </div>
 
-      <div class="col-md-2 col-sm-3 col-xs-12">
+      <!-- <div class="col-md-2 col-sm-3 col-xs-12">
           <FormInput  label="DDD" 
                       icon="fa-phone" 
                       type="text"
@@ -67,11 +67,22 @@
                       type="text"
                       :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
                       v-model.trim="proposal.proposer.phones[0].number" />
+      </div> -->
+
+      <div class="col-xs-12">
+        <FormInput label="Celular ou Telefone" 
+                   icon="fa-phone" 
+                   id="proposal.proposer.phones.0.fullNumber"
+                   maxLength="15"
+                   :mask="getFullPhoneMask(proposal.proposer.phones[0].fullNumber)"
+                   type="text"
+                   :validationMessage="validation.firstError('proposal.proposer.phones.0.fullNumber')"
+                   v-model.trim="proposal.proposer.phones[0].fullNumber" />
       </div>
 
       <div class="col-xs-12">
         <CallToAction className='pull-right' v-on:click="submitProposal">
-          Ver Ofertas &nbsp;
+          Ver Opções &nbsp;
           <i class="fas fa-forward"/>
         </CallToAction>
       </div>
@@ -99,11 +110,13 @@ export default {
           age: ""
         },
         proposer: {
+          name: "",
           email: "",
           phones: [
             {
               areaCode: "",
-              number: ""
+              number: "",
+              fullNumber: ""
             }
           ],
           homeAddress: {
@@ -164,6 +177,21 @@ export default {
       } else {
         return "#####-####";
       }
+    },
+    getFullPhoneMask: function(phone) {
+      let phoneNumber = null;
+      
+      if (phone) {
+        phoneNumber = phone.replace(/\D/g, "");
+      } else {
+        phoneNumber = "";
+      }
+
+      if (phoneNumber.length <= 10) {
+        return "(##) ####-####";
+      } else {
+        return "(##) #####-####";
+      }
     }
   },
   validators: {
@@ -173,10 +201,12 @@ export default {
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
-    "proposal.proposer.phones.0.areaCode": value =>
-      validator.validatePhoneAreaCode(value),
-    "proposal.proposer.phones.0.number": value =>
-      validator.validatePhoneNumber(value)
+    // "proposal.proposer.phones.0.areaCode": value =>
+    //   validator.validatePhoneAreaCode(value),
+    // "proposal.proposer.phones.0.number": value =>
+    //   validator.validatePhoneNumber(value)
+    "proposal.proposer.phones.0.fullNumber": value =>
+      validator.validateFullPhoneNumber(value)
   },
   components: {
     FormInput: FormInput,

@@ -38,7 +38,7 @@
                       v-model.trim="proposal.proposer.homeAddress.zipCode" />
         </div>
 
-        <div class="col-sm-12 col-xs-12">
+        <!-- <div class="col-sm-12 col-xs-12">
           <FormInput  label="E-mail" 
                       icon="fa-at" 
                       id="proposal.proposer.email"
@@ -54,9 +54,20 @@
                         mask="##"
                         :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
                         v-model.trim="proposal.proposer.phones[0].areaCode" />
+        </div> -->
+
+        <div class="col-xs-12">
+          <FormInput label="Celular ou Telefone" 
+                    icon="fa-phone" 
+                    id="proposal.proposer.phones.0.fullNumber"
+                    maxLength="15"
+                    :mask="getFullPhoneMask(proposal.proposer.phones[0].fullNumber)"
+                    type="text"
+                    :validationMessage="validation.firstError('proposal.proposer.phones.0.fullNumber')"
+                    v-model.trim="proposal.proposer.phones[0].fullNumber" />
         </div>
 
-        <div class="col-sm-9 col-md-10 col-xs-12 offset-md-1 offset-sm-1">
+        <!-- <div class="col-sm-9 col-md-10 col-xs-12 offset-md-1 offset-sm-1">
             <FormInput label="Celular ou Telefone" 
                         icon="fa-phone" 
                         id="proposal.proposer.phones.0.number"
@@ -65,7 +76,7 @@
                         type="text"
                         :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
                         v-model.trim="proposal.proposer.phones[0].number" />
-        </div>
+        </div> -->
 
         <div class="col-xs-12">
           <CallToAction className='pull-left' v-on:click="submitProposal">
@@ -116,11 +127,24 @@ export default {
       } else {
         return "#####-####";
       }
+    },
+    getFullPhoneMask: function(phone) {
+      let phoneNumber = null;
+      
+      if (phone) {
+        phoneNumber = phone.replace(/\D/g, "");
+      } else {
+        phoneNumber = "";
+      }
+
+      if (phoneNumber.length <= 10) {
+        return "(##) ####-####";
+      } else {
+        return "(##) #####-####";
+      }
     }
   },
-  mounted: function() {
-
-  },
+  mounted: function() {},
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
     "proposal.petInsuranceData.name": value => validator.validatePetName(value),
@@ -128,10 +152,12 @@ export default {
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
-    "proposal.proposer.phones.0.areaCode": value =>
-      validator.validatePhoneAreaCode(value),
-    "proposal.proposer.phones.0.number": value =>
-      validator.validatePhoneNumber(value)
+    // "proposal.proposer.phones.0.areaCode": value =>
+    //   validator.validatePhoneAreaCode(value),
+    // "proposal.proposer.phones.0.number": value =>
+    //   validator.validatePhoneNumber(value)
+    "proposal.proposer.phones.0.fullNumber": value =>
+      validator.validateFullPhoneNumber(value)
   },
   components: {
     FormInput: FormInput,

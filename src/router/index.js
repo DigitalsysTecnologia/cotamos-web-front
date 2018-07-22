@@ -7,15 +7,10 @@ import Main from '@/scenes/home/Index';
 import HealthInsurance from '@/scenes/health-insurance/Index';
 import ProposalResult from '@/scenes/proposal-result/Index';
 import LifeInsurance from '@/scenes/life-insurance/Index';
-import ProductSelector from '@/scenes/product-selector/Index';
 import TravelInsurance from '@/scenes/proposal-register/travel-insurance/Index'
-import InsuranceOffers from '@/scenes/insurance-offers/Index.vue'
-import LandingPetInsuranceV3 from '@/scenes/pet-insurance/v3/Index';
+import PortoCarroFacil from '@/scenes/porto-carro-facil/Index'
 import LandingPetInsuranceV4 from '@/scenes/pet-insurance/v4/Index'
-import ProposalRegister from '@/scenes/proposal-register/Index';
-import PetInsuranceOffersSuccess from '@/scenes/pet-insurance-offers/Success'
 import VueScrollTo from 'vue-scrollto';
-import FillInsuranceProposal from '@/scenes/fill-insurance-proposal/Index.vue';
 import SalesFlow from '@/scenes/sales-flow/Index';
 import * as VueGoogleMaps from "vue2-google-maps";
 
@@ -80,14 +75,14 @@ function importDefaultRoutes() {
       component: SalesFlow
     },
     {
+      path: '/carro-facil',
+      name: 'PortoCarroFacil',
+      component: PortoCarroFacil
+    },
+    {
       path: '/ofertas',
       name: 'InsuranceOffers',
       component: SalesFlow
-    },
-    {
-      path: '/completar-cadastro',
-      name: 'FillInsuranceProposal',
-      component: FillInsuranceProposal
     },
     {
       path: '/ofertas/:proposalId',
@@ -95,24 +90,9 @@ function importDefaultRoutes() {
       component: ProposalResult
     },
     {
-      path: '/escolha-produto',
-      name: 'ProductSelector',
-      component: ProductSelector
-    },
-    {
-      path: '/cadastro-completo',
-      name: 'ProposalRegister',
-      component: ProposalRegister
-    },
-    {
       path: '/ofertas-pet',
       name: 'PetInsuranceOffers',
       component: SalesFlow
-    },
-    {
-      path: '/ofertas-pet/sucesso',
-      name: 'PetInsuranceOffersSuccess',
-      component: PetInsuranceOffersSuccess
     }
   );
 
