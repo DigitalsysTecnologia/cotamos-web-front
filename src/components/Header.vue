@@ -1,7 +1,25 @@
 <template>
     <div class="row">
         <div class="col-xs-12 page-header">
-            <img src="/static/img/logo_branco.png" class="img-responsive" style="width:250px;"/>
+          <nav class="navbar navbar-default page-header">
+              <div class="navbar-header">
+                  <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"/>
+                      <span class="icon-bar"/>
+                      <span class="icon-bar"/>
+                  </button> -->
+                  <a class="navbar-brand" href="/">
+                      <img class="img-responsive center-block" src="/static/img/logo_branco.png" alt="Cotamos.com"/>
+                  </a>
+              </div>
+              <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                      <li><a href="/" class="link-btn">Criar conta</a></li>
+                      <li><a href="/" class="link-btn">Entrar</a></li>
+                  </ul>
+              </div> -->
+          </nav>
         </div>
     </div>
 </template>
@@ -30,5 +48,9 @@ export default {
   height: 100%;
   max-height: 180px;
   border-bottom-width:0px;
+}
+.navbar-brand {
+    float: none;
+    padding: 0px;
 }
 </style>
