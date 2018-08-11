@@ -1,5 +1,5 @@
 <template>
-  <button class="btn call-to-action" :class="className" v-on:click="this.onClick">
+  <button class="btn call-to-action" :class="className" :style="{ 'color': textColor}" v-on:click="this.onClick">
     <slot />
   </button>
 </template>
@@ -18,6 +18,11 @@ export default {
     className: {
       type: String,
       required: false
+    },
+    textColor: {
+      type: String,
+      required: false,
+      default:'#fff'
     }
   }
 };
@@ -34,7 +39,6 @@ export default {
   cursor: pointer;
   padding: 5px 30px;
   text-align: center;
-  color: #fff;
   background-image: linear-gradient(to bottom, orange, #ff8400);
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
 }

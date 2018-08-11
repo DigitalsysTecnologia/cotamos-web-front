@@ -27,7 +27,8 @@
                     <div class="progress" style="margin-bottom:15px;margin-top:10px;">
                       <div class="progress-bar" :style="{
                           'backgroundColor': getCoverageProgressBarByPlan(plan).backgroundColor, 
-                          'width': `${getCoverageProgressBarByPlan(plan).width}%` }" 
+                          'width': `${getCoverageProgressBarByPlan(plan).width}%`,
+                          'color': 'black' }" 
                       role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                         {{ getCoverageProgressBarByPlan(plan).text}}
                       </div>
@@ -42,7 +43,7 @@
               <div class="col-sm-4 col-xs-12 text-center health-network-container" v-if="plan.code != 'pet_senior'">
                 <p>
                   <span class="card-subtitle">Rede Credenciada</span>
-                  <span class="card-featured-info">{{places.length}}</span>
+                  <span class="card-places-near">{{places.length}}</span>
                   <span class="card-info">clínicas próximas</span>
                 </p>
                 <button class="btn btn-primary" v-on:click="showNetworkModal(plan)" style="margin-top:10px;">Ver Clínicas</button>
@@ -65,7 +66,7 @@
 
             <div class="row">
               <div class="col-sm-4 col-xs-12 text-center" style="margin-top:30px;">
-                <CallToAction v-on:click="selectPlan(plan)"> Quero contratar</CallToAction>
+                <CallToAction v-on:click="selectPlan(plan)" textColor="#2f2f2f"> Quero contratar</CallToAction>
                 </div>
             </div>
 
@@ -234,22 +235,6 @@ export default {
     },
     selectPlan: function(plan) {
       this.$emit('selectPlan', plan);
-      // plan.selectedValue = plan.value;
-      // switch (parseInt(this.paymentMethod)) {
-      //   case 1:
-      //     plan.paymentMethod = "Boleto Bancário";
-      //     break;
-      //   case 2:
-      //     plan.paymentMethod = "Cartão de Crédito";
-      //     break;
-      //   case 3:
-      //     plan.paymentMethod = "Débito Automático";
-      //     break;
-      // }
-
-      // this.proposal.petInsuranceData.selectedPlan = plan;
-      // $("#confirmModal").modal();
-      // apiClientProvider.setNextState(this.proposal, 20);
     },
     formatAddress: function(mapItem) {
       return (
@@ -427,6 +412,10 @@ export default {
 }
 .card-featured-info {
   font-weight: bold;
+}
+.card-places-near {
+  font-weight: bold;
+  font-size: 18px;
 }
 .card-info {
 }
