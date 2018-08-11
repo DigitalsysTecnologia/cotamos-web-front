@@ -53,6 +53,7 @@
                 <span class="card-subtitle">
                   Preços
                 </span>
+                <div class="col-sm-offset-2 col-sm-12 text-left">
                 <span>
                   <span class="card-featured-info"> {{formatCurrency(plan.value.bankSlip)}} </span>  (Boleto Bancário)
                   <br />
@@ -60,6 +61,7 @@
                   <br />
                   <span class="card-featured-info"> {{formatCurrency(plan.value.automaticDebit)}} </span> (Débito Automático)
                 </span>
+                </div>
               </div>                     
 
             </div>
