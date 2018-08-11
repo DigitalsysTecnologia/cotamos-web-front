@@ -14,6 +14,7 @@ import TravelInsurance from '@/scenes/product-landings/travel-insurance/Index'
 import PortoCarroFacil from '@/scenes/product-landings/porto-carro-facil/Index'
 import LandingPetInsuranceV4 from '@/scenes/product-landings/pet-insurance/v4/Index'
 import SalesFlow from '@/scenes/sales-flow/Index';
+import WhiteLabel from '@/scenes/whitelabel/Index.vue'
 
 
 Vue.use(VueGoogleMaps, {
@@ -95,7 +96,13 @@ function importDefaultRoutes() {
       path: '/ofertas-pet',
       name: 'PetInsuranceOffers',
       component: SalesFlow
+    },
+    {
+      path: '/wl/:product',
+      name: 'WhiteLabel',
+      component: WhiteLabel
     }
+
   );
 
   importPetInsuranceLandings(routes)

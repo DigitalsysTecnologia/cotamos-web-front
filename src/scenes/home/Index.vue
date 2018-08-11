@@ -49,7 +49,7 @@
                     name='Carro Fácil'
                     description="Seu carro por assinatura, sob medida"
                     callToActionText="Saiba Mais"
-                    callToActionUrl="/carro-facil"
+                    callToActionUrl="/wl/carro-facil"
                     imgUrl="/static/img/icons/carro-facil.png"
                 />
                 
@@ -57,7 +57,7 @@
                     name="Seguro de Vida"
                     description="Proteção para quem você mais ama"
                     callToActionText="Saiba Mais"
-                    callToActionUrl="/seguro-vida"
+                    callToActionUrl="/wl/seguro-vida"
                     imgUrl="/static/img/icons/seguro-vida.png"
                 />
 
@@ -65,7 +65,7 @@
                     name="Seguro Viagem"
                     description="Viaje com tranquilidade"
                     callToActionText="Saiba Mais"
-                    callToActionUrl="/seguro-viagem"
+                    callToActionUrl="/wl/seguro-viagem"
                     imgUrl="/static/img/icons/travel.png"
                 />
 
