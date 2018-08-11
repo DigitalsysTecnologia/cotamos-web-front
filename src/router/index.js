@@ -3,16 +3,18 @@ import Router from 'vue-router';
 import VueMask from 'v-mask';
 import SimpleVueValidation from 'simple-vue-validator';
 import VueLocalStorage from 'vue-localstorage';
-import Main from '@/scenes/home/Index';
-import HealthInsurance from '@/scenes/health-insurance/Index';
-import ProposalResult from '@/scenes/proposal-result/Index';
-import LifeInsurance from '@/scenes/life-insurance/Index';
-import TravelInsurance from '@/scenes/proposal-register/travel-insurance/Index'
-import PortoCarroFacil from '@/scenes/porto-carro-facil/Index'
-import LandingPetInsuranceV4 from '@/scenes/pet-insurance/v4/Index'
 import VueScrollTo from 'vue-scrollto';
-import SalesFlow from '@/scenes/sales-flow/Index';
 import * as VueGoogleMaps from "vue2-google-maps";
+
+import Main from '@/scenes/home/Index';
+import HealthInsurance from '@/scenes/product-landings/health-insurance/Index';
+import ProposalResult from '@/scenes/proposal-result/Index';
+import LifeInsurance from '@/scenes/product-landings/life-insurance/Index';
+import TravelInsurance from '@/scenes/product-landings/travel-insurance/Index'
+import PortoCarroFacil from '@/scenes/product-landings/porto-carro-facil/Index'
+import LandingPetInsuranceV4 from '@/scenes/product-landings/pet-insurance/v4/Index'
+import SalesFlow from '@/scenes/sales-flow/Index';
+
 
 Vue.use(VueGoogleMaps, {
   load: {

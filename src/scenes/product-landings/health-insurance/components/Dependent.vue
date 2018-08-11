@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import FormInput from "../../../components/FormInput";
+import FormInput from "@/components/FormInput";
 import SimpleVueValidation from "simple-vue-validator";
 import moment from "moment";
 

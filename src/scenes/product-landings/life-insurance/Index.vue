@@ -97,12 +97,12 @@
 </template>
 
 <script>
-import Loading from "../../components/Loading";
-import Footer from "../../components/Footer";
-import FormInput from "../../components/FormInput";
-import FormSelect from "../../components/FormSelect.vue";
-import apiClientProvider from "../../providers/apiClientProvider";
-import validator from "../../utils/validator";
+import Loading from "@/components/Loading";
+import Footer from "@/components/Footer";
+import FormInput from "@/components/FormInput";
+import FormSelect from "@/components/FormSelect.vue";
+import apiClientProvider from "@/providers/apiClientProvider";
+import validator from "@/utils/validator";
 
 function sleep(time) {
   return new Promise(resolve => {
