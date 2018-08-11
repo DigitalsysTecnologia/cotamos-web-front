@@ -110,6 +110,7 @@ export default {
   methods: {
     submitProposal: async function() {
       const isValid = await this.$validate();
+      console.log('isValid', isValid)
       if (isValid) {
         this.$emit("submitProposal", this.proposal);
       }
@@ -151,7 +152,7 @@ export default {
     "proposal.proposer.homeAddress.zipCode": value =>
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
-    "proposal.proposer.email": value => validator.validateEmail(value),
+    // "proposal.proposer.email": value => validator.validateEmail(value),
     // "proposal.proposer.phones.0.areaCode": value =>
     //   validator.validatePhoneAreaCode(value),
     // "proposal.proposer.phones.0.number": value =>
