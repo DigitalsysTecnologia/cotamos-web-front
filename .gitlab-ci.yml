@@ -21,4 +21,4 @@ build_stage:
 deploy_stage:
   stage: deploy
   script:
-   - ll
+   - ls
