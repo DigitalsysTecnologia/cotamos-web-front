@@ -9,6 +9,9 @@ stages:
   - deploy
 
 build_stage:
+  artifacts:
+    paths:
+      - dist/  
   stage: build
   script:
    - npm install
