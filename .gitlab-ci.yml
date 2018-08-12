@@ -29,5 +29,6 @@ deploy_stage:
    - eval $(ssh-agent -s)
    - cat $SSH_PRIVATE
   script:
-   - ls dist/
-   - zip -r deploy.zip ./dist/*
+   - ssh-add <(echo "$SSH_KEY")
+   - mv dist/ deploy/
+   - zip -r deploy.zip ./deploy/*
