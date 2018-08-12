@@ -28,6 +28,7 @@
     "vue": "^2.5.2",
     "vue-carousel": "^0.9.0",
     "vue-gtm": "^1.0.2",
+    "vue-head": "^2.0.12",
     "vue-localstorage": "^0.6.2",
     "vue-meta": "^1.5.2",
     "vue-router": "^3.0.1",
