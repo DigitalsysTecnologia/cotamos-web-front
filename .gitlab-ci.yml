@@ -25,13 +25,11 @@ deploy_stage:
   before_script:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
-   - mkdir -p ~/.ssh
-   - eval $(ssh-agent -s)
-   - cat $SSH_PRIVATE
-  script:
    - echo "$SSH_KEY" > ssh_key
    - chmod 400 ssh_key
+   - ssh -i ssh_key -o StrictHostKeyChecking=no ubuntu@18.213.114.117 uptime
+  script:
    - mv dist/ deploy/
    - zip -r deploy.zip ./deploy/*
-   - ssh -i ssh_key -o StrictHostKeyChecking=no ubuntu@18.213.114.117 uptime
    - scp -i ssh_key deploy.zip ubuntu@18.213.114.117:/var/www/www_cotamos/
+   - ssh -i ssh_key ubuntu@18.213.114.117 'unzip -o /var/www/www_cotamos/deploy.zip -d /var/www/www_cotamos'
