@@ -179,12 +179,18 @@ export default {
       },
       {
         name: "keywords",
-        content: "saúde pet, saúde animal, plano de saúde cachorro, plano de saúde gato, convênio veterinário, convênio animal, saúde cão, seguro veterinário"
+        content:
+          "saúde pet, saúde animal, plano de saúde cachorro, plano de saúde gato, convênio veterinário, convênio animal, saúde cão, seguro veterinário"
       },
-      { 
-        name: "image", 
-        content: "https://www.cotamos.com/static/img/landing-saude-pet.jpg" 
-        }
+      {
+        name: "image",
+        content: "https://www.cotamos.com/static/img/landing-saude-pet.jpg"
+      },
+      {
+        property: "og:description",
+        content: "Wow",
+        vmid: "og:description"
+      }
     ]
   },
   data() {
