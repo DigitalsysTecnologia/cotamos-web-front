@@ -33,5 +33,5 @@ deploy_stage:
    - chmod 400 ssh_key
    - mv dist/ deploy/
    - zip -r deploy.zip ./deploy/*
-   - ssh -o StrictHostKeyChecking=no ubuntu@18.213.114.117 uptime
+   - ssh -i ssh_key -o StrictHostKeyChecking=no ubuntu@18.213.114.117 uptime
    - scp -i ssh_key deploy.zip ubuntu@18.213.114.117:/var/www/www_cotamos/
