@@ -132,7 +132,7 @@ export default {
         this.existingProposal.state = 3;
       }
 
-      router.push({ name: "SalesFlow", query: { id: this.existingProposal._id } });
+      router.push({ name: "/fluxo-vendas", query: { id: this.existingProposal._id } });
 
       this.loading = false;
     },
