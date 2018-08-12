@@ -3,7 +3,6 @@ image: node:carbon-jessie
 cache:
   paths:
   - node_modules/
-  - dist/
 
 stages:
   - build
@@ -20,5 +19,11 @@ build_stage:
 
 deploy_stage:
   stage: deploy
+  before_script:
+   # - ....
+   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+   - mkdir -p ~/.ssh
+   - eval $(ssh-agent -s)
+   - cat $SSH_PRIVATE
   script:
    - ls
