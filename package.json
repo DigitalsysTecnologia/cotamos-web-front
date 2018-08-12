@@ -29,9 +29,10 @@
     "vue-carousel": "^0.9.0",
     "vue-gtm": "^1.0.2",
     "vue-localstorage": "^0.6.2",
+    "vue-meta": "^1.5.2",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.11.0",
-    "vue2-google-maps": "^0.9.7"
+    "vue2-google-maps": "^0.9.8"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

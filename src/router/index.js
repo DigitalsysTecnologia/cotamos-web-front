@@ -5,6 +5,7 @@ import SimpleVueValidation from 'simple-vue-validator';
 import VueLocalStorage from 'vue-localstorage';
 import VueScrollTo from 'vue-scrollto';
 import * as VueGoogleMaps from "vue2-google-maps";
+import Meta from 'vue-meta';
 
 import Main from '@/scenes/home/Index';
 import HealthInsurance from '@/scenes/product-landings/health-insurance/Index';
@@ -29,7 +30,7 @@ Vue.use(VueLocalStorage)
 Vue.use(SimpleVueValidation)
 Vue.use(Router)
 Vue.use(VueMask)
-
+Vue.use(Meta);
 
 function importPetInsuranceLandings(routes) {
   routes.push(

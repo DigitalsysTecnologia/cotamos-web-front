@@ -162,6 +162,31 @@ export default {
       }
     }
   },
+  metaInfo: {
+    title: "Plano de Saúde PET - Cotamos.com",
+    meta: [
+      {
+        "http-equiv": "Content-Type",
+        content: "text/html; charset=utf-8"
+      },
+      {
+        name: "name",
+        content: "Plano de Saúde PET - Cotamos.com"
+      },
+      {
+        name: "description",
+        content: "Plano de saúde para o seu melhor amigo"
+      },
+      {
+        name: "keywords",
+        content: "saúde pet, saúde animal, plano de saúde cachorro, plano de saúde gato, convênio veterinário, convênio animal, saúde cão, seguro veterinário"
+      },
+      { 
+        name: "image", 
+        content: "https://www.cotamos.com/static/img/landing-saude-pet.jpg" 
+        }
+    ]
+  },
   data() {
     return {};
   },
