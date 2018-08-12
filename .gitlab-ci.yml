@@ -29,8 +29,8 @@ deploy_stage:
    - eval $(ssh-agent -s)
    - cat $SSH_PRIVATE
   script:
-   - echo "$SSH_KEY"
-   - ssh-add <(echo "$SSH_KEY")
+   - echo "$SSH_KEY" > ssh_key
+   - chmod 400 ssh_key
    - mv dist/ deploy/
    - zip -r deploy.zip ./deploy/*
-   - scp deploy.zip ubuntu@18.213.114.117:/var/www/www_cotamos/
+   - scp -i ssh_key deploy.zip ubuntu@18.213.114.117:/var/www/www_cotamos/
