@@ -7,12 +7,20 @@ cache:
 
 stages:
   - build
+  - deploy
 
 build_stage:
   stage: build
   script:
    - npm install
    - npm run generate
+  artifacts:
+   - dist
   only:
     refs:
       - master
+
+deploy_stage:
+  stage: deploy
+  script:
+   - ll
