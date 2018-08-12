@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MR9SGRL');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    
+    <link rel="icon" href="/img/favicon.png" />
+    <!--Estilo-->
+    <link href="/css/estilo.css" rel="stylesheet">
+    <!--Fonte-->
+    <link rel="stylesheet" href="fonts/fontawesome/css/solid.min.css" />
+    <link rel="stylesheet" href="fonts/fontawesome/css/regular.min.css" />
+    <link rel="stylesheet" href="fonts/fontawesome/css/brands.min.css" />
+    <link rel="stylesheet" href="fonts/fontawesome/css/fontawesome.min.css" /> 
+        {{ HEAD }}
+
+</head>
+
+<body {{ BODY_ATTRS }}>
+    {{ APP }}
+    <script src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous"></script>
+    <!-- Google Tag Manager (noscript) -->
+    
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div id="root" style="display: unset"></div>
+    
+    <!--JQuery-->
+    <script src="/js/jquery.min.js"></script>
+    <!--Bootstrap-->
+    <script src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Raven.config('https://b4d892cee59f4d8a8c0c004468573e0d@sentry.io/239315').install()
+        });
+    </script>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MR9SGRL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>    
+</body>
+
+</html>
