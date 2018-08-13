@@ -33,4 +33,5 @@ deploy_stage:
    - zip -r deploy.zip ./deploy/*
    - scp -i ssh_key deploy.zip ubuntu@18.213.114.117:/var/www/www_cotamos/
    - ssh -i ssh_key ubuntu@18.213.114.117 'unzip -o /var/www/www_cotamos/deploy.zip -d /var/www/www_cotamos'
+   - ssh -i ssh_key ubuntu@18.213.114.117 'cp -rf /var/www/www_cotamos/deploy/* /var/www/www_cotamos/'
    - ssh -i ssh_key ubuntu@18.213.114.117 'rm /var/www/www_cotamos/deploy.zip'
