@@ -6,22 +6,33 @@ cache:
 
 stages:
   - build
-  - deploy
+  # - deploy
 
 build_stage:
+  variables:
+   DEPLOY_USER: "ubuntu" 
+   DEPLOY_URL: "18.213.114.117"
+   DEPLOY_DIR: "/var/www/www_cotamos/"
   artifacts:
     paths:
       - dist/  
   stage: build
   script:
-   - npm install
-   - npm run generate
+   - echo "DEPLOY_USER"
+   - echo "DEPLOY_URL"
+   - echo "DEPLOY_DIR"
+  #  - npm install
+  #  - npm run generate
   only:
     refs:
       - master
 
 deploy_stage:
   stage: deploy
+  variables:
+   DEPLOY_USER: "ubuntu" 
+   DEPLOY_URL: "18.213.114.117"
+   DEPLOY_DIR: "/var/www/www_cotamos/"
   before_script:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
