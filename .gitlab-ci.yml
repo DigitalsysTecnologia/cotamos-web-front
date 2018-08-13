@@ -21,6 +21,7 @@ build_stage:
       - master
 
 deploy_stage:
+  image: alpine:latest
   stage: deploy
   before_script:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
