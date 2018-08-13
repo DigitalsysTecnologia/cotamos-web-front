@@ -24,7 +24,6 @@ deploy_stage:
   stage: deploy
   variables:
    DEPLOY_USER: "ubuntu" 
-   DEPLOY_URL: "18.213.114.117"
    DEPLOY_DIR: "/var/www/www_cotamos"
   before_script:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
@@ -35,10 +34,10 @@ deploy_stage:
   script:
    - mv dist/ deploy/
    - zip -r deploy.zip deploy/*
-   - scp -i ssh_key deploy.zip $DEPLOY_USER@$DEPLOY_URL:$DEPLOY_DIR
-   - ssh -i ssh_key $DEPLOY_USER@$DEPLOY_URL "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
-   - ssh -i ssh_key $DEPLOY_USER@$DEPLOY_URL "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/'
-   - ssh -i ssh_key $DEPLOY_USER@$DEPLOY_URL 'rm $DEPLOY_DIR/deploy.zip'   
-  #  - ssh -i ssh_key $DEPLOY_USER@$DEPLOY_URL 'unzip -o /var/www/www_cotamos/deploy.zip -d /var/www/www_cotamos'
-  #  - ssh -i ssh_key $DEPLOY_USER@$DEPLOY_URL 'cp -rf /var/www/www_cotamos/deploy/* /var/www/www_cotamos/'
-  #  - ssh -i ssh_key $DEPLOY_USER@$DEPLOY_URL 'rm /var/www/www_cotamos/deploy.zip'
+   - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/'
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'rm $DEPLOY_DIR/deploy.zip'   
+  #  - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'unzip -o /var/www/www_cotamos/deploy.zip -d /var/www/www_cotamos'
+  #  - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'cp -rf /var/www/www_cotamos/deploy/* /var/www/www_cotamos/'
+  #  - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'rm /var/www/www_cotamos/deploy.zip'
