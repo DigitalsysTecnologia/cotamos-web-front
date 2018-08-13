@@ -36,8 +36,8 @@ deploy_stage:
    - zip -r deploy.zip deploy/*
    - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/'
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'rm $DEPLOY_DIR/deploy.zip'   
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
   #  - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'unzip -o /var/www/www_cotamos/deploy.zip -d /var/www/www_cotamos'
   #  - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'cp -rf /var/www/www_cotamos/deploy/* /var/www/www_cotamos/'
   #  - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST 'rm /var/www/www_cotamos/deploy.zip'
