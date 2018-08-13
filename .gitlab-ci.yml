@@ -18,9 +18,9 @@ build_stage:
       - dist/  
   stage: build
   script:
-   - echo "DEPLOY_USER"
-   - echo "DEPLOY_URL"
-   - echo "DEPLOY_DIR"
+   - echo "$DEPLOY_USER"
+   - echo "$DEPLOY_URL"
+   - echo "$DEPLOY_DIR"
   #  - npm install
   #  - npm run generate
   only:
