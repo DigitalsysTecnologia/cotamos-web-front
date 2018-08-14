@@ -18,7 +18,7 @@ export default {
           case "seguro-viagem":
             return "https://wwws.portoseguro.com.br/vendaonline/viagem/home.ns?cod=4fead46677df44e396d0fcdfe711a5be&utm_source=31P52J&utm_medium=geradorLinks&utm_campaign=GeradordeLinks_NR04YJ&utm_content=COTAMOS_CORRETORA_DE_SEGUROS";
           case "carro-facil":
-            return "https://fichacadastral.portosegurocarrofacil.com.br/#!/?corretor=31P52J";
+            return "https://www.portosegurocorretores.com.br/carro_facil/cotamos_seguros/landing_1/";
         }
       }
     }
