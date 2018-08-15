@@ -12,14 +12,14 @@
                       </ol>
 
                       <div class="carousel-inner" role="listbox">
-                          <div class="item active" style="backgroundImage: url(img/bg1.jpg)">
+                          <div class="item active">
                               <div class="carousel-caption">
                                   <h1>COTAMOS.COM</h1>
                                   <h2>VOCÊ! SEGURADO TODOS OS DIAS, O DIA TODO.</h2>
                               </div>
                           </div>
 
-                          <div class="item" style="backgroundImage: url(img/bg2.jpg)">
+                          <div class="item">
                               <div class="carousel-caption">
                                   <h1></h1>
                                   <h2>A COTAMOS.COM é digital, mas a sua proteção é real!</h2>
@@ -85,8 +85,7 @@ import ProductCard from "./components/product-card.vue";
 import CallToAction from "@/components/CallToAction";
 export default {
   name: "Home",
-  methods: {
-  },
+  methods: {},
   components: {
     Footer: Footer,
     Header: Header,
@@ -104,7 +103,11 @@ export default {
   padding-bottom: 20px;
 }
 
-.item {
-  background-size: cover;
+.carousel-inner {
+  background: #00d886;
+  background: -moz-linear-gradient(left, #00d886 0%, #00d6e7 100%);
+  background: -webkit-linear-gradient(left, #00d886 0%, #00d6e7 100%);
+  background: linear-gradient(to right, #00d886 0%, #00d6e7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d886', endColorstr='#00d6e7',GradientType=1 );
 }
 </style>
