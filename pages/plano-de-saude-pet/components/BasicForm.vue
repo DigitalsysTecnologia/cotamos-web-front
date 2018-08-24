@@ -103,53 +103,53 @@ export default {
   name: "BasicPetInsuranceForm",
   data() {
 
-    // return {
-    //   loading: false,
-    //   proposal: {
-    //     petInsuranceData: {
-    //       name: "Sherlock",
-    //       age: "5"
-    //     },
-    //     proposer: {
-    //       name: "Eduardo Andrade",
-    //       email: "eduardo@andrade.com",
-    //       phones: [
-    //         {
-    //           areaCode: "",
-    //           number: "",
-    //           fullNumber: "(11) 94783-1054"
-    //         }
-    //       ],
-    //       homeAddress: {
-    //         zipCode: "05141160"
-    //       }
-    //     }
-    //   }
-    // };
-
     return {
       loading: false,
       proposal: {
         petInsuranceData: {
-          name: "",
-          age: ""
+          name: "Sherlock",
+          age: "5"
         },
         proposer: {
-          name: "",
-          email: "",
+          name: "Eduardo Andrade",
+          email: "eduardo@andrade.com",
           phones: [
             {
               areaCode: "",
               number: "",
-              fullNumber: ""
+              fullNumber: "(11) 94783-1054"
             }
           ],
           homeAddress: {
-            zipCode: ""
+            zipCode: "05141160"
           }
         }
       }
     };
+
+    // return {
+    //   loading: false,
+    //   proposal: {
+    //     petInsuranceData: {
+    //       name: "",
+    //       age: ""
+    //     },
+    //     proposer: {
+    //       name: "",
+    //       email: "",
+    //       phones: [
+    //         {
+    //           areaCode: "",
+    //           number: "",
+    //           fullNumber: ""
+    //         }
+    //       ],
+    //       homeAddress: {
+    //         zipCode: ""
+    //       }
+    //     }
+    //   }
+    // };
 
   },
   computed: {

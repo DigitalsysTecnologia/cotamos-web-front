@@ -20,8 +20,10 @@ function internalRequest(method, url, data) {
     method: method,
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
       // 'apiKey': apiKey
     },
+    crossdomain: true,
     url: urljoin(baseUrl, url),
     data: data
   }).then(function (res) {
@@ -67,7 +69,7 @@ class ApiClient {
   }
 
   generateProposal(productCode) {
-    return internalGet(`proposal/generate/${productCode}`);
+    return internalGet(`proposal/generate/?product=${productCode}`);
   }
 
   getProposalByFilter(filter) {
