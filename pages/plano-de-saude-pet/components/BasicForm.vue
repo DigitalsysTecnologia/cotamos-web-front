@@ -102,6 +102,31 @@ import apiClientProvider from "@/providers/apiClientProvider";
 export default {
   name: "BasicPetInsuranceForm",
   data() {
+
+    // return {
+    //   loading: false,
+    //   proposal: {
+    //     petInsuranceData: {
+    //       name: "Sherlock",
+    //       age: "5"
+    //     },
+    //     proposer: {
+    //       name: "Eduardo Andrade",
+    //       email: "eduardo@andrade.com",
+    //       phones: [
+    //         {
+    //           areaCode: "",
+    //           number: "",
+    //           fullNumber: "(11) 94783-1054"
+    //         }
+    //       ],
+    //       homeAddress: {
+    //         zipCode: "05141160"
+    //       }
+    //     }
+    //   }
+    // };
+
     return {
       loading: false,
       proposal: {
@@ -125,11 +150,13 @@ export default {
         }
       }
     };
+
   },
   computed: {
     isLoading: {
       get() {
-        return this.loading;
+        // return this.loading;
+        return false;
       }
     }
   },

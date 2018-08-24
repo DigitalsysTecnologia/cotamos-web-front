@@ -6,21 +6,21 @@ var apiKey = null;
 let apiSettings = {};
 let baseUrl = '';
 
-// if (window.location.host.indexOf('localhost') != -1) {
-//   baseUrl = 'http://localhost:3333/api/v1'
-// }
-// else {
-//   baseUrl = 'https://backend.cotamos.com/api/v1'
-// }
+if (window.location.host.indexOf('localhost') != -1) {
+  baseUrl = 'http://localhost:8080/api/v1'
+}
+else {
+  baseUrl = 'https://backend.cotamos.com/api/v1'
+}
 
-baseUrl = 'https://backend.cotamos.com/api/v1'
+// baseUrl = 'https://backend.cotamos.com/api/v1'
 
 function internalRequest(method, url, data) {
   return axios({
     method: method,
     headers: {
       'Content-Type': 'application/json',
-      'apiKey': apiKey
+      // 'apiKey': apiKey
     },
     url: urljoin(baseUrl, url),
     data: data
@@ -67,7 +67,7 @@ class ApiClient {
   }
 
   generateProposal(productCode) {
-    return internalGet(`proposal/generate/?product=${productCode}`);
+    return internalGet(`proposal/generate/${productCode}`);
   }
 
   getProposalByFilter(filter) {
