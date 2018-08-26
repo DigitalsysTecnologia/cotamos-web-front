@@ -3,12 +3,12 @@ FROM node:carbon as builder
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
 RUN npm install
 RUN npm run generate
 
 # Docker Runner
-FROM kyma/docker-nginx
+FROM nginx:alpine
 COPY --from=builder /app/dist /var/www
 CMD 'nginx'

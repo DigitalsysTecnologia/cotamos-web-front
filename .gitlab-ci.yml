@@ -1,7 +1,8 @@
 image: docker:latest
 
 variables:
-  REPOSITORY_URL: 294895378661.dkr.ecr.us-east-1.amazonaws.com/web-front
+  REPOSITORY_URL: 294895378661.dkr.ecr.us-east-1.amazonaws.com/cotamos
+  APP_NAME: web-front
 
 services:
 - docker:dind
@@ -18,7 +19,7 @@ build:
   script:
     - $(aws ecr get-login --no-include-email --region us-east-1)
     - docker build -t $REPOSITORY_URL .
-    - docker push $REPOSITORY_URL
+    - docker push $REPOSITORY_URL:web-front
   only:
     - master
 
