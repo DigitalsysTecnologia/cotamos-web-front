@@ -15,7 +15,7 @@
                           <div class="item active">
                               <div class="carousel-caption">
                                   <h1>COTAMOS.COM</h1>
-                                  <h2>VOCÊ! SEGURADO TODOS OS DIAS, O DIA TODO!</h2>
+                                  <h2>VOCÊ, SEGURADO TODOS OS DIAS, O DIA TODO.</h2>
                               </div>
                           </div>
 
