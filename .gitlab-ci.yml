@@ -1,28 +1,69 @@
 image: docker:latest
 
+# When using dind, it's wise to use the overlayfs driver for
+# improved performance.
 variables:
-  REPOSITORY_URL: 294895378661.dkr.ecr.us-east-1.amazonaws.com/web-front
-  APP_NAME: web-front
+  DOCKER_DRIVER: overlay
+  GCP_PROJECT_ID: CHANGE-TO-GCP-PROJECT-ID
+  IMAGE_NAME: image_id
 
 services:
 - docker:dind
 
-before_script:
-  - apk add --no-cache curl jq python py-pip
-  - pip install awscli
-
 stages:
-  - build
+  - publish
 
-build:
-  stage: build
+publish-image:
+  stage: publish
   script:
-    - $(aws ecr get-login --no-include-email --region us-east-1)
-    - docker build -t $REPOSITORY_URL .
-    - docker push $REPOSITORY_URL
+    # Install CA certs, openssl to https downloads, python for gcloud sdk
+    - apk add --update make ca-certificates openssl python
+    - update-ca-certificates
+    # Write our GCP service account private key into a file
+    - echo $GCLOUD_SERVICE_KEY | base64 -d > ${HOME}/gcloud-service-key.json
+    # Download and install Google Cloud SDK
+    - wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
+    - tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true
+    - google-cloud-sdk/bin/gcloud --quiet components update
+    - google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+    # Create our image. Expected to create an image 'image_id'
+    - make-my-image
+    # Tag our image for container registry
+    - docker tag $IMAGE_NAME gcr.io/$GCP_PROJECT_ID/$IMAGE_NAME
+    # Optionally tag the image with the commit short-sha
+    - docker tag $IMAGE_NAME gcr.io/$GCP_PROJECT_ID/$IMAGE_NAME:$(echo $CI_COMMIT_SHA | cut -c1-8)
+    - google-cloud-sdk/bin/gcloud docker -- push gcr.io/$GCP_PROJECT_ID/$IMAGE_NAME:latest
+    - google-cloud-sdk/bin/gcloud docker -- push gcr.io/$GCP_PROJECT_ID/$IMAGE_NAME:$(echo $CI_COMMIT_SHA | cut -c1-8)
+  # Only run builds for these refs
   only:
-    - master
+- master
 
+#############################################
+# image: docker:latest
+
+# variables:
+#   REPOSITORY_URL: 294895378661.dkr.ecr.us-east-1.amazonaws.com/web-front
+#   APP_NAME: web-front
+
+# services:
+# - docker:dind
+
+# before_script:
+#   - apk add --no-cache curl jq python py-pip
+#   - pip install awscli
+
+# stages:
+#   - build
+
+# build:
+#   stage: build
+#   script:
+#     - $(aws ecr get-login --no-include-email --region us-east-1)
+#     - docker build -t $REPOSITORY_URL .
+#     - docker push $REPOSITORY_URL
+#   only:
+#     - master
+#############################################
 # image: node:carbon-jessie
 
 # cache:
