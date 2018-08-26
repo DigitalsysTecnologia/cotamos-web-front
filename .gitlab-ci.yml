@@ -18,7 +18,7 @@ build:
   stage: build
   script:
     - $(aws ecr get-login --no-include-email --region us-east-1)
-    - docker build -t $REPOSITORY_URL:web-front .
+    - docker build -t $REPOSITORY_URL:$APP_NAME .
     - docker push $REPOSITORY_URL
   only:
     - master
