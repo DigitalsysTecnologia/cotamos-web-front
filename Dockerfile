@@ -9,6 +9,6 @@ RUN npm install
 RUN npm run generate
 
 # Docker Runner
-FROM nginx:alpine
+FROM kyma/docker-nginx
 COPY --from=builder /app/dist /var/www
 CMD 'nginx'
