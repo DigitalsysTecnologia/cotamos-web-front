@@ -15,7 +15,7 @@ stages:
 
 publish-image:
   stage: publish
-  before-script:
+  before_script:
     - apk add --update make ca-certificates openssl python
     - update-ca-certificates
     - echo $GCLOUD_SERVICE_KEY
