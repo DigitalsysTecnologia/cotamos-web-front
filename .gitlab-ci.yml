@@ -4,8 +4,8 @@ image: docker:latest
 # improved performance.
 variables:
   DOCKER_DRIVER: overlay
-  GCP_PROJECT_ID: CHANGE-TO-GCP-PROJECT-ID
-  IMAGE_NAME: image_id
+  GCP_PROJECT_ID: kubernetes-cluster-214515 
+  IMAGE_NAME: web-front
 
 services:
 - docker:dind
@@ -37,71 +37,3 @@ publish-image:
   # Only run builds for these refs
   only:
 - master
-
-#############################################
-# image: docker:latest
-
-# variables:
-#   REPOSITORY_URL: 294895378661.dkr.ecr.us-east-1.amazonaws.com/web-front
-#   APP_NAME: web-front
-
-# services:
-# - docker:dind
-
-# before_script:
-#   - apk add --no-cache curl jq python py-pip
-#   - pip install awscli
-
-# stages:
-#   - build
-
-# build:
-#   stage: build
-#   script:
-#     - $(aws ecr get-login --no-include-email --region us-east-1)
-#     - docker build -t $REPOSITORY_URL .
-#     - docker push $REPOSITORY_URL
-#   only:
-#     - master
-#############################################
-# image: node:carbon-jessie
-
-# cache:
-#   paths:
-#   - node_modules/
-
-# stages:
-#   - build
-#   - deploy
-
-# build_stage:
-#   artifacts:
-#     paths:
-#       - dist/  
-#   stage: build
-#   script:
-#    - npm install
-#    - npm run generate
-#   only:
-#     refs:
-#       - master
-
-# deploy_stage:
-#   stage: deploy
-#   variables:
-#    DEPLOY_USER: "ubuntu" 
-#    DEPLOY_DIR: "/var/www/www_cotamos"
-#   before_script:
-#    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-#    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
-#    - echo "$SSH_KEY" > ssh_key
-#    - cat ssh_key
-#    - chmod 400 ssh_key
-#    - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$FRONT_HOST uptime
-#   script:
-#    - mv dist/ deploy/
-#    - zip -r deploy.zip deploy/*
-#    - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
-#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
-#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
-#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
