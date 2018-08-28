@@ -155,8 +155,7 @@ export default {
   computed: {
     isLoading: {
       get() {
-        // return this.loading;
-        return false;
+        return this.loading;
       }
     }
   },
