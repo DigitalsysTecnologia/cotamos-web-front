@@ -135,10 +135,14 @@
                       <span v-if="map.neighborhood">{{formatAddress(map)}} </span>
                       <br/>
 
-                      <br/>
+                      <span style="font-weight: bold;"> Telefone: </span> 
+                      <span v-if="map.neighborhood">{{formatPhone(formatPhone)}} </span>
+                      <br/>                      
+
                       <span style="font-weight: bold;"> Distância: </span> 
                       <span> {{formatDistance(map.distance)}} </span>
                       <br/>
+                      
                     </p>
                   </div>
                 </div>
@@ -236,7 +240,7 @@ export default {
       return result + " Km";
     },
     selectPlan: function(plan) {
-      this.$emit('selectPlan', plan);
+      this.$emit("selectPlan", plan);
     },
     formatAddress: function(mapItem) {
       return (
@@ -250,6 +254,13 @@ export default {
         ", " +
         mapItem.state
       );
+    },
+    formatPhone: function(proposal) {
+      if (proposal.phoneAreaCode && proposal.phoneNumber) {
+        return `(${proposal.phoneAreaCode}) ${proposal.phoneNumber}`;
+      } else {
+        return "-";
+      }
     },
     coverageContainsPlan(item) {
       return item[this.currentPlan.code];
