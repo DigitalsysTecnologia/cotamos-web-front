@@ -3,7 +3,7 @@ image: node:carbon-jessie
 variables:
   DOCKER_DRIVER: overlay
   GCP_PROJECT_ID: cotamos-production
-  IMAGE_NAME: proposal-service-api  
+  IMAGE_NAME: web-front  
 
 services:
 - docker:dind
