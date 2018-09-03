@@ -32,7 +32,7 @@
 
           <div class="row section">
               <div class="col-xs-12 text-center">
-                  <h2>Conheça Nossos Produtos</h2>
+                  <h2>Conheça Nossos Produtos!</h2>
               </div>
 
               <article class="col-xs-12 text-center">
