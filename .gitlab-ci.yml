@@ -69,5 +69,6 @@ deploy_gcr:
     - docker tag $CI_PROJECT_NAME gcr.io/$GCP_PROJECT_ID/$CI_PROJECT_NAME:$(echo $CI_COMMIT_SHA | cut -c1-8)
     - google-cloud-sdk/bin/gcloud docker -- push gcr.io/$GCP_PROJECT_ID/$CI_PROJECT_NAME:latest
     - google-cloud-sdk/bin/gcloud docker -- push gcr.io/$GCP_PROJECT_ID/$CI_PROJECT_NAME:$(echo $CI_COMMIT_SHA | cut -c1-8)
-    only:
+  # Only run builds for these refs
+  only:
     - master
