@@ -50,6 +50,7 @@ deploy_stage:
    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
 
 deploy_gcr_state:
+  image: docker:latest
   stage: deploy_gcr
   script:
     # Install CA certs, openssl to https downloads, python for gcloud sdk
