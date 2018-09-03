@@ -1,19 +1,43 @@
 <template>
   <div>
-    <div class="row form-container" v-if="isLoading">
-      <Loading :messages="['Submetendo proposta,', 'Aguarde um instante por favor...']"/>
-    </div>
-
-    <div class="row form-container text-left" v-else>
-      <div class="col-xs-12 col-sm-12">
-        <FormInput label="Seu Nome"
-                   icon="fa-user" 
-                   id="proposal.proposer.name"
-                   :validationMessage="validation.firstError('proposal.proposer.name')"
-                   v-model="proposal.proposer.name"/>
+    <div class="row form-container text-left">
+      <div class="col-sm-4 col-xs-12">
+        <FormSelect  label="Pessoa Física ou Jurídica" 
+                    icon="fa-briefcase" 
+                    id="partner.type"
+                    :validationMessage="validation.firstError('partner.type')"
+                    v-model="partner.type" 
+                    :options="['Pessoa Física', 'Pessoa Jurídica']" />
       </div>
 
-      <div class="col-xs-12 col-sm-12">
+      <div class="col-sm-8 col-xs-12">
+        <FormSelect  label="Pessoa Física ou Jurídica" 
+                    icon="fa-briefcase" 
+                    id="partner.type"
+                    :validationMessage="validation.firstError('partner.type')"
+                    v-model="partner.type" 
+                    :options="['Pessoa Física', 'Pessoa Jurídica']" />
+      </div>
+
+
+      <div class="col-xs-12 col-sm-8">
+        <FormInput label="Seu Nome"
+                   icon="fa-user" 
+                   id="partner.name"
+                   :validationMessage="validation.firstError('partner.name')"
+                   v-model="partner.name"/>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <FormInput  label="Data de nascimento" 
+              icon="fa-calendar" 
+              id="partner.dateOfBirth"
+              mask="##/##/####"
+              type="text"
+              :validationMessage="validation.firstError('partner.dateOfBirth')"
+              v-model="partner.dateOfBirth" />
+      </div>
+      
+      <!-- <div class="col-xs-12 col-sm-12">
         <FormInput label="Nome do seu pet"
                     icon="fa-paw" 
                     id="proposal.petInsuranceData.name"
@@ -48,27 +72,6 @@
                     v-model.trim="proposal.proposer.email" />
       </div>
 
-      <!-- <div class="col-md-2 col-sm-3 col-xs-12">
-          <FormInput  label="DDD" 
-                      icon="fa-phone" 
-                      type="text"
-                      id="proposal.proposer.phones.0.areaCode"
-                      mask="##"
-                      :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
-                      v-model.trim="proposal.proposer.phones[0].areaCode" />
-      </div>
-
-      <div class="col-sm-9 col-md-10 col-xs-12 offset-md-1 offset-sm-1">
-          <FormInput label="Celular ou Telefone" 
-                      icon="fa-phone" 
-                      id="proposal.proposer.phones.0.number"
-                      maxLength="15"
-                      :mask="getPhoneMask(proposal.proposer.phones[0].number)"
-                      type="text"
-                      :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
-                      v-model.trim="proposal.proposer.phones[0].number" />
-      </div> -->
-
       <div class="col-xs-12">
         <FormInput label="Celular ou Telefone" 
                    icon="fa-phone" 
@@ -78,12 +81,11 @@
                    type="text"
                    :validationMessage="validation.firstError('proposal.proposer.phones.0.fullNumber')"
                    v-model.trim="proposal.proposer.phones[0].fullNumber" />
-      </div>
+      </div> -->
 
       <div class="col-xs-12">
         <CallToAction className='pull-right' v-on:click="submitProposal">
-          Ver Opções &nbsp;
-          <i class="fas fa-forward"/>
+          Cadastrar &nbsp;
         </CallToAction>
       </div>
     </div>
@@ -102,59 +104,70 @@ import apiClientProvider from "@/providers/apiClientProvider";
 export default {
   name: "BasicPetInsuranceForm",
   data() {
-    return {
-      loading: false,
-      proposal: {
-        petInsuranceData: {
-          name: "Sherlock",
-          age: "5"
-        },
-        proposer: {
-          name: "Eduardo Andrade",
-          email: "eduardo@andrade.com",
-          phones: [
-            {
-              areaCode: "",
-              number: "",
-              fullNumber: "(11) 94783-1054"
-            }
-          ],
-          homeAddress: {
-            zipCode: "05141160"
-          }
-        }
-      }
-    };
-
     // return {
     //   loading: false,
     //   proposal: {
     //     petInsuranceData: {
-    //       name: "",
-    //       age: ""
+    //       name: "Sherlock",
+    //       age: "5"
     //     },
     //     proposer: {
-    //       name: "",
-    //       email: "",
+    //       name: "Eduardo Andrade",
+    //       email: "eduardo@andrade.com",
     //       phones: [
     //         {
     //           areaCode: "",
     //           number: "",
-    //           fullNumber: ""
+    //           fullNumber: "(11) 94783-1054"
     //         }
     //       ],
     //       homeAddress: {
-    //         zipCode: ""
+    //         zipCode: "05141160"
     //       }
     //     }
     //   }
     // };
+
+    return {
+      loading: false,
+      partner: {
+        name: "",
+        email: "",
+        phones: [
+          {
+            areaCode: "",
+            number: "",
+            fullNumber: ""
+          }
+        ]
+      },
+      
+      // proposal: {
+      //   petInsuranceData: {
+      //     name: "",
+      //     age: ""
+      //   },
+      //   proposer: {
+      //     name: "",
+      //     email: "",
+      //     phones: [
+      //       {
+      //         areaCode: "",
+      //         number: "",
+      //         fullNumber: ""
+      //       }
+      //     ],
+      //     homeAddress: {
+      //       zipCode: ""
+      //     }
+      //   }
+      // }
+    };
   },
   computed: {
     isLoading: {
       get() {
-        return false;
-        // return this.loading;
+        return this.loading;
       }
     }
   },
@@ -165,33 +178,31 @@ export default {
       if (!isValid) {
         return;
       }
-
-      this.loading = true;
-
-      if (!this.proposal._id) {
-        let newProposal = await apiClientProvider.generateProposal(5);
-        this.proposal = Object.assign(newProposal, this.proposal);
-      }
-
-      await apiClientProvider.updateProposal(this.proposal);
-      const product = await apiClientProvider.checkAvailabilityForProduct(
-        5,
-        this.proposal.proposer.homeAddress.zipCode
-      );
-
-      // await apiClientProvider.setNextState(this.proposal, 21);
-      // this.proposal.state = 21;
-
-      if (!product.isAvailable) {
-        await apiClientProvider.setNextState(this.proposal, 21);
-        this.proposal.state = 21;
-      } else {
-        await apiClientProvider.setNextState(this.proposal, 3);
-        this.proposal.state = 3;
-      }
-
-      this.$emit("submitProposal", this.proposal);
     },
+
+    //   this.loading = true;
+
+    //   if (!this.proposal._id) {
+    //     let newProposal = await apiClientProvider.generateProposal(5);
+    //     this.proposal = Object.assign(newProposal, this.proposal);
+    //   }
+
+    //   await apiClientProvider.updateProposal(this.proposal);
+    //   const product = await apiClientProvider.checkAvailabilityForProduct(
+    //     5,
+    //     this.proposal.proposer.homeAddress.zipCode
+    //   );
+
+    //   if (!product.isAvailable) {
+    //     await apiClientProvider.setNextState(this.proposal, 21);
+    //     this.proposal.state = 21;
+    //   } else {
+    //     await apiClientProvider.setNextState(this.proposal, 3);
+    //     this.proposal.state = 3;
+    //   }
+
+    //   this.$emit("submitProposal", this.proposal);
+    // },
     getPhoneMask: function(phone) {
       let phoneNumber = null;
       if (phone) {
@@ -223,18 +234,20 @@ export default {
     }
   },
   validators: {
-    "proposal.proposer.name": value => validator.validateClientName(value),
-    "proposal.petInsuranceData.name": value => validator.validatePetName(value),
-    "proposal.proposer.homeAddress.zipCode": value =>
-      validator.validateZipCode(value),
-    "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
-    "proposal.proposer.email": value => validator.validateEmail(value),
+    "partner.name": value => validator.validateClientName(value),
+        "proposal.proposer.dateOfBirth": value =>
+      validator.validateDateOfBirth(value),
+    // "proposal.petInsuranceData.name": value => validator.validatePetName(value),
+    // "proposal.proposer.homeAddress.zipCode": value =>
+    //   validator.validateZipCode(value),
+    // "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
+    // "proposal.proposer.email": value => validator.validateEmail(value),
     // "proposal.proposer.phones.0.areaCode": value =>
     //   validator.validatePhoneAreaCode(value),
     // "proposal.proposer.phones.0.number": value =>
     //   validator.validatePhoneNumber(value)
-    "proposal.proposer.phones.0.fullNumber": value =>
-      validator.validateFullPhoneNumber(value)
+    // "proposal.proposer.phones.0.fullNumber": value =>
+    //   validator.validateFullPhoneNumber(value)
   },
   components: {
     FormInput: FormInput,

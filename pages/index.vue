@@ -70,6 +70,17 @@
 
               </article>
           </div>
+
+          <!-- <div class="row section">
+              <div class="col-xs-12 text-center">
+                  <h2>Seja nosso parceiro</h2>
+              </div>
+
+              <article class="col-xs-12 text-center">
+                  <CallToAction v-on:click="GoToUrl('/parceiros')">Seja nosso parceiro </CallToAction>
+
+              </article>
+          </div> -->
           
           <Footer :hideLogo="true"/>
         </div>
@@ -85,7 +96,13 @@ import ProductCard from "./components/product-card.vue";
 import CallToAction from "@/components/CallToAction";
 export default {
   name: "Home",
-  methods: {},
+  methods: {
+    GoToUrl(path) {
+      this.$router.push({
+        path: path
+      });
+    }
+  },
   components: {
     Footer: Footer,
     Header: Header,

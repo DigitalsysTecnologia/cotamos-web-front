@@ -6,14 +6,16 @@ var apiKey = null;
 let apiSettings = {};
 let baseUrl = '';
 
-if (window.location.host.indexOf('localhost') != -1) {
-  baseUrl = 'http://localhost:8080/api/v1'
-}
-else {
-  baseUrl = 'https://backend.cotamos.com/web-api'
-}
+// if (window.location.host.indexOf('localhost') != -1) {
+//   baseUrl = 'http://localhost:8080/api/v1'
+// }
+// else {
+//   baseUrl = 'https://backend.cotamos.com/web-api'
+// }
 
-// baseUrl = 'https://backend.cotamos.com/api/v1'
+// baseUrl = 'http://localhost:8080/api/v1'
+
+baseUrl = 'https://backend.cotamos.com/api/v1'
 
 function internalRequest(method, url, data) {
   return axios({
@@ -77,7 +79,7 @@ class ApiClient {
   }
 
   getProposalById(proposalId) {
-    return internalGet(`proposal/?proposalId=${proposalId}`);
+    return internalGet(`proposal/get/${proposalId}`);
   }
 
   getAddressByZipCode(zipCode) {
