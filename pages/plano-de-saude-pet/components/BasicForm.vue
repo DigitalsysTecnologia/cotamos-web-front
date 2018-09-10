@@ -173,6 +173,8 @@ export default {
         this.proposal = Object.assign(newProposal, this.proposal);
       }
 
+      this.proposal.petInsuranceData.age = parseInt(this.proposal.petInsuranceData.age)
+
       await apiClientProvider.updateProposal(this.proposal);
       const product = await apiClientProvider.checkAvailabilityForProduct(
         5,
