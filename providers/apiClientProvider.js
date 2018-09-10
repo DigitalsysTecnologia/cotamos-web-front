@@ -10,7 +10,7 @@ if (window.location.host.indexOf('localhost') != -1) {
   baseUrl = 'http://localhost:8080/api/v1'
 }
 else {
-  baseUrl = 'https://backend.cotamos.com/gateway'
+  baseUrl = 'https://backend.cotamos.com/gateway/api/v1'
 }
 
 // baseUrl = 'http://localhost:8080/api/v1'
