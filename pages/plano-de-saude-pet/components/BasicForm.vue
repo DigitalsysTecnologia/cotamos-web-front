@@ -153,8 +153,7 @@ export default {
   computed: {
     isLoading: {
       get() {
-        return false;
-        // return this.loading;
+         return this.loading;
       }
     }
   },

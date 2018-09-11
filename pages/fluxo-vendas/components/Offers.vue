@@ -44,7 +44,7 @@
                 <p>
                   <span class="card-subtitle">Rede Credenciada</span>
                   <span class="card-places-near">{{places.length}}</span>
-                  <span class="card-info">clínicas próximas</span>
+                  <span class="card-info"> clínicas próximas</span>
                 </p>
                 <button class="btn btn-primary" v-on:click="showNetworkModal(plan)" style="margin-top:10px;">Ver Clínicas</button>
               </div>
@@ -329,11 +329,11 @@ export default {
     },
     places: {
       get() {
-        if (!this.serviceArea || !this.serviceArea.plans) {
+        if (!this.serviceArea) {
           return [];
         }
 
-        return this.serviceArea.plans[0].places;
+        return this.serviceArea;
       }
     },
     currentPlanCoverage: {
