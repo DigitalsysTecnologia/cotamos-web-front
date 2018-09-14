@@ -9,7 +9,6 @@
                     class="form-control"
                     :id="id"
                     :name="id"
-                    
                     @input="updateValue()"
                     :maxLength="maxLength"
                     ref="inputValue"

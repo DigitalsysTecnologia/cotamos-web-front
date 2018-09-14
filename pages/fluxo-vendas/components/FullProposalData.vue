@@ -13,13 +13,19 @@
                       v-model.trim="proposal.proposer.name" />
       </div>
       <div class="col-sm-6 col-xs-12">
-          <FormInput  label="Data de nascimento" 
+          <DateInput  label="Data de nascimento" 
+              icon="fa-calendar" 
+              id="proposal.proposer.dateOfBirth"
+              type="text"
+              :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
+              v-model="proposal.proposer.dateOfBirth" />
+          <!-- <FormInput  label="Data de nascimento" 
                       icon="fa-calendar" 
                       id="proposal.proposer.dateOfBirth"
                       mask="##/##/####"
                       type="text"
                       :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
-                      v-model="proposal.proposer.dateOfBirth" />
+                      v-model="proposal.proposer.dateOfBirth" /> -->
       </div>
     </div>
 
@@ -116,13 +122,20 @@
         <h3>Dados de seu Pet:</h3>
       </div>
       <div class="col-sm-4 col-xs-12">
-          <FormInput  label="Data de nascimento do Pet" 
+          <!-- <FormInput  label="Data de nascimento do Pet" 
                       icon="fa-calendar" 
                       id="proposal.petInsuranceData.dateOfBirth"
                       mask="##/##/####"
                       type="text"
                       :validationMessage="validation.firstError('proposal.petInsuranceData.dateOfBirth')"
-                      v-model="proposal.petInsuranceData.dateOfBirth" />
+                      v-model="proposal.petInsuranceData.dateOfBirth" /> -->
+          <DateInput label="Data de nascimento do Pet" 
+              icon="fa-calendar" 
+              id="proposal.petInsuranceData.dateOfBirth"
+              type="text"
+              :validationMessage="validation.firstError('proposal.petInsuranceData.dateOfBirth')"
+              v-model="proposal.petInsuranceData.dateOfBirth" />
+
       </div>
       <div class="col-sm-4 col-xs-12">
         <FormSelect  label="Sexo do Pet" 
@@ -174,6 +187,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FormInput from "@/components/FormInput";
+import DateInput from "@/components/DateInput";
 import FormSelect from "@/components/FormSelect.vue";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
@@ -322,6 +336,7 @@ export default {
   },
   components: {
     FormInput: FormInput,
+    DateInput: DateInput,
     FormSelect: FormSelect,
     CallToAction: CallToAction,
     Header: Header,

@@ -6,6 +6,15 @@
 
     <div class="row form-container text-left" v-else>
       <div class="col-xs-12 col-sm-12">
+          <DateInput  label="Data de nascimento" 
+                      icon="fa-calendar" 
+                      id="proposal.proposer.dateOfBirth"
+                      type="text"
+                      :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
+                      v-model="proposal.proposer.dateOfBirth" />
+      </div>
+      
+      <div class="col-xs-12 col-sm-12">
         <FormInput label="Seu Nome"
                    icon="fa-user" 
                    id="proposal.proposer.name"
@@ -94,6 +103,7 @@
 <script>
 import Loading from "@/components/Loading";
 import FormInput from "@/components/FormInput";
+import DateInput from "@/components/DateInput";
 import FormSelect from "@/components/FormSelect";
 import validator from "@/utils/validator";
 import CallToAction from "@/components/CallToAction";
@@ -136,6 +146,7 @@ export default {
         proposer: {
           name: "",
           email: "",
+          dateOfBirth: "",
           phones: [
             {
               areaCode: "",
@@ -153,7 +164,7 @@ export default {
   computed: {
     isLoading: {
       get() {
-         return this.loading;
+        return this.loading;
       }
     }
   },
@@ -172,7 +183,9 @@ export default {
         this.proposal = Object.assign(newProposal, this.proposal);
       }
 
-      this.proposal.petInsuranceData.age = parseInt(this.proposal.petInsuranceData.age)
+      this.proposal.petInsuranceData.age = parseInt(
+        this.proposal.petInsuranceData.age
+      );
 
       await apiClientProvider.updateProposal(this.proposal);
       const product = await apiClientProvider.checkAvailabilityForProduct(
@@ -226,6 +239,7 @@ export default {
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
     "proposal.petInsuranceData.name": value => validator.validatePetName(value),
+    "proposal.proposer.dateOfBirth": value => validator.validateDateOfBirth(value),
     "proposal.proposer.homeAddress.zipCode": value =>
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
@@ -239,6 +253,7 @@ export default {
   },
   components: {
     FormInput: FormInput,
+    DateInput: DateInput,
     FormSelect: FormSelect,
     CallToAction: CallToAction,
     Loading: Loading

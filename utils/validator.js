@@ -11,16 +11,19 @@ export default {
                 if (value == null) {
                     return null;
                 }
-
-                if (value.length !== 10) {
+                
+                console.log('passo 1');
+                if (value.length !== 25) {
                     return "Data inválida";
                 }
 
-                const dateOfBirth = moment(value, "DD/MM/YYYY");
+                console.log('passo 2');
+                const dateOfBirth = moment(value, "YYYY-MM-DDTHH:mm:ss-Z");
                 if (!dateOfBirth.isValid()) {
                     return "Data inválida";
                 }
 
+                console.log('passo 3');
                 const now = moment();
                 const duration = moment.duration(now.diff(dateOfBirth));
                 const ageInYears = duration.asYears();
@@ -29,8 +32,9 @@ export default {
                     return "Data inválida";
                 }
 
+                console.log('passo 4');
                 if (ageInYears > 14) {
-                    return "Data inválida";
+                    return "Data inválida (Acima de 14 anos)";
                 }
 
                 return null;
@@ -43,12 +47,13 @@ export default {
                 if (value == null) {
                     return null;
                 }
-
-                if (value.length !== 10) {
+ 
+                if (value.length !== 25) {
                     return "Data inválida";
                 }
-
-                const dateOfBirth = moment(value, "DD/MM/YYYY");
+                
+                console.log('passo 1')
+                const dateOfBirth = moment(value, "YYYY-MM-DDTHH:mm:ss-Z");
                 if (!dateOfBirth.isValid()) {
                     return "Data inválida";
                 }
@@ -56,7 +61,6 @@ export default {
                 const now = moment();
                 const duration = moment.duration(now.diff(dateOfBirth));
                 const ageInYears = duration.asYears();
-
                 if (ageInYears <= 0) {
                     return "Data inválida";
                 }

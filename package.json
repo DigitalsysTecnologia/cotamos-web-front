@@ -22,6 +22,7 @@
     "axios": "^0.18.0",
     "cpf_cnpj": "^0.2.0",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.21",
     "nuxt": "^1.0.0",
     "simple-vue-validator": "^0.15.1",
     "string-mask": "^0.3.0",
