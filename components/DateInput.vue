@@ -72,6 +72,11 @@ export default {
       return;
     }
 
+    // Caso seja a data inicial da API, não mostra isso
+    if(this.value === "0001-01-01T00:00:00Z") {
+      return;
+    }
+
     const isValidDate = this.isValidDate(this.value);
 
     if (!isValidDate) {
@@ -91,7 +96,6 @@ export default {
   computed: {
     formattedDate: {
       get() {
-        console.log("this.dateInputValue", this.dateInputValue);
         if (!this.dateInputValue) {
           return this.dateInputValue;
         }
