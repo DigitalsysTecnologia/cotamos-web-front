@@ -10,7 +10,6 @@
 
               <article class="col-xs-12 text-center">
                   <BasicPartnerForm />
-
               </article>
           </div>
           
@@ -24,7 +23,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
-import BasicPartnerForm from "@/components/BasicPartnerForm";
+import BasicPartnerForm from "./components/BasicPartnerForm";
 import ProductCard from "../components/product-card.vue";
 import CallToAction from "@/components/CallToAction";
 export default {

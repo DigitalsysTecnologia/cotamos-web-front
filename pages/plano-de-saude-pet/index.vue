@@ -151,7 +151,6 @@ export default {
       router.push({ path: "/fluxo-vendas", query: { product: 5 } });
     },
     submitProposal(proposal) {
-      console.log("submitProposal", JSON.stringify(proposal));
       router.push({ path: "/fluxo-vendas", query: { id: proposal._id } });
     }
   },

@@ -2,21 +2,19 @@
 
 const axios = require('axios');
 const urljoin = require('url-join');
-var apiKey = null;
-let apiSettings = {};
-let baseUrl = '';
 
-if (window.location.host.indexOf('localhost') != -1) {
-  baseUrl = 'http://localhost:8080/api/v1'
+function getUrl() {
+  if (window.location.host.indexOf('localhost') != -1) {
+    return  'http://localhost:8080/api/v1'
+  }
+  else {
+    return 'https://backend.cotamos.com/gateway/api/v1'
+  }
 }
-else {
-  baseUrl = 'https://backend.cotamos.com/gateway/api/v1'
-}
-
-// baseUrl = 'http://localhost:8080/api/v1'
-// baseUrl = 'https://backend.cotamos.com/api/v1'
 
 function internalRequest(method, url, data) {
+  let baseUrl = getUrl();
+
   return axios({
     method: method,
     headers: {
@@ -129,8 +127,8 @@ class ApiClient {
 
   checkAvailabilityForProduct(product, zipCode) {
     const payload = {
-      product:product, 
-      zipCode:zipCode
+      product: product,
+      zipCode: zipCode
     };
     return internalPost(urljoin('product', 'check-availability'), payload);
   }

@@ -110,7 +110,6 @@ export default {
   methods: {
     submitProposal: async function() {
       const isValid = await this.$validate();
-      console.log('isValid', isValid)
       if (isValid) {
         this.$emit("submitProposal", this.proposal);
       }

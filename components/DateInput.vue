@@ -6,8 +6,7 @@
                       maxLength=10
                       type="text"
                       @input="updateValue()"
-                      ref="inputValue"
-                      :validationMessage="validationMessage"
+                      :validationMessage="validation.firstError('dateInputValue') || validationMessage"
                       v-model="dateInputValue" />
 </template>
 
@@ -15,6 +14,7 @@
 import StringMask from "string-mask";
 import FormInput from "@/components/FormInput";
 import moment from "moment-timezone";
+import validator from "@/utils/validator";
 
 export default {
   name: "DateInput",
@@ -73,7 +73,7 @@ export default {
     }
 
     // Caso seja a data inicial da API, não mostra isso
-    if(this.value === "0001-01-01T00:00:00Z") {
+    if (this.value === "0001-01-01T00:00:00Z") {
       return;
     }
 
@@ -87,6 +87,11 @@ export default {
     const result = parsedDate.format("DD/MM/YYYY");
 
     this.dateInputValue = result;
+  },
+  validators: {
+    dateInputValue: value => {
+      return validator.validateDate(value)
+    }
   },
   data() {
     return {
@@ -109,7 +114,6 @@ export default {
         const parsedDate = this.parseDate(this.dateInputValue);
         const result = parsedDate.format("DD/MM/YYYY");
 
-        console.log("get()", result);
         return result;
       }
     }
@@ -123,8 +127,7 @@ export default {
 
       if (this.dateInputValue.length !== 10) {
         result = this.dateInputValue;
-      } 
-      else {
+      } else {
         let parsedDate = moment.tz(
           this.dateInputValue,
           "DD/MM/YYYY",

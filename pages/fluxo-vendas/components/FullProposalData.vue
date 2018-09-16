@@ -207,7 +207,7 @@ export default {
   },
   watch: {
     "proposal.proposer.homeAddress.zipCode": function(value) {
-      console.log("value", value);
+      
       this.getAddressByZipCode(value);
     }
   },
@@ -224,7 +224,7 @@ export default {
           this.proposal.proposer.homeAddress.state = address.state;
         })
         .catch(err => {
-          console.error(err);
+          
         });
     },
     getPhoneMask: function(phone) {

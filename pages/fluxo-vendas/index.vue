@@ -176,7 +176,6 @@ export default {
     //   "Carregando sua proposta",
     //   "Aguarde um instante por favor..."
     // ];
-    // console.log("mounted");
   },
   async beforeMount() {
     router = this.$router;
