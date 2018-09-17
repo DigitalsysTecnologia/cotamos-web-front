@@ -5,15 +5,6 @@
     </div>
 
     <div class="row form-container text-left" v-else>
-      <!-- <div class="col-xs-12 col-sm-12">
-          <DateInput  label="Data de nascimento" 
-                      icon="fa-calendar" 
-                      id="proposal.proposer.dateOfBirth"
-                      type="text"
-                      :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
-                      v-model="proposal.proposer.dateOfBirth" />
-      </div> -->
-      
       <div class="col-xs-12 col-sm-12">
         <FormInput label="Seu Nome"
                    icon="fa-user" 
@@ -57,27 +48,6 @@
                     v-model.trim="proposal.proposer.email" />
       </div>
 
-      <!-- <div class="col-md-2 col-sm-3 col-xs-12">
-          <FormInput  label="DDD" 
-                      icon="fa-phone" 
-                      type="text"
-                      id="proposal.proposer.phones.0.areaCode"
-                      mask="##"
-                      :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
-                      v-model.trim="proposal.proposer.phones[0].areaCode" />
-      </div>
-
-      <div class="col-sm-9 col-md-10 col-xs-12 offset-md-1 offset-sm-1">
-          <FormInput label="Celular ou Telefone" 
-                      icon="fa-phone" 
-                      id="proposal.proposer.phones.0.number"
-                      maxLength="15"
-                      :mask="getPhoneMask(proposal.proposer.phones[0].number)"
-                      type="text"
-                      :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
-                      v-model.trim="proposal.proposer.phones[0].number" />
-      </div> -->
-
       <div class="col-xs-12">
         <FormInput label="Celular ou Telefone" 
                    icon="fa-phone" 
@@ -112,30 +82,6 @@ import apiClientProvider from "@/providers/apiClientProvider";
 export default {
   name: "BasicPetInsuranceForm",
   data() {
-    // return {
-    //   loading: false,
-    //   proposal: {
-    //     petInsuranceData: {
-    //       name: "Sherlock",
-    //       age: "5"
-    //     },
-    //     proposer: {
-    //       name: "Eduardo Andrade",
-    //       email: "eduardo@andrade.com",
-    //       phones: [
-    //         {
-    //           areaCode: "",
-    //           number: "",
-    //           fullNumber: "(11) 94783-1054"
-    //         }
-    //       ],
-    //       homeAddress: {
-    //         zipCode: "05141160"
-    //       }
-    //     }
-    //   }
-    // };
-
     return {
       loading: false,
       proposal: {
@@ -238,15 +184,10 @@ export default {
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
     "proposal.petInsuranceData.name": value => validator.validatePetName(value),
-    // "proposal.proposer.dateOfBirth": value => validator.validateDateOfBirth(value),
     "proposal.proposer.homeAddress.zipCode": value =>
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
-    // "proposal.proposer.phones.0.areaCode": value =>
-    //   validator.validatePhoneAreaCode(value),
-    // "proposal.proposer.phones.0.number": value =>
-    //   validator.validatePhoneNumber(value)
     "proposal.proposer.phones.0.fullNumber": value =>
       validator.validateFullPhoneNumber(value)
   },

@@ -2,13 +2,14 @@
     <div :class="{'form-group': true, 'error': validationMessage}">
         <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
         <div class="input-group">
-            <div class="input-group-addon">
+            <div :class="['input-group-addon', {'disabled-group-addon': disabled}]" >
                 <i :class="`fa ${icon}`" aria-hidden="true"/>
             </div>
             <input  :type="type" 
                     class="form-control"
                     :id="id"
                     :name="id"
+                    :disabled="disabled"
                     @input="updateValue()"
                     :maxLength="maxLength"
                     ref="inputValue"
@@ -55,6 +56,11 @@ export default {
       required: false
     },
     maskReverse: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    disabled: {
       type: Boolean,
       default: false,
       required: false
@@ -184,5 +190,9 @@ export default {
   margin-left: 5px;
   margin-bottom: 0px;
   color: #017787;
+}
+
+.disabled-group-addon {
+  background-color: #eee;
 }
 </style>

@@ -75,6 +75,10 @@ class ApiClient {
     return internalPost('proposal/list-by-filter', filter);
   }
 
+  createPartner(partner) {
+    return internalPost('partner', partner);
+  }
+
   getProposalById(proposalId) {
     return internalGet(`proposal/get/${proposalId}`);
   }

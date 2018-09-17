@@ -93,7 +93,6 @@ export default {
         return Validator.value(value)
             .required("Por favor, nos informe a sua data de nascimento.")
             .custom(function () {
-                console.log('value', value)
                 if (value == null) {
                     return null;
                 }

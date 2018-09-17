@@ -9,7 +9,7 @@
               </div>
 
               <article class="col-xs-12 text-center">
-                  <BasicPartnerForm />
+                  <BasicPartnerForm v-on:onSubmitPartner="createPartner"/>
               </article>
           </div>
           
@@ -26,9 +26,20 @@ import NavBar from "@/components/NavBar";
 import BasicPartnerForm from "./components/BasicPartnerForm";
 import ProductCard from "../components/product-card.vue";
 import CallToAction from "@/components/CallToAction";
+import apiClientProvider from "@/providers/apiClientProvider";
+
 export default {
   name: "Home",
-  methods: {},
+  methods: {
+    createPartner: async function (partner) {
+      
+      await apiClientProvider.createPartner(partner);
+
+      alert('uuuhuuu')
+
+      
+    }
+  },
   components: {
     Footer: Footer,
     Header: Header,

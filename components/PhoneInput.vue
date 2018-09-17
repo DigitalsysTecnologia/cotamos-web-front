@@ -3,7 +3,7 @@
              :icon="icon" 
              :id="id"
              :mask="getFullPhoneMask(phoneValue)"
-             maxLength=15
+             :maxLength="maxLength || '15'"
              type="text"
              @input="updateValue()"
              ref="input"
