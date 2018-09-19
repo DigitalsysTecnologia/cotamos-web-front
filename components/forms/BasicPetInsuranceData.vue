@@ -49,14 +49,12 @@
       </div>
 
       <div class="col-xs-12">
-        <FormInput label="Celular ou Telefone" 
-                   icon="fa-phone" 
-                   id="proposal.proposer.phones.0.fullNumber"
-                   maxLength="15"
-                   :mask="getFullPhoneMask(proposal.proposer.phones[0].fullNumber)"
-                   type="text"
-                   :validationMessage="validation.firstError('proposal.proposer.phones.0.fullNumber')"
-                   v-model.trim="proposal.proposer.phones[0].fullNumber" />
+        <PhoneInput label="Celular ou Telefone" 
+                    icon="fa-phone" 
+                    id="proposal.proposer.phones.0"
+                    maxLength="15"
+                    :validationMessage="validation.firstError('proposal.proposer.phones.0')"
+                    v-model.trim="proposal.proposer.phones[0]" />
       </div>
 
       <div class="col-xs-12">
@@ -75,12 +73,13 @@ import Loading from "@/components/Loading";
 import FormInput from "@/components/FormInput";
 import DateInput from "@/components/DateInput";
 import FormSelect from "@/components/FormSelect";
+import PhoneInput from "@/components/PhoneInput.vue"
 import validator from "@/utils/validator";
 import CallToAction from "@/components/CallToAction";
 import apiClientProvider from "@/providers/apiClientProvider";
 
 export default {
-  name: "BasicPetInsuranceForm",
+  name: "BasicPetInsuranceData",
   data() {
     return {
       loading: false,
@@ -95,8 +94,7 @@ export default {
           phones: [
             {
               areaCode: "",
-              number: "",
-              fullNumber: ""
+              number: ""
             }
           ],
           homeAddress: {
@@ -115,7 +113,7 @@ export default {
   },
   methods: {
     submitProposal: async function() {
-      const isValid = await this.$validate();
+      const isValid = await validator.validatePage(this);
 
       if (!isValid) {
         return;
@@ -150,36 +148,8 @@ export default {
       }
 
       this.$emit("submitProposal", this.proposal);
-    },
-    getPhoneMask: function(phone) {
-      let phoneNumber = null;
-      if (phone) {
-        phoneNumber = phone.replace(/\D/g, "");
-      } else {
-        phoneNumber = "";
-      }
-
-      if (phoneNumber.length <= 8) {
-        return "####-####";
-      } else {
-        return "#####-####";
-      }
-    },
-    getFullPhoneMask: function(phone) {
-      let phoneNumber = null;
-
-      if (phone) {
-        phoneNumber = phone.replace(/\D/g, "");
-      } else {
-        phoneNumber = "";
-      }
-
-      if (phoneNumber.length <= 10) {
-        return "(##) ####-####";
-      } else {
-        return "(##) #####-####";
-      }
     }
+
   },
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
@@ -187,12 +157,11 @@ export default {
     "proposal.proposer.homeAddress.zipCode": value =>
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
-    "proposal.proposer.email": value => validator.validateEmail(value),
-    "proposal.proposer.phones.0.fullNumber": value =>
-      validator.validateFullPhoneNumber(value)
+    "proposal.proposer.email": value => validator.validateEmail(value)
   },
   components: {
     FormInput: FormInput,
+    PhoneInput:PhoneInput,
     DateInput: DateInput,
     FormSelect: FormSelect,
     CallToAction: CallToAction,
@@ -206,9 +175,6 @@ export default {
   margin-left: 0px;
 }
 .form-container {
-  border: 2px solid rgb(5, 62, 66);
-  border-radius: 20px;
-  background-color: white;
   margin-left: 1px;
   margin-right: 1px;
   padding-top: 20px;

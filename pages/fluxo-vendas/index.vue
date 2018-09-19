@@ -9,13 +9,41 @@
                 <div class="row">
                     <section class="col-xs-12 formulario-cotacao" style="margin-top:25px;margin-bottom:25px;">
                         <div class="col-sm-12 col-xs-12 box-cotacao" style="padding-bottom:25px;">
-                            <Loading :messages="loadingMessages" v-if="isLoading || stepName == 'carregando'"/>
-                            <BasicProposalData :proposal="proposal" v-on:submitProposal="generateBasicProposal" v-else-if="stepName == 'cadastro_inicial'"/>
-                            <DeniedProposal :proposal="proposal" v-on:previousStep="backToBasicProposalForm" v-on:nextStep="finishProposal" :loading="loading" v-else-if="stepName == 'proposta_negada'" />
-                            <Offers :proposal="proposal" v-on:selectPlan="selectPlan" v-else-if="stepName == 'ofertas'" />
-                            <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" v-else-if="stepName == 'cadastro_completo'" />
-                            <Finish  :loading="loading" v-else-if="stepName == 'finalizacao'" />
-                            <WaitingForAvailability  v-else-if="stepName == 'aguardando_disponibilidade'" />
+
+                          <div v-if="isLoading || stepName == 'carregando'">
+                            <Loading :messages="loadingMessages" />
+                          </div>
+
+                            <div v-else-if="stepName == 'cadastro_inicial'">
+                              <h3 style="padding-left:5px;">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
+                              <h3 style="padding-left:5px;">Para isso, vamos precisar de algumas informações</h3>
+                              <BasicProposalData :proposal="proposal" v-on:submitProposal="generateBasicProposal" />
+                            </div>
+
+                            <div v-else-if="stepName == 'proposta_negada'">
+                              <DeniedProposal :proposal="proposal" v-on:previousStep="backToBasicProposalForm" v-on:nextStep="finishProposal" :loading="loading"  />
+                            </div>
+                            
+
+                            <div v-else-if="stepName == 'ofertas'">
+                              <Offers :proposal="proposal" v-on:selectPlan="selectPlan"  />
+                            </div>
+                            
+                            
+                            <div  v-else-if="stepName == 'cadastro_completo'">
+                              <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" />
+                            </div>                            
+                            
+                            
+                            <div v-else-if="stepName == 'finalizacao'">
+                              <Finish  :loading="loading"  />
+                            </div>                            
+                            
+                            
+                            <div v-else-if="stepName == 'aguardando_disponibilidade'">
+                              <WaitingForAvailability   />
+                            </div>                            
+                            
                         </div>
                     </section>
             </div>
@@ -31,7 +59,7 @@
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BasicProposalData from "./components/BasicProposalData";
+import BasicProposalData from "@/components/forms/BasicPetInsuranceData";
 import DeniedProposal from "./components/DeniedProposal";
 import Offers from "./components/Offers";
 import Loading from "@/components/Loading";
@@ -101,40 +129,22 @@ export default {
       this.existingProposal.petInsuranceData.selectedPlan = {
         code: plan.code
       };
-      
+
       await apiClientProvider.updateProposal(this.existingProposal);
       await apiClientProvider.setNextState(this.existingProposal, 2);
       this.existingProposal.state = 2;
     },
     generateBasicProposal: async function(proposal) {
-      this.loadingMessage = [
-        "Verificando sua área de cobertura...",
-        "Aguarde um instante por favor..."
-      ];
-      this.loading = true;
+      
+      console.log("proposal", proposal);
 
-      if (!proposal._id) {
-        let newProposal = await apiClientProvider.generateProposal(5);
-        this.existingProposal = Object.assign(newProposal, proposal);
-      }
-
-      await apiClientProvider.updateProposal(this.existingProposal);
-      const product = await apiClientProvider.checkAvailabilityForProduct(
-        5,
-        this.existingProposal.proposer.homeAddress.zipCode
-      );
-
-      if (!product.isAvailable) {
-        await apiClientProvider.setNextState(this.existingProposal, 21);
-        this.existingProposal.state = 21;
-      } else {
-        await apiClientProvider.setNextState(this.existingProposal, 3);
-        this.existingProposal.state = 3;
-      }
-
-      router.push({ path: "/fluxo-vendas", query: { id: this.existingProposal._id } });
+      router.push({
+        path: "/fluxo-vendas",
+        query: { id: proposal._id }
+      });
 
       this.loading = false;
+      this.existingProposal = proposal;
     },
     backToBasicProposalForm: async function() {
       this.loadingMessage = [
@@ -166,7 +176,7 @@ export default {
       await apiClientProvider.setNextState(this.existingProposal, 20);
       this.existingProposal.state = 20;
       this.loading = false;
-    },
+    }
   },
   async mounted() {
     // const { query } = this.$route;

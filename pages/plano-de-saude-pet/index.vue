@@ -37,7 +37,9 @@
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
             <h2 class="subtitle">FAÇA UMA COTAÇÃO ON-LINE</h2>
-            <BasicForm v-on:submitProposal="submitProposal"/>
+            <div class="form-container">
+              <BasicForm v-on:submitProposal="submitProposal"/>
+            </div>
           </div>
         </div>
       </section>        
@@ -130,7 +132,7 @@
 import Loading from "@/components/Loading";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import BasicForm from "./components/BasicForm.vue";
+import BasicForm from "@/components/forms/BasicPetInsuranceData";
 import apiClientProvider from "@/providers/apiClientProvider";
 import validator from "@/utils/validator";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
@@ -138,9 +140,10 @@ import CallToAction from "@/components/CallToAction";
 import utils from "@/utils/index";
 
 let router = null;
+let queryParams = null;
 
 export default {
-  name: "PetInsuranceV3",
+  name: "PetInsurance",
   methods: {
     formatCurrency(value) {
       value = value.toFixed(2);
@@ -148,7 +151,13 @@ export default {
       return `R$ ${value}`;
     },
     GoToForm(event) {
-      router.push({ path: "/fluxo-vendas", query: { product: 5 } });
+      console.log('queryParams', queryParams)
+      let partnerId = null;
+
+      if(queryParams) {
+        partnerId = queryParams.partnerId
+      }
+      router.push({ path: "/fluxo-vendas", query: { product: 5, partnerId: partnerId } });
     },
     submitProposal(proposal) {
       router.push({ path: "/fluxo-vendas", query: { id: proposal._id } });
@@ -171,6 +180,7 @@ export default {
   },
   async beforeMount() {
     router = this.$router;
+    queryParams = this.$route.query
     utils.saveLandingQueryParams(this.$route.query);
   },
   components: {
@@ -204,4 +214,10 @@ h3 {
   margin-top: 15px;
   text-align: justify;
 }
-</style>
+
+.form-container {
+  border: 2px solid rgb(5, 62, 66);
+  border-radius: 20px; 
+  background-color: white; 
+}
+</style>getLandingQueryParams
