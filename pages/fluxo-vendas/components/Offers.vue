@@ -208,7 +208,7 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
 import CallToAction from "@/components/CallToAction";
 import NavBar from "@/components/NavBar";

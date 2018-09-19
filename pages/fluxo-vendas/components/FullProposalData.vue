@@ -192,7 +192,7 @@ import FormSelect from "@/components/FormSelect.vue";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import CallToAction from "@/components/CallToAction.vue";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 
 export default {
   name: "FullProposalData",

@@ -26,7 +26,7 @@ import NavBar from "@/components/NavBar";
 import BasicPartnerForm from "./components/BasicPartnerForm";
 import ProductCard from "../components/product-card.vue";
 import CallToAction from "@/components/CallToAction";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 
 export default {
   name: "Home",

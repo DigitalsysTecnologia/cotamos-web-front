@@ -133,7 +133,7 @@ import Loading from "@/components/Loading";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import BasicForm from "@/components/forms/BasicPetInsuranceData";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
 import CallToAction from "@/components/CallToAction";

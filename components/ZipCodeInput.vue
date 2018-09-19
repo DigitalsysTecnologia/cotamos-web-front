@@ -12,7 +12,7 @@
 <script>
 import StringMask from "string-mask";
 import FormInput from "@/components/FormInput";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 import moment from "moment-timezone";
 import validator from "@/utils/validator";
 

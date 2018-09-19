@@ -67,7 +67,7 @@ import FullProposalData from "./components/FullProposalData";
 import Finish from "./components/Finish";
 import WaitingForAvailability from "./components/WaitingForAvailability";
 import factory from "../../utils/factory";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 import utils from "../../utils/index";
 let router = null;
 

@@ -162,7 +162,7 @@ import PhoneInput from "@/components/PhoneInput";
 import FormSelect from "@/components/FormSelect";
 import validator from "@/utils/validator";
 import CallToAction from "@/components/CallToAction";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 
 export default {
   name: "BasicPetInsuranceForm",

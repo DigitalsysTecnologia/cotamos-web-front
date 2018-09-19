@@ -64,7 +64,6 @@
         </CallToAction>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -73,10 +72,10 @@ import Loading from "@/components/Loading";
 import FormInput from "@/components/FormInput";
 import DateInput from "@/components/DateInput";
 import FormSelect from "@/components/FormSelect";
-import PhoneInput from "@/components/PhoneInput.vue"
+import PhoneInput from "@/components/PhoneInput.vue";
 import validator from "@/utils/validator";
 import CallToAction from "@/components/CallToAction";
-import apiClientProvider from "@/providers/apiClientProvider";
+import apiClientProvider from "@/utils/apiClient";
 
 export default {
   name: "BasicPetInsuranceData",
@@ -136,9 +135,6 @@ export default {
         this.proposal.proposer.homeAddress.zipCode
       );
 
-      // await apiClientProvider.setNextState(this.proposal, 21);
-      // this.proposal.state = 21;
-
       if (!product.isAvailable) {
         await apiClientProvider.setNextState(this.proposal, 21);
         this.proposal.state = 21;
@@ -149,7 +145,6 @@ export default {
 
       this.$emit("submitProposal", this.proposal);
     }
-
   },
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
@@ -161,7 +156,7 @@ export default {
   },
   components: {
     FormInput: FormInput,
-    PhoneInput:PhoneInput,
+    PhoneInput: PhoneInput,
     DateInput: DateInput,
     FormSelect: FormSelect,
     CallToAction: CallToAction,
