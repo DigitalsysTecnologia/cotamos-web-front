@@ -62,7 +62,7 @@ export default {
         this.errorMessage = "";
         this.loading = true;
         const res = await apiClient.login(this.user.login, this.user.password);
-        localStorage.userToken = res.token;
+        localStorage.setItem('userToken',res.token);
 
         const { redirect } = this.$route.query;
         let url = null;

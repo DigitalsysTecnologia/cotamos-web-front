@@ -24,7 +24,7 @@ import sessionHelper from "@/utils/sessionHelper"
 export default {
   name: "Proposals",
   layout: "panel",
-  async created() {
+  async mounted() {
     await sessionHelper.checkSession(this)
   },
   data() {

@@ -27,26 +27,6 @@ Vue.use(VueScrollTo);
 
 export default {
   layout: "default",
-  methods: {
-    async checkSession() {
-      console.log("VueLocalStorage", Vue.localStorage);
-
-      const token = localStorage.getItem("userToken");
-      let isAuthenticated = false;
-      if (token) {
-        isAuthenticated = await apiClient.checkSession(token);
-      }
-
-      if (!isAuthenticated) {
-        localStorage.userToken = null;
-        this.$router.push({ path: "/painel/login" });
-      }
-    }
-  },
-  async created() {
-    // await this.checkSession();
-  },
-
   components: {
     Header: Header,
     Footer: Footer

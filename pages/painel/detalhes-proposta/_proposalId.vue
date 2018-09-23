@@ -218,7 +218,7 @@ export default {
         return "";
       }
 
-      dateOfBirth = moment(dateOfBirth, "DD/MM/YYYY");
+      dateOfBirth = moment(dateOfBirth);
       const now = moment();
       const duration = moment.duration(now.diff(dateOfBirth));
       const ageInYears = duration.asYears();

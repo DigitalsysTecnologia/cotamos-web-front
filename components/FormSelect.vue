@@ -53,7 +53,17 @@ export default {
       if (!this.$refs.inputValue) {
         return;
       }
-      this.$emit("input", parseInt(this.$refs.inputValue.value));
+
+      let value = this.$refs.inputValue.value;
+      let result = null;
+      if (!isNaN(parseInt(value))) {
+        result = parseInt(value);
+      }
+      else {
+        result = value;
+      }
+
+      this.$emit("input", result);
     }
   }
 };
