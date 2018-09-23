@@ -2,9 +2,9 @@
 
 const axios = require('axios');
 const urljoin = require('url-join');
+const localStorage = require('./localStorage')
 
 function getUrl() {
-
   return process.env.baseUrl
   // if (window.location.host.indexOf('localhost') != -1) {
   //   return 'http://localhost:8080/api/v1'
@@ -27,7 +27,7 @@ function internalRequest(method, url, data) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'apiKey': apiKey
+      'apiKey': localStorage.getItem('userToken')
     },
     crossdomain: true,
     url: urljoin(baseUrl, url),
