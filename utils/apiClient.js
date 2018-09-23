@@ -27,7 +27,7 @@ function internalRequest(method, url, data) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'apiKey': localStorage.getItem('userToken')
+      'apiKey': apiKey
     },
     crossdomain: true,
     url: urljoin(baseUrl, url),
