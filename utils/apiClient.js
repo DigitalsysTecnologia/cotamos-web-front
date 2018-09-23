@@ -16,13 +16,18 @@ function getUrl() {
 
 function internalRequest(method, url, data) {
   let baseUrl = getUrl();
+  let apiKey = '';
+
+  if(localStorage) {
+    apiKey = localStorage.userToken
+  }  
 
   return axios({
     method: method,
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'apiKey': localStorage.userToken
+      'apiKey': apiKey
     },
     crossdomain: true,
     url: urljoin(baseUrl, url),
