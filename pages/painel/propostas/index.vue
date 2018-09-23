@@ -19,15 +19,14 @@
 
 <script>
 import apiClient from "@/utils/apiClient";
-// import moment from "moment";
 import ProposalList from "../components/ProposalList.vue";
-// import ProposalFilter from "@/components/ProposalFilter";
-
-// import List from "@/components/List";
-// import translator from "@/utils/translator";
+import sessionHelper from "@/utils/sessionHelper"
 export default {
   name: "Proposals",
   layout: "panel",
+  async created() {
+    await sessionHelper.checkSession(this)
+  },
   data() {
     return {
       proposalList: [],

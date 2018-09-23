@@ -111,11 +111,14 @@
 import apiClient from "@/utils/apiClient";
 import CustomLabel from "./components/CustomLabel";
 import moment from "moment";
-
 import translator from "@/utils/translator";
+import sessionHelper from "@/utils/sessionHelper"
 export default {
   name: "ProposalDetails",
   layout: "panel",
+  async created() {
+    await sessionHelper.checkSession(this)
+  },
   data() {
     return {
       existingProposal: null,

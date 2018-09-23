@@ -29,7 +29,9 @@ export default {
   layout: "default",
   methods: {
     async checkSession() {
-      const token = localStorage.userToken;
+      console.log("VueLocalStorage", Vue.localStorage);
+
+      const token = localStorage.getItem("userToken");
       let isAuthenticated = false;
       if (token) {
         isAuthenticated = await apiClient.checkSession(token);
@@ -42,7 +44,7 @@ export default {
     }
   },
   async created() {
-    await this.checkSession();
+    // await this.checkSession();
   },
 
   components: {
