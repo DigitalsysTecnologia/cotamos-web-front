@@ -20,7 +20,7 @@ function internalRequest(method, url, data) {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      // 'apiKey': apiKey
+      'apiKey': localStorage.userToken
     },
     crossdomain: true,
     url: urljoin(baseUrl, url),
@@ -71,7 +71,7 @@ class ApiClient {
     return internalGet(`proposal/generate/?product=${productCode}`);
   }
 
-  getProposalByFilter(filter) {
+  getProposalsByFilter(filter) {
     return internalPost('proposal/list-by-filter', filter);
   }
 

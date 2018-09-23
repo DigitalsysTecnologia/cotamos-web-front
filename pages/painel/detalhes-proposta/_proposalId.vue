@@ -48,7 +48,7 @@
               <custom-label :label="'Data de Nascimento'" :value="getAge(proposal.petInsuranceData.dateOfBirth)" :sameLine="true" v-if="proposal.petInsuranceData.dateOfBirth"/>
               <custom-label :label="'Idade'" :value="proposal.petInsuranceData.age + ' anos'" :sameLine="true" v-else/>
               <custom-label :label="'Sexo'" :value="proposal.petInsuranceData.gender" :sameLine="true" />
-              <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.petType" :sameLine="true" />
+              <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.specie" :sameLine="true" />
             </div>
 
           </div>

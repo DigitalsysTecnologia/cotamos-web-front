@@ -3,7 +3,7 @@
         <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
         <div class="input-group">
             <div :class="['input-group-addon', {'disabled-group-addon': disabled}]" >
-                <i :class="`fa ${icon}`" aria-hidden="true"/>
+                <i :class="`fa ${icon}`" aria-hidden="true" v-if="icon"/>
             </div>
             <input  :type="type" 
                     class="form-control"
