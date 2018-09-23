@@ -40,10 +40,11 @@ export default {
   padding-bottom: 10px;
   margin-top: 0px;
   margin-bottom: 0px;
-  background: #00d886;
+  background : #00d886;
+  /* background: #00d886;
   background: -moz-linear-gradient(left, #00d886 0%, #00d6e7 100%);
   background: -webkit-linear-gradient(left, #00d886 0%, #00d6e7 100%);
-  background: linear-gradient(to right, #00d886 0%, #00d6e7 100%);
+  background: linear-gradient(to right, #00d886 0%, #00d6e7 100%); */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d886', endColorstr='#00d6e7',GradientType=1 );
   height: 100%;
   max-height: 180px;

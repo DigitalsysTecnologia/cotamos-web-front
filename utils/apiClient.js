@@ -5,7 +5,7 @@ const urljoin = require('url-join');
 
 function getUrl() {
   if (window.location.host.indexOf('localhost') != -1) {
-    return  'http://localhost:8080/api/v1'
+    return 'http://localhost:8080/api/v1'
   }
   else {
     return 'https://backend.cotamos.com/gateway/api/v1'

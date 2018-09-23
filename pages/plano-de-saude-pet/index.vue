@@ -151,7 +151,6 @@ export default {
       return `R$ ${value}`;
     },
     GoToForm(event) {
-      console.log('queryParams', queryParams)
       let partnerId = null;
 
       if(queryParams) {

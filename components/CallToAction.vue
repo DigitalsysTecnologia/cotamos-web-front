@@ -11,7 +11,6 @@ export default {
   name: "CallToAction",
   methods: {
     onClick: function() {
-      console.log('clicando..')
       this.$emit("click", null);
     }
   },
