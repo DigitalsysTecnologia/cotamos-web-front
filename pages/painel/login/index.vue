@@ -2,7 +2,6 @@
   <div>
     <div class="row">
       <div class="offset-md-2 col-md-8 col-xs-12 offset-xs-0">
-        <h1> {{ isLogged }} </h1>
         <form @submit="doLogin">
           <div class="form-group">
             <input type="text" class="form-control" id="login" placeholder="Login" v-model="user.login">
@@ -52,9 +51,6 @@ export default {
     };
   },
   async beforeMount() {},
-  computed: mapState([
-    'isLogged'
-  ]),
   watch: {
     isLogged(newVal) {
 

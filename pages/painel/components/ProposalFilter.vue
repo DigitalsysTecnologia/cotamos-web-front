@@ -61,9 +61,7 @@ export default {
       
       this.$emit("loading");
       const proposals = await apiClient.getProposalsByFilter(this.proposalFilter);
-      console.log('proposals', proposals)
 
-      console.log('emiting event - onSearchProposals')
       this.$emit("searchProposals", proposals);
       this.loading = false;
     }

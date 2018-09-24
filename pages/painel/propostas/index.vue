@@ -31,9 +31,8 @@ import sessionHelper from "@/utils/sessionHelper";
 import Loading from "@/components/Loading";
 export default {
   name: "Proposals",
-  layout: "panel",
+  layout: "logged-area",
   async mounted() {
-    await sessionHelper.checkSession(this);
   },
   data() {
     return {
@@ -43,7 +42,6 @@ export default {
   },
   methods: {
     searchProposals(proposals) {
-      console.log('searchProposals(proposals)')
       this.proposalList = proposals;
       this.loading = false;
     },

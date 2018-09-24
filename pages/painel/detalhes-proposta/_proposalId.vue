@@ -117,7 +117,7 @@ export default {
   name: "ProposalDetails",
   layout: "panel",
   async created() {
-    await sessionHelper.checkSession(this)
+    
   },
   data() {
     return {
