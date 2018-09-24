@@ -1,9 +1,16 @@
-export default  {
+export default {
   getItem(key) {
-    return localStorage[key];
+    if (process.browser) {
+      return localStorage.getItem(key);
+    }
+    else {
+      return null
+    }
   },
   setItem(key, value) {
-    localStorage[key] = value;
+    if (process.browser) {
+      localStorage.setItem(key, value);
+    }
   }
 
 }
