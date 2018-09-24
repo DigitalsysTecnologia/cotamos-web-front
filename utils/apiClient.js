@@ -19,7 +19,7 @@ function internalRequest(method, url, data) {
   let apiKey = '';
 
   
-  apiKey = localStore.default.obterItem('userToken')
+  apiKey = localStore.userToken;
 
   return axios({
     method: method,

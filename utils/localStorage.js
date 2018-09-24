@@ -1,12 +1,17 @@
-export default {
-
-  obterItem(key) {
-    return localStorage.getItem(key);
-  },
-
-  setarItem(key, value) {
-    
-      localStorage.setItem(key, value);
-    
-  }
+module.exports = {
+  userToken: {
+    get() {
+      if (process.browser) {
+        localStorage.getItem('userToken')
+      }
+      else {
+        return null
+      }
+    },
+    set(value) {
+      if (process.browser) {
+        localStorage.setItem('userToken', value);
+      }
+    }
+  }  
 }
