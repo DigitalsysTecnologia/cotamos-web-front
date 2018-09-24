@@ -167,6 +167,10 @@ class ApiClient {
   getAllProfessions() {
     return internalGet('profession')
   }
+
+  testVuex() {
+    
+  }
 }
 
 export default new ApiClient();

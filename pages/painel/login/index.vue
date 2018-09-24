@@ -1,9 +1,8 @@
 <template>
-    
   <div>
-
     <div class="row">
       <div class="offset-md-2 col-md-8 col-xs-12 offset-xs-0">
+        <h1> {{ isLogged }} </h1>
         <form @submit="doLogin">
           <div class="form-group">
             <input type="text" class="form-control" id="login" placeholder="Login" v-model="user.login">
@@ -36,7 +35,8 @@
 import Vue from "vue";
 import moment from "moment";
 import apiClient from "@/utils/apiClient";
-import localStorage from "@/utils/localStorage"
+import localStorage from "@/utils/localStorage";
+import { mapState } from 'vuex'
 
 export default {
   layout: "panel",
@@ -52,7 +52,23 @@ export default {
     };
   },
   async beforeMount() {},
-  computed: {},
+  computed: mapState([
+    'isLogged'
+  ]),
+  watch: {
+    isLogged(newVal) {
+
+      if(newVal === true) {
+        const { redirect } = this.$route.query;
+        let url = null;
+        url = redirect || "/painel/propostas";
+
+        this.$router.push({ path: url });
+
+      }
+      
+    }
+  },
   components: {},
   methods: {
     async doLogin(e) {
@@ -61,14 +77,22 @@ export default {
       try {
         this.errorMessage = "";
         this.loading = true;
-        const res = await apiClient.login(this.user.login, this.user.password);
-        localStorage.setItem('userToken',res.token);
+        // const res = await apiClient.login(this.user.login, this.user.password);
 
-        const { redirect } = this.$route.query;
-        let url = null;
-        url = redirect || "/painel/propostas";
-        
-        this.$router.push({ path: url });
+        const payload = {
+          login: this.user.login,
+          password: this.user.password
+        };
+
+        this.$store.dispatch("doLogin", payload);
+
+        // localStorage.setItem('userToken',res.token);
+
+        // const { redirect } = this.$route.query;
+        // let url = null;
+        // url = redirect || "/painel/propostas";
+
+        // this.$router.push({ path: url });
       } catch (err) {
         this.errorMessage = err.data.errorMessage;
       } finally {

@@ -94,6 +94,7 @@ import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import ProductCard from "./components/product-card.vue";
 import CallToAction from "@/components/CallToAction";
+import ApiClient from "@/utils/apiClient"
 export default {
   name: "Home",
   methods: {
