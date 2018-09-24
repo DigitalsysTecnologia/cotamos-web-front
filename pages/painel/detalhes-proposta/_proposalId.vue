@@ -115,7 +115,7 @@ import translator from "@/utils/translator";
 import sessionHelper from "@/utils/sessionHelper"
 export default {
   name: "ProposalDetails",
-  layout: "panel",
+  layout: "logged-area",
   async created() {
     
   },

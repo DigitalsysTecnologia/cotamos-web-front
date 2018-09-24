@@ -118,7 +118,7 @@ class ApiClient {
   getServiceArea(proposalId) {
     return internalGet(urljoin('proposal', 'get-service-area', proposalId));
   }
-  checkSession(token) {
+  async checkSession(token) {
     const payload = {
       token: token
     };
