@@ -1,16 +1,13 @@
 import apiClient from "@/utils/apiClient";
-import localStorage from "@/utils/localStorage";
+import localStore from "@/utils/localStorage";
 
 export default {
     async checkSession(page) {
-        const token = localStorage.getItem('userToken');
+        const token = localStore.userToken;
         
-        console.log('token', token)
-
         let isAuthenticated = false;
         if (token) {
           isAuthenticated = await apiClient.checkSession(token);
-          console.log('isAuthenticated', isAuthenticated)
         }
   
         if (!isAuthenticated) {

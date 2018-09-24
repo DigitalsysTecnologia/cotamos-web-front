@@ -18,7 +18,7 @@ function internalRequest(method, url, data) {
   let baseUrl = getUrl();
   let apiKey = '';
 
-  
+
   apiKey = localStore.userToken;
 
   return axios({
@@ -93,11 +93,14 @@ class ApiClient {
     return internalGet(urljoin('address', 'by-zipcode', `?zipCode=${zipCode}`));
   }
 
-  login(login, password) {
+  async login(login, password) {
     const payload = {
       login: login,
       password: password
     }
+    const result = await internalPost(urljoin('user', 'login'), payload);
+    console.log('result', result)
+    localStore.userToken = result.token
 
     return internalPost(urljoin('user', 'login'), payload);
   }
@@ -168,7 +171,7 @@ class ApiClient {
   }
 
   testVuex() {
-    
+
   }
 }
 

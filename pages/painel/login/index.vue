@@ -77,22 +77,13 @@ export default {
       try {
         this.errorMessage = "";
         this.loading = true;
-        // const res = await apiClient.login(this.user.login, this.user.password);
+        await apiClient.login(this.user.login, this.user.password);
 
-        const payload = {
-          login: this.user.login,
-          password: this.user.password
-        };
+        const { redirect } = this.$route.query;
+        let url = null;
+        url = redirect || "/painel/propostas";
 
-        this.$store.dispatch("doLogin", payload);
-
-        // localStorage.setItem('userToken',res.token);
-
-        // const { redirect } = this.$route.query;
-        // let url = null;
-        // url = redirect || "/painel/propostas";
-
-        // this.$router.push({ path: url });
+        this.$router.push({ path: url });
       } catch (err) {
         this.errorMessage = err.data.errorMessage;
       } finally {

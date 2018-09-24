@@ -59,7 +59,6 @@ export default {
     },
     Proposals:{
       get(){
-        console.log('this.proposalList', this.proposalList)
         return this.proposalList;
       }
     }
