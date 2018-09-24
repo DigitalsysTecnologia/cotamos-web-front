@@ -12,5 +12,4 @@ export default {
       localStorage.setItem(key, value);
     }
   }
-
 }

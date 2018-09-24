@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 const urljoin = require('url-join');
-const localStorage = require('./localStorage')
+const localStore = require('./localStorage')
 
 function getUrl() {
   return process.env.baseUrl
@@ -18,7 +18,7 @@ function internalRequest(method, url, data) {
   let baseUrl = getUrl();
   let apiKey = '';
 
-  apiKey = localStorage.get('userToken')
+  apiKey = localStore.get('userToken')
 
   return axios({
     method: method,
