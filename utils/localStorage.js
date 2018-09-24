@@ -1,5 +1,6 @@
 export default {
-  get(key) {
+
+  obterItem(key) {
     if (process.browser) {
       return localStorage.getItem(key);
     }
@@ -7,7 +8,8 @@ export default {
       return null
     }
   },
-  set(key, value) {
+
+  setarItem(key, value) {
     if (process.browser) {
       localStorage.setItem(key, value);
     }

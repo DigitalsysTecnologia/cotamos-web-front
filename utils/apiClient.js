@@ -18,7 +18,8 @@ function internalRequest(method, url, data) {
   let baseUrl = getUrl();
   let apiKey = '';
 
-  apiKey = localStore.get('userToken')
+  
+  apiKey = localStore.default.obterItem('userToken')
 
   return axios({
     method: method,
