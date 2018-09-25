@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="offset-md-2 col-md-8 col-xs-12 offset-xs-0">
+      <div class="col-md-offset-2 col-md-8 col-xs-12 offset-xs-0">
         <form @submit="doLogin">
           <div class="form-group">
             <input type="text" class="form-control" id="login" placeholder="Login" v-model="user.login">
