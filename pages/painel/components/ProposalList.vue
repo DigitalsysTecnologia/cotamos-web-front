@@ -35,7 +35,7 @@
             </td>
             
             <td>
-              <router-link :to="`/painel/detalhes-proposta/${proposal._id}`" class="btn btn-primary">
+              <router-link :to="`/painel/detalhes-proposta?id=${proposal._id}`" class="btn btn-primary">
                 Ver Detalhes
               </router-link>
             </td>
