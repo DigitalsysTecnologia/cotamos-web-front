@@ -232,8 +232,8 @@ export default {
     "custom-label": CustomLabel
   },
   async beforeMount() {
-    const { proposalId } = this.$route.params;
-    this.existingProposal = await apiClient.getProposalById(proposalId);
+    const { id } = this.$route.query;
+    this.existingProposal = await apiClient.getProposalById(id);
     // apiClient.getServiceArea(this.proposal._id).then(area => {
     //   this.serviceArea = area;
     // });
