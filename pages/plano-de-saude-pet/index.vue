@@ -1,7 +1,5 @@
 <template>
-    <div>
-      <Header />
-
+    <div  class="container-fluid">
       <section class="container-fluid section">
           <div class="row">
             <div class="col-md-offset-2 col-md-8 text-center">
@@ -123,8 +121,6 @@
           </div>
         </div>
       </section>
-
-      <Footer :hideLogo="true"/>
     </div>
 </template>
 

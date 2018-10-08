@@ -1,102 +1,112 @@
 <template>
     <div>
-        <div class="container-fluid">
-          <Header />
-
-          <div class="row" style="display:block;">
-              <div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
-                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                      <ol class="carousel-indicators">
-                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"/>
-                          <li data-target="#carousel-example-generic" data-slide-to="1"/>
-                      </ol>
-
-                      <div class="carousel-inner" role="listbox">
-                          <div class="item active">
-                              <div class="carousel-caption">
-                                  <h1>COTAMOS.COM</h1>
-                                  <h2>VOCÊ, SEGURADO TODOS OS DIAS, O DIA TODO!</h2>
-                              </div>
-                          </div>
-
-                          <div class="item">
-                              <div class="carousel-caption">
-                                  <h1></h1>
-                                  <h2>A COTAMOS.COM é digital, mas a sua proteção é real!</h2>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="row section">
-              <div class="col-xs-12 text-center">
-                  <h2>Conheça Nossos Produtos.</h2>
-              </div>
-
-              <article class="col-xs-12 text-center">
-                  <ProductCard 
-                      name='Plano de Saúde Pet'
-                      description="Segurança para o seu pet, com um plano de saúde sob medida"
-                      callToActionText="Saiba Mais"
-                      callToActionUrl="/plano-de-saude-pet"
-                      imgUrl="/img/icons/health-for-pet.png"
-                  />
-
-                  <ProductCard 
-                      name='Carro Por Assinatura'
-                      description="Seu carro por assinatura, sob medida"
-                      callToActionText="Saiba Mais"
-                      callToActionUrl="/wl/carro-facil"
-                      imgUrl="/img/icons/carro-facil.png"
-                  />
-                  
-                  <ProductCard 
-                      name="Seguro de Vida"
-                      description="Proteção para quem você mais ama"
-                      callToActionText="Saiba Mais"
-                      callToActionUrl="/wl/seguro-vida"
-                      imgUrl="/img/icons/seguro-vida.png"
-                  />
-
-                  <ProductCard 
-                      name="Seguro Viagem"
-                      description="Viaje com tranquilidade"
-                      callToActionText="Saiba Mais"
-                      callToActionUrl="/wl/seguro-viagem"
-                      imgUrl="/img/icons/travel.png"
-                  />
-
-              </article>
-          </div>
-
-          <!-- <div class="row section">
-              <div class="col-xs-12 text-center">
-                  <h2>Seja nosso parceiro</h2>
-              </div>
-
-              <article class="col-xs-12 text-center">
-                  <CallToAction v-on:click="GoToUrl('/parceiros')">Seja nosso parceiro </CallToAction>
-
-              </article>
-          </div> -->
-          
-          <Footer :hideLogo="true"/>
+        <div class="row">
+            <div class="carousel-container">
+            <Carousel :items="carouselItems"/>
+            </div>
         </div>
-  </div>
 
+        <div class="row section">
+            <div class="col-xs-12 text-center">
+                <h2 class="subtitle">Quem Somos</h2>
+            </div>
+
+            <article class="col-sm-6 text-right">
+                <img class="responsive-img img-rounded" src="/img/corretor.jpg" />
+            </article>
+
+            <article class="col-sm-6 text-left article-text">
+            <p> 
+                A Cotamos é uma corretora de seguros, especializada nos ramos de vida e previdência.
+            </p>
+            <p> 
+                Também oferecemos produtos inovadores como o <span class="featured-text">Carro Fácil</span> e <span class="featured-text">Health For Pet</span>.
+            </p>
+            <p> 
+                Conheça abaixo os nossos produtos.
+            </p>
+            </article>
+        </div>
+
+        <div class="row section">
+            <div class="col-xs-12 text-center">
+                <h2 class="subtitle">Conheça Nossos Produtos</h2>
+            </div>
+
+            <article class="col-xs-12 text-center">
+                <ProductCard 
+                    name='Plano de Saúde Pet'
+                    description="Segurança para o seu pet, com um plano de saúde sob medida"
+                    callToActionText="Saiba Mais"
+                    callToActionUrl="/plano-de-saude-pet"
+                    imgUrl="/img/icons/health-for-pet.png"
+                />
+
+                <ProductCard 
+                    name='Carro Por Assinatura'
+                    description="Seu carro por assinatura, sob medida"
+                    callToActionText="Saiba Mais"
+                    callToActionUrl="/wl/carro-facil"
+                    imgUrl="/img/icons/carro-facil.png"
+                />
+                
+                <ProductCard 
+                    name="Seguro de Vida"
+                    description="Proteção para quem você mais ama"
+                    callToActionText="Saiba Mais"
+                    callToActionUrl="/wl/seguro-vida"
+                    imgUrl="/img/icons/seguro-vida.png"
+                />
+
+                <ProductCard 
+                    name="Seguro Viagem"
+                    description="Viaje com tranquilidade"
+                    callToActionText="Saiba Mais"
+                    callToActionUrl="/wl/seguro-viagem"
+                    imgUrl="/img/icons/travel.png"
+                />
+
+            </article>
+        </div>
+    </div>
 </template>
 
 <script>
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
-import ProductCard from "./components/product-card.vue";
+import Carousel from "@/components/Carousel";
+import ProductCard from "@/components/ProductCard";
 import CallToAction from "@/components/CallToAction";
-import ApiClient from "@/utils/apiClient"
+import ApiClient from "@/utils/apiClient";
+
 export default {
   name: "Home",
+  computed: {
+    carouselItems: {
+      get() {
+        return [
+          {
+            title: "Seguro Viagem",
+            subtitle: "Viaje com tranquilidade",
+            image: "/img/carousel-img-2.png",
+            callToAction: {
+              text: "Saiba Mais",
+              targetUrl: "/wl/seguro-viagem"
+            }
+          }
+          //   {
+          //       title: 'Seguro de Vida',
+          //       image: '/img/carousel-img-2.png'
+          //   },
+          //   {
+          //       title: 'Carro Fácil',
+          //       image: '/img/carousel-img-2.png'
+          //   }
+        ];
+      }
+    }
+  },
   methods: {
     GoToUrl(path) {
       this.$router.push({
@@ -109,23 +119,26 @@ export default {
     Header: Header,
     NavBar: NavBar,
     CallToAction: CallToAction,
-    ProductCard: ProductCard
+    ProductCard: ProductCard,
+    Carousel: Carousel
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.article-text {
+  margin-top: 20px;
+}
 .section {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
-.carousel-inner {
-  background: #00d886;
-  background: -moz-linear-gradient(left, #00d886 0%, #00d6e7 100%);
-  background: -webkit-linear-gradient(left, #00d886 0%, #00d6e7 100%);
-  background: linear-gradient(to right, #00d886 0%, #00d6e7 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d886', endColorstr='#00d6e7',GradientType=1 );
+.carousel-container {
+  padding-left: 0px;
+  padding-right: 0px;
+  min-height: 300px;
+}
+.featured-text {
+  font-weight: bold;
 }
 </style>

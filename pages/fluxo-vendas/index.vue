@@ -1,8 +1,5 @@
 <template>
   <div class="container-fluid" >
-    <div class="row">
-      <Header />
-    </div>
 
     <div class="row">
         <div class="container">
@@ -50,9 +47,6 @@
         </div>
     </div>
 
-    <div class="row">
-      <Footer :hideLogo="true"/>
-    </div>
   </div>
 </template>
 

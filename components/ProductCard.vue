@@ -8,7 +8,7 @@
                 <h3 class="card-title">{{name}}</h3>
                 <p class="card-description">{{description}}</p>
             </div>
-            <CallToAction v-on:click="GoToUrl(callToActionUrl)">{{callToActionText}}</CallToAction>
+            <CallToAction :targetUrl="callToActionUrl">{{callToActionText}}</CallToAction>
         </div>
     </section>
 </template>

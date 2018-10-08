@@ -158,8 +158,9 @@ Menu
 }
 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-  background-color: #353535;
+  background-color: #05693f;
   transition: 0.2s;
+  border-radius: 10px;
 }
 
 .navbar-default .navbar-toggle:hover .ib-2 {

@@ -11,6 +11,13 @@ export default {
   name: "CallToAction",
   methods: {
     onClick: function() {
+  
+      if (this.targetUrl) {
+        this.$router.push({
+          path: this.targetUrl
+        });
+      }
+      
       this.$emit("click", null);
     }
   },
@@ -22,7 +29,11 @@ export default {
     textColor: {
       type: String,
       required: false,
-      default:'#fff'
+      default: "#fff"
+    },
+    targetUrl: {
+      type: String,
+      required: false
     }
   }
 };

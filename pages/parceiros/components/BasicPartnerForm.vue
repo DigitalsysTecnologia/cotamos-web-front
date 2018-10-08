@@ -1,6 +1,5 @@
 <template>
-    <div class="row form-container text-left">
-
+    <div class="text-left">
       <div class="row">
         <div class="col-sm-4">
           <FormSelect  label="Pessoa Física ou Jurídica" 
@@ -273,15 +272,5 @@ export default {
 .form-line {
   margin-left: 0px;
 }
-.form-container {
-  border: 2px solid rgb(5, 62, 66);
-  border-radius: 20px;
-  background-color: white;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 1px;
-  margin-right: 1px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+
 </style>
