@@ -5,130 +5,122 @@
         <h3>Vamos obter os dados finais para finalizar sua proposta</h3>
       </div>
 
-      <div class="col-sm-6 col-xs-12">
-          <FormInput  label="Nome"
-                      icon="fa-user" 
-                      id="proposal.proposer.name"
-                      :validationMessage="validation.firstError('proposal.proposer.name')"
-                      v-model.trim="proposal.proposer.name" />
+      <div class="col-sm-8 col-xs-12">
+        <v-text-field 
+                    label="Nome"
+                    id="proposal.proposer.name"
+                    :error="!!(validation.firstError('proposal.proposer.name'))"
+                    :error-messages="validation.firstError('proposal.proposer.name')"
+                    v-model.trim="proposal.proposer.name" />
       </div>
-      <div class="col-sm-6 col-xs-12">
+      <div class="col-sm-4 col-xs-12">
           <DateInput  label="Data de nascimento" 
               icon="fa-calendar" 
               id="proposal.proposer.dateOfBirth"
               type="text"
               :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
               v-model="proposal.proposer.dateOfBirth" />
-          <!-- <FormInput  label="Data de nascimento" 
-                      icon="fa-calendar" 
-                      id="proposal.proposer.dateOfBirth"
-                      mask="##/##/####"
-                      type="text"
-                      :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
-                      v-model="proposal.proposer.dateOfBirth" /> -->
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-6 col-xs-12">
-          <FormInput  label="E-mail" 
-                      icon="fa-at" 
-                      id="proposal.proposer.email"
-                      :validationMessage="validation.firstError('proposal.proposer.email')"
-                      v-model.trim="proposal.proposer.email" />
+      <div class="col-sm-4 col-xs-12">
+          <v-text-field 
+                    label="E-mail" 
+                    id="proposal.proposer.email"
+                    :error="!!(validation.firstError('proposal.proposer.email'))"
+                    :error-messages="validation.firstError('proposal.proposer.email')"
+                    v-model.trim="proposal.proposer.email" />
       </div>
 
-      <div class="col-sm-6 col-xs-12">
-          <FormInput  label="CPF" 
-                      icon="far fa-id-card"
-                      id="proposal.proposer.cpf"
-                      :validationMessage="validation.firstError('proposal.proposer.cpf')"
-                      mask="###.###.###-##"
-                      v-model.trim="proposal.proposer.cpf" />
+      <div class="col-sm-4 col-xs-12">
+            <PhoneInput label="Celular ou Telefone" 
+                        id="proposal.proposer.phones.0"
+                        icon="fa-phone" 
+                        maxLength="15"
+                        :validationMessage="validation.firstError('proposal.proposer.phones.0')"
+                        v-model.trim="proposal.proposer.phones[0]" />                        
+        </div>
+
+      <div class="col-sm-4 col-xs-12">
+          <v-text-field 
+                    label="CPF" 
+                    id="proposal.proposer.cpf"
+                    :error="!!(validation.firstError('proposal.proposer.cpf'))"
+                    :error-messages="validation.firstError('proposal.proposer.cpf')"
+                    mask="###.###.###-##"
+                    v-model.trim="proposal.proposer.cpf"/>
       </div>
     </div>
     
     <div class="row">
       <div class="col-sm-4 col-xs-12">
-          <FormInput  label="CEP" 
-                      icon="fa-map-marker" 
+          <v-text-field
+                      label="CEP" 
+                      prepend-icon="fa-map-marker" 
                       type="text"
                       id="proposal.proposer.homeAddress.zipCode"
-                      :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
+                      :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
+                      :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
                       mask="#####-###"
                       v-model.trim="proposal.proposer.homeAddress.zipCode" />
       </div>
-
-      <div class="col-sm-2 col-xs-12">
-        <FormInput  label="UF" 
-                      icon="fa-map-marker" 
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <v-text-field  label="UF" 
                       id="proposal.proposer.homeAddress.state"
-                      :validationMessage="validation.firstError('proposal.proposer.homeAddress.state')"
+                      :error="!!(validation.firstError('proposal.proposer.homeAddress.state'))"
+                      :error-messages="validation.firstError('proposal.proposer.homeAddress.state')"
                       v-model="proposal.proposer.homeAddress.state" />
       </div>
 
-      <div class="col-sm-6 col-xs-12">
-          <FormInput  label="Cidade" 
-                      icon="fa-map-marker" 
+      <div class="col-sm-8 col-xs-12">
+          <v-text-field
+                      label="Cidade" 
                       id="proposal.proposer.homeAddress.city"
-                      :validationMessage="validation.firstError('proposal.proposer.homeAddress.city')"
+                      :error="!!(validation.firstError('proposal.proposer.homeAddress.city'))"
+                      :error-messages="validation.firstError('proposal.proposer.homeAddress.city')"
                       v-model.trim.lazy="proposal.proposer.homeAddress.city" />
       </div>
     </div>
     
     <div class="row">
       <div class="col-sm-8 col-xs-12">
-          <FormInput  label="Logradouro" 
-                      icon="fa-map-marker" 
+          <v-text-field
+                      label="Logradouro" 
                       id="proposal.proposer.homeAddress.street"
-                      :validationMessage="validation.firstError('proposal.proposer.homeAddress.street')"
+                      :error="!!(validation.firstError('proposal.proposer.homeAddress.street'))"
+                      :error-messages="validation.firstError('proposal.proposer.homeAddress.street')"
                       v-model.trim.lazy="proposal.proposer.homeAddress.street" />
       </div>
 
       <div class="col-sm-4 col-xs-12">
-          <FormInput  label="Número" 
-                      icon="fa-map-marker" 
+          <v-text-field  label="Número" 
                       id="proposal.proposer.homeAddress.number"
-                      :validationMessage="validation.firstError('proposal.proposer.homeAddress.number')"
+                      :error="!!(validation.firstError('proposal.proposer.homeAddress.number'))"
+                      :error-messages="validation.firstError('proposal.proposer.homeAddress.number')"
                       v-model.trim.lazy="proposal.proposer.homeAddress.number" />
       </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-2 col-sm-3 col-xs-12">
-            <FormInput  label="DDD" 
-                        icon="fa-phone" 
-                        type="text"
-                        id="proposal.proposer.phones.0.areaCode"
-                        mask="##"
-                        :validationMessage="validation.firstError('proposal.proposer.phones.0.areaCode')"
-                        v-model.trim="proposal.proposer.phones[0].areaCode" />
-        </div>
-
-        <div class="col-sm-9 col-md-10 col-xs-12 offset-md-1 offset-sm-1">
-            <FormInput label="Celular ou Telefone" 
-                        icon="fa-phone" 
-                        id="proposal.proposer.phones.0.number"
-                        maxLength="15"
-                        :mask="getPhoneMask(proposal.proposer.phones[0].number)"
-                        type="text"
-                        :validationMessage="validation.firstError('proposal.proposer.phones.0.number')"
-                        v-model.trim="proposal.proposer.phones[0].number" />
-        </div>
-    </div>
 
     <div class="row" style="margin-top:30px;">
       <div class="col-xs-12">
         <h3>Dados de seu Pet:</h3>
       </div>
+
       <div class="col-sm-4 col-xs-12">
-          <!-- <FormInput  label="Data de nascimento do Pet" 
-                      icon="fa-calendar" 
-                      id="proposal.petInsuranceData.dateOfBirth"
-                      mask="##/##/####"
-                      type="text"
-                      :validationMessage="validation.firstError('proposal.petInsuranceData.dateOfBirth')"
-                      v-model="proposal.petInsuranceData.dateOfBirth" /> -->
+        <v-text-field 
+            label="Nome do PET"
+            id="proposal.petInsuranceData.name"
+            :error="!!(validation.firstError('proposal.petInsuranceData.name'))"
+            :error-messages="validation.firstError('proposal.petInsuranceData.name')"
+            v-model="proposal.petInsuranceData.name" />
+      </div>
+
+      <div class="col-sm-4 col-xs-12">
           <DateInput label="Data de nascimento do Pet" 
               icon="fa-calendar" 
               id="proposal.petInsuranceData.dateOfBirth"
@@ -137,37 +129,36 @@
               v-model="proposal.petInsuranceData.dateOfBirth" />
 
       </div>
+    </div>
+    <div class="row">
       <div class="col-sm-4 col-xs-12">
-        <FormSelect  label="Sexo do Pet" 
-                    icon="fa-transgender" 
-                    id="proposal.petInsuranceData.gender"
-                    :validationMessage="validation.firstError('proposal.petInsuranceData.gender')"
-                    v-model="proposal.petInsuranceData.gender" 
-                    :options="['Macho', 'Fêmea']" />
+        <v-radio-group v-model="proposal.petInsuranceData.gender" label="Sexo do Pet" 
+              :error="!!(validation.firstError('proposal.petInsuranceData.specie'))"
+              :error-messages="validation.firstError('proposal.petInsuranceData.specie')">
+            <v-radio key="Macho" label="Macho" value="Macho" color="primary" />
+            <v-radio key="Fêmea" label="Fêmea" value="Fêmea" color="primary" />
+          </v-radio-group>
       </div>
       <div class="col-sm-4 col-xs-12">
-        <FormSelect  label="Espécie do Pet" 
-                    icon="fa-paw" 
-                    id="proposal.petInsuranceData.specie"
-                    :validationMessage="validation.firstError('proposal.petInsuranceData.specie')"
-                    v-model="proposal.petInsuranceData.specie" 
-                    :options="['Canino', 'Felino']" />
+        <v-radio-group label="Espécie do Pet" v-model="proposal.petInsuranceData.specie"
+              :error="!!(validation.firstError('proposal.petInsuranceData.specie'))"
+              :error-messages="validation.firstError('proposal.petInsuranceData.specie')">
+            <v-radio key="Canino" label="Canino" value="Canino" color="primary" />
+            <v-radio key="Felino" label="Felino" value="Felino" color="primary"/>
+          </v-radio-group>
       </div>
 
     </div>
 
     <div class="row" style="margin-bottom:15px;">
-      <div class="col-xs-12">
-        <h3>Pagamento:</h3>
-      </div>
-
       <div class="col-sm-4 col-xs-12">
-        <FormSelect  label="Forma de Pagamento" 
-                    icon="fa-money-bill" 
-                    id="proposal.petInsuranceData.paymentMethod"
-                    :validationMessage="validation.firstError('proposal.petInsuranceData.paymentMethod')"
-                    v-model="proposal.petInsuranceData.paymentMethod" 
-                    :options="['Boleto', 'Cartão de Crédito', 'Débito em Conta']" />
+        <v-radio-group label="Forma de Pagamento"  v-model="proposal.petInsuranceData.specie"
+              :error="!!(validation.firstError('proposal.petInsuranceData.paymentMethod'))"
+              :error-messages="validation.firstError('proposal.petInsuranceData.paymentMethod')">
+            <v-radio key="Boleto" label="Boleto" value="Boleto" color="primary" />
+            <v-radio key="Cartão de Crédito" label="Cartão de Crédito" value="Cartão de Crédito" color="primary"/>
+            <v-radio key="Débito em Conta" label="Débito em Conta" value="Débito em Conta" color="primary"/>
+          </v-radio-group>                    
       </div>
     </div>
 
@@ -188,6 +179,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FormInput from "@/components/FormInput";
 import DateInput from "@/components/DateInput";
+import PhoneInput from "@/components/PhoneInput.vue";
 import FormSelect from "@/components/FormSelect.vue";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
@@ -207,7 +199,6 @@ export default {
   },
   watch: {
     "proposal.proposer.homeAddress.zipCode": function(value) {
-      
       this.getAddressByZipCode(value);
     }
   },
@@ -218,28 +209,11 @@ export default {
         .then(address => {
           this.proposal.proposer.homeAddress.street = address.street;
           this.proposal.proposer.homeAddress.complement = address.complement;
-          this.proposal.proposer.homeAddress.neighborhood =
-            address.neighborhood;
+          this.proposal.proposer.homeAddress.neighborhood = address.neighborhood;
           this.proposal.proposer.homeAddress.city = address.city;
           this.proposal.proposer.homeAddress.state = address.state;
         })
-        .catch(err => {
-          
-        });
-    },
-    getPhoneMask: function(phone) {
-      let phoneNumber = null;
-      if (phone) {
-        phoneNumber = phone.replace(/\D/g, "");
-      } else {
-        phoneNumber = "";
-      }
-
-      if (phoneNumber.length <= 8) {
-        return "####-####";
-      } else {
-        return "#####-####";
-      }
+        .catch(err => {});
     },
     submitProposal: async function() {
       const isValid = await this.$validate();
@@ -308,13 +282,13 @@ export default {
       this.proposal.proposer.homeAddress.city = "";
     }
 
-    if (!this.proposal.proposer.dateOfBirth) {
-      this.proposal.proposer.dateOfBirth = "";
-    }
+    // if (!this.proposal.proposer.dateOfBirth) {
+    //   this.proposal.proposer.dateOfBirth = null;
+    // }
 
-    if (!this.proposal.petInsuranceData.dateOfBirth) {
-      this.proposal.petInsuranceData.dateOfBirth = "";
-    }
+    // if (!this.proposal.petInsuranceData.dateOfBirth) {
+    //   this.proposal.petInsuranceData.dateOfBirth = null;
+    // }
 
     if (!this.proposal.proposer.phones[0].areaCode) {
       this.proposal.proposer.phones[0].areaCode = "";
@@ -337,6 +311,7 @@ export default {
   components: {
     FormInput: FormInput,
     DateInput: DateInput,
+    PhoneInput:PhoneInput,
     FormSelect: FormSelect,
     CallToAction: CallToAction,
     Header: Header,

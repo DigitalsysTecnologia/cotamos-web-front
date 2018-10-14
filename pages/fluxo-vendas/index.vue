@@ -1,68 +1,130 @@
 <template>
-  <div class="container-fluid" >
+  <!-- <v-layout row wrap>
+    <v-flex xs10 offset-xs1>
 
-    <div class="row">
-        <div class="container">
-                <div class="row">
-                    <section class="col-xs-12 formulario-cotacao" style="margin-top:25px;margin-bottom:25px;">
-                        <div class="col-sm-12 col-xs-12 box-cotacao" style="padding-bottom:25px;">
+        <div v-if="isLoading || stepName == 'carregando'">
+            <Loading :messages="loadingMessages" />
+        </div>      
+      
+      <v-stepper v-model="step" vertical v-else>
+        <v-stepper-header>
+          <v-stepper-step :complete="step > 1" step="1">Verificar Disponibilidade</v-stepper-step>
+          <v-divider></v-divider>
+          
+          <v-stepper-step :complete="step > 2" step="2">Escolha de ofertas</v-stepper-step>
+          <v-divider></v-divider>
 
-                          <div v-if="isLoading || stepName == 'carregando'">
-                            <Loading :messages="loadingMessages" />
-                          </div>
+          <v-stepper-step :complete="step > 3" step="3">Cadastro Completo</v-stepper-step>
+          <v-divider></v-divider>
 
-                            <div v-else-if="stepName == 'cadastro_inicial'">
-                              <h3 style="padding-left:5px;">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
-                              <h3 style="padding-left:5px;">Para isso, vamos precisar de algumas informações</h3>
-                              <BasicProposalData :proposal="proposal" v-on:submitProposal="generateBasicProposal" />
-                            </div>
+          <v-stepper-step :complete="step > 4" step="4">Finalização</v-stepper-step>
+          <v-divider></v-divider>
+        </v-stepper-header>
+        
+        <v-layout row wrap>
+          <v-flex md10 offset-md1 mt5>
+            <v-stepper-items>
+              
+              <v-stepper-content step="1">
+                <h3 class="subtitle">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
+                <BasicProposalData :proposal="proposal" v-on:submitProposal="generateBasicProposal" />
+              </v-stepper-content>
 
-                            <div v-else-if="stepName == 'proposta_negada'">
-                              <DeniedProposal :proposal="proposal" v-on:previousStep="backToBasicProposalForm" v-on:nextStep="finishProposal" :loading="loading"  />
-                            </div>
-                            
+              <v-stepper-content step="2">
+                <Offers :proposal="proposal" v-on:selectPlan="selectPlan"  />
+              </v-stepper-content>
 
-                            <div v-else-if="stepName == 'ofertas'">
-                              <Offers :proposal="proposal" v-on:selectPlan="selectPlan"  />
-                            </div>
-                            
-                            
-                            <div  v-else-if="stepName == 'cadastro_completo'">
-                              <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" />
-                            </div>                            
-                            
-                            
-                            <div v-else-if="stepName == 'finalizacao'">
-                              <Finish  :loading="loading"  />
-                            </div>                            
-                            
-                            
-                            <div v-else-if="stepName == 'aguardando_disponibilidade'">
-                              <WaitingForAvailability   />
-                            </div>                            
-                            
-                        </div>
-                    </section>
-            </div>
-        </div>
-    </div>
+              <v-stepper-content step="3">
+                <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" />
+              </v-stepper-content>
 
-  </div>
+              <v-stepper-content step="3">
+                <div v-if="stepName == 'finalizacao'">
+                  <Finish  :loading="loading"  />
+                </div>                            
+          
+                <div v-else-if="stepName == 'aguardando_disponibilidade'">
+                  <WaitingForAvailability   />
+                </div>
+              </v-stepper-content>
+
+            </v-stepper-items>
+          </v-flex>
+        </v-layout>
+      </v-stepper>
+    </v-flex>
+  </v-layout> -->
+
+    <v-layout row wrap>
+    <v-flex sm10 offset-sm1 xs12>
+      <v-stepper v-model="step">
+        <v-stepper-header>
+
+          <v-stepper-step :complete="step > 1" step="1">Verificar Disponibilidade</v-stepper-step>
+          <v-divider></v-divider>
+          
+          <v-stepper-step :complete="step > 2" step="2">Escolha de ofertas</v-stepper-step>
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="step > 3" step="3">Cadastro Completo</v-stepper-step>
+          <v-divider></v-divider>
+
+          <v-stepper-step :complete="step > 4" step="4">Finalização</v-stepper-step>
+          <v-divider></v-divider>
+
+        </v-stepper-header>
+        <v-layout row wrap>
+          
+          <v-flex md10 offset-md1 v-if="isLoading" style="padding-top:30px;">
+            <div v-if="isLoading || stepName == 'carregando'">
+              <Loading :messages="loadingMessages" />
+            </div> 
+          </v-flex>
+
+          <v-flex md10 offset-md1 v-else>
+            <v-stepper-items>
+              <v-stepper-content step="1" v-if="step==1">
+                <h3 class="subtitle">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
+                <BasicProposalData :proposal="proposal" v-on:submitProposal="generateBasicProposal" />
+              </v-stepper-content>
+              
+              <v-stepper-content step="2" v-if="step==2">
+                <Offers :proposal="proposal" v-on:selectPlan="selectPlan"  />
+              </v-stepper-content>
+              
+              <v-stepper-content step="3" v-if="step==3">
+                <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading"/>
+              </v-stepper-content>
+
+              <v-stepper-content step="4" v-if="step==4">
+                <div v-if="stepName == 'finalizacao'">
+                  <Finish  :loading="loading"  />
+                </div>                            
+          
+                <div v-else-if="stepName == 'aguardando_disponibilidade'">
+                  <WaitingForAvailability   />
+                </div>
+              </v-stepper-content>
+            </v-stepper-items>
+          </v-flex>
+        </v-layout>
+       </v-stepper>
+    </v-flex>
+  </v-layout>
+
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import BasicProposalData from "@/components/forms/BasicPetInsuranceData";
+import BasicProposalData from "@/components/Forms/BasicPetInsuranceData";
 import DeniedProposal from "./components/DeniedProposal";
 import Offers from "./components/Offers";
 import Loading from "@/components/Loading";
 import FullProposalData from "./components/FullProposalData";
 import Finish from "./components/Finish";
 import WaitingForAvailability from "./components/WaitingForAvailability";
-import factory from "../../utils/factory";
+import factory from "@/utils/factory";
 import apiClientProvider from "@/utils/apiClient";
-import utils from "../../utils/index";
+import utils from "@/utils/index";
 let router = null;
 
 export default {
@@ -107,6 +169,32 @@ export default {
         }
       }
     },
+    step: {
+      get() {
+        if (!this.stepName) {
+          return 1;
+        }
+
+        switch (this.stepName) {
+          case "cadastro_inicial":
+            return 1;
+
+          case "ofertas":
+            return 2;
+
+          case "cadastro_completo":
+            return 3;
+
+          case "finalizacao":
+          case "aguardando_disponibilidade":
+          case "proposta_negada":
+            return 4;
+        }
+      },
+      set(newValue) {
+        console.log('newValue', newValue)
+      }
+    },
     isLoading: {
       get() {
         return this.loading;
@@ -114,12 +202,19 @@ export default {
     },
     loadingMessages: {
       get() {
-        return this.loadingMessage;
+        return (
+          this.loadingMessage || [
+            "Carregando...",
+            "Aguarde um instante por favor..."
+          ]
+        );
       }
     }
   },
   methods: {
     selectPlan: async function(plan) {
+
+      console.log('this.existingProposal', this.existingProposal)
       this.existingProposal.petInsuranceData.selectedPlan = {
         code: plan.code
       };
@@ -129,7 +224,6 @@ export default {
       this.existingProposal.state = 2;
     },
     generateBasicProposal: async function(proposal) {
-      
       console.log("proposal", proposal);
 
       router.push({
@@ -201,8 +295,6 @@ export default {
     this.loading = false;
   },
   components: {
-    Header: Header,
-    Footer: Footer,
     Loading: Loading,
     BasicProposalData: BasicProposalData,
     DeniedProposal: DeniedProposal,

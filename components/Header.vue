@@ -31,46 +31,28 @@
               </div>
           </nav>
         </div>
-        <!-- Modal -->
-  <div class="modal fade" id="contactModal" role="dialog">
-    <div class="modal-dialog">
+        <Modal id="contactModal" title="Nossos Canais de Comunicação" :closeButton="true">
+            <div>
+                <p>Para entrar em contato conosco, utilize um dos seguintes canais:</p>
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 style="color:rgb(5, 93, 59);">Nossos Canais de Comunicação</h4>
-        </div>
-        <div class="modal-body">
-          <p>
-          Para entrar em contato conosco, utilize um dos seguintes canais:
-
-          <ul style="margin-top:10px;">
-            <li>
-              <span>Telefone: <i class="fab fa-whatsapp-square"/> (11) 3297-3864</span>
-            </li>
-            <li>
-              <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94728-3937</span>
-            </li>
-            <li>
-              <span>E-mail: <i class="fas fa-envelope-square"/> contato@cotamos.com</span>
-            </li>
-          </ul>
-        </p>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal" style="color:rgb(5, 93, 59);">
-              <span class="glyphicon glyphicon-remove"></span> 
-              Fechar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div> 
+                <ul style="margin-top:10px;">
+                  <li>
+                    <span>Telefone: <i class="fab fa-whatsapp-square"/> (11) 3297-3864</span>
+                  </li>
+                  <li>
+                    <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94728-3937</span>
+                  </li>
+                  <li>
+                    <span>E-mail: <i class="fas fa-envelope-square"/> contato@cotamos.com</span>
+                  </li>
+                </ul>
+              </div>
+        </Modal>
     </div>
 </template>
 
 <script>
+import Modal from "@/components/Modal"
 export default {
   name: "Header",
   data() {
@@ -81,6 +63,9 @@ export default {
       type: Array,
       required: false
     }
+  },
+  components: {
+    Modal:Modal
   }
 };
 </script>

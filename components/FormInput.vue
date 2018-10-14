@@ -1,6 +1,6 @@
 <template>
-    <div :class="{'form-group': true, 'error': validationMessage}">
-        <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
+    <!-- <div :class="{'form-group': true, 'error': validationMessage}"> -->
+        <!-- <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
         <div class="input-group">
             <div :class="['input-group-addon', {'disabled-group-addon': disabled}]" >
                 <i :class="`fa ${icon}`" aria-hidden="true" v-if="icon"/>
@@ -18,8 +18,20 @@
                     :value="value"
                     />
         </div>
-        <div class="message"> {{ validationMessage  }}</div>
-    </div>
+        <div class="message"> {{ validationMessage  }}</div> -->
+
+        <v-text-field 
+        :label="label"
+        :id="id"
+        :error="!!(validationMessage)"
+        :error-messages="validationMessage"
+        ref="inputValue"
+        :mask="mask"
+        :prepend-icon="icon"
+        />
+    <!-- </div> -->
+
+
 </template>
 
 <script>
@@ -85,6 +97,14 @@ export default {
     return {};
   },
   computed: {
+    computedValue: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.value = value;
+      }
+    },
     computedMaxLength: {
       get() {
         return maxLength || "";
@@ -92,6 +112,11 @@ export default {
     }
   },
   methods: {
+    testMethod(newValue) {
+      if (this.value != newValue) {
+        this.value = newValue;
+      }
+    },
     maskString(mask, value, truncate) {
       if (!mask) {
         return value;

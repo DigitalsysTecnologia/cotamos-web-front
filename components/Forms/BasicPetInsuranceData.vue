@@ -6,51 +6,52 @@
 
     <div class="row form-container text-left" v-else>
       <div class="col-xs-12 col-sm-12">
-        <FormInput label="Seu Nome"
-                   icon="fa-user" 
+        <v-text-field 
+                   label="Seu Nome"
                    id="proposal.proposer.name"
-                   :validationMessage="validation.firstError('proposal.proposer.name')"
-                   v-model="proposal.proposer.name"/>
+                   :error="!!(validation.firstError('proposal.proposer.name'))"
+                   :error-messages="validation.firstError('proposal.proposer.name')"
+                   v-model="proposal.proposer.name" />
       </div>
 
       <div class="col-xs-12 col-sm-12">
-        <FormInput label="Nome do seu pet"
-                    icon="fa-paw" 
-                    id="proposal.petInsuranceData.name"
-                    :validationMessage="validation.firstError('proposal.petInsuranceData.name')"
-                    v-model="proposal.petInsuranceData.name"/>
+        <v-text-field 
+            label="Nome do PET"
+            id="proposal.petInsuranceData.name"
+            :error="!!(validation.firstError('proposal.petInsuranceData.name'))"
+            :error-messages="validation.firstError('proposal.petInsuranceData.name')"
+            v-model="proposal.petInsuranceData.name" />
       </div>
       
       <div class="col-sm-6 col-xs-12">
-        <FormInput label="Idade do pet (em anos)" 
-                    icon="fa-hourglass " 
-                    id="proposal.petInsuranceData.age"
-                    mask="##"
-                    :validationMessage="validation.firstError('proposal.petInsuranceData.age')"
-                    v-model="proposal.petInsuranceData.age"/>
+        <v-text-field
+            label="Idade do pet (em anos)" 
+            id="proposal.petInsuranceData.age"
+            type="number"
+            :error="!!(validation.firstError('proposal.petInsuranceData.age'))"
+            :error-messages="validation.firstError('proposal.petInsuranceData.age')"
+            v-model="proposal.petInsuranceData.age" />
       </div>
 
       <div class="col-sm-6 col-xs-12">
-        <FormInput  label="CEP da sua residência"
-                    icon="fa-map-marker" 
-                    type="text"
+        <v-text-field  label="CEP da sua residência"
                     id="proposal.proposer.homeAddress.zipCode"
-                    :validationMessage="validation.firstError('proposal.proposer.homeAddress.zipCode')"
+                    :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
+                    :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
                     mask="#####-###"
                     v-model.trim="proposal.proposer.homeAddress.zipCode" />
       </div>
 
       <div class="col-sm-12 col-xs-12">
-        <FormInput  label="E-mail" 
-                    icon="fa-at" 
+        <v-text-field  label="E-mail" 
                     id="proposal.proposer.email"
-                    :validationMessage="validation.firstError('proposal.proposer.email')"
+                    :error="!!(validation.firstError('proposal.proposer.email'))"
+                    :error-messages="validation.firstError('proposal.proposer.email')"
                     v-model.trim="proposal.proposer.email" />
       </div>
 
       <div class="col-xs-12">
         <PhoneInput label="Celular ou Telefone" 
-                    icon="fa-phone" 
                     id="proposal.proposer.phones.0"
                     maxLength="15"
                     :validationMessage="validation.firstError('proposal.proposer.phones.0')"
@@ -69,7 +70,6 @@
 
 <script>
 import Loading from "@/components/Loading";
-import FormInput from "@/components/FormInput";
 import DateInput from "@/components/DateInput";
 import FormSelect from "@/components/FormSelect";
 import PhoneInput from "@/components/PhoneInput.vue";
@@ -155,7 +155,6 @@ export default {
     "proposal.proposer.email": value => validator.validateEmail(value)
   },
   components: {
-    FormInput: FormInput,
     PhoneInput: PhoneInput,
     DateInput: DateInput,
     FormSelect: FormSelect,

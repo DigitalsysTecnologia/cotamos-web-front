@@ -87,6 +87,10 @@ class ApiClient {
     return internalPost('partner', partner);
   }
 
+  updatePartner(partner) {
+    return internalPut('partner', partner);
+  }
+
   getProposalById(proposalId) {
     return internalGet(`proposal/get/${proposalId}`);
   }
@@ -101,7 +105,6 @@ class ApiClient {
       password: password
     }
     const result = await internalPost(urljoin('user', 'login'), payload);
-    console.log('result', result)
     localStore.userToken = result.token
 
     return internalPost(urljoin('user', 'login'), payload);

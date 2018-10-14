@@ -1,13 +1,15 @@
 <template>
-          <FormInput  :label="label" 
-                      :icon="icon" 
-                      :id="id"
-                      mask="##/##/####"
-                      maxLength=10
-                      type="text"
-                      @input="updateValue()"
-                      :validationMessage="validation.firstError('dateInputValue') || validationMessage"
-                      v-model="dateInputValue" />
+  <v-text-field  :label="label" 
+              :icon="icon" 
+              :id="id"
+              mask="##/##/####"
+              :return-masked-value="true"
+              maxLength=10
+              type="text"
+              @input="updateValue()"
+              :error="!!(validation.firstError('dateInputValue') || validationMessage)"
+              :error-messages="validation.firstError('dateInputValue') || validationMessage"
+              v-model="dateInputValue" />
 </template>
 
 <script>

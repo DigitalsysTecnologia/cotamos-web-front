@@ -34,10 +34,14 @@
       <section class="container-fluid section">
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
-            <h2 class="subtitle">FAÇA UMA COTAÇÃO ON-LINE</h2>
-            <div class="form-container">
-              <BasicForm v-on:submitProposal="submitProposal"/>
-            </div>
+            <v-card :raised="true" :tile="true">
+               <v-card-title primary-title>
+                 <v-layout align-center justify-center row fill-height>
+                  <h2 class="subtitle">FAÇA UMA COTAÇÃO ON-LINE</h2>
+                  </v-layout>
+               </v-card-title>
+                <BasicForm v-on:submitProposal="submitProposal"/>
+              </v-card>
           </div>
         </div>
       </section>        
@@ -128,7 +132,7 @@
 import Loading from "@/components/Loading";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import BasicForm from "@/components/forms/BasicPetInsuranceData";
+import BasicForm from "@/components/Forms/BasicPetInsuranceData";
 import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
@@ -212,7 +216,7 @@ h3 {
 
 .form-container {
   border: 2px solid rgb(5, 62, 66);
-  border-radius: 20px; 
+  border-radius: 5px; 
   background-color: white; 
 }
 </style>getLandingQueryParams

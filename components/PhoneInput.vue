@@ -1,14 +1,16 @@
 <template>
-  <FormInput :label="label" 
-             :icon="icon" 
-             :id="id"
-             :mask="getFullPhoneMask(phoneValue)"
-             :maxLength="maxLength || '15'"
-             type="text"
-             @input="updateValue()"
-             ref="input"
-             :validationMessage="validation.firstError('phoneValue') || validationMessage"
-             v-model="phoneValue" />
+  <v-text-field :label="label" 
+                :prepend-icon="icon" 
+                :id="id"
+                :mask="getFullPhoneMask(phoneValue)"
+                :maxLength="maxLength || '15'"
+                type="text"
+                @input="updateValue()"
+                ref="input"
+                :validationMessage="validation.firstError('phoneValue') || validationMessage"
+                :error="!!(validation.firstError('phoneValue') || validationMessage)"
+                :error-messages="validation.firstError('phoneValue') || validationMessage"
+                v-model="phoneValue" />
 </template>
 
 <script>
@@ -104,7 +106,7 @@ export default {
         phoneNumber = "";
       }
 
-      if (phoneNumber.length <= 10) {
+      if (phoneNumber.length <= 9) {
         return "(##) ####-####";
       } else {
         return "(##) #####-####";

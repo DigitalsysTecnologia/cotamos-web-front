@@ -2,7 +2,15 @@
     <div>
         <div class="row">
             <div class="carousel-container">
-            <Carousel :items="carouselItems"/>
+              <no-ssr>
+              <v-carousel hide-delimiters hide-controls>
+                <v-carousel-item
+                  v-for="(item,i) in carouselItems"
+                  :key="i"
+                  :src="item.src"
+                ></v-carousel-item>
+              </v-carousel>
+              </no-ssr>
             </div>
         </div>
 
@@ -21,9 +29,6 @@
             </p>
             <p> 
                 Também oferecemos produtos inovadores como o <span class="featured-text">Carro Fácil</span> e <span class="featured-text">Health For Pet</span>.
-            </p>
-            <p> 
-                Conheça abaixo os nossos produtos.
             </p>
             </article>
         </div>
@@ -75,7 +80,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
-import Carousel from "@/components/Carousel";
 import ProductCard from "@/components/ProductCard";
 import CallToAction from "@/components/CallToAction";
 import ApiClient from "@/utils/apiClient";
@@ -87,22 +91,8 @@ export default {
       get() {
         return [
           {
-            title: "Seguro Viagem",
-            subtitle: "Viaje com tranquilidade",
-            image: "/img/carousel-img-2.png",
-            callToAction: {
-              text: "Saiba Mais",
-              targetUrl: "/wl/seguro-viagem"
-            }
+            src: "/img/carousel-img-2.png",
           }
-          //   {
-          //       title: 'Seguro de Vida',
-          //       image: '/img/carousel-img-2.png'
-          //   },
-          //   {
-          //       title: 'Carro Fácil',
-          //       image: '/img/carousel-img-2.png'
-          //   }
         ];
       }
     }
@@ -119,8 +109,7 @@ export default {
     Header: Header,
     NavBar: NavBar,
     CallToAction: CallToAction,
-    ProductCard: ProductCard,
-    Carousel: Carousel
+    ProductCard: ProductCard
   }
 };
 </script>

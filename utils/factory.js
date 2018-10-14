@@ -2,14 +2,14 @@ export default {
     generateEmptyProposal: () => {
         return {
             proposer: {
-                dateOfBirth: "",
+                dateOfBirth: null,
                 name: "",
                 email: "",
                 homeAddress: {
                     zipCode: "",
                     state: "",
                     city: "",
-                    number:""
+                    number: ""
                 },
                 phones: {
                     0: {
@@ -25,7 +25,24 @@ export default {
                 petType: "",
                 gender: ""
             },
-            state:0
+            state: 0
         }
+    },
+    getBankList: () => {
+        return [
+            { value: '001', text: 'Banco do Brasil S.A.' },
+            { value: '341', text: 'Banco Itaú S.A.' },
+            { value: '033', text: 'Banco Santander (Brasil) S.A.' },
+            { value: '356', text: 'Banco Real S.A. (antigo)' },
+            { value: '652', text: 'Itaú Unibanco Holding S.A.' },
+            { value: '237', text: 'Banco Bradesco S.A.' },
+            { value: '745', text: 'Banco Citibank S.A.' },
+            { value: '399', text: 'HSBC Bank Brasil S.A.' },
+            { value: '104', text: 'Caixa Econômica Federal' },
+            { value: '389', text: 'Banco Mercantil do Brasil S.A.' },
+            { value: '453', text: 'Banco Rural S.A.' },
+            { value: '422', text: 'Banco Safra S.A.' },
+            { value: '633', text: 'Banco Rendimento S.A.' },
+        ]
     }
 }

@@ -1,209 +1,16 @@
 <template>
-  <div style="overflow-x:hidden;">
-    <div class="row">
-      <div class="col-xs-12 carousel-container">
-        <h3 style="margin-top:20px;" class="text-center">Suas Ofertas Disponíveis </h3>
-                    
-        <div class="plan-card" v-for="plan in availablePlans" :key="plan.logo" v-if="paymentMethod">
-            <div class="row">
-              <div class="col-md-2 text-center">
-                  <img class="img-responsive center-block" :src="plan.logo" width="43" height="41" />
-                  <p :style="{color: plan.color, marginTop: '10px'}" class="hidden-xs hidden-sm">{{plan.name}}</p>
-              </div>
-              <div class="col-md-10">
-                  <p :style="{color: plan.color}" class="text-center hidden-md hidden-lg">{{plan.name}}</p>
-                  <p>{{plan.description}}</p>
-              </div>
-            </div>
-            
-            <div class="row">
+  <div>
+    <v-layout justify-top>
+      <v-container fluid grid-list-md>
+        <v-layout row wrap>
+          <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm6 lg4>
+            <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan"/>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-layout>
 
-              <div class="col-sm-4 col-xs-12 text-center" v-if="plan.code != 'pet_senior'">
-                <div class="col-xs-12">
-                  <span class="card-subtitle">
-                    Cobertura
-                  </span>
-                  
-                    <div class="progress" style="margin-bottom:15px;margin-top:10px;">
-                      <div class="progress-bar" :style="{
-                          'backgroundColor': getCoverageProgressBarByPlan(plan).backgroundColor, 
-                          'width': `${getCoverageProgressBarByPlan(plan).width}%`,
-                          'color': 'black' }" 
-                      role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                        {{ getCoverageProgressBarByPlan(plan).text}}
-                      </div>
-                    </div>
-                  
-                  <p>
-                    <button class="btn btn-primary" href="#" v-on:click="showCoverageModal(plan)">Ver Detalhes</button>
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-sm-4 col-xs-12 text-center health-network-container" v-if="plan.code != 'pet_senior'">
-                <p>
-                  <span class="card-subtitle">Rede Credenciada</span>
-                  <span class="card-places-near">{{places.length}}</span>
-                  <span class="card-info"> clínicas próximas</span>
-                </p>
-                <button class="btn btn-primary" v-on:click="showNetworkModal(plan)" style="margin-top:10px;">Ver Clínicas</button>
-              </div>
-
-              <div class="col-sm-4 col-xs-12 text-center" :class="{'col-sm-offset-4' : (plan.code == 'pet_senior')}" style="margin-top:20px;">
-                <span class="card-subtitle">
-                  Preços
-                </span>
-                <div class="col-sm-offset-2 col-sm-12 text-left">
-                <span>
-                  <span class="card-featured-info"> {{formatCurrency(plan.value.bankSlip)}} </span>  (Boleto Bancário)
-                  <br />
-                  <span class="card-featured-info"> {{formatCurrency(plan.value.creditCard)}} </span> (Cartão de Crédito)
-                  <br />
-                  <span class="card-featured-info"> {{formatCurrency(plan.value.automaticDebit)}} </span> (Débito Automático)
-                </span>
-                </div>
-              </div>                     
-
-            </div>
-
-            <div class="row">
-              <div class="col-sm-4 col-xs-12 text-center" style="margin-top:30px;">
-                <CallToAction v-on:click="selectPlan(plan)" textColor="#2f2f2f"> Quero contratar</CallToAction>
-                </div>
-            </div>
-
-        </div>
-        
-        <!-- CoverageModal -->
-        <div class="modal" id="coverageModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title card-subtitle text-center">Coberturas</h4>
-              </div>
-
-              <!-- Modal body -->
-              <div class="modal-body" style="max-height: 200px;overflow-x: hidden;overflow-y: scroll;">
-                
-                <div v-for="(item) in currentPlanCoverage" :key="JSON.stringify(item)">
-                  
-                  <p v-if="coverageContainsPlan(item)">
-                    <i class="fas fa-check" style="color:green;"/>
-                    <span style="font-weight:bold;">{{item.name}}</span>
-                  </p>
-
-                  <p v-else>
-                    <i class="fas fa-times" style="color:red;"/>
-                    <span style="color:gray;">{{item.name}}</span>
-                  </p>
-                </div>
-                
-              </div>
-
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        
-        <!-- NetworkModal -->
-        <div class="modal" id="networkModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title card-subtitle text-center">Clínicas Próximas a Você</h4>
-              </div>
-              
-              <!-- Modal body -->
-              <div class="modal-body" style="max-height: 200px;overflow-x: hidden;overflow-y: scroll;">
-
-                <div v-for="(map, idx) in places" :key="idx">
-                  <div class="place-card">
-                    <p>
-                      <span style="font-weight: bold;"> Nome: </span> 
-                      <span> {{map.name}}</span>
-                      <br/>
-
-                      <span style="font-weight: bold;"> Endereço: </span> 
-                      <span v-if="map.neighborhood">{{formatAddress(map)}} </span>
-                      <br/>
-
-                      <span style="font-weight: bold;"> Telefone: </span> 
-                      <span v-if="map.neighborhood">{{formatPhone(formatPhone)}} </span>
-                      <br/>                      
-
-                      <span style="font-weight: bold;"> Distância: </span> 
-                      <span> {{formatDistance(map.distance)}} </span>
-                      <br/>
-                      
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        
-        <!-- ConfirmModal -->
-        <div class="modal" id="confirmModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title card-subtitle text-center">Obrigado</h4>
-              </div>
-              
-              <!-- Modal body -->
-              <div class="modal-body" style="overflow-x: hidden;overflow-y: scroll;">
-                 <h3>Sua proposta foi enviada com sucesso</h3>
-                  <p>
-                    Em breve seu pet já estará com o plano de saúde. </p>
-                  <p>
-                    Entraremos em contato para confirmar seus dados e agendar a primeira consulta de seu pet.
-                  </p>
-                  <p>Você receberá um link por e-mail para efetuar o primeiro pagamento.</p>
-                  <p>
-                    Caso tenha alguma dúvida, você pode entrar em contato conosco através de:
-
-                    <ul style="margin-top:10px;">
-                      <li>
-                        <span>Telefone: <i class="fab fa-whatsapp-square"/> (11) 3297-3864</span>
-                      </li>
-                      <li>
-                        <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94783-1054</span>
-                      </li>
-                      <li>
-                        <span>E-mail: <i class="fas fa-envelope-square"/> contato@cotamos.com</span>
-                      </li>
-                    </ul>
-                  </p>
-                  <p>
-                    Muito Obrigado - Equipe Cotamos
-                  </p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    
-  </div>
+  </div>  
 </template>
 
 <script>
@@ -215,6 +22,7 @@ import NavBar from "@/components/NavBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Loading from "@/components/Loading";
+import OfferItem from "./OfferItem"
 
 export default {
   name: "InsuranceOffers",
@@ -224,7 +32,7 @@ export default {
       planCoverage: [],
       currentPlan: null,
       serviceArea: null,
-      loading: true
+      loading: true,
     };
   },
   props: {
@@ -360,7 +168,6 @@ export default {
       }
     }
   },
-
   async beforeMount() {
     if (this.proposal.petInsuranceData.age <= 8) {
       this.serviceArea = await apiClientProvider.getServiceArea(
@@ -376,7 +183,8 @@ export default {
     CallToAction: CallToAction,
     Header: Header,
     Footer: Footer,
-    Loading: Loading
+    Loading: Loading,
+    OfferItem:OfferItem
   }
 };
 </script>
@@ -448,5 +256,211 @@ export default {
     padding-right: 50px;
   }
 } */
+
+/*
+    <div style="overflow-x:hidden;">
+      <div class="row">
+        <div class="col-xs-12 carousel-container">
+          <h3 style="margin-top:20px;" class="text-center">Suas Ofertas Disponíveis </h3>
+                      
+          <div class="plan-card" v-for="plan in availablePlans" :key="plan.logo" v-if="paymentMethod">
+              <div class="row">
+                <div class="col-md-2 text-center">
+                    <img class="img-responsive center-block" :src="plan.logo" width="43" height="41" />
+                    <p :style="{color: plan.color, marginTop: '10px'}" class="hidden-xs hidden-sm">{{plan.name}}</p>
+                </div>
+                <div class="col-md-10">
+                    <p :style="{color: plan.color}" class="text-center hidden-md hidden-lg">{{plan.name}}</p>
+                    <p>{{plan.description}}</p>
+                </div>
+              </div>
+              
+              <div class="row">
+
+                <div class="col-sm-4 col-xs-12 text-center" v-if="plan.code != 'pet_senior'">
+                  <div class="col-xs-12">
+                    <span class="card-subtitle">
+                      Cobertura
+                    </span>
+                    
+                      <div class="progress" style="margin-bottom:15px;margin-top:10px;">
+                        <div class="progress-bar" :style="{
+                            'backgroundColor': getCoverageProgressBarByPlan(plan).backgroundColor, 
+                            'width': `${getCoverageProgressBarByPlan(plan).width}%`,
+                            'color': 'black' }" 
+                        role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                          {{ getCoverageProgressBarByPlan(plan).text}}
+                        </div>
+                      </div>
+                    
+                    <p>
+                      <button class="btn btn-primary" href="#" v-on:click="showCoverageModal(plan)">Ver Detalhes</button>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-sm-4 col-xs-12 text-center health-network-container" v-if="plan.code != 'pet_senior'">
+                  <p>
+                    <span class="card-subtitle">Rede Credenciada</span>
+                    <span class="card-places-near">{{places.length}}</span>
+                    <span class="card-info"> clínicas próximas</span>
+                  </p>
+                  <button class="btn btn-primary" v-on:click="showNetworkModal(plan)" style="margin-top:10px;">Ver Clínicas</button>
+                </div>
+
+                <div class="col-sm-4 col-xs-12 text-center" :class="{'col-sm-offset-4' : (plan.code == 'pet_senior')}" style="margin-top:20px;">
+                  <span class="card-subtitle">
+                    Preços
+                  </span>
+                  <div class="col-sm-offset-2 col-sm-12 text-left">
+                  <span>
+                    <span class="card-featured-info"> {{formatCurrency(plan.value.bankSlip)}} </span>  (Boleto Bancário)
+                    <br />
+                    <span class="card-featured-info"> {{formatCurrency(plan.value.creditCard)}} </span> (Cartão de Crédito)
+                    <br />
+                    <span class="card-featured-info"> {{formatCurrency(plan.value.automaticDebit)}} </span> (Débito Automático)
+                  </span>
+                  </div>
+                </div>                     
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4 col-xs-12 text-center" style="margin-top:30px;">
+                  <CallToAction v-on:click="selectPlan(plan)" textColor="#2f2f2f"> Quero contratar</CallToAction>
+                  </div>
+              </div>
+
+          </div>
+
+          <!-- CoverageModal -->
+          <div class="modal" id="coverageModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title card-subtitle text-center">Coberturas</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" style="max-height: 200px;overflow-x: hidden;overflow-y: scroll;">
+                  
+                  <div v-for="(item) in currentPlanCoverage" :key="JSON.stringify(item)">
+                    
+                    <p v-if="coverageContainsPlan(item)">
+                      <i class="fas fa-check" style="color:green;"/>
+                      <span style="font-weight:bold;">{{item.name}}</span>
+                    </p>
+
+                    <p v-else>
+                      <i class="fas fa-times" style="color:red;"/>
+                      <span style="color:gray;">{{item.name}}</span>
+                    </p>
+                  </div>
+                  
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          <!-- NetworkModal -->
+          <div class="modal" id="networkModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title card-subtitle text-center">Clínicas Próximas a Você</h4>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body" style="max-height: 200px;overflow-x: hidden;overflow-y: scroll;">
+
+                  <div v-for="(map, idx) in places" :key="idx">
+                    <div class="place-card">
+                      <p>
+                        <span style="font-weight: bold;"> Nome: </span> 
+                        <span> {{map.name}}</span>
+                        <br/>
+
+                        <span style="font-weight: bold;"> Endereço: </span> 
+                        <span v-if="map.neighborhood">{{formatAddress(map)}} </span>
+                        <br/>
+
+                        <span style="font-weight: bold;"> Telefone: </span> 
+                        <span v-if="map.neighborhood">{{formatPhone(formatPhone)}} </span>
+                        <br/>                      
+
+                        <span style="font-weight: bold;"> Distância: </span> 
+                        <span> {{formatDistance(map.distance)}} </span>
+                        <br/>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+          <!-- ConfirmModal -->
+          <div class="modal" id="confirmModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title card-subtitle text-center">Obrigado</h4>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body" style="overflow-x: hidden;overflow-y: scroll;">
+                  <h3>Sua proposta foi enviada com sucesso</h3>
+                    <p>
+                      Em breve seu pet já estará com o plano de saúde. </p>
+                    <p>
+                      Entraremos em contato para confirmar seus dados e agendar a primeira consulta de seu pet.
+                    </p>
+                    <p>Você receberá um link por e-mail para efetuar o primeiro pagamento.</p>
+                    <p>
+                      Caso tenha alguma dúvida, você pode entrar em contato conosco através de:
+
+                      <ul style="margin-top:10px;">
+                        <li>
+                          <span>Telefone: <i class="fab fa-whatsapp-square"/> (11) 3297-3864</span>
+                        </li>
+                        <li>
+                          <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94783-1054</span>
+                        </li>
+                        <li>
+                          <span>E-mail: <i class="fas fa-envelope-square"/> contato@cotamos.com</span>
+                        </li>
+                      </ul>
+                    </p>
+                    <p>
+                      Muito Obrigado - Equipe Cotamos
+                    </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+*/
 </style>
 

@@ -2,6 +2,7 @@ import SimpleVueValidation from "simple-vue-validator";
 import moment from "moment";
 const Validator = SimpleVueValidation.Validator;
 const CPF = require("cpf_cnpj").CPF;
+const CNPJ = require("cpf_cnpj").CNPJ;
 
 export default {
     validatePage: async (page) => {
@@ -9,13 +10,13 @@ export default {
 
         // Valida os elementos da página
         result &= await page.$validate()
-        
+
         // Valida os elementos filhos da página
         for (let i = 0; i < page.$children.length; i++) {
             const item = page.$children[i];
             try {
                 result &= await item.$validate()
-            } catch (err) { 
+            } catch (err) {
                 // Caso o elemento tenha validação, um erro irá explodir, nesse caso, ignoramos o problema e vamos ao próximo elemento a ser validado.
             }
         }
@@ -53,6 +54,15 @@ export default {
 
                 return null;
             });
+    },
+    validateTermsAndConditions: (value) => {
+        return Validator.value(value)
+            .required("Campo obrigatório")
+            .custom(function () {
+                if(!value) {
+                    return "Campo obrigatório"
+                }
+            })
     },
     validateDateOfBirth: (value) => {
         return Validator.value(value)
@@ -149,6 +159,10 @@ export default {
                     return "Idade inválida";
                 }
 
+                if (petAge < 0) {
+                    return "Idade inválida";
+                }
+
                 if (petAge >= 13) {
                     return "Idade inválida";
                 }
@@ -159,7 +173,6 @@ export default {
     validatePetAgeRange: (value) => {
         return Validator.value(value)
             .required("Idade é obrigatória.");
-
     },
     validateClientName: (value) => {
         return Validator.value(value)
@@ -170,6 +183,21 @@ export default {
                     return "Por favor, nos informe o seu nome completo.";
                 }
             });
+    },
+    validateBankNumber: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe o seu banco.")
+            .minLength(3, "Por favor, nos informe o seu banco.")
+    },
+    validateBankAccount: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe a conta bancária.")
+            .minLength(4, "Por favor, nos informe a conta bancária.")
+    },
+    validateBankBranch: (value) => {
+        return Validator.value(value)
+            .required("Por favor, nos informe a agência bancária.")
+            .minLength(4, "Por favor, nos informe a agência bancária.")
     },
     validateEmail: (value) => {
         return Validator.value(value)
@@ -313,6 +341,19 @@ export default {
                 }
             });
     },
+    validateCnpj: (value) => {
+        return Validator.value(value)
+            .custom(function () {
+
+                if (!value) {
+                    return "CNPJ é obrigatório";
+                }
+
+                if (!CNPJ.isValid(value)) {
+                    return "CNPJ inválido";
+                }
+            });
+    },
     validateProfession: (value) => {
         return Validator.value(value)
             .custom(function () {
@@ -321,5 +362,8 @@ export default {
                     return "Profissão é obrigatória";
                 }
             });
-    }
+    },
+    validateRequired: (value, msg) => {
+        return Validator.value(value).required(msg);
+    },
 }

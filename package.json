@@ -1,22 +1,16 @@
 {
   "name": "cotamos-front",
   "version": "1.0.0",
+  "private": true,
   "description": "Cotamos Front",
   "author": "Eduardo Andrade <eduardo.andrade@cotamos.com>",
-  "private": true,
   "scripts": {
-    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
-  },
-  "config": {
-    "nuxt": {
-      "host": "0.0.0.0",
-      "port": "3001"
-    }
+    "dev": "nuxt",
+    "generate": "nuxt generate",
+    "precommit": "npm run lint",
+    "start": "nuxt start"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -31,6 +25,7 @@
     "vue-localstorage": "^0.6.2",
     "vue-scrollto": "^2.11.0",
     "vue2-google-maps": "^0.10.2",
+    "vuetify": "^1.2.9",
     "vuex-persist": "^1.5.4",
     "vuex-persistedstate": "^2.5.4"
   },
@@ -39,6 +34,13 @@
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "vue-cli-plugin-vuetify": "^0.2.1"
+  },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3001"
+    }
   }
 }
