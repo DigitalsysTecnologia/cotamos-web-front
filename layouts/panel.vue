@@ -12,6 +12,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import apiClient from "@/utils/apiClient";
 import localStorage from "@/utils/localStorage";
+import Vuetify from "vuetify";
+Vue.use(Vuetify, {
+  theme: {
+    primary: "#00899c",
+    secondary: "#00899c",
+    accent: "#8c9eff",
+    error: "#FF0000"
+  }
+});
+
 
 import SimpleVueValidation from "simple-vue-validator";
 Vue.use(SimpleVueValidation);

@@ -11,12 +11,11 @@
             <input type="password" class="form-control" id="password" placeholder="Senha" v-model="user.password">
           </div>
 
-          <div v-if="this.loading">
-              <span>Carregando...</span>
-          </div>
-          <div v-else>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-          </div>
+          <v-btn  :block="true" 
+                  color="primary" 
+                  @click="doLogin"
+                  :loading="loading"
+                  >Login</v-btn>
 
         </form>
 
@@ -38,7 +37,6 @@ import localStorage from "@/utils/localStorage";
 import { mapState } from 'vuex'
 
 export default {
-  layout: "panel",
   name: "PanelLogin",
   data() {
     return {
@@ -53,16 +51,13 @@ export default {
   async beforeMount() {},
   watch: {
     isLogged(newVal) {
-
       if(newVal === true) {
         const { redirect } = this.$route.query;
         let url = null;
         url = redirect || "/painel/propostas";
 
         this.$router.push({ path: url });
-
-      }
-      
+      }      
     }
   },
   components: {},
@@ -93,6 +88,42 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .alert-danger {
-  margin-top: 15px;
-}
-</style>
+import Vuetify from "vuetify";
+Vue.use(Vuetify, {
+  theme: {
+    primary: "#00899c",
+    secondary: "#00899c",
+    accent: "#8c9eff",
+    error: "#FF0000"
+  }
+});
+
+import Vuetify from "vuetify";
+Vue.use(Vuetify, {
+  theme: {
+    primary: "#00899c",
+    secondary: "#00899c",
+    accent: "#8c9eff",
+    error: "#FF0000"
+  }
+});
+
+import Vuetify from "vuetify";
+Vue.use(Vuetify, {
+  theme: {
+    primary: "#00899c",
+    secondary: "#00899c",
+    accent: "#8c9eff",
+    error: "#FF0000"
+  }
+});
+
+import Vuetify from "vuetify";
+Vue.use(Vuetify, {
+  theme: {
+    primary: "#00899c",
+    secondary: "#00899c",
+    accent: "#8c9eff",
+    error: "#FF0000"
+  }
+});
