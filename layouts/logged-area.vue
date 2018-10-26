@@ -14,6 +14,16 @@ import apiClient from "@/utils/apiClient";
 import localStorage from "@/utils/localStorage";
 import sessionHelper from "@/utils/sessionHelper";
 
+import Vuetify from "vuetify";
+Vue.use(Vuetify, {
+  theme: {
+    primary: "#00899c",
+    secondary: "#00899c",
+    accent: "#8c9eff",
+    error: "#FF0000"
+  }
+});
+
 import SimpleVueValidation from "simple-vue-validator";
 Vue.use(SimpleVueValidation);
 

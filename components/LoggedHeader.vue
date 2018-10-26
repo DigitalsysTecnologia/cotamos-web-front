@@ -15,6 +15,7 @@
               </div>
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav navbar-right">
+                      <li><a href="/painel/usuarios" class="link-btn">Usuários</a></li>
                       <li><a href="/painel/propostas" class="link-btn">Propostas</a></li>
                       <li><a href="/painel/conta-corrente" class="link-btn">Conta Corrente</a></li>
                       <!-- <li><a href="/" class="link-btn">Entrar</a></li> -->
