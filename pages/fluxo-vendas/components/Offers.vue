@@ -1,5 +1,4 @@
 <template>
-  <div>
     <v-layout justify-top>
       <v-container fluid grid-list-md>
         <v-layout row wrap>
@@ -9,8 +8,6 @@
         </v-layout>
       </v-container>
     </v-layout>
-
-  </div>  
 </template>
 
 <script>

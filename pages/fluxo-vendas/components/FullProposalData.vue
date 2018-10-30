@@ -1,177 +1,116 @@
 <template>
-  <div class="container-fluid" >
-    <div class="row" style="margin-top:30px;">
-      <div class="col-sm-12 col-xs-12">
-        <h3>Vamos obter os dados finais para finalizar sua proposta</h3>
-      </div>
+    <v-layout justify-top>
+      <v-container fluid grid-list-md>
+        <v-layout row wrap>
+          <v-flex sm12>
+            <h3 class="subtitle">Vamos obter os dados finais para finalizar sua proposta</h3>
 
-      <div class="col-sm-8 col-xs-12">
-        <v-text-field 
+            <v-text-field 
                     label="Nome"
                     id="proposal.proposer.name"
                     :error="!!(validation.firstError('proposal.proposer.name'))"
                     :error-messages="validation.firstError('proposal.proposer.name')"
                     v-model.trim="proposal.proposer.name" />
-      </div>
-      <div class="col-sm-4 col-xs-12">
-          <DateInput  label="Data de nascimento" 
-              icon="fa-calendar" 
-              id="proposal.proposer.dateOfBirth"
-              type="text"
-              :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
-              v-model="proposal.proposer.dateOfBirth" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-4 col-xs-12">
-          <v-text-field 
+            <DateInput  label="Data de nascimento" 
+                icon="fa-calendar" 
+                id="proposal.proposer.dateOfBirth"
+                type="text"
+                :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
+                v-model="proposal.proposer.dateOfBirth" />
+            <v-text-field 
                     label="E-mail" 
                     id="proposal.proposer.email"
                     :error="!!(validation.firstError('proposal.proposer.email'))"
                     :error-messages="validation.firstError('proposal.proposer.email')"
                     v-model.trim="proposal.proposer.email" />
-      </div>
-
-      <div class="col-sm-4 col-xs-12">
             <PhoneInput label="Celular ou Telefone" 
                         id="proposal.proposer.phones.0"
-                        icon="fa-phone" 
                         maxLength="15"
                         :validationMessage="validation.firstError('proposal.proposer.phones.0')"
                         v-model.trim="proposal.proposer.phones[0]" />                        
-        </div>
-
-      <div class="col-sm-4 col-xs-12">
-          <v-text-field 
+            <v-text-field 
                     label="CPF" 
                     id="proposal.proposer.cpf"
                     :error="!!(validation.firstError('proposal.proposer.cpf'))"
                     :error-messages="validation.firstError('proposal.proposer.cpf')"
                     mask="###.###.###-##"
                     v-model.trim="proposal.proposer.cpf"/>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-sm-4 col-xs-12">
-          <v-text-field
+            <v-text-field
                       label="CEP" 
-                      prepend-icon="fa-map-marker" 
                       type="text"
                       id="proposal.proposer.homeAddress.zipCode"
                       :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
                       :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
                       mask="#####-###"
                       v-model.trim="proposal.proposer.homeAddress.zipCode" />
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-sm-4 col-xs-12">
-        <v-text-field  label="UF" 
+            <v-text-field  label="UF" 
                       id="proposal.proposer.homeAddress.state"
                       :error="!!(validation.firstError('proposal.proposer.homeAddress.state'))"
                       :error-messages="validation.firstError('proposal.proposer.homeAddress.state')"
                       v-model="proposal.proposer.homeAddress.state" />
-      </div>
-
-      <div class="col-sm-8 col-xs-12">
-          <v-text-field
+            <v-text-field
                       label="Cidade" 
                       id="proposal.proposer.homeAddress.city"
                       :error="!!(validation.firstError('proposal.proposer.homeAddress.city'))"
                       :error-messages="validation.firstError('proposal.proposer.homeAddress.city')"
                       v-model.trim.lazy="proposal.proposer.homeAddress.city" />
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-sm-8 col-xs-12">
-          <v-text-field
+            <v-text-field
                       label="Logradouro" 
                       id="proposal.proposer.homeAddress.street"
                       :error="!!(validation.firstError('proposal.proposer.homeAddress.street'))"
                       :error-messages="validation.firstError('proposal.proposer.homeAddress.street')"
                       v-model.trim.lazy="proposal.proposer.homeAddress.street" />
-      </div>
-
-      <div class="col-sm-4 col-xs-12">
-          <v-text-field  label="Número" 
+            <v-text-field  label="Número" 
                       id="proposal.proposer.homeAddress.number"
                       :error="!!(validation.firstError('proposal.proposer.homeAddress.number'))"
                       :error-messages="validation.firstError('proposal.proposer.homeAddress.number')"
                       v-model.trim.lazy="proposal.proposer.homeAddress.number" />
-      </div>
-    </div>
-
-
-    <div class="row" style="margin-top:30px;">
-      <div class="col-xs-12">
-        <h3>Dados de seu Pet:</h3>
-      </div>
-
-      <div class="col-sm-4 col-xs-12">
-        <v-text-field 
-            label="Nome do PET"
-            id="proposal.petInsuranceData.name"
-            :error="!!(validation.firstError('proposal.petInsuranceData.name'))"
-            :error-messages="validation.firstError('proposal.petInsuranceData.name')"
-            v-model="proposal.petInsuranceData.name" />
-      </div>
-
-      <div class="col-sm-4 col-xs-12">
+            <h3 class="subtitle">Dados de seu Pet:</h3>
+            <v-text-field 
+                      label="Nome do PET"
+                      id="proposal.petInsuranceData.name"
+                      :error="!!(validation.firstError('proposal.petInsuranceData.name'))"
+                      :error-messages="validation.firstError('proposal.petInsuranceData.name')"
+                      v-model="proposal.petInsuranceData.name" />
           <DateInput label="Data de nascimento do Pet" 
-              icon="fa-calendar" 
-              id="proposal.petInsuranceData.dateOfBirth"
-              type="text"
-              :validationMessage="validation.firstError('proposal.petInsuranceData.dateOfBirth')"
-              v-model="proposal.petInsuranceData.dateOfBirth" />
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4 col-xs-12">
-        <v-radio-group v-model="proposal.petInsuranceData.gender" label="Sexo do Pet" 
-              :error="!!(validation.firstError('proposal.petInsuranceData.specie'))"
-              :error-messages="validation.firstError('proposal.petInsuranceData.specie')">
-            <v-radio key="Macho" label="Macho" value="Macho" color="primary" />
-            <v-radio key="Fêmea" label="Fêmea" value="Fêmea" color="primary" />
+                      icon="fa-calendar" 
+                      id="proposal.petInsuranceData.dateOfBirth"
+                      type="text"
+                      :validationMessage="validation.firstError('proposal.petInsuranceData.dateOfBirth')"
+                      v-model="proposal.petInsuranceData.dateOfBirth" />
+          <v-radio-group v-model="proposal.petInsuranceData.gender" label="Sexo do Pet" 
+                    :error="!!(validation.firstError('proposal.petInsuranceData.specie'))"
+                    :error-messages="validation.firstError('proposal.petInsuranceData.specie')">
+                    <v-radio key="Macho" label="Macho" value="Macho" color="primary" />
+                    <v-radio key="Fêmea" label="Fêmea" value="Fêmea" color="primary" />
           </v-radio-group>
-      </div>
-      <div class="col-sm-4 col-xs-12">
-        <v-radio-group label="Espécie do Pet" v-model="proposal.petInsuranceData.specie"
-              :error="!!(validation.firstError('proposal.petInsuranceData.specie'))"
-              :error-messages="validation.firstError('proposal.petInsuranceData.specie')">
-            <v-radio key="Canino" label="Canino" value="Canino" color="primary" />
-            <v-radio key="Felino" label="Felino" value="Felino" color="primary"/>
+          <v-radio-group label="Espécie do Pet" v-model="proposal.petInsuranceData.specie"
+                    :error="!!(validation.firstError('proposal.petInsuranceData.specie'))"
+                    :error-messages="validation.firstError('proposal.petInsuranceData.specie')">
+                  <v-radio key="Canino" label="Canino" value="Canino" color="primary" />
+                  <v-radio key="Felino" label="Felino" value="Felino" color="primary"/>
           </v-radio-group>
-      </div>
-
-    </div>
-
-    <div class="row" style="margin-bottom:15px;">
-      <div class="col-sm-4 col-xs-12">
-        <v-radio-group label="Forma de Pagamento"  v-model="proposal.petInsuranceData.specie"
-              :error="!!(validation.firstError('proposal.petInsuranceData.paymentMethod'))"
-              :error-messages="validation.firstError('proposal.petInsuranceData.paymentMethod')">
-            <v-radio key="Boleto" label="Boleto" value="Boleto" color="primary" />
-            <v-radio key="Cartão de Crédito" label="Cartão de Crédito" value="Cartão de Crédito" color="primary"/>
-            <v-radio key="Débito em Conta" label="Débito em Conta" value="Débito em Conta" color="primary"/>
+          <v-radio-group label="Forma de Pagamento"  v-model="proposal.petInsuranceData.specie"
+                  :error="!!(validation.firstError('proposal.petInsuranceData.paymentMethod'))"
+                  :error-messages="validation.firstError('proposal.petInsuranceData.paymentMethod')">
+                <v-radio key="Boleto" label="Boleto" value="Boleto" color="primary" />
+                <v-radio key="Cartão de Crédito" label="Cartão de Crédito" value="Cartão de Crédito" color="primary"/>
+                <v-radio key="Débito em Conta" label="Débito em Conta" value="Débito em Conta" color="primary"/>
           </v-radio-group>                    
-      </div>
-    </div>
-
-    <div class="row" style="margin-bottom:15px;">
-      <div class="col-xs-12">
         <CallToAction className='pull-right' v-on:click="submitProposal">
           <i class="fas fa-flag-checkered"/>
           &nbsp; Finalizar
         </CallToAction>
-      </div>
-    </div>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-layout>
 
-  </div>
+  <!-- <div class="container-fluid" >
+
+
+
+  </div> -->
 </template>
 
 <script>
@@ -209,7 +148,8 @@ export default {
         .then(address => {
           this.proposal.proposer.homeAddress.street = address.street;
           this.proposal.proposer.homeAddress.complement = address.complement;
-          this.proposal.proposer.homeAddress.neighborhood = address.neighborhood;
+          this.proposal.proposer.homeAddress.neighborhood =
+            address.neighborhood;
           this.proposal.proposer.homeAddress.city = address.city;
           this.proposal.proposer.homeAddress.state = address.state;
         })
@@ -311,7 +251,7 @@ export default {
   components: {
     FormInput: FormInput,
     DateInput: DateInput,
-    PhoneInput:PhoneInput,
+    PhoneInput: PhoneInput,
     FormSelect: FormSelect,
     CallToAction: CallToAction,
     Header: Header,
