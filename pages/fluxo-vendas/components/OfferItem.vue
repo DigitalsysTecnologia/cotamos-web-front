@@ -36,9 +36,17 @@
             </span>
 
           </v-card-text>
-           <p class="text-right price">
+           <!-- <p class="text-right price">
                A partir de <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span>/mês
-             </p>
+             </p> -->
+
+           <p class="text-left price">
+              <span class="price-value">{{ formatCurrency(card.value.automaticDebit) }}</span> no débito automático
+              <br/>
+              <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span> no cartão de crédito
+              <br/>
+              <span class="price-value">{{ formatCurrency(card.value.bankSlip) }}</span> no boleto
+           </p>
 
         </v-flex>
       </v-layout>
@@ -48,14 +56,14 @@
       <v-btn flat @click="selectPlan" color="primary">Contratar</v-btn>
       <v-spacer></v-spacer>
       <v-btn flat @click="show = !show" >
-        <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon> Detalhes
+        <v-icon>{{ !show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon> Detalhes
       </v-btn>
     </v-card-actions>
     <v-slide-y-transition>
       <v-card-text v-show="show">
         <p> {{ card.description }} </p>
-        <v-btn color="primary" @click="networkModalDialog = true">Ver Rede Credenciada</v-btn>
-        <v-btn color="primary" @click="serviceListModalDialog = true">Ver Cobertura</v-btn>
+        <v-btn color="primary" :block="true" @click="networkModalDialog = true">Ver Rede Credenciada</v-btn>
+        <v-btn color="primary" :block="true" @click="serviceListModalDialog = true">Ver Cobertura</v-btn>
       </v-card-text>
     </v-slide-y-transition>    
 

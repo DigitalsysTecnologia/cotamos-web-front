@@ -105,12 +105,6 @@
         </v-layout>
       </v-container>
     </v-layout>
-
-  <!-- <div class="container-fluid" >
-
-
-
-  </div> -->
 </template>
 
 <script>
