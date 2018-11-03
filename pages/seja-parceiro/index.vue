@@ -10,36 +10,22 @@
 
     <div class="row section">
       <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Preencha o seu cadastro</h2>
-        <p>
-1. O que significa essa parceria?
-R:  É uma forma de ampliar o ganho financeiro da agência, realizando a atividade de realizar as contratações de seguro viagem pela página da corretora COTAMOS.com.
+        <h2 class="subtitle">Dúvidas frequentes</h2>
 
-2. Quais as seguradoras que a corretora COTAMOS.com é credenciada?
-R:  A corretora COTAMOS.com está credenciada nas maiores seguradoras do país, e caso necessidade poderá solicitar credenciamento a qualquer seguradora do país. Possui plataforma tecnológica integrada com as principais seguradoras para oferecer em tempo real via web, todas as cotações disponíveis de seguros dos clientes.
+        <v-expansion-panel>
+          <v-expansion-panel-content
+            v-for="(faq,i) in faqs" :key="i" >
+            <div slot="header">
+              {{i + 1}}. <span style="font-weight:bold;">{{ faq.question }}</span>
+            </div>
+            <v-card>
+              <v-card-text>
+                {{ faq.answer }}
+              </v-card-text>
+            </v-card>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
 
-3. Como faço o meu cadastro como PARCEIRO?
-R:  Na página da corretora COTAMOS.com existe um botão “SEJA PARCEIRO”.
-Efetuando o cadastro, receberá um login e senha para efetuar as cotações de seguro dos clientes.
-
-4. Como saber quais as regras envolvidas nesta parceria?
-R:  Para ter acesso à página do PARCEIRO, é necessário ler e assinar virtualmente o contrato de parceria, no qual constarão todas as regras que caberão a cada parte.
-
-5. Como cotar o melhor seguro para meu cliente?
-R:  Ao cadastrar algumas informações básicas e necessárias do seu cliente na plataforma tecnológica, o sistema fará em tempo real uma cotação nas melhores seguradoras e apresentará as opções de preços para escolha do cliente. 
-	
-6. Como recebo minha comissão?
-R:  Através de deposito automático feitos na conta bancária cadastrada na página do Parceiro. O parceiro receberá 50% da primeira parcela paga pelo cliente e mais 50% do valor pago pelo cliente na segunda parcela.   Exemplo: Um plano que custa R$400,00. O parceiro receberá como comissão: R$200,00 no primeiro pagamento quitado pelo cliente, e mais R$200,00 no segundo pagamento pago pelo cliente.
- 
-7. Quando recebo minha comissão?
-R:  Tão logo liberadas pela Seguradora, são automaticamente remetidas para a conta corrente cadastrada.
-
-8. Como posso acompanhar os seguros contratados pela minha empresa?
-R:  Na página do PARCEIRO, existe painel de propostas do PARCEIRO, que constará todos os seguros e seus respectivos status para acompanhamento.
-
-9. O cliente pode comprar esse seguro mais barato por outra corretora?
-R:  Não. Os preços são tabelados, sob a fiscalização da SUSEP. 
-        </p>
 
         <CallToAction targetUrl="/fluxo-parceria"> Seja Um Parceiro Cotamos </CallToAction>
 
@@ -59,10 +45,122 @@ import apiClientProvider from "@/utils/apiClient";
 
 export default {
   name: "Home",
+  data() {
+    return {
+      faqs: [
+        {
+          question: "Esse plano de saúde para pet (cão e gato) é idôneo?",
+          answer:
+            "Sim, 100% idôneo. Esse plano é assegurado pelo Porto Seguro heath4pet. Uma das maiores seguradoras do Brasil."
+        },
+        {
+          question: "Como cadastro meu canil/gatil como parceiro?",
+          answer:
+            "No e-mail enviado pela Cotamos.com existe um link que o levará para a página do Parceiro. Lá poderá efetuar o cadastro de seu canil/gatil e receber um login de acesso para efetuar os cadastramentos das indicações. "
+        },
+        {
+          question: "Como saber quais os planos de saúde eu negociei?",
+          answer:
+            "Na página do Parceiro também será possível acompanhar o conta corrente de suas comissões."
+        },
+        {
+          question: "Como recebo minha comissão?",
+          answer:
+            "Através de deposito automático feitos na conta bancária cadastrada na página do Parceiro. O parceiro receberá 50% da primeira parcela paga pelo cliente e mais 50% do valor pago pelo cliente na segunda parcela.   Exemplo: Um plano que custa R$100,00. O parceiro receberá como comissão: R$50,00 no primeiro pagamento quitado pelo cliente, e mais R$50,00 no segundo pagamento pago pelo cliente."
+        },
+        {
+          question: "Quando recebo minha comissão?",
+          answer:
+            "Tão logo liberadas pela Seguradora, são automaticamente remetidas para a conta corrente cadastrada."
+        },
+        {
+          question:
+            "Como recebo minhas comissões caso eu não possua conta bancária?",
+          answer:
+            "Caso não possua conta corrente, poderá ser providenciado um cartão pré pago, ao qual vincularemos as comissões do parceiro, as quais poderão ser acompanhadas no conta corrente das comissões do parceiro normalmente."
+        },
+        {
+          question:
+            "O cliente pode comprar esse plano de saúde mais barato na heath4pet?",
+          answer:
+            "Não. Os preços são tabelados para qualquer corretora. No entanto, os valores de comissões são apenas para os parceiros da Cotamos.com."
+        },
+        {
+          question:
+            "Qualquer cliente do meu canil pode comprar esse plano de saúde pet?",
+          answer:
+            "Sim. Porém, caso compre em outro corretor. Obviamente, a Cotamos.com não recebe e nem paga comissão."
+        },
+        {
+          question: "Qualquer animal é aceito nesse plano de saúde pet?",
+          answer:
+            "Não. Os planos de saúde são apenas para PETs ( Cães e Gatos). Portanto, NÃO atende outras espécies de animais, inclusive silvestres."
+        },
+        {
+          question: "Qualquer cão/gato é aceito nesse plano de saúde pet?",
+          answer:
+            "Não, os pets são aceitos após a consulta inicial, que ocorre logo após o cadastramento realizado no sistema pelo parceiro."
+        },
+        {
+          question:
+            "Que vantagem esses planos de saúde oferece a um cão com mais de 9 anos de idade?",
+          answer:
+            "Vacinas anuais (carência de 180 dias) e a primeira visita Pet Home para 		colocação do microchip. O PET SENIOR não cobre os atendimentos veterinários, 	mas oferece preços especiais para consultas no Pet Home."
+        },
+        {
+          question:
+            "Um cão/gato já segurado poderá perder a garantia do plano quando fizer 9 anos?",
+          answer:
+            "Não, desde que em dia com os pagamentos do plano é garantido para toda a vida do pet."
+        },
+        {
+          question: "Quem adquirir mais de um plano tem desconto?",
+          answer: "A partir de 5 vidas os valores são diferenciados. "
+        },
+        {
+          question: "Parcelar no cartão de crédito tem desconto?",
+          answer:
+            "Sim, e para débito em conta, também possui descontos nas mensalidades."
+        },
+        {
+          question:
+            "Como criador, tenho desconto se adquirir um plano de saúde para meus pets?",
+          answer:
+            "Criadores também possuem condições especiais desde que plano coletivo."
+        },
+        {
+          question:
+            "O porte do animal influência no valor do plano de heath4pet?",
+          answer:
+            "Não, os planos são classificados pela idade do animal e não pelo porte. "
+        },
+        {
+          question: "O plano de saúde de um cão e um gato tem preço diferente?",
+          answer:
+            "Não, as classificações dos planos são para pet que compreende cães e gatos."
+        },
+        {
+          question:
+            "Pessoa jurídica pode adquirir esse plano de saúde para seu(s) pet(s)?",
+          answer: "Sim, normalmente."
+        },
+        {
+          question:
+            "Cão ou gato com doenças preexistentes são aceitos no plano de saúde heath4pet?",
+          answer:
+            "Os pets serão aceitos somente após avaliação da consulta de admissão pelo 	médico veterinário."
+        },
+        {
+          question:
+            "Que garantia a corretora de seguros ’COTAMOS.com‘ oferece?",
+          answer:
+            "A garantia é da própria Seguradora Porto Seguro, empresa renomada e respeitada no ramo Brasil no ramo de seguros. A Cotamos.com é uma corretora credenciada pela Porto Seguro e certificada pela SUSEP."
+        }
+      ]
+    };
+  },
   methods: {
-    createPartner: async function(partner) {
-      
-    }
+    createPartner: async function(partner) {}
   },
   components: {
     Footer: Footer,

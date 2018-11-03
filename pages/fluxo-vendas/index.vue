@@ -164,7 +164,7 @@ export default {
       };
 
       await apiClientProvider.updateProposal(this.existingProposal);
-      await apiClientProvider.setNextState(this.existingProposal, 2);
+      await apiClientProvider.setNextState(this.existingProposal, 4);
       this.existingProposal.state = 2;
     },
     generateBasicProposal: async function(proposal) {
@@ -205,7 +205,7 @@ export default {
       ];
       this.loading = true;
       await apiClientProvider.updateProposal(this.existingProposal);
-      await apiClientProvider.setNextState(this.existingProposal, 20);
+      await apiClientProvider.setNextState(this.existingProposal, 2);
       this.existingProposal.state = 20;
       this.loading = false;
     }

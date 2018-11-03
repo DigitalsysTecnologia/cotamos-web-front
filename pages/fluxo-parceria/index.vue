@@ -25,26 +25,20 @@
                 <v-layout>
                   <v-flex md12>
                     <h3>Obrigado por se cadastrar como parceiro Cotamos</h3>
-                   
                     <p>Você receberá um e-mail com seus dados de acesso à plataforma.</p>
-                    <p>
-                      Caso tenha alguma dúvida, você pode entrar em contato conosco através dos seguintes canais:
-
-                      <ul style="margin-top:10px;">
-                        <li>
-                          <span>Telefone: <i class="fab fa-whatsapp-square"/> (11) 3297-3864</span>
-                        </li>
-                        <li>
-                          <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94783-1054</span>
-                        </li>
-                        <li>
-                          <span>E-mail: <i class="fas fa-envelope-square"/> contato@cotamos.com</span>
-                        </li>
-                      </ul>
-                    </p>
-                    <p>
-                      Muito Obrigado - Equipe Cotamos
-                    </p>
+                    <p>Caso tenha alguma dúvida, você pode entrar em contato conosco através dos seguintes canais:</p>
+                    <ul style="margin-top:10px;">
+                      <li>
+                        <span>Telefone: <i class="fab fa-whatsapp-square"/> (11) 3297-3864</span>
+                      </li>
+                      <li>
+                        <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94783-1054</span>
+                      </li>
+                      <li>
+                        <span>E-mail: <i class="fas fa-envelope-square"/> contato@cotamos.com</span>
+                      </li>
+                    </ul>                    
+                    <p>Muito Obrigado - Equipe Cotamos</p>
                   </v-flex>
                 </v-layout>
               </v-stepper-content>
@@ -57,9 +51,9 @@
 </template>
 
 <script>
-import BasicData from "@/components/Forms/PartnerForm/BasicData";
-import BankingData from "@/components/Forms/PartnerForm/BankingData";
-import UserData from "@/components/Forms/PartnerForm/UserData";
+import BasicData from "./components//BasicData";
+import BankingData from "./components/BankingData";
+import UserData from "./components/UserData";
 import apiClientProvider from "@/utils/apiClient";
 
 export default {
@@ -80,9 +74,9 @@ export default {
           }
         ],
         bankingData: {
-          bankNumber: '',
-          branch: '',
-          account: ''
+          bankNumber: "",
+          branch: "",
+          account: ""
         },
         companyAddress: {
           city: "",
@@ -116,8 +110,10 @@ export default {
       this.next();
     },
     createPartner: async function() {
-      const existingPartiner = await apiClientProvider.createPartner(this.partner);
-      this.partner._id = existingPartiner._id 
+      const existingPartiner = await apiClientProvider.createPartner(
+        this.partner
+      );
+      this.partner._id = existingPartiner._id;
 
       this.next();
     },
