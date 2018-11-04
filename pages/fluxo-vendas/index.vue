@@ -1,6 +1,6 @@
 <template>
     <v-layout row wrap>
-    <v-flex sm10 offset-sm1 xs12>
+    <v-flex sm12 xs12>
       <v-stepper v-model="step">
         <v-stepper-header>
 

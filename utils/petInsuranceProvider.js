@@ -362,6 +362,7 @@ export default {
             {
                 logo: "/img/pet-insurance/icon_pet_basic.png",
                 name: "PET BASIC (Ambulatorial)",
+                code: "pet_basic",
                 color: "rgb(241, 218, 0)",
                 description:
                     "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental.",
@@ -370,6 +371,7 @@ export default {
             {
                 logo: "/img/pet-insurance/icon_pet_light.png",
                 name: "PET LIGHT (Ambulatorial)",
+                code: "pet_light",
                 color: "rgb(141, 198, 63)",
                 description:
                     "Enfermidades corriqueiras ou pequenos acidentes podem acontecer a qualquer momento. Nessas horas, contar com um cuidado rápido e qualificado é fundamental. O PET LIGHT cobre consultas, exames laboratoriais, vacinas, procedimentos ambulatoriais, incluindo urgências e emergências.",
@@ -378,6 +380,7 @@ export default {
             {
                 logo: "/img/pet-insurance/icon_pet_plus.png",
                 name: "PET PLUS (Ambulatorial + Hospitalar)",
+                code: "pet_plus",
                 color: "rgb(133, 96, 168)",
                 description:
                     "Riscos maiores demandam mais cuidados. O PET PLUS cobre consultas em clínico geral eletivas, urgência, emergência, exames laboratoriais e internação do seu pet. Pareceres e Consultas de especialistas, exames de Imagem e cirurgias somente são cobertos quando em internação.",
@@ -386,6 +389,7 @@ export default {
             {
                 logo: "/img/pet-insurance/icon_pet_total.png",
                 name: "PET TOTAL (Completo)",
+                code: "pet_total",
                 color: "rgb(247, 148, 29)",
                 description:
                     "Para quem procura tranquilidade, esta é a escolha certa. O PET TOTAL oferece cobertura completa (ambulatorial + hospitalar), dando acesso a todos os serviços e procedimentos disponíveis nos planos PET LIGHT e PET PLUS, além de exames por imagem.",
@@ -394,6 +398,7 @@ export default {
             {
                 logo: "/img/pet-insurance/icon_pet_premium.png",
                 name: "PET PREMIUM (Completo + Reembolso)",
+                code: "pet_premium",
                 color: "rgb(67, 132, 193)",
                 description:
                     "Versatilidade, conveniência e exclusividade. O PET PREMIUM é mais do que completo: prevê todas as coberturas do PET TOTAL e reembolso para serviços realizados fora de nossa rede credenciada.",

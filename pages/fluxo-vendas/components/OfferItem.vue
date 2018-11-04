@@ -3,9 +3,12 @@
     <v-container fill-height fluid pa-2>
       <v-layout align-center row wrap justify-center>
         
-        <v-flex xs2>
-          <v-img :src="card.insurancerLogo" width="43" height="41"/>
+        <v-flex xs12>
+          <v-layout align-center row wrap justify-center>
+            <p class="card-title" style="font-family: Roboto">Porto Seguro</p>
+          </v-layout>
         </v-flex>
+
 
         <v-flex xs2>
           <v-img :src="card.logo" width="43" height="41"/>
@@ -36,17 +39,14 @@
             </span>
 
           </v-card-text>
-           <!-- <p class="text-right price">
-               A partir de <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span>/mês
-             </p> -->
 
-           <p class="text-left price">
+          <p class="text-left price">
               <span class="price-value">{{ formatCurrency(card.value.automaticDebit) }}</span> no débito automático
               <br/>
               <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span> no cartão de crédito
               <br/>
               <span class="price-value">{{ formatCurrency(card.value.bankSlip) }}</span> no boleto
-           </p>
+          </p>
 
         </v-flex>
       </v-layout>

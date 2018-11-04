@@ -17,7 +17,7 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Cotamos - Corretora On-Line' }
+      { name: 'description', content: 'Cotamos - Corretora On-Line' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }
