@@ -1,81 +1,41 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12 class="text-center">
-      <v-data-table :headers="headers" :items="rowItems" hide-actions class="elevation-1" :loading="loading">
+      <v-data-table :headers="headers" :items="rowItems" hide-actions class="elevation-1" :loading="loading" no-data-text="Nenhuma proposta encontrada">
         <template slot="items" slot-scope="props">
-            <td class="text-xs-right">{{ props.item.updatedAt }}</td>
-            <td class="text-xs-right">{{ props.item.product }}</td>
-            <td class="text-xs-left">
-               {{ props.item.name }}
-               <span v-if="props.item.cpf" style="font-size:10px;">
-               <br />
-               CPF: {{ props.item.cpf }}
-               </span>
-               </td>
-            <td class="text-xs-left">
-              {{ props.item.phone }}
-              <span v-if="props.item.email">
-                <br />
-                {{ props.item.email }}
+          <td class="text-xs-left">{{ props.item.updatedAt }}</td>
+          <td class="text-xs-left">
+            {{ props.item.product }}
+            <span v-if="props.item.state" style="font-size:12px;font-weight:bold;">
+              <br />
+              <span>({{ props.item.state }}) </span>
               </span>
-              
+          </td>
+          <td class="text-xs-left">
+              {{ props.item.name }}
+              <span v-if="props.item.cpf" style="font-size:12px;font-weight:bold;">
+              <br />
+              CPF: {{ props.item.cpf }}
+              </span>
               </td>
-            <td class="text-xs-center">
-              <v-btn icon alt="Ver detalhes" color="primary" :to="`/painel/detalhes-proposta?id=${props.item._id}`" :nuxt="true">
-                  <v-icon>visibility</v-icon>
-                </v-btn>
+          <td class="text-xs-left">
+            {{ props.item.phone }}
+            <span v-if="props.item.email">
+              <br />
+              {{ props.item.email }}
+            </span>
+            
             </td>
-</template>
+          <td class="text-xs-center">
+            <v-btn icon alt="Ver detalhes" color="primary" :to="`/painel/detalhes-proposta?id=${props.item._id}`" :nuxt="true">
+                <v-icon>visibility</v-icon>
+              </v-btn>
+          </td>
+        </template>
       </v-data-table>
-      <v-pagination v-model="filterResult.pageIndex" :length="filterResult.pageCount" color="primary" :total-visible="10" style="margin-top:20px;"></v-pagination>
+      <v-pagination v-model="filterResult.pageIndex" :length="filterResult.pageCount" color="primary" :total-visible="10" style="margin-top:20px;" v-if="filterResult.pageCount"></v-pagination>
   </v-flex>
 </v-layout>
-  <!-- <div>
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Data</th>
-            <th>Produto</th>
-            <th>Cliente</th>
-            <th>Contato</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(proposal) in filterResult.proposals" :key="proposal._id">
-            <td class="td-info">
-              <span>
-                      {{ formatDate(proposal.updatedAt) }}
-                    </span>
-            </td>
-  
-            <td class="td-info">
-              <span style="font-weight:bold">{{ translateProduct(proposal.product) }}</span>
-              <span>({{ translateState(proposal.state) }})</span>
-            </td>
-  
-            <td class="td-info">
-              <span>Nome: {{ proposal.proposer.name || "-" }} </span>
-              <span>CPF: {{ proposal.proposer.cpf || "-"}} </span>
-            </td>
-  
-            <td class="td-info">
-              <span> {{ proposal.proposer.email }}</span>
-              <span>{{ formatPhone(proposal.proposer.phones[0]) }}</span>
-            </td>
-  
-            <td>
-              <router-link :to="`/painel/detalhes-proposta?id=${proposal._id}`" class="btn btn-primary">
-                Ver Detalhes
-              </router-link>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -87,22 +47,22 @@
       return {
         headers: [{
             text: 'Data',
-            align: 'center',
+            align: 'left',
             value: 'updatedAt'
           },
           {
-            text: 'Produto',
-            align: 'center',
+            text: 'Produto/Situação',
+            align: 'left',
             value: 'product'
           },
           {
             text: 'Cliente',
-            align: 'center',
+            align: 'left',
             value: 'name'
           },
           {
             text: 'Contato',
-            align: 'center',
+            align: 'left',
             value: 'phone'
           },
           {
@@ -116,6 +76,10 @@
     computed: {
       rowItems: {
         get() {
+          if(!this.filterResult.proposals) {
+            return []
+          }
+
           return this.filterResult.proposals.map(item => {
             return {
               _id: item._id,
