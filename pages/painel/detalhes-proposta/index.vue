@@ -11,7 +11,7 @@
       <v-tab ripple>
         <span style="font-weight:bold;">Ofertas</span>
       </v-tab>
-
+  
       <v-tab-item>
         <v-card flat>
           <v-card-text>
@@ -55,12 +55,20 @@
           </v-card-text>
         </v-card>
       </v-tab-item>
-      
+  
       <v-tab-item>
         <v-card flat>
-          <v-card-text>
+          <v-card-text v-if="places == null">
+            <Loading :messages="['Carregando Rede Referenciada...', 'Aguarde um instante por favor...']" />
+          </v-card-text>
+
+          <v-card-text v-else-if="places.length == 0">
+            <h2 class="subtitle text-center">Não foram encontradas redes referenciadas</h2>
+          </v-card-text>
+  
+          <v-card-text v-else>
             <div class="col-md-12 col-xs-12">
-              <h2>{{ places.length }} clínicas próximas</h2>
+              <h2 class="subtitle text-center">{{ places.length }} clínicas próximas</h2>
             </div>
   
             <table style="text-align:left;">
@@ -81,7 +89,7 @@
           </v-card-text>
         </v-card>
       </v-tab-item>
-
+  
       <v-tab-item>
         <Offers :proposal="proposal" />
       </v-tab-item>
@@ -96,15 +104,26 @@
   import moment from "moment";
   import translator from "@/utils/translator";
   import sessionHelper from "@/utils/sessionHelper";
-  import Offers from "@/pages/fluxo-vendas/components/Offers"
+  import Offers from "@/pages/fluxo-vendas/components/Offers";
+  import Loading from "@/components/Loading"
+  
   export default {
     name: "ProposalDetails",
     data() {
       return {
         existingProposal: null,
         currentTab: 0,
-        serviceArea: {}
+        serviceArea: null
       };
+    },
+    watch: {
+      currentTab: function(tab) {
+        if (tab == 1) {
+          apiClient.getServiceArea(this.proposal._id).then(area => {
+            this.serviceArea = area;
+          });
+        }
+      }
     },
     computed: {
       loading: {
@@ -130,11 +149,11 @@
       },
       places: {
         get() {
-          if (!this.serviceArea || !this.serviceArea.plans) {
-            return [];
+          if (this.serviceArea == null) {
+            return null;
           }
   
-          return this.serviceArea.plans[0].places;
+          return this.serviceArea;
         }
       }
     },
@@ -205,23 +224,21 @@
         const ageInYears = duration.asYears();
   
         return `${dateOfBirth.format("DD/MM/YYYY")} (${Math.floor(
-              ageInYears
-            )} anos)`;
+            ageInYears
+          )} anos)`;
       }
     },
     components: {
       "custom-label": CustomLabel,
       "custom-card": CustomCard,
-      Offers:Offers
+      Offers: Offers,
+      Loading: Loading
     },
     async beforeMount() {
       const {
         id
       } = this.$route.query;
       this.existingProposal = await apiClient.getProposalById(id);
-      apiClient.getServiceArea(this.proposal._id).then(area => {
-        this.serviceArea = area;
-      });
     }
   };
 </script>
