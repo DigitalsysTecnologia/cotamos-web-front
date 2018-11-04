@@ -1,91 +1,42 @@
 <template>
-  <div>
-    <div class="row form-container text-left">
-      <div class="col-xs-12 col-sm-6">
-        <FormInput label="Nome do Cliente"
-                   icon="fa-user" 
-                   id="proposalFilter.proposer.name"
-                   v-model="proposalFilter.proposer.name"/>
-      </div>
-
-      <div class="col-xs-12 col-sm-6">
-        <FormInput label="CPF"
-                   icon="fa-user" 
-                   id="proposalFilter.proposer.cpf"
-                   mask="###.###.###-##"
-                   v-model="proposalFilter.proposer.cpf"/>
-      </div>
-      
-      <div class="col-xs-12 col-sm-6">
-        <FormInput label="E-mail"
-                   icon="fa-at" 
-                   id="proposalFilter.proposer.email"
-                   v-model="proposalFilter.proposer.email"/>
-      </div>
-     
-
-      <div class="col-xs-12">
-        <CallToAction className='pull-left' v-on:click="searchProposals">
-          Buscar Propostas
-        </CallToAction>
-      </div>
-    </div>
-  </div>
+  <v-layout row wrap>
+    <v-flex sm12 xs12>
+      <v-card>
+        <div style="padding:20px;">
+          <v-text-field label="Nome do Cliente" id="proposalFilter.proposer.name" v-model.trim="proposalFilter.proposer.name" />
+          <v-text-field label="CPF do Cliente" mask="###.###.###-##" id="proposalFilter.proposer.cpf" v-model.trim="proposalFilter.proposer.cpf" />
+          <v-text-field label="E-Mail do Cliente" id="proposalFilter.proposer.email" v-model.trim="proposalFilter.proposer.email" />
+          <v-btn color="primary" @click="searchProposals"> Buscar Propostas</v-btn>
+        </div>
+      </v-card>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
-import Loading from "@/components/Loading";
-import FormInput from "@/components/FormInput";
-import DateInput from "@/components/DateInput";
-import FormSelect from "@/components/FormSelect";
-import PhoneInput from "@/components/PhoneInput.vue";
-import validator from "@/utils/validator";
-import CallToAction from "@/components/CallToAction";
-import apiClient from "@/utils/apiClient";
-export default {
-  name: "ProposalFilter",
-  data() {
-    return {
+  import apiClient from "@/utils/apiClient";
+  export default {
+    name: "ProposalFilter",
+    data() {
+      return {}
+    },
+    props: {
       proposalFilter: {
-        proposer: {
-          name: "",
-          cpf: "",
-          email: ""
-        }
+        type: Object,
+        required: true
       }
-    };
-  },
-  methods: {
-    searchProposals: async function() {
-      this.loading = true;
-      
-      this.$emit("loading");
-      const proposals = await apiClient.getProposalsByFilter(this.proposalFilter);
-
-      this.$emit("searchProposals", proposals);
-      this.loading = false;
+    },
+    methods: {
+      searchProposals: async function() {
+        this.$emit("searchProposals", this.proposalFilter);
+      }
+    },
+    components: {
     }
-  },
-  components: {
-    FormInput: FormInput,
-    PhoneInput: PhoneInput,
-    DateInput: DateInput,
-    FormSelect: FormSelect,
-    CallToAction: CallToAction,
-    Loading: Loading
-  }
-};
+  };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.form-line {
-  margin-left: 0px;
-}
-.form-container {
-  margin-left: 1px;
-  margin-right: 1px;
-  padding-top: 10px;
-  padding-bottom: 20px;
-}
+
 </style>
