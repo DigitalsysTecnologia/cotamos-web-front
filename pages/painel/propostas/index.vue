@@ -5,10 +5,13 @@
         <h2 class="subtitle text-center">Painel de Propostas</h2>
       </v-flex>
       <v-flex xs12>
-        <ProposalFilter v-on:searchProposals="searchProposals" :proposalFilter="proposalFilter"/>
+        <v-btn color="primary" :block="true" @click="toggleShowFilter">
+          {{ showFilter ? "Ocultar Filtro de Propostas" : "Exibir Filtro de Propostas" }}
+        </v-btn>
+        <ProposalFilter v-on:searchProposals="searchProposals" :proposalFilter="proposalFilter" v-if="showFilter"/>
       </v-flex>
       <v-flex xs12 mt-4>
-        <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading"/>
+        <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -35,10 +38,14 @@
           pageSize: 5
         },
         proposalFilterResult: null,
+        showFilter: false,
         loading: false
       };
     },
     methods: {
+      toggleShowFilter() {
+        this.showFilter = !this.showFilter;
+      },
       async onChangePagination(pageNumber) {
         this.proposalFilter.pageIndex = pageNumber;
         this.loading = true;
@@ -47,6 +54,7 @@
       },
       async searchProposals(proposalFilter) {
         this.loading = true;
+        this.proposalFilter = proposalFilter;
         this.proposalFilterResult = await apiClient.getProposalsByFilter(this.proposalFilter);
         this.loading = false;
       },
