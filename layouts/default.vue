@@ -49,43 +49,41 @@ import VueScrollTo from "vue-scrollto";
 Vue.use(VueScrollTo);
 
 export default {
+  data() {
+    return {
+      links: []
+    };
+  },
   components: {
     Header: Header,
     Footer: Footer
   },
-  computed: {
-    links: {
-      get() {
-        if (process.browser) {
-          const url = window.location.href;
+  beforeMount() {
+    if (process.browser) {
+      const url = window.location.href;
+      this.links = [];
 
-          if (
-            url.indexOf("/painel") >= 0 &&
-            url.indexOf("/painel/login") == -1
-          ) {
-            return [
-              {
-                url: "/painel/usuarios",
-                text: "Usuários"
-              },
-              {
-                url: "/painel/propostas",
-                text: "Propostas"
-              },
-              {
-                url: "/painel/conta-corrente",
-                text: "Conta Corrente"
-              },
-              {
-                url: "/painel/sair",
-                text: "Sair"
-              }
-            ];
+      if (url.indexOf("/painel") >= 0 && url.indexOf("/painel/login") == -1) {
+        this.links = [
+          {
+            url: "/painel/usuarios",
+            text: "Usuários"
+          },
+          {
+            url: "/painel/propostas",
+            text: "Propostas"
+          },
+          {
+            url: "/painel/conta-corrente",
+            text: "Conta Corrente"
+          },
+          {
+            url: "/painel/sair",
+            text: "Sair"
           }
-        }
-
-        return [];
+        ];
       }
+
     }
   }
 };
