@@ -4,7 +4,7 @@
       {{label}}:
     </label>
     <br v-if="!sameLine"/>
-    <label style="display:inline">
+    <label style="display:inline; font-weight:normal;">
       <span v-if="value">
         {{value}}   
       </span>
@@ -40,5 +40,7 @@ export default {
 <style scoped>
 .box {
   text-align: left;
+  margin-top:5px;
+  margin-bottom:5px;
 }
 </style>

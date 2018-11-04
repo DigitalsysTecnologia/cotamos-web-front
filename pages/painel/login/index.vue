@@ -11,7 +11,7 @@
             <input type="password" class="form-control" id="password" placeholder="Senha" v-model="user.password">
           </div>
 
-          <v-btn :block="true" color="primary" @click="doLogin" :loading="loading">Login</v-btn>
+          <v-btn :block="true" color="primary" @click="doLogin" :loading="loading" type="submit">Login</v-btn>
         </form>
 
         <div class="alert alert-danger" role="alert" v-if="this.errorMessage">
