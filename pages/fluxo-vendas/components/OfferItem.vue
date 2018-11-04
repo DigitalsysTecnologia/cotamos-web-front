@@ -44,7 +44,7 @@
             <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span> /mês
           </p>
   
-          <v-btn color="primary" :block="true" @click="networkModalDialog = true">Ver Rede Credenciada</v-btn>
+          <v-btn color="primary" :block="true" @click="networkModalDialog = true">Ver Rede Referenciada</v-btn>
           <v-btn color="primary" :block="true" @click="serviceListModalDialog = true">Ver Cobertura</v-btn>
           
           <CallToAction className='btn-block' v-on:click="selectPlan">
@@ -69,7 +69,7 @@
     <v-dialog v-model="networkModalDialog" width="500">
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title color="primary" style="background-color: #00d886 !important;font-weight:bold;">
-          Rede Credenciada
+          Rede Referenciada
         </v-card-title>
   
         <v-card-text style="max-height:250px;overflow-y: scroll;overflow-x: hidden;">

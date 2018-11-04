@@ -18,7 +18,6 @@
 import EntryList from "../components/EntryList";
 export default {
   name: "Account",
-  layout: "logged-area",
   data() {
     return {
       entries: []

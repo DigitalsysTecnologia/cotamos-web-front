@@ -34,7 +34,6 @@ import moment from "moment";
 
 export default {
   name: "userList",
-  layout: "logged-area",
   data() {
     return {
       user: {
