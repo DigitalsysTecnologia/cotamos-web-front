@@ -2,18 +2,14 @@
   <v-card>
     <v-container fill-height fluid pa-2>
       <v-layout align-center row wrap justify-center>
-  
         <v-flex xs12>
           <v-layout align-center row wrap justify-center>
             <p class="card-title" style="font-family: Roboto">Porto Seguro</p>
           </v-layout>
         </v-flex>
-  
-  
         <v-flex xs2>
           <v-img :src="card.logo" width="43" height="41" />
         </v-flex>
-  
         <v-flex xs7 offset-xs-1 flexbox justify-end>
           <p class="card-title" style="font-family: Roboto"> Health4Pet - {{ card.name }} </p>
           <div>
@@ -24,33 +20,25 @@
             <v-icon color="rgb(222, 209, 28)">{{ grade >= 5 ? 'fas' : 'far' }} fa-star </v-icon>
           </div>
         </v-flex>
-  
         <v-flex xs12>
           <v-card-text>
-  
             <span style="display:block;">
-              <span class="label-title">Tipo de cobertura: </span>
-              <span class="label-value"> {{ card.coverage }} </span>
+                <span class="label-title">Tipo de cobertura: </span>
+            <span class="label-value"> {{ card.coverage }} </span>
             </span>
-  
             <span style="display:block;margin-top:20px;" v-if="places.length">
-                                      <span class="label-title">Área de Atendimento: </span>
+                                        <span class="label-title">Área de Atendimento: </span>
             <span class="label-value" style="display:block;"> {{ places.length }} clínicas próximas a você </span>
             </span>
-  
           </v-card-text>
-  
           <p class="text-center price">
             <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span> /mês
           </p>
-  
           <v-btn color="primary" :block="true" @click="networkModalDialog = true">Ver Rede Referenciada</v-btn>
           <v-btn color="primary" :block="true" @click="serviceListModalDialog = true">Ver Cobertura</v-btn>
-          
           <CallToAction className='btn-block' v-on:click="selectPlan">
             Contratar
           </CallToAction>
-
         </v-flex>
       </v-layout>
     </v-container>
@@ -75,10 +63,11 @@
         <v-card-text style="max-height:250px;overflow-y: scroll;overflow-x: hidden;">
           <v-list>
             <template v-for="(map,idx) in places">
-      <v-list-tile-content  :key="idx" style="margin-bottom:15px;">
-      <v-list-tile-title> <span style="font-weight: bold;">Nome:</span>  {{map.name}}</v-list-tile-title>
-      <v-list-tile-sub-title> <span style="font-weight: bold;color:black;">Endereço:</span> {{ formatAddress(map) }} </v-list-tile-sub-title>
-      </v-list-tile-content>
+        <v-list-tile-content  :key="idx" style="margin-bottom:15px;">
+        <v-list-tile-title> <span style="font-weight: bold;">Nome:</span>  {{map.name}}</v-list-tile-title>
+        <v-list-tile-sub-title> <span style="font-weight: bold;color:black;">Endereço:</span> {{ formatAddress(map) }} </v-list-tile-sub-title>
+        <v-list-tile-sub-title> <span style="font-weight: bold;color:black;">Distância:</span> {{ formatDistance(map.distance) }} </v-list-tile-sub-title>
+        </v-list-tile-content>
 </template>
           </v-list>
         </v-card-text>
