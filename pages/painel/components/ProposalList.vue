@@ -33,7 +33,7 @@
           </td>
         </template>
       </v-data-table>
-      <v-pagination v-model="filterResult.pageIndex" :length="filterResult.pageCount" color="primary" :total-visible="10" style="margin-top:20px;" v-if="filterResult.pageCount"></v-pagination>
+      <v-pagination v-model="filterResult.pageIndex" :length="filterResult.pageCount" color="primary" :total-visible="5" style="margin-top:20px;" v-if="filterResult.pageCount"></v-pagination>
   </v-flex>
 </v-layout>
 </template>

@@ -12,6 +12,7 @@
 import Loading from "@/components/Loading";
 import sessionHelper from "@/utils/sessionHelper";
 export default {
+  layout: "panel",
   name: "Account",
   mounted() {
     sessionHelper.clearSession();

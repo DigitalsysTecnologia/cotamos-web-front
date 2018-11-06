@@ -1,13 +1,12 @@
 <template>
   <div class="container-fluid">
     <h2 class="subtitle text-center">Detalhes da Proposta</h2>
+    
     <v-tabs v-model="currentTab" color="primary" dark slider-color="white" v-if="proposal" fixed-tabs>
       <v-tab ripple>
         <span style="font-weight:bold;">Dados da Proposta</span>
       </v-tab>
-      <v-tab ripple>
-        <span style="font-weight:bold;">Rede Referenciada</span>
-      </v-tab>
+
       <v-tab ripple>
         <span style="font-weight:bold;">Ofertas</span>
       </v-tab>
@@ -55,41 +54,7 @@
           </v-card-text>
         </v-card>
       </v-tab-item>
-  
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text v-if="places == null">
-            <Loading :messages="['Carregando Rede Referenciada...', 'Aguarde um instante por favor...']" />
-          </v-card-text>
 
-          <v-card-text v-else-if="places.length == 0">
-            <h2 class="subtitle text-center">Não foram encontradas redes referenciadas</h2>
-          </v-card-text>
-  
-          <v-card-text v-else>
-            <div class="col-md-12 col-xs-12">
-              <h2 class="subtitle text-center">{{ places.length }} clínicas próximas</h2>
-            </div>
-  
-            <table style="text-align:left;">
-              <tbody>
-                <tr v-for="(place,idx) in places" :key="idx">
-                  <td>
-                    <p>
-                      <span style="font-weight:bold;">Nome: </span> {{place.name}}
-                      <br />
-                      <span style="font-weight:bold;">Endereço: </span> {{formatAddress(place)}}
-                      <br />
-                      <span style="font-weight:bold;">Distância: </span> {{formatDistance(place.distance)}}
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
-  
       <v-tab-item>
         <Offers :proposal="proposal" />
       </v-tab-item>
@@ -108,22 +73,12 @@
   import Loading from "@/components/Loading"
   
   export default {
+    layout: "panel",
     name: "ProposalDetails",
     data() {
       return {
         existingProposal: null,
-        currentTab: 0,
-        serviceArea: null
-      };
-    },
-    watch: {
-      currentTab: function(tab) {
-        if (tab == 1) {
-          apiClient.getServiceArea(this.proposal._id).then(area => {
-            this.serviceArea = area;
-          });
-        }
-      }
+        currentTab: 0      };
     },
     computed: {
       loading: {

@@ -1,64 +1,52 @@
 <template>
-    <footer class="row footer">
-        <div class="col-xs-12">
-            <img src="/img/logo_branco.png" class="img-responsive center-block" alt="Logotipo" v-if="!hideLogo"/>
-            <p class="footer-line">
-                <a href="">
-                    <i class="fab fa-facebook" aria-hidden="true"/>
-                </a>
-                <a href="https://www.facebook.com/Cotamos-168236910394093"><i class="fab fa fa-google-plus" aria-hidden="true"/></a>
-                <a href="https://www.facebook.com/Cotamos-168236910394093"><i class="fab fa fa-linkedin" aria-hidden="true"/></a>
-                <a href="https://www.facebook.com/Cotamos-168236910394093"><i class="fab fa fa-instagram" aria-hidden="true"/></a>
-                <a href="https://www.facebook.com/Cotamos-168236910394093"><i class="fab fa fa-twitter" aria-hidden="true"/></a>
-            </p>
-            <p class="footer-line">
-                Todos os direitos reservados.
-                </p>
-            <p class="footer-line"> 
-                CNPJ 30.249.014/0001-04
-            </p>
-            <p class="footer-line"> 
-                SUSEP 20.2021328.0
-            </p>
-        </div>
-    </footer>
+    <v-footer height="auto" color="primary lighten-1">
+        <v-layout justify-center row wrap align-center>
+            
+            <v-flex primary lighten-2 text-center white--text xs12>
+                <v-card flat tile class="primary lighten-1 white--text text-xs-center" >
+                    <v-btn v-for="icon in icons" :key="icon.icon" class="mx-3 white--text" icon :href="icon.url">
+                        <v-icon size="24px">{{ icon.icon }}</v-icon>
+                    </v-btn>
+                </v-card>
+            </v-flex>
+            
+
+            <v-flex primary lighten-2 py-3 text-center white--text xs12>
+                <span class="footer-item">CNPJ 30.249.014/0001-04</span>
+                <span class="footer-item">SUSEP 20.2021328.0</span>
+                <span class="footer-item">&copy;2018 — <strong>Cotamos.com</strong></span>
+            </v-flex>
+        </v-layout>
+    </v-footer>
 </template>
 
 <script>
-export default {
-  name: "Footer",
-  data() {
-    return {};
-  },
-  props: {
-    hideLogo: {
-      type: Boolean,
-      default: false,
-      required: false
-    }
-  }
-};
+    export default {
+        name: "Footer",
+        data() {
+            return {
+                icons: [
+                    { icon:'fab fa-facebook', url: 'https://www.facebook.com/cotamoscorretora' },
+                    // { icon:'fab fa-twitter' },
+                    // { icon:'fab fa-google-plus' },
+                    // { icon:'fab fa-linkedin' },
+                    // { icon:'fab fa-instagram' }
+                ]
+            };
+        },
+        props: {
+            hideLogo: {
+                type: Boolean,
+                default: false,
+                required: false
+            }
+        }
+    };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.informacoes-legais {
-  text-align: center;
-  color: #fff;
-  margin: 0px;
-}
-.footer {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    background: #00d886;
-}
-.footer-line {
-    color:white;
-    text-align: center;
-}
-.footer-line a {
-  padding-left: 7px;
-  padding-right: 7px;
-  color: #fff;
-}
+    .footer-item {
+        display: block;
+    }
 </style>

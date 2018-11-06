@@ -23,16 +23,16 @@
         <v-flex xs12>
           <v-card-text>
             <span style="display:block;">
-                <span class="label-title">Tipo de cobertura: </span>
+                  <span class="label-title">Tipo de cobertura: </span>
             <span class="label-value"> {{ card.coverage }} </span>
             </span>
             <span style="display:block;margin-top:20px;" v-if="places.length">
-                                        <span class="label-title">Área de Atendimento: </span>
+                                          <span class="label-title">Área de Atendimento: </span>
             <span class="label-value" style="display:block;"> {{ places.length }} clínicas próximas a você </span>
             </span>
           </v-card-text>
           <p class="text-center price">
-            <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span> /mês
+            <span class="price-value">{{ formatCurrency(card.value.creditCard) }}</span>/mês
           </p>
           <v-btn color="primary" :block="true" @click="networkModalDialog = true">Ver Rede Referenciada</v-btn>
           <v-btn color="primary" :block="true" @click="serviceListModalDialog = true">Ver Cobertura</v-btn>
@@ -52,6 +52,7 @@
       <v-card-text v-show="show">
         <p> {{ card.description }} </p>
       </v-card-text>
+  
     </v-slide-y-transition>
   
     <v-dialog v-model="networkModalDialog" width="500">
@@ -63,11 +64,11 @@
         <v-card-text style="max-height:250px;overflow-y: scroll;overflow-x: hidden;">
           <v-list>
             <template v-for="(map,idx) in places">
-        <v-list-tile-content  :key="idx" style="margin-bottom:15px;">
-        <v-list-tile-title> <span style="font-weight: bold;">Nome:</span>  {{map.name}}</v-list-tile-title>
-        <v-list-tile-sub-title> <span style="font-weight: bold;color:black;">Endereço:</span> {{ formatAddress(map) }} </v-list-tile-sub-title>
-        <v-list-tile-sub-title> <span style="font-weight: bold;color:black;">Distância:</span> {{ formatDistance(map.distance) }} </v-list-tile-sub-title>
-        </v-list-tile-content>
+                <v-list-tile-content  :key="idx" style="margin-bottom:15px;">
+                <v-list-tile-title> <span style="font-weight: bold;">Nome:</span>  {{map.name}}</v-list-tile-title>
+                <v-list-tile-sub-title> <span style="font-weight: bold;color:black;">Endereço:</span> {{ formatAddress(map) }} </v-list-tile-sub-title>
+                <v-list-tile-sub-title> <span style="font-weight: bold;color:black;">Distância:</span> {{ formatDistance(map.distance) }} </v-list-tile-sub-title>
+                </v-list-tile-content>
 </template>
           </v-list>
         </v-card-text>

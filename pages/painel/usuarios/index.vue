@@ -33,6 +33,7 @@ import apiClient from "@/utils/apiClient";
 import moment from "moment";
 
 export default {
+  layout: "panel",
   name: "userList",
   data() {
     return {

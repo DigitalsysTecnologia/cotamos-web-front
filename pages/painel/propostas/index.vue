@@ -24,6 +24,7 @@
   import sessionHelper from "@/utils/sessionHelper";
   import Loading from "@/components/Loading";
   export default {
+    layout: "panel",
     name: "Proposals",
     async mounted() {},
     data() {
