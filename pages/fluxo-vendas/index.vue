@@ -60,7 +60,7 @@
 <script>
   import BasicProposalData from "@/components/Forms/BasicPetInsuranceData";
   import DeniedProposal from "./components/DeniedProposal";
-  import Offers from "./components/Offers";
+  import Offers from "@/components/Offers";
   import Loading from "@/components/Loading";
   import FullProposalData from "./components/FullProposalData";
   import Finish from "./components/Finish";

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  layout: 'blank-layout',
+  layout: "blank",
   name: "LifeInsurance",
   data() {
     return {};

@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "TravelInsurance",
-  layout: "blank-layout",
+  layout: "blank",
   computed: {
     targetUrl: {
       get() {

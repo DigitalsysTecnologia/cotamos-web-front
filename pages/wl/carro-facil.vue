@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  layout: "blank-layout",
+  layout: "blank",
   name: "PortoCarroFacil",
   head: {
     title: "Carro Fácil - Cotamos.com"

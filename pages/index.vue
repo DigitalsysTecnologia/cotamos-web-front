@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="carousel-container">
               <no-ssr>
               <v-carousel hide-delimiters hide-controls>
@@ -12,7 +12,7 @@
               </v-carousel>
               </no-ssr>
             </div>
-        </div>
+        </div> -->
 
         <div class="row section">
             <div class="col-xs-12 text-center">

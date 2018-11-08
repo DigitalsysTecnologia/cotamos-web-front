@@ -69,7 +69,7 @@
   import moment from "moment";
   import translator from "@/utils/translator";
   import sessionHelper from "@/utils/sessionHelper";
-  import Offers from "@/pages/fluxo-vendas/components/Offers";
+  import Offers from "@/components/Offers";
   import Loading from "@/components/Loading"
   
   export default {
@@ -101,16 +101,7 @@
         get() {
           return this.existingProposal;
         }
-      },
-      places: {
-        get() {
-          if (this.serviceArea == null) {
-            return null;
-          }
-  
-          return this.serviceArea;
-        }
-      }
+      }      
     },
     methods: {
       formatAddress(address) {
