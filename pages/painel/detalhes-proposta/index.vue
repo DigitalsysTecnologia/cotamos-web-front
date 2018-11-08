@@ -132,11 +132,6 @@
   
         return result;
       },
-      formatDistance: function(distance) {
-        let result = distance.toFixed(2);
-        result = result.replace(".", ",");
-        return result + " Km";
-      },
       formatDate(value) {
         const date = moment(value);
         return date.format("DD/MM/YYYY HH:mm:ss");
