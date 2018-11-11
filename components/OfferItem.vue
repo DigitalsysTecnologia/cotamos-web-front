@@ -32,7 +32,7 @@
           </p>
           <v-btn color="primary" :block="true" @click="networkModalDialog = true">Ver Rede Referenciada</v-btn>
           <v-btn color="primary" :block="true" @click="serviceListModalDialog = true">Ver Cobertura</v-btn>
-          <CallToAction className='btn-block' v-on:click="selectPlan">
+          <CallToAction className='btn-block' v-on:click="selectPlan" v-if="!isSimulation">
             Contratar
           </CallToAction>
         </v-flex>
@@ -192,6 +192,11 @@ export default {
     card: {
       type: Object,
       required: true
+    },
+    isSimulation: {
+      type:Boolean,
+      required:false,
+      default: false
     },
     places: {
       type: Array,

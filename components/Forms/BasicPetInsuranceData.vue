@@ -7,7 +7,7 @@
     <div class="row form-container text-left" v-else>
       <div class="col-xs-12 col-sm-12">
         <v-text-field 
-                   label="Seu Nome"
+                   :label="isSimulation ? 'Nome do Cliente' :'Seu Nome'"
                    id="proposal.proposer.name"
                    :error="!!(validation.firstError('proposal.proposer.name'))"
                    :error-messages="validation.firstError('proposal.proposer.name')"
@@ -34,7 +34,7 @@
       </div>
 
       <div class="col-sm-6 col-xs-12">
-        <v-text-field  label="CEP da sua residência"
+        <v-text-field  :label="isSimulation ? 'CEP do cliente' : 'CEP da sua residência'"
                     id="proposal.proposer.homeAddress.zipCode"
                     :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
                     :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
@@ -43,20 +43,12 @@
       </div>
 
       <div class="col-sm-12 col-xs-12">
-        <v-text-field  label="E-mail" 
+        <v-text-field  :label="isSimulation ? 'E-mail do cliente' :'E-mail'" 
                     id="proposal.proposer.email"
                     :error="!!(validation.firstError('proposal.proposer.email'))"
                     :error-messages="validation.firstError('proposal.proposer.email')"
                     v-model.trim="proposal.proposer.email" />
       </div>
-
-      <!-- <div class="col-xs-12">
-        <PhoneInput label="Celular ou Telefone" 
-                    id="proposal.proposer.phones.0"
-                    maxLength="15"
-                    :validationMessage="validation.firstError('proposal.proposer.phones.0')"
-                    v-model.trim="proposal.proposer.phones[0]" />
-      </div> -->
 
       <div class="col-xs-12">
         <CallToAction className='pull-right' v-on:click="submitProposal">
@@ -110,6 +102,14 @@ export default {
       }
     }
   },
+  props: {
+    isSimulation: {
+      type: Boolean,
+      required:false,
+      default: false
+    }
+
+  },
   methods: {
     submitProposal: async function() {
       const isValid = await validator.validatePage(this);
@@ -121,7 +121,7 @@ export default {
       this.loading = true;
 
       if (!this.proposal._id) {
-        let newProposal = await apiClientProvider.generateProposal(5);
+        let newProposal = await apiClientProvider.generateProposal(5, this.isSimulation);
         this.proposal = Object.assign(newProposal, this.proposal);
       }
 

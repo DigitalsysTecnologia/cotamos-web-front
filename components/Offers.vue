@@ -3,7 +3,7 @@
       <v-container fluid grid-list-md>
         <v-layout row wrap>
           <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm6 lg4>
-            <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan"/>
+            <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan" :isSimulation="proposal.isSimulation"/>
           </v-flex>
         </v-layout>
       </v-container>

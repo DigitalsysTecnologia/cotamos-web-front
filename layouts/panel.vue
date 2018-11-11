@@ -29,7 +29,7 @@ export default {
           text: "Propostas"
         },
         {
-          url: "/simulador/pet",
+          url: "/painel/simulador/pet",
           text: "Simulador"
         },
         {

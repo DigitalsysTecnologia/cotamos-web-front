@@ -75,8 +75,15 @@ class ApiClient {
     return internalPost('chatBotLog', chatBotLog);
   }
 
-  generateProposal(productCode) {
-    return internalGet(`proposal/generate/?product=${productCode}`);
+  generateProposal(productCode, isSimulation) {
+    let queryParams = [];
+    queryParams.push(`product=${productCode}`)
+
+    if(isSimulation){
+      queryParams.push("simulation=true")
+    }
+
+    return internalGet(`proposal/generate/?${queryParams.join("&")}`);
   }
 
   getProposalsByFilter(filter) {
