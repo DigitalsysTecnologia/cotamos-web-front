@@ -50,13 +50,13 @@
                     v-model.trim="proposal.proposer.email" />
       </div>
 
-      <div class="col-xs-12">
+      <!-- <div class="col-xs-12">
         <PhoneInput label="Celular ou Telefone" 
                     id="proposal.proposer.phones.0"
                     maxLength="15"
                     :validationMessage="validation.firstError('proposal.proposer.phones.0')"
                     v-model.trim="proposal.proposer.phones[0]" />
-      </div>
+      </div> -->
 
       <div class="col-xs-12">
         <CallToAction className='pull-right' v-on:click="submitProposal">

@@ -71,7 +71,7 @@
             <h3>PARA OS FILHOTES</h3>
           </div>
           <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/filhote_cao_gato.jpg" class="img-responsive center-block" />
+            <img src="/img/filhote_cao_gato.png" class="img-responsive center-block" />
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12 text-center">
             <p class="section-text">
@@ -91,7 +91,7 @@
             <h3>PARA OS ADULTOS</h3>
           </div>
           <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/adulto_cao_gato.jpg" class="img-responsive center-block" />
+            <img src="/img/adulto_cao_gato.png" class="img-responsive center-block" />
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12 text-center">
             <p class="section-text">
@@ -113,7 +113,7 @@
             <h3>PARA OS SENIORES</h3>
           </div>
           <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/velho_cao_gato.jpg" class="img-responsive center-block" />
+            <img src="/img/velho_cao_gato.png" class="img-responsive center-block" />
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12 text-center">
             <p class="section-text">
