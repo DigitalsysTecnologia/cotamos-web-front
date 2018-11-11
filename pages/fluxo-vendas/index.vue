@@ -33,7 +33,7 @@
               </v-stepper-content>
   
               <v-stepper-content step="2" v-if="step==2">
-                <Offers :proposal="proposal" v-on:selectPlan="selectPlan" />
+                <OffersV2 :proposal="proposal" v-on:selectPlan="selectPlan" />
               </v-stepper-content>
   
               <v-stepper-content step="3" v-if="step==3">
@@ -61,6 +61,7 @@
   import BasicProposalData from "@/components/Forms/BasicPetInsuranceData";
   import DeniedProposal from "./components/DeniedProposal";
   import Offers from "@/components/Offers";
+  import OffersV2 from "@/components/OffersV2";
   import Loading from "@/components/Loading";
   import FullProposalData from "./components/FullProposalData";
   import Finish from "./components/Finish";
@@ -250,6 +251,7 @@
       FullProposalData: FullProposalData,
       WaitingForAvailability: WaitingForAvailability,
       Offers: Offers,
+      OffersV2:OffersV2,
       Finish: Finish
     }
   };
