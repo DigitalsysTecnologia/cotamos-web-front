@@ -103,7 +103,15 @@
     methods: {
       formatPhone(phone) {
         if (!phone) {
-          return "-";
+          return "";
+        }
+
+        if (!phone.areaCode) {
+          return "";
+        }
+
+        if (!phone.number) {
+          return "";
         }
   
         return `(${phone.areaCode}) ${phone.number}`;

@@ -2,7 +2,7 @@
   <v-layout justify-center row wrap align-center>
     <v-toolbar color="primary lighten-1">
       <v-toolbar-title>
-        <a class="brand" href="/">
+        <a class="brand" :href="homeLink">
           <img class="img-responsive center-block" src="/img/logo_branco.png" alt="Cotamos.com" style="padding-left:15px;" />
         </a>
       </v-toolbar-title>
@@ -27,6 +27,11 @@
         type: Array,
         required: false,
         default: null
+      },
+      homeLink: {
+        type: String,
+        required: false,
+        default: '/'
       }
     }
   };

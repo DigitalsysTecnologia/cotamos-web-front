@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Header :links="links" />
+    <Header :links="links" homeLink="/painel/propostas"/>
     <v-container fluid>
       <v-content>
         <nuxt/>

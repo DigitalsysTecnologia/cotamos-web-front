@@ -51,10 +51,10 @@
               </v-container>
             </v-card>
           </v-flex>
-           <v-dialog v-model="networkModalDialog" width="500">
+           <v-dialog v-model="networkModalDialog" width="800">
       <v-card>
         <v-card-title class="headline primary lighten-2" primary-title style="font-weight:bold;">
-          Rede Referenciada
+          Rede Referenciada ({{ places.length }} clínicas encontradas)
         </v-card-title>
   
         <v-card-text style="max-height:250px;overflow-y: scroll;overflow-x: hidden;">
