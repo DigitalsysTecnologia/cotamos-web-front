@@ -39,7 +39,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .brand {
+  .brand {
     float: left;
     height: 50px;
     font-size: 18px;
@@ -49,8 +49,9 @@
   .brand>img {
     width: 200px;
     display: block;
-        padding-top: 4px;
+    padding-top: 4px;
   }
+  
   .menu-item {
     font-weight: bold;
     color: white;

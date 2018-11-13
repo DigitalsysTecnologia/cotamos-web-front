@@ -50,6 +50,16 @@
               <custom-label :label="'Sexo'" :value="proposal.petInsuranceData.gender" :sameLine="true" />
               <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.specie" :sameLine="true" />
             </custom-card>
+
+            <custom-card title="Ocorrências">
+              <v-textarea name="input-7-1" label="Insira aqui o texto da ocorrência" v-model="eventText"></v-textarea>
+              <v-btn color="primary" @click="AddEvent" :loading="loadingEvents">Adicionar</v-btn>
+
+              <div v-for="(event,idx) in proposalEvents" :key="idx">
+                <EventCard :event="event" />                
+              </div>
+
+            </custom-card>
   
           </v-card-text>
         </v-card>
@@ -63,128 +73,146 @@
 </template>
 
 <script>
-  import apiClient from "@/utils/apiClient";
-  import CustomLabel from "./components/CustomLabel";
-  import CustomCard from "./components/CustomCard";
-  import moment from "moment";
-  import translator from "@/utils/translator";
-  import sessionHelper from "@/utils/sessionHelper";
-  import Offers from "@/components/Offers";
-  import Loading from "@/components/Loading"
-  
-  export default {
-    layout: "panel",
-    name: "ProposalDetails",
-    data() {
-      return {
-        existingProposal: null,
-        currentTab: 0      };
-    },
-    computed: {
-      loading: {
-        get() {
-          let isLoading = this.existingProposal != null;
-          return isLoading;
-        }
-      },
-      product: {
-        get() {
-          return translator.translateProduct(this.proposal.product);
-        }
-      },
-      stateName: {
-        get() {
-          return translator.translateState(this.proposal.state);
-        }
-      },
-      proposal: {
-        get() {
-          return this.existingProposal;
-        }
-      }      
-    },
-    methods: {
-      formatAddress(address) {
-        let result = "";
-  
-        if (address.street) {
-          result += address.street;
-        }
-        if (address.number) {
-          result += `, ${address.number}`;
-        }
-  
-        if (address.neighborhood) {
-          result += `, ${address.neighborhood}`;
-        }
-  
-        if (address.city) {
-          result += `, ${address.city}`;
-        }
-  
-        if (address.state) {
-          result += ` - ${address.state}`;
-        }
-  
-        if (address.zipCode) {
-          result += ` - CEP: ${address.zipCode}`;
-        }
-  
-        return result;
-      },
-      formatDate(value) {
-        const date = moment(value);
-        return date.format("DD/MM/YYYY HH:mm:ss");
-      },
-      formatPhones(phones) {
-        if (!phones) {
-          return null;
-        }
-  
-        let result = [];
-        for (let idx in phones) {
-          let currentPhone = phones[idx];
-  
-          if (currentPhone.fullNumber) {
-            result.push(`(${currentPhone.fullNumber})`);
-          } else if (currentPhone.areaCode || currentPhone.number) {
-            result.push(`(${currentPhone.areaCode}) ${currentPhone.number}`);
-          }
-        }
-  
-        return result.join(" / ");
-      },
-      getAge(dateOfBirth) {
-        if (!dateOfBirth || dateOfBirth == "0001-01-01T00:00:00Z") {
-          return "";
-        }
-  
-        dateOfBirth = moment(dateOfBirth);
-        const now = moment();
-        const duration = moment.duration(now.diff(dateOfBirth));
-        const ageInYears = duration.asYears();
-  
-        return `${dateOfBirth.format("DD/MM/YYYY")} (${Math.floor(
-            ageInYears
-          )} anos)`;
+import apiClient from "@/utils/apiClient";
+import CustomLabel from "./components/CustomLabel";
+import CustomCard from "./components/CustomCard";
+import EventCard from "./components/EventCard";
+import moment from "moment";
+import translator from "@/utils/translator";
+import sessionHelper from "@/utils/sessionHelper";
+import Offers from "@/components/Offers";
+import Loading from "@/components/Loading";
+
+export default {
+  layout: "panel",
+  name: "ProposalDetails",
+  data() {
+    return {
+      existingProposal: null,
+      currentTab: 0,
+      eventText: "",
+      proposalEvents: [],
+      loadingEvents: null
+    };
+  },
+  computed: {
+    loading: {
+      get() {
+        let isLoading = this.existingProposal != null;
+        return isLoading;
       }
     },
-    components: {
-      "custom-label": CustomLabel,
-      "custom-card": CustomCard,
-      Offers: Offers,
-      Loading: Loading
+    product: {
+      get() {
+        return translator.translateProduct(this.proposal.product);
+      }
     },
-    async beforeMount() {
-      const {
-        id
-      } = this.$route.query;
-      this.existingProposal = await apiClient.getProposalById(id);
+    stateName: {
+      get() {
+        return translator.translateState(this.proposal.state);
+      }
+    },
+    proposal: {
+      get() {
+        return this.existingProposal;
+      }
     }
-  };
+  },
+  methods: {
+    formatAddress(address) {
+      let result = "";
+
+      if (address.street) {
+        result += address.street;
+      }
+      if (address.number) {
+        result += `, ${address.number}`;
+      }
+
+      if (address.neighborhood) {
+        result += `, ${address.neighborhood}`;
+      }
+
+      if (address.city) {
+        result += `, ${address.city}`;
+      }
+
+      if (address.state) {
+        result += ` - ${address.state}`;
+      }
+
+      if (address.zipCode) {
+        result += ` - CEP: ${address.zipCode}`;
+      }
+
+      return result;
+    },
+    formatDate(value) {
+      const date = moment(value);
+      return date.format("DD/MM/YYYY HH:mm:ss");
+    },
+    formatPhones(phones) {
+      if (!phones) {
+        return null;
+      }
+
+      let result = [];
+      for (let idx in phones) {
+        let currentPhone = phones[idx];
+
+        if (currentPhone.fullNumber) {
+          result.push(`(${currentPhone.fullNumber})`);
+        } else if (currentPhone.areaCode || currentPhone.number) {
+          result.push(`(${currentPhone.areaCode}) ${currentPhone.number}`);
+        }
+      }
+
+      return result.join(" / ");
+    },
+    getAge(dateOfBirth) {
+      if (!dateOfBirth || dateOfBirth == "0001-01-01T00:00:00Z") {
+        return "";
+      }
+
+      dateOfBirth = moment(dateOfBirth);
+      const now = moment();
+      const duration = moment.duration(now.diff(dateOfBirth));
+      const ageInYears = duration.asYears();
+
+      return `${dateOfBirth.format("DD/MM/YYYY")} (${Math.floor(
+        ageInYears
+      )} anos)`;
+    },
+    async AddEvent(){
+      const event = {
+        date: new Date(),
+        proposalId: this.existingProposal._id,
+        text: this.eventText,
+        state: this.existingProposal.state
+      }
+
+      this.loadingEvents = true;
+      await apiClient.addProposalEvent(event);
+      this.proposalEvents = await apiClient.getEventsByProposal(this.existingProposal._id);
+      this.eventText = "";
+      this.loadingEvents = false;
+    }
+  },
+  components: {
+    "custom-label": CustomLabel,
+    "custom-card": CustomCard,
+    Offers: Offers,
+    Loading: Loading,
+    EventCard:EventCard
+  },
+  async beforeMount() {
+    const { id } = this.$route.query;
+    this.existingProposal = await apiClient.getProposalById(id);
+    this.proposalEvents = await apiClient.getEventsByProposal(id);
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  
 </style>

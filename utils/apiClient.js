@@ -106,6 +106,14 @@ class ApiClient {
     return internalGet(urljoin('address', 'by-zipcode', `?zipCode=${zipCode}`));
   }
 
+  addProposalEvent(event){
+    return internalPost('proposal-event', event)
+  }
+
+  getEventsByProposal(proposalId){
+    return internalGet(urljoin('proposal-event', `?proposalId=${proposalId}`))
+  }
+
   async login(login, password) {
     const payload = {
       login: login,
