@@ -51,6 +51,29 @@ deploy_to_prod_staging:
     refs:
       - master
 
+deploy_to_homolog_staging:
+  stage: deploy
+  variables:
+   DEPLOY_USER: "eduardo" 
+   DEPLOY_DIR: "/var/www/homolog_cotamos"
+  before_script:
+   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+   - 'which zip || ( apt-get update -y && apt-get install zip -y )'
+   - echo "$GOOGLE_SSH_KEY" > ssh_key
+   - cat ssh_key
+   - chmod 400 ssh_key
+   - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$FRONT_HOST uptime
+  script:
+   - mv dist/ deploy/
+   - zip -r deploy.zip deploy/*
+   - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
+   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
+  only:
+    refs:
+      - homolog
+
 # docker_push_stage:
 #   image: docker:latest
 #   stage: deploy
