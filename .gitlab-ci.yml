@@ -38,7 +38,6 @@ deploy_to_prod_staging:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
    - echo "$GOOGLE_SSH_KEY" > ssh_key
-   - cat ssh_key
    - chmod 400 ssh_key
    - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$FRONT_HOST uptime
   script:
