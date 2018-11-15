@@ -28,7 +28,7 @@ build_staging:
     refs:
       - master
 
-deploy_staging:
+deploy_to_prod_staging:
   stage: deploy
   variables:
    DEPLOY_USER: "eduardo" 
@@ -47,6 +47,9 @@ deploy_staging:
    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
+  only:
+    refs:
+      - master
 
 # docker_push_stage:
 #   image: docker:latest
