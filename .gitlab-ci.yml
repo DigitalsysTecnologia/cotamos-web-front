@@ -26,6 +26,7 @@ build_staging:
    - npm run generate
   only:
     refs:
+      - homolog
       - master
 
 deploy_to_prod_staging:
