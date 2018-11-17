@@ -136,11 +136,9 @@ export default {
       );
 
       if (!product.isAvailable) {
-        await apiClientProvider.setNextState(this.proposal, 21);
-        this.proposal.state = 21;
+        this.proposal = await apiClientProvider.setNextState(this.proposal, 21);
       } else {
-        await apiClientProvider.setNextState(this.proposal, 3);
-        this.proposal.state = 3;
+        this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
       }
 
       this.$emit("submitProposal", this.proposal);
