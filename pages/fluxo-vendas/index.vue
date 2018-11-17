@@ -18,9 +18,9 @@
   
         </v-stepper-header>
         <v-layout row wrap>
-  
+                    
           <v-flex md10 offset-md1 v-if="isLoading" style="padding-top:30px;">
-            <div v-if="isLoading || stepName == 'carregando'">
+            <div v-if="isLoading">
               <Loading :messages="loadingMessages" />
             </div>
           </v-flex>
@@ -33,7 +33,6 @@
               </v-stepper-content>
   
               <v-stepper-content step="2" v-if="step==2">
-                <!-- <Offers :proposal="proposal" v-on:selectPlan="selectPlan" /> -->
                 <OffersV2 :proposal="proposal" v-on:selectPlan="selectPlan" />
               </v-stepper-content>
   
@@ -42,13 +41,12 @@
               </v-stepper-content>
   
               <v-stepper-content step="4" v-if="step==4">
-                <div v-if="stepName == 'finalizacao'">
-                  <Finish :loading="loading" />
-                </div>
-  
-                <div v-else-if="stepName == 'aguardando_disponibilidade'">
+                <div v-if="proposal.state == 11">
                   <WaitingForAvailability />
                 </div>
+                <div v-else>
+                  <Finish :loading="loading" />
+                </div>                
               </v-stepper-content>
             </v-stepper-items>
           </v-flex>
@@ -59,210 +57,191 @@
 </template>
 
 <script>
-  import BasicProposalData from "@/components/Forms/BasicPetInsuranceData";
-  import DeniedProposal from "./components/DeniedProposal";
-  import Offers from "@/components/Offers";
-  import OffersV2 from "@/components/OffersV2";
-  import Loading from "@/components/Loading";
-  import FullProposalData from "./components/FullProposalData";
-  import Finish from "./components/Finish";
-  import WaitingForAvailability from "./components/WaitingForAvailability";
-  import factory from "@/utils/factory";
-  import apiClientProvider from "@/utils/apiClient";
-  import utils from "@/utils/index";
-  let router = null;
-  
-  export default {
-    name: "SalesFlow",
-    data() {
-      return {
-        loading: true,
-        existingProposal: null,
-        loadingMessage: null,
-        finishedProposal: false
-      };
+import BasicProposalData from "@/components/Forms/BasicPetInsuranceData";
+import DeniedProposal from "./components/DeniedProposal";
+import Offers from "@/components/Offers";
+import OffersV2 from "@/components/OffersV2";
+import Loading from "@/components/Loading";
+import FullProposalData from "./components/FullProposalData";
+import Finish from "./components/Finish";
+import WaitingForAvailability from "./components/WaitingForAvailability";
+import factory from "@/utils/factory";
+import apiClientProvider from "@/utils/apiClient";
+import utils from "@/utils/index";
+let router = null;
+
+export default {
+  name: "SalesFlow",
+  data() {
+    return {
+      loading: true,
+      existingProposal: null,
+      loadingMessage: null,
+      finishedProposal: false
+    };
+  },
+  computed: {
+    proposal: {
+      get() {
+        return this.existingProposal;
+      }
     },
-    computed: {
-      proposal: {
-        get() {
-          return this.existingProposal;
+    step: {
+      get() {
+        if (!this.existingProposal) {
+          return 1;
         }
-      },
-      stepName: {
-        get() {
-          const {
-            query
-          } = this.$route;
-  
-          if (query.step) {
-            return query.step;
-          } else if (!this.existingProposal) {
-            return "carregando";
-          } else if (this.existingProposal.state == 0) {
-            return "cadastro_inicial";
-          } else if (this.existingProposal.state == 11) {
-            return "aguardando_disponibilidade";
-          } else if (this.existingProposal.state == 20) {
-            return "finalizacao";
-          } else if (this.existingProposal.state == 21) {
-            return "proposta_negada";
-          } else if (
-            this.existingProposal.state == 3 ||
-            this.existingProposal.state == 10
-          ) {
-            return "ofertas";
-          } else if (this.existingProposal.state == 2) {
-            return "cadastro_completo";
-          }
-        }
-      },
-      step: {
-        get() {
-          if (!this.stepName) {
+
+        switch (this.existingProposal.state) {
+          case 0:
             return 1;
-          }
-  
-          switch (this.stepName) {
-            case "cadastro_inicial":
-              return 1;
-  
-            case "ofertas":
-              return 2;
-  
-            case "cadastro_completo":
-              return 3;
-  
-            case "finalizacao":
-            case "aguardando_disponibilidade":
-            case "proposta_negada":
-              return 4;
-          }
-        },
-        set(newValue) {
-          console.log('newValue', newValue)
+
+          case 3:
+            return 2;
+
+          case 4:
+            return 3;
+
+          case 2:
+          case 20:
+          case 11:
+          case 21:
+            return 4;
+
+          default:
+            return 1;
         }
       },
-      isLoading: {
-        get() {
-          return this.loading;
+      set(newValue) {
+        console.log("newValue", newValue);
+      }
+    },
+    isLoading: {
+      get() {
+        return this.loading;
+      }
+    },
+    loadingMessages: {
+      get() {
+        return (
+          this.loadingMessage || [
+            "Carregando...",
+            "Aguarde um instante por favor..."
+          ]
+        );
+      }
+    }
+  },
+  methods: {
+    selectPlan: async function(plan) {
+      console.log("this.existingProposal", this.existingProposal);
+      this.existingProposal.petInsuranceData.selectedPlan = {
+        code: plan.code
+      };
+
+      await apiClientProvider.updateProposal(this.existingProposal);
+      this.existingProposal = await apiClientProvider.setNextState(
+        this.existingProposal,
+        4
+      );
+    },
+    generateBasicProposal: async function(proposal) {
+      console.log("proposal", proposal);
+
+      router.push({
+        path: "/fluxo-vendas",
+        query: {
+          id: proposal._id
         }
-      },
-      loadingMessages: {
-        get() {
-          return (
-            this.loadingMessage || [
-              "Carregando...",
-              "Aguarde um instante por favor..."
-            ]
-          );
-        }
-      }
+      });
+
+      this.loading = false;
+      this.existingProposal = proposal;
     },
-    methods: {
-      selectPlan: async function(plan) {
-  
-        console.log('this.existingProposal', this.existingProposal)
-        this.existingProposal.petInsuranceData.selectedPlan = {
-          code: plan.code
-        };
-  
-        await apiClientProvider.updateProposal(this.existingProposal);
-        await apiClientProvider.setNextState(this.existingProposal, 4);
-        this.existingProposal.state = 2;
-      },
-      generateBasicProposal: async function(proposal) {
-        console.log("proposal", proposal);
-  
-        router.push({
-          path: "/fluxo-vendas",
-          query: {
-            id: proposal._id
-          }
-        });
-  
-        this.loading = false;
-        this.existingProposal = proposal;
-      },
-      backToBasicProposalForm: async function() {
-        this.loadingMessage = [
-          "Atualizando proposta",
-          "Aguarde um instante por favor..."
-        ];
-        this.loading = true;
-        await apiClientProvider.setNextState(this.existingProposal, 0);
-        this.existingProposal.state = 0;
-        this.loading = false;
-      },
-      finishProposal: async function() {
-        this.loadingMessage = [
-          "Atualizando proposta",
-          "Aguarde um instante por favor..."
-        ];
-        this.loading = true;
-        await apiClientProvider.setNextState(this.existingProposal, 11);
-        this.existingProposal.state = 11;
-        this.loading = false;
-      },
-      finishPurchase: async function() {
-        this.loadingMessage = [
-          "Atualizando proposta",
-          "Aguarde um instante por favor..."
-        ];
-        this.loading = true;
-        await apiClientProvider.updateProposal(this.existingProposal);
-        await apiClientProvider.setNextState(this.existingProposal, 2);
-        this.existingProposal.state = 20;
-        this.loading = false;
-      }
-    },
-    async mounted() {
-      // const { query } = this.$route;
-      // if (query && query.id) {
-      // }
-      // this.loadingMessage = [
-      //   "Carregando sua proposta",
-      //   "Aguarde um instante por favor..."
-      // ];
-    },
-    async beforeMount() {
-      router = this.$router;
-      const {
-        query
-      } = this.$route;
-  
-      this.loadingMessage = ["Carregando...", "Aguarde um instante por favor..."];
-  
-      if (query && query.id) {
-        this.loadingMessage = [
-          "Carregando sua proposta",
-          "Aguarde um instante por favor..."
-        ];
-  
-        this.existingProposal = await apiClientProvider.getProposalById(query.id);
-      } else {
-        this.existingProposal = factory.generateEmptyProposal();
-      }
-  
+    backToBasicProposalForm: async function() {
+      this.loadingMessage = [
+        "Atualizando proposta",
+        "Aguarde um instante por favor..."
+      ];
+      this.loading = true;
+      this.existingProposal = await apiClientProvider.setNextState(
+        this.existingProposal,
+        0
+      );
       this.loading = false;
     },
-    components: {
-      Loading: Loading,
-      BasicProposalData: BasicProposalData,
-      DeniedProposal: DeniedProposal,
-      FullProposalData: FullProposalData,
-      WaitingForAvailability: WaitingForAvailability,
-      Offers: Offers,
-      OffersV2:OffersV2,
-      Finish: Finish
+    finishProposal: async function() {
+      this.loadingMessage = [
+        "Atualizando proposta",
+        "Aguarde um instante por favor..."
+      ];
+      this.loading = true;
+      this.existingProposal = await apiClientProvider.setNextState(
+        this.existingProposal,
+        11
+      );
+      this.loading = false;
+    },
+    finishPurchase: async function() {
+      this.loadingMessage = [
+        "Atualizando proposta",
+        "Aguarde um instante por favor..."
+      ];
+      this.loading = true;
+      await apiClientProvider.updateProposal(this.existingProposal);
+      this.existingProposal = await apiClientProvider.setNextState(
+        this.existingProposal,
+        2
+      );
+      this.loading = false;
     }
-  };
+  },
+  async mounted() {
+    // const { query } = this.$route;
+    // if (query && query.id) {
+    // }
+    // this.loadingMessage = [
+    //   "Carregando sua proposta",
+    //   "Aguarde um instante por favor..."
+    // ];
+  },
+  async beforeMount() {
+    router = this.$router;
+    const { query } = this.$route;
+
+    this.loadingMessage = ["Carregando...", "Aguarde um instante por favor..."];
+
+    if (query && query.id) {
+      this.loadingMessage = [
+        "Carregando sua proposta",
+        "Aguarde um instante por favor..."
+      ];
+
+      this.existingProposal = await apiClientProvider.getProposalById(query.id);
+    } else {
+      this.existingProposal = factory.generateEmptyProposal();
+    }
+
+    this.loading = false;
+  },
+  components: {
+    Loading: Loading,
+    BasicProposalData: BasicProposalData,
+    DeniedProposal: DeniedProposal,
+    FullProposalData: FullProposalData,
+    WaitingForAvailability: WaitingForAvailability,
+    Offers: Offers,
+    OffersV2: OffersV2,
+    Finish: Finish
+  }
+};
 </script>
 
 <style scoped>
-  @media (max-width: 500px) {
-    .box-cotacao {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
+@media (max-width: 500px) {
+  .box-cotacao {
+    padding-left: 0px;
+    padding-right: 0px;
   }
+}
 </style>
