@@ -62,13 +62,13 @@
   
       updatePaymentData: async function(paymentData) {
         this.proposal.paymentData = paymentData;
-        apiClientProvider.updateProposal(this.proposal);
+        // apiClientProvider.updateProposal(this.proposal);
         this.nextStep();
       },
       updateProposer: async function(proposer) {
         console.log('proposer', proposer);
         this.proposal.proposer = proposer;
-        apiClientProvider.updateProposal(this.proposal);
+        // apiClientProvider.updateProposal(this.proposal);
         this.nextStep();
       },
       updateProposal: async function(proposal) {
@@ -76,14 +76,8 @@
       },
       updateAddress: async function(address) {
         this.proposal.proposer.homeAddress = address;
-        apiClientProvider.updateProposal(this.proposal);
+        // apiClientProvider.updateProposal(this.proposal);
         this.nextStep();
-      },
-      submitProposal: async function() {
-        const isValid = await this.$validate();
-        if (isValid) {
-          this.$emit("submitProposal", this.proposal);
-        }
       },
       finishProposal: async function() {
         await apiClientProvider.updateProposal(this.proposal);
