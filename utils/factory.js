@@ -44,5 +44,20 @@ export default {
             { value: '422', text: 'Banco Safra S.A.' },
             { value: '633', text: 'Banco Rendimento S.A.' },
         ]
+    },
+    getProposalStateList: () => {
+        return [
+
+            { text: 'Proposta Gerada', value: 0 },
+            { text: 'Dados Básicos', value: 1 },
+            { text: 'Cadastro Completo', value: 2 },
+            { text: 'Ofertas Visualizadas', value: 3 },
+            { text: 'Plano Escolhido', value: 4 },
+            { text: 'Aguardando Disponibilidade', value: 11 },
+            { text: 'Proposta Aprovada', value: 20 },
+            { text: 'Proposta Negada', value: 21 },
+            { text: 'Erro de Integração', value: 23 }
+        ]
+
     }
 }

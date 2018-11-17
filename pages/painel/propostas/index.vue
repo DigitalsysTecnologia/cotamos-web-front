@@ -8,7 +8,7 @@
         <v-btn color="primary" :block="true" @click="toggleShowFilter">
           {{ showFilter ? "Ocultar Filtro de Propostas" : "Exibir Filtro de Propostas" }}
         </v-btn>
-        <ProposalFilter v-on:searchProposals="searchProposals" :proposalFilter="proposalFilter" v-if="showFilter"/>
+        <ProposalFilter v-on:searchProposals="searchProposals" v-if="showFilter"/>
       </v-flex>
       <v-flex xs12 mt-4>
         <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
@@ -55,8 +55,8 @@
       },
       async searchProposals(proposalFilter) {
         this.loading = true;
-        this.proposalFilter = proposalFilter;
-        this.proposalFilterResult = await apiClient.getProposalsByFilter(this.proposalFilter);
+        // this.proposalFilter = proposalFilter;
+        this.proposalFilterResult = await apiClient.getProposalsByFilter(proposalFilter);
         this.loading = false;
       },
       loadingProposals() {
