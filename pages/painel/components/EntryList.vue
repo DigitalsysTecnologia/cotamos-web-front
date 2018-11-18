@@ -62,8 +62,8 @@ export default {
     formatAmount(amount){
       return 'R$ 0,00'
     },
-    translateState(state) {
-      return translator.translateState(state);
+    async translateState(state) {
+      return await translator.translateState(state);
     },
     translateProduct(product) {
       return translator.translateProduct(product);

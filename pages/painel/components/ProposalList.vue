@@ -123,7 +123,7 @@ export default {
     formatDate(date) {
       return moment(date).format("DD/MM/YYYY HH:mm:ss");
     },
-    translateState(state) {
+     translateState(state) {
       return translator.translateState(state);
     },
     translateProduct(product) {

@@ -118,7 +118,7 @@ export default {
       currentTab: 0,
       eventText: "",
       proposalEvents: [],
-      filterStates: [],
+      states: [],
       nextState: null,
       loadingEvents: null,
       showEvent: false,
@@ -145,6 +145,16 @@ export default {
     proposal: {
       get() {
         return this.existingProposal;
+      }
+    },
+    filterStates: {
+      get() {
+        return this.states.map(state => {
+          return {
+            text: state.name,
+            value: state.value
+          };
+        });
       }
     }
   },
@@ -220,14 +230,17 @@ export default {
       this.loadingEvents = true;
 
       if (this.doStateTransition) {
-        if(!this.nextState) {
-          alert('Favor escolher uma nova situação para a proposta');
+        if (!this.nextState) {
+          alert("Favor escolher uma nova situação para a proposta");
           this.loadingEvents = false;
           return;
         }
 
-        this.existingProposal = await apiClient.setNextState(this.existingProposal,this.nextState.value);
-        this.nextState = null
+        this.existingProposal = await apiClient.setNextState(
+          this.existingProposal,
+          this.nextState.value
+        );
+        this.nextState = null;
       }
 
       const event = {
@@ -256,9 +269,16 @@ export default {
   },
   async beforeMount() {
     const { id } = this.$route.query;
-    this.existingProposal = await apiClient.getProposalById(id);
-    this.proposalEvents = await apiClient.getEventsByProposal(id);
-    this.filterStates = factory.getProposalStateList();
+
+    const apiResults = await Promise.all([
+      apiClient.getProposalById(id),
+      apiClient.getEventsByProposal(id),
+      apiClient.getAllStates()
+    ]);
+
+    this.existingProposal = apiResults[0];
+    this.proposalEvents = apiResults[1];
+    this.states = apiResults[2];
   }
 };
 </script>

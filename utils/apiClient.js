@@ -9,7 +9,7 @@ function getUrl() {
     if (window.location.host.indexOf('localhost') != -1) {
       return 'http://localhost:8080/api/v1'
     }
-    else if (window.location.host.indexOf('homolog.cotamos.com') != -1){
+    else if (window.location.host.indexOf('homolog.cotamos.com') != -1) {
       return 'https://backend-homolog.cotamos.com/gateway/api/v1'
     }
     else {
@@ -82,7 +82,7 @@ class ApiClient {
     let queryParams = [];
     queryParams.push(`product=${productCode}`)
 
-    if(isSimulation){
+    if (isSimulation) {
       queryParams.push("simulation=true")
     }
 
@@ -91,6 +91,10 @@ class ApiClient {
 
   getProposalsByFilter(filter) {
     return internalPost('proposal/list-by-filter', filter);
+  }
+
+  async getAllStates() {
+    return await internalGet(`state/all`);    
   }
 
   createPartner(partner) {
@@ -109,11 +113,11 @@ class ApiClient {
     return internalGet(urljoin('address', 'by-zipcode', `?zipCode=${zipCode}`));
   }
 
-  addProposalEvent(event){
+  addProposalEvent(event) {
     return internalPost('proposal-event', event)
   }
 
-  getEventsByProposal(proposalId){
+  getEventsByProposal(proposalId) {
     return internalGet(urljoin('proposal-event', `?proposalId=${proposalId}`))
   }
 

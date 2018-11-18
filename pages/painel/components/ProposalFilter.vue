@@ -8,6 +8,7 @@
           <v-text-field label="E-Mail do Cliente" id="proposalFilter.proposer.email" v-model.trim="proposalFilter.proposer.email" />
           <v-text-field label="Propostas por Página" id="proposalFilter.pageSize" type="number"  v-model="proposalFilter.pageSize" />
           <v-combobox label="Situação da Proposta" v-model="proposalFilter.state" :items="filterStates" chips deletable-chips/>
+          <v-combobox label="Operador" v-model="proposalFilter.operator" :items="filterUsers" chips deletable-chips/>
           <v-btn color="primary" @click="searchProposals"> Buscar Propostas</v-btn>
         </div>
       </v-card>
@@ -22,7 +23,8 @@ export default {
   name: "ProposalFilter",
   data() {
     return {
-      filterStates: [],
+      states:[],
+      users: [],
       proposalFilter: {
         proposer: {
           name: "",
@@ -35,12 +37,28 @@ export default {
       }
     };
   },
-  // props: {
-  //   proposalFilter: {
-  //     type: Object,
-  //     required: true
-  //   }
-  // },
+  computed: {
+    filterStates: {
+      get() {
+        return this.states.map(state => {
+          return {
+            text: state.name,
+            value: state.value
+          }
+        })
+      }
+    },
+    filterUsers: {
+      get() {
+        return this.users.map(user => {
+          return {
+            text: user.name,
+            value: user._id
+          }
+        })
+      }
+    }
+  },
   methods: {
     searchProposals: async function() {
       let objClone = JSON.parse(JSON.stringify(this.proposalFilter));
@@ -49,14 +67,20 @@ export default {
       if (objClone.state) {
         objClone.state = parseInt(objClone.state.value);
       }
+      if (objClone.operator) {
+        objClone.operator = objClone.operator.value;
+      }
 
       console.log("objClone", objClone);
       this.$emit("searchProposals", objClone);
     }
   },
   components: {},
-  beforeMount() {
-    this.filterStates = factory.getProposalStateList();
+  async beforeMount() {
+    // this.filterStates = factory.getProposalStateList();
+    this.states = await apiClient.getAllStates();
+    this.users = await apiClient.getAllUsers();
+
   }
 };
 </script>
