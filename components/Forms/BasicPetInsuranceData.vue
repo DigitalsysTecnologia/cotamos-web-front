@@ -105,10 +105,9 @@ export default {
   props: {
     isSimulation: {
       type: Boolean,
-      required:false,
+      required: false,
       default: false
     }
-
   },
   methods: {
     submitProposal: async function() {
@@ -121,7 +120,10 @@ export default {
       this.loading = true;
 
       if (!this.proposal._id) {
-        let newProposal = await apiClientProvider.generateProposal(5, this.isSimulation);
+        let newProposal = await apiClientProvider.generateProposal(
+          5,
+          this.isSimulation
+        );
         this.proposal = Object.assign(newProposal, this.proposal);
       }
 

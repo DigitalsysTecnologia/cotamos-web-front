@@ -29,7 +29,6 @@
     },
     methods: {
       async submitProposal(proposal) {
-        console.log('proposal', proposal)
         this.proposal = await apiClient.getProposalById(proposal._id);
         this.step++;
       }

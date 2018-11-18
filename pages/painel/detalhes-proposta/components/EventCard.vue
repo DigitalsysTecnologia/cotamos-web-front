@@ -1,16 +1,13 @@
 <template>
     <v-card class="card-container">
         <v-card-title primary-title style="padding-bottom: 0px; padding-top: 10px;">
-            <span style="margin-right:20px;"> {{ formatDate(event.date) }} </span>
-
-            <span style="font-weight:bold;"> {{ translateState(event.state) }} </span>
-            <span> {{ event.userName }} </span>
+            <p>
+               <span style="margin-right:20px;font-weight:bold;"> {{ formatDate(event.date) }} </span>
+               <span> {{ event.userName }} </span>
+            </p>
         </v-card-title>
         <v-card-text>
-            <p>
-                {{ event.text }}
-            </p>
-            
+          {{ event.text }}
         </v-card-text>
     </v-card>
 </template>

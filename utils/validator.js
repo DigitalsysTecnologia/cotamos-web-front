@@ -59,7 +59,7 @@ export default {
         return Validator.value(value)
             .required("Campo obrigatório")
             .custom(function () {
-                if(!value) {
+                if (!value) {
                     return "Campo obrigatório"
                 }
             })
@@ -175,6 +175,10 @@ export default {
             .required("Idade é obrigatória.");
     },
     validateClientName: (value) => {
+
+        if (!Validator || !value) {
+            debugger
+        }
         return Validator.value(value)
             .required("Por favor, nos informe o seu nome completo.")
             .minLength(5, "Por favor, nos informe o seu nome completo.")

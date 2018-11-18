@@ -1,19 +1,5 @@
 <template>
     <div>
-        <!-- <div class="row">
-            <div class="carousel-container">
-              <no-ssr>
-              <v-carousel hide-delimiters hide-controls>
-                <v-carousel-item
-                  v-for="(item,i) in carouselItems"
-                  :key="i"
-                  :src="item.src"
-                ></v-carousel-item>
-              </v-carousel>
-              </no-ssr>
-            </div>
-        </div> -->
-
         <div class="row section">
             <div class="col-xs-12 text-center">
                 <h2 class="subtitle">Quem Somos</h2>

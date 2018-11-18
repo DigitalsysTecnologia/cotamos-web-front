@@ -1,12 +1,12 @@
 <template>
   <div class="container-fluid">
     <h2 class="subtitle text-center">Detalhes da Proposta</h2>
-    
+  
     <v-tabs v-model="currentTab" color="primary" dark slider-color="white" v-if="proposal" fixed-tabs>
       <v-tab ripple>
         <span style="font-weight:bold;">Dados da Proposta</span>
       </v-tab>
-
+  
       <v-tab ripple>
         <span style="font-weight:bold;">Ofertas</span>
       </v-tab>
@@ -50,21 +50,33 @@
               <custom-label :label="'Sexo'" :value="proposal.petInsuranceData.gender" :sameLine="true" />
               <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.specie" :sameLine="true" />
             </custom-card>
-
-            <custom-card title="Ocorrências">
-              <v-textarea name="input-7-1" label="Insira aqui o texto da ocorrência" v-model="eventText"></v-textarea>
-              <v-btn color="primary" @click="AddEvent" :loading="loadingEvents">Adicionar</v-btn>
-
-              <div v-for="(event,idx) in proposalEvents" :key="idx">
-                <EventCard :event="event" />                
-              </div>
-
+  
+            <custom-card title="Inserir Histórico">
+              <v-layout align-start align-center row fill-height wrap pa-3>
+                <v-flex xs12>
+                  <v-radio-group v-model="doStateTransition">
+                    <v-radio :label="'Inserir histórico'" :value="false"></v-radio>
+                    <v-radio :label="'Inserir histórico e mudar situação da proposta'" :value="true"></v-radio>
+                  </v-radio-group>
+                  <v-textarea name="input-7-1" label="Insira aqui o texto da ocorrência" v-model="eventText"></v-textarea>
+                  <v-combobox label="Alterar Situação da Proposta" v-model="nextState" :items="filterStates" v-if="doStateTransition" chips deletable-chips/>
+                  <v-btn color="primary" :block="true" @click="addEvent" :loading="loadingEvents" :disabled="!eventText" >Adicionar</v-btn>
+                </v-flex>
+              </v-layout>
+            </custom-card>
+  
+            <custom-card title="Histórico">
+              <v-layout row wrap pa-3>
+                <v-flex sm12 v-for="(event,idx) in proposalEvents" :key="idx">
+                  <EventCard :event="event" />
+                </v-flex>
+              </v-layout>
             </custom-card>
   
           </v-card-text>
         </v-card>
       </v-tab-item>
-
+  
       <v-tab-item>
         <Offers :proposal="proposal" />
       </v-tab-item>
@@ -77,6 +89,7 @@ import apiClient from "@/utils/apiClient";
 import CustomLabel from "./components/CustomLabel";
 import CustomCard from "./components/CustomCard";
 import EventCard from "./components/EventCard";
+import factory from "@/utils/factory";
 import moment from "moment";
 import translator from "@/utils/translator";
 import sessionHelper from "@/utils/sessionHelper";
@@ -92,7 +105,11 @@ export default {
       currentTab: 0,
       eventText: "",
       proposalEvents: [],
-      loadingEvents: null
+      filterStates: [],
+      nextState: null,
+      loadingEvents: null,
+      showEvent: false,
+      doStateTransition: false
     };
   },
   computed: {
@@ -183,19 +200,38 @@ export default {
         ageInYears
       )} anos)`;
     },
-    async AddEvent(){
+    async cancelEvent() {
+      this.showEvent = false;
+    },
+    async addEvent() {
+      this.loadingEvents = true;
+
+      if (this.doStateTransition) {
+        if(!this.nextState) {
+          alert('Favor escolher uma nova situação para a proposta');
+          this.loadingEvents = false;
+          return;
+        }
+
+        this.existingProposal = await apiClient.setNextState(this.existingProposal,this.nextState.value);
+        this.nextState = null
+      }
+
       const event = {
         date: new Date(),
         proposalId: this.existingProposal._id,
         text: this.eventText,
         state: this.existingProposal.state
-      }
+      };
 
-      this.loadingEvents = true;
       await apiClient.addProposalEvent(event);
-      this.proposalEvents = await apiClient.getEventsByProposal(this.existingProposal._id);
+      this.proposalEvents = await apiClient.getEventsByProposal(
+        this.existingProposal._id
+      );
       this.eventText = "";
       this.loadingEvents = false;
+
+      this.showEvent = false;
     }
   },
   components: {
@@ -203,12 +239,13 @@ export default {
     "custom-card": CustomCard,
     Offers: Offers,
     Loading: Loading,
-    EventCard:EventCard
+    EventCard: EventCard
   },
   async beforeMount() {
     const { id } = this.$route.query;
     this.existingProposal = await apiClient.getProposalById(id);
     this.proposalEvents = await apiClient.getEventsByProposal(id);
+    this.filterStates = factory.getProposalStateList();
   }
 };
 </script>

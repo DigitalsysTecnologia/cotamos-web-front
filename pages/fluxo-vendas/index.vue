@@ -29,7 +29,7 @@
             <v-stepper-items>
               <v-stepper-content step="1" v-if="step==1">
                 <h3 class="subtitle">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
-                <BasicProposalData :proposal="proposal" v-on:submitProposal="generateBasicProposal" />
+                <BasicProposalData v-on:submitProposal="generateBasicProposal" />
               </v-stepper-content>
   
               <v-stepper-content step="2" v-if="step==2">
@@ -112,8 +112,8 @@ export default {
             return 1;
         }
       },
-      set(newValue) {
-        console.log("newValue", newValue);
+      set() {
+       
       }
     },
     isLoading: {
@@ -146,8 +146,6 @@ export default {
       );
     },
     generateBasicProposal: async function(proposal) {
-      console.log("proposal", proposal);
-
       router.push({
         path: "/fluxo-vendas",
         query: {
