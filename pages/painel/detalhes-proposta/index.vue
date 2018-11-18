@@ -8,9 +8,13 @@
       </v-tab>
   
       <v-tab ripple>
+        <span style="font-weight:bold;">Histórico</span>
+      </v-tab>
+
+      <v-tab ripple>
         <span style="font-weight:bold;">Ofertas</span>
       </v-tab>
-  
+ 
       <v-tab-item>
         <v-card flat>
           <v-card-text>
@@ -51,6 +55,14 @@
               <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.specie" :sameLine="true" />
             </custom-card>
   
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+    
             <custom-card title="Inserir Histórico">
               <v-layout align-start align-center row fill-height wrap pa-3>
                 <v-flex xs12>
@@ -76,10 +88,11 @@
           </v-card-text>
         </v-card>
       </v-tab-item>
-  
+
       <v-tab-item>
         <Offers :proposal="proposal" />
       </v-tab-item>
+
     </v-tabs>
   </div>
 </template>
