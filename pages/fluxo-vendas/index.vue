@@ -33,7 +33,7 @@
               </v-stepper-content>
   
               <v-stepper-content step="2" v-if="step==2">
-                <OffersV2 :proposal="proposal" v-on:selectPlan="selectPlan" />
+                <Offers :proposal="proposal" v-on:selectPlan="selectPlan" />
               </v-stepper-content>
   
               <v-stepper-content step="3" v-if="step==3">
