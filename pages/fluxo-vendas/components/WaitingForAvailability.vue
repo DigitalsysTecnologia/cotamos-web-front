@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <h3>Muito obrigado, assim houver disponibilidade para a sua região, entraremos em contato.</h3>
+        <h3>Infelizmente, sua região ainda não é atendida por nossos planos de saúde pet. Assim que houver disponibilidade para a sua região, entraremos em contato.</h3>
 
         <p>
           Caso tenha alguma dúvida, você pode entrar em contato conosco através de:

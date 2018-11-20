@@ -8,13 +8,13 @@
         <v-flex xs7 offset-xs-1 flexbox justify-end>
           <p class="card-title" style="font-family: Roboto;display:block;"> Health4Pet </p>
           <p class="card-title" style="font-family: Roboto;display:block;"> {{ card.name }} </p>
-          <div>
+          <!-- <div>
             <v-icon color="rgb(222, 209, 28)">{{ grade >= 1 ? 'fas' : 'far' }} fa-star </v-icon>
             <v-icon color="rgb(222, 209, 28)">{{ grade >= 2 ? 'fas' : 'far' }} fa-star </v-icon>
             <v-icon color="rgb(222, 209, 28)">{{ grade >= 3 ? 'fas' : 'far' }} fa-star </v-icon>
             <v-icon color="rgb(222, 209, 28)">{{ grade >= 4 ? 'fas' : 'far' }} fa-star </v-icon>
             <v-icon color="rgb(222, 209, 28)">{{ grade >= 5 ? 'fas' : 'far' }} fa-star </v-icon>
-          </div>
+          </div> -->
         </v-flex>
         <v-flex xs12>
           <v-card-text>

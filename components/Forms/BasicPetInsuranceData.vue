@@ -138,7 +138,7 @@ export default {
       );
 
       if (!product.isAvailable) {
-        this.proposal = await apiClientProvider.setNextState(this.proposal, 21);
+        this.proposal = await apiClientProvider.setNextState(this.proposal, 11);
       } else {
         this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
       }

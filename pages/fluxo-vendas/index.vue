@@ -41,7 +41,7 @@
               </v-stepper-content>
   
               <v-stepper-content step="4" v-if="step==4">
-                <div v-if="proposal.state == 11">
+                <div v-if="proposal.state == 21">
                   <WaitingForAvailability />
                 </div>
                 <div v-else>
