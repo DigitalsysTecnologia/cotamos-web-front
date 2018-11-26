@@ -148,5 +148,7 @@
     
     .plan-value {
         font-weight: bold;
+        font-family: Roboto;
+        font-size: 24px;
     }
 </style>

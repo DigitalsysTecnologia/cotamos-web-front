@@ -1,191 +1,246 @@
 <template>
-    <v-layout justify-top>
-      <v-container fluid grid-list-md>
-        <v-layout row wrap>
-          <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm6 lg4>
-            <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan" :isSimulation="proposal.isSimulation"/>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-layout>
+  <v-layout justify-top>
+    <v-container fluid grid-list-md>
+      <v-layout row wrap>
+  
+        <v-flex xs12 v-if="false">
+          <v-card>
+            <v-card-text>
+              <v-layout row wrap>
+                <v-flex sm4 xs12>
+                  <v-text-field label="Idade do pet (em anos)" id="proposal.petInsuranceData.age" type="number" :error="!!(validation.firstError('proposal.petInsuranceData.age'))" :error-messages="validation.firstError('proposal.petInsuranceData.age')" v-model="proposal.petInsuranceData.age"
+                  />
+                </v-flex>
+                <v-flex sm8 xs12>
+                  <v-text-field label="CEP da sua residência" id="proposal.proposer.homeAddress.zipCode" :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))" :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')" mask="#####-###"
+                    v-model.trim="proposal.proposer.homeAddress.zipCode" />
+                </v-flex>
+                <v-flex xs12>
+                  <v-btn color="primary" @click="getOffers" :block="true">Consultar Ofertas</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+  
+        <v-flex sm12 v-if="loadingOffers">
+          <Loading :messages="['Obtendo ofertas,', 'Aguarde um instante por favor...']" />
+        </v-flex>
+  
+        <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm6 lg4 v-else>
+          <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan" :isSimulation="proposal.isSimulation" />
+        </v-flex>
+  
+      </v-layout>
+    </v-container>
+  </v-layout>
 </template>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
-import apiClientProvider from "@/utils/apiClient";
-import petInsuranceProvider from "@/utils/petInsuranceProvider";
-import CallToAction from "@/components/CallToAction";
-import NavBar from "@/components/NavBar";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Loading from "@/components/Loading";
-import OfferItem from "@/components/OfferItem"
-
-export default {
-  name: "InsuranceOffers",
-  data() {
-    return {
-      paymentMethod: 1,
-      planCoverage: [],
-      currentPlan: null,
-      serviceArea: null,
-      loading: true,
-    };
-  },
-  props: {
-    proposal: {
-      required: true,
-      type: Object
-    }
-  },
-  methods: {
-    formatDistance: function(distance) {
-      let result = distance.toFixed(2);
-      result = result.replace(".", ",");
-      return result + " Km";
+  import {
+    Carousel,
+    Slide
+  } from "vue-carousel";
+  import apiClientProvider from "@/utils/apiClient";
+  import petInsuranceProvider from "@/utils/petInsuranceProvider";
+  import CallToAction from "@/components/CallToAction";
+  import validator from "@/utils/validator";
+  import NavBar from "@/components/NavBar";
+  import Header from "@/components/Header";
+  import Footer from "@/components/Footer";
+  import Loading from "@/components/Loading";
+  import OfferItem from "@/components/OfferItem";
+  
+  export default {
+    name: "InsuranceOffers",
+    data() {
+      return {
+        paymentMethod: 1,
+        planCoverage: [],
+        currentPlan: null,
+        serviceArea: null,
+        loading: true,
+        availablePlans: [],
+        loadingOffers: false
+      };
     },
-    selectPlan: function(plan) {
-      this.$emit("selectPlan", plan);
-    },
-    formatAddress: function(mapItem) {
-      return (
-        mapItem.street +
-        ", " +
-        mapItem.number +
-        ", " +
-        mapItem.neighborhood +
-        " - " +
-        mapItem.city +
-        ", " +
-        mapItem.state
-      );
-    },
-    formatPhone: function(proposal) {
-      if (proposal.phoneAreaCode && proposal.phoneNumber) {
-        return `(${proposal.phoneAreaCode}) ${proposal.phoneNumber}`;
-      } else {
-        return "-";
+    props: {
+      proposal: {
+        required: true,
+        type: Object
       }
     },
-    coverageContainsPlan(item) {
-      return item[this.currentPlan.code];
-    },
-    showCoverageModal(plan) {
-      this.planCoverage = petInsuranceProvider.getCoverage();
-      this.currentPlan = plan;
-      $("#coverageModal").modal();
-    },
-    showNetworkModal(plan) {
-      $("#networkModal").modal();
-    },
-    showCarouselNavigation() {
-      if (window.document.body.clientWidth >= 500) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    getCoverageProgressBarByPlan(plan) {
-      const planName = plan.name.toUpperCase();
-
-      if (planName.indexOf("BASIC") != -1) {
-        return {
-          text: "Regular",
-          backgroundColor: "#f0ad4e",
-          width: 60
-        };
-      } else if (planName.indexOf("LIGHT") != -1) {
-        return {
-          text: "Regular",
-          backgroundColor: "#f0ad4e",
-          width: 60
-        };
-      } else if (planName.indexOf("PLUS") != -1) {
-        return {
-          text: "Bom",
-          backgroundColor: "#5bc0de",
-          width: 80
-        };
-      } else if (planName.indexOf("TOTAL") != -1) {
-        return {
-          text: "Ótimo",
-          backgroundColor: "#5bc0de",
-          width: 90
-        };
-      } else if (planName.indexOf("PREMIUM") != -1) {
-        return {
-          text: "Completo",
-          backgroundColor: "#5cb85c",
-          width: 100
-        };
-      }
-    },
-    formatCurrency(value) {
-      value = value.toFixed(2);
-      value = value.replace(".", ",");
-      return `R$ ${value}`;
-    }
-  },
-  computed: {
-    proposalId: {
-      get() {
-        return this.$route.query.id;
-      }
-    },
-    places: {
-      get() {
-        if (!this.serviceArea) {
-          return [];
-        }
-
-        return this.serviceArea;
-      }
-    },
-    currentPlanCoverage: {
-      get() {
-        return this.planCoverage;
-      }
-    },
-    paymentMethods: {
-      get() {
-        return [
-          { id: 1, text: "Boleto" },
-          { id: 2, text: "Cartão de Crédito" },
-          { id: 3, text: "Débito em Conta" }
-        ];
-      }
-    },
-    availablePlans: {
-      get() {
-        if (this.proposal) {
-          return petInsuranceProvider.getPlansByPetAge(
-            this.proposal.petInsuranceData.age
+    methods: {
+      getOffers: async function() {
+        this.loadingOffers = true;
+  
+        if (this.proposal.petInsuranceData.age <= 8) {
+          this.serviceArea = await apiClientProvider.getServiceArea(
+            this.proposal._id
           );
         }
+  
+        this.availablePlans = petInsuranceProvider.getPlansByPetAge(
+          this.proposal.petInsuranceData.age
+        );
+  
+        this.loadingOffers = false;  
+      },
+      formatDistance: function(distance) {
+        let result = distance.toFixed(2);
+        result = result.replace(".", ",");
+        return result + " Km";
+      },
+      selectPlan: function(plan) {
+        this.$emit("selectPlan", plan);
+      },
+      formatAddress: function(mapItem) {
+        return (
+          mapItem.street +
+          ", " +
+          mapItem.number +
+          ", " +
+          mapItem.neighborhood +
+          " - " +
+          mapItem.city +
+          ", " +
+          mapItem.state
+        );
+      },
+      formatPhone: function(proposal) {
+        if (proposal.phoneAreaCode && proposal.phoneNumber) {
+          return `(${proposal.phoneAreaCode}) ${proposal.phoneNumber}`;
+        } else {
+          return "-";
+        }
+      },
+      coverageContainsPlan(item) {
+        return item[this.currentPlan.code];
+      },
+      showCoverageModal(plan) {
+        this.planCoverage = petInsuranceProvider.getCoverage();
+        this.currentPlan = plan;
+        $("#coverageModal").modal();
+      },
+      showNetworkModal(plan) {
+        $("#networkModal").modal();
+      },
+      showCarouselNavigation() {
+        if (window.document.body.clientWidth >= 500) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      getCoverageProgressBarByPlan(plan) {
+        const planName = plan.name.toUpperCase();
+  
+        if (planName.indexOf("BASIC") != -1) {
+          return {
+            text: "Regular",
+            backgroundColor: "#f0ad4e",
+            width: 60
+          };
+        } else if (planName.indexOf("LIGHT") != -1) {
+          return {
+            text: "Regular",
+            backgroundColor: "#f0ad4e",
+            width: 60
+          };
+        } else if (planName.indexOf("PLUS") != -1) {
+          return {
+            text: "Bom",
+            backgroundColor: "#5bc0de",
+            width: 80
+          };
+        } else if (planName.indexOf("TOTAL") != -1) {
+          return {
+            text: "Ótimo",
+            backgroundColor: "#5bc0de",
+            width: 90
+          };
+        } else if (planName.indexOf("PREMIUM") != -1) {
+          return {
+            text: "Completo",
+            backgroundColor: "#5cb85c",
+            width: 100
+          };
+        }
+      },
+      formatCurrency(value) {
+        value = value.toFixed(2);
+        value = value.replace(".", ",");
+        return `R$ ${value}`;
       }
-    }
-  },
-  async beforeMount() {
-    if (this.proposal.petInsuranceData.age <= 8) {
-      this.serviceArea = await apiClientProvider.getServiceArea(
-        this.proposal._id
+    },
+    computed: {
+      proposalId: {
+        get() {
+          return this.$route.query.id;
+        }
+      },
+      places: {
+        get() {
+          if (!this.serviceArea) {
+            return [];
+          }
+  
+          return this.serviceArea;
+        }
+      },
+      currentPlanCoverage: {
+        get() {
+          return this.planCoverage;
+        }
+      },
+      paymentMethods: {
+        get() {
+          return [{
+              id: 1,
+              text: "Boleto"
+            },
+            {
+              id: 2,
+              text: "Cartão de Crédito"
+            },
+            {
+              id: 3,
+              text: "Débito em Conta"
+            }
+          ];
+        }
+      }
+    },
+    validators: {
+      "proposal.proposer.homeAddress.zipCode": value =>
+        validator.validateZipCode(value),
+      "proposal.petInsuranceData.age": value => validator.validatePetAge(value)
+    },
+    async beforeMount() {
+      if (this.proposal.petInsuranceData.age <= 8) {
+        this.serviceArea = await apiClientProvider.getServiceArea(
+          this.proposal._id
+        );
+      }
+  
+      this.availablePlans = petInsuranceProvider.getPlansByPetAge(
+        this.proposal.petInsuranceData.age
       );
+  
+      this.loading = false;
+    },
+    components: {
+      Carousel: Carousel,
+      Slide: Slide,
+      CallToAction: CallToAction,
+      Header: Header,
+      Footer: Footer,
+      Loading: Loading,
+      OfferItem: OfferItem
     }
-
-    this.loading = false;
-  },
-  components: {
-    Carousel: Carousel,
-    Slide: Slide,
-    CallToAction: CallToAction,
-    Header: Header,
-    Footer: Footer,
-    Loading: Loading,
-    OfferItem:OfferItem
-  }
-};
+  };
 </script>
 
 <style scoped>
-
+  
 </style>

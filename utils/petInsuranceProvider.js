@@ -161,7 +161,7 @@ export default {
         if (petAge < 1) {
             petAgeRange = 1;
         }
-        else if (petAge < 8) {
+        else if (petAge < 9) {
             petAgeRange = 2;
         }
         else {
