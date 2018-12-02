@@ -26,6 +26,7 @@
           </v-flex>
   
           <v-flex md10 offset-md1 v-else>
+            
             <v-stepper-items>
               <v-stepper-content step="1" v-if="step==1">
                 <h3 class="subtitle">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
@@ -77,7 +78,8 @@ export default {
       loading: true,
       existingProposal: null,
       loadingMessage: null,
-      finishedProposal: false
+      finishedProposal: false,
+      step: 0
     };
   },
   computed: {
@@ -86,36 +88,34 @@ export default {
         return this.existingProposal;
       }
     },
-    step: {
-      get() {
-        if (!this.existingProposal) {
-          return 1;
-        }
+    // step: {
+    //   get() {
+    //     if (!this.existingProposal) {
+    //       return 1;
+    //     }
 
-        switch (this.existingProposal.state) {
-          case 0:
-            return 1;
+    //     switch (this.existingProposal.state) {
+    //       case 0:
+    //         return 1;
 
-          case 3:
-            return 2;
+    //       case 3:
+    //         return 2;
 
-          case 4:
-            return 3;
+    //       case 4:
+    //         return 3;
 
-          case 2:
-          case 20:
-          case 11:
-          case 21:
-            return 4;
+    //       case 2:
+    //       case 20:
+    //       case 11:
+    //       case 21:
+    //         return 4;
 
-          default:
-            return 1;
-        }
-      },
-      set() {
-       
-      }
-    },
+    //       default:
+    //         return 1;
+    //     }
+    //   },
+    //   set() {}
+    // },
     isLoading: {
       get() {
         return this.loading;
@@ -134,7 +134,6 @@ export default {
   },
   methods: {
     selectPlan: async function(plan) {
-      console.log("this.existingProposal", this.existingProposal);
       this.existingProposal.petInsuranceData.selectedPlan = {
         code: plan.code
       };
@@ -144,6 +143,7 @@ export default {
         this.existingProposal,
         4
       );
+      this.nextStep();
     },
     generateBasicProposal: async function(proposal) {
       router.push({
@@ -180,6 +180,31 @@ export default {
       );
       this.loading = false;
     },
+    getStep: function() {
+      const { query } = this.$route;
+      if (query.step) 
+        return query.step;
+      
+      switch (this.existingProposal.state) {
+        case 0:
+          return 1;
+
+        case 3:
+          return 2;
+
+        case 4:
+          return 3;
+
+        case 2:
+        case 20:
+        case 11:
+        case 21:
+          return 4;
+
+        default:
+          return 1;
+      }
+    },
     finishPurchase: async function() {
       this.loadingMessage = [
         "Atualizando proposta",
@@ -192,6 +217,13 @@ export default {
         2
       );
       this.loading = false;
+      this.nextStep();
+    },
+    nextStep: async function() {
+      this.step++;
+    },
+    previousStep: async function() {
+      this.step++;
     }
   },
   async mounted() {
@@ -205,7 +237,7 @@ export default {
   },
   async beforeMount() {
     router = this.$router;
-    const { query } = this.$route;
+    const { query, step } = this.$route;
 
     this.loadingMessage = ["Carregando...", "Aguarde um instante por favor..."];
 
@@ -220,6 +252,7 @@ export default {
       this.existingProposal = factory.generateEmptyProposal();
     }
 
+    this.step = this.getStep();
     this.loading = false;
   },
   components: {
