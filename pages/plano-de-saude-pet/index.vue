@@ -75,7 +75,7 @@
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12 text-center">
             <p class="section-text">
-              Quando um filhote canino ou felino passa por fases delicadas, como a construção da imunidade e adaptação à sua nova alimentação, ele epode ficar mais predisposto à instabilidades gastrointestinais e algumas alergias, gerando mais idas ao veterinário. 
+              Quando um filhote canino ou felino passa por fases delicadas, como a construção da imunidade e adaptação à sua nova alimentação, ele pode ficar mais predisposto à instabilidades gastrointestinais e algumas alergias, gerando mais idas ao veterinário. 
               A descoberta do mundo e de sua nova casa também podem expor seu pet a riscos bastante comuns, como acidentes ou a ingestão de corpos estranhos. Esses incidentes ocorrem em 1 a cada 3 pets por ano.
             </p>
             <CallToAction v-on:click="GoToForm">
