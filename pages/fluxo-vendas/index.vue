@@ -217,6 +217,7 @@ export default {
         2
       );
       this.loading = false;
+      this.nextStep();
     },
     nextStep: async function() {
       this.step++;
