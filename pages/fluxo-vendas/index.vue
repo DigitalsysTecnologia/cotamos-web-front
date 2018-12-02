@@ -2,7 +2,7 @@
   <v-layout row wrap>
     <v-flex sm12 xs12>
       <v-stepper v-model="step">
-        <v-stepper-header>
+        <v-stepper-header v-if="!proposal || proposal.state != 11">
   
           <v-stepper-step :complete="step > 1" step="1">Verificar Disponibilidade</v-stepper-step>
           <v-divider></v-divider>
@@ -42,7 +42,7 @@
               </v-stepper-content>
   
               <v-stepper-content step="4" v-if="step==4">
-                <div v-if="proposal.state == 21">
+                <div v-if="proposal.state == 11">
                   <WaitingForAvailability />
                 </div>
                 <div v-else>

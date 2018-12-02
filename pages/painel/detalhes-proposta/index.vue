@@ -90,7 +90,10 @@
       </v-tab-item>
 
       <v-tab-item>
-        <Offers :proposal="proposal" />
+        <custom-card title="Ofertas" v-if="proposal.state == 11">
+          <span>Sem ofertas disponíveis para o cliente.</span>
+        </custom-card>
+        <Offers :proposal="proposal" v-else/>
       </v-tab-item>
 
     </v-tabs>
