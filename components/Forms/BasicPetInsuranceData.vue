@@ -139,6 +139,9 @@ export default {
 
       if (!product.isAvailable) {
         this.proposal = await apiClientProvider.setNextState(this.proposal, 11);
+        alert('Infelizmente, sua região ainda não é atendida.');        
+        this.loading = false;
+        return;
       } else {
         this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
       }

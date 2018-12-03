@@ -145,11 +145,6 @@ let queryParams = null;
 export default {
   name: "PetInsurance",
   methods: {
-    formatCurrency(value) {
-      value = value.toFixed(2);
-      value = value.replace(".", ",");
-      return `R$ ${value}`;
-    },
     GoToForm(event) {
       let partnerId = null;
 
