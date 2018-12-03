@@ -38,7 +38,7 @@
               </v-stepper-content>
   
               <v-stepper-content step="3" v-if="step==3">
-                <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" />
+                <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" v-on:goBack="previousStep" />
               </v-stepper-content>
   
               <v-stepper-content step="4" v-if="step==4">
@@ -88,34 +88,6 @@ export default {
         return this.existingProposal;
       }
     },
-    // step: {
-    //   get() {
-    //     if (!this.existingProposal) {
-    //       return 1;
-    //     }
-
-    //     switch (this.existingProposal.state) {
-    //       case 0:
-    //         return 1;
-
-    //       case 3:
-    //         return 2;
-
-    //       case 4:
-    //         return 3;
-
-    //       case 2:
-    //       case 20:
-    //       case 11:
-    //       case 21:
-    //         return 4;
-
-    //       default:
-    //         return 1;
-    //     }
-    //   },
-    //   set() {}
-    // },
     isLoading: {
       get() {
         return this.loading;
@@ -223,17 +195,13 @@ export default {
       this.step++;
     },
     previousStep: async function() {
-      this.step++;
+      const { query, step } = this.$route;
+      console.log('this.step ', this.step);
+      this.step--;
+      this.existingProposal = await apiClientProvider.getProposalById(query.id);
     }
   },
   async mounted() {
-    // const { query } = this.$route;
-    // if (query && query.id) {
-    // }
-    // this.loadingMessage = [
-    //   "Carregando sua proposta",
-    //   "Aguarde um instante por favor..."
-    // ];
   },
   async beforeMount() {
     router = this.$router;
@@ -246,7 +214,6 @@ export default {
         "Carregando sua proposta",
         "Aguarde um instante por favor..."
       ];
-
       this.existingProposal = await apiClientProvider.getProposalById(query.id);
     } else {
       this.existingProposal = factory.generateEmptyProposal();

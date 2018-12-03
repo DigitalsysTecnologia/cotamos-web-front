@@ -7,7 +7,7 @@
             <v-text-field label="Logradouro" id="address.street" :error="!!(validation.firstError('address.street'))" :error-messages="validation.firstError('address.street')" v-model.trim.lazy="address.street" />
             <v-text-field label="Número" id="address.number" :error="!!(validation.firstError('address.number'))" :error-messages="validation.firstError('address.number')" v-model.trim.lazy="address.number" />
             <v-btn color="primary" @click="onSubmit">{{ submitButtonText }}</v-btn>
-            <v-btn flat @click="onCancel" v-if="showCancelButton"> {{ cancelButtonText }}</v-btn>
+            <v-btn flat @click="onCancel" v-if="showCancelButton"  outline color="primary"> {{ cancelButtonText }}</v-btn>
         </v-flex>
     </v-layout>
 </template>

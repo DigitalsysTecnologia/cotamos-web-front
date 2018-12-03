@@ -4,29 +4,52 @@
       <v-layout row wrap>
         <v-flex sm12>
           <h3 class="subtitle">Vamos obter os dados finais para finalizar sua proposta</h3>
-  
+
           <v-stepper v-model="currentStep" vertical>
             <v-stepper-step :complete="currentStep > 1" step="1">Forma de Pagamento</v-stepper-step>
             <v-stepper-content step="1">
-              <PaymentData :proposal="proposal" v-on:onSubmit="updatePaymentData" />
+              <PaymentData
+                :proposal="proposal"
+                v-on:onSubmit="updatePaymentData"
+                :showCancelButton="true"
+                cancelButtonText="Voltar"
+                v-on:onCancel="goBack"
+              />
             </v-stepper-content>
-  
+
             <v-stepper-step :complete="currentStep > 2" step="2">Dados Pessoais</v-stepper-step>
             <v-stepper-content step="2">
-              <ProposerData :proposer="proposal.proposer" v-on:onSubmit="updateProposer" />
+              <ProposerData 
+                  :proposer="proposal.proposer" 
+                  v-on:onSubmit="updateProposer"
+                  v-on:onCancel="currentStep--"
+                  cancelButtonText="Voltar"
+                  :showCancelButton="true"
+              />
             </v-stepper-content>
-  
+
             <v-stepper-step :complete="currentStep > 3" step="3">Endereço</v-stepper-step>
             <v-stepper-content step="3">
-              <AddressData :address="proposal.proposer.homeAddress" cancelButtonText="Voltar" v-on:onSubmit="updateAddress" v-on:onCancel="currentStep--" />
+              <AddressData
+                :address="proposal.proposer.homeAddress"
+                cancelButtonText="Voltar"
+                :showCancelButton="true"
+                v-on:onSubmit="updateAddress"
+                v-on:onCancel="currentStep--"
+              />
             </v-stepper-content>
-  
+
             <v-stepper-step step="4">Dados do PET</v-stepper-step>
             <v-stepper-content step="4">
-              <PetInsuranceData :petInsuranceData="proposal.petInsuranceData" cancelButtonText="Voltar" v-on:onSubmit="finishProposal" v-on:onCancel="currentStep--" />
+              <PetInsuranceData
+                :petInsuranceData="proposal.petInsuranceData"
+                v-on:onSubmit="finishProposal"
+                v-on:onCancel="currentStep--"
+                cancelButtonText="Voltar"
+                :showCancelButton="true"
+              />
             </v-stepper-content>
           </v-stepper>
-  
         </v-flex>
       </v-layout>
     </v-container>
@@ -59,7 +82,10 @@ export default {
     nextStep: function() {
       this.currentStep++;
     },
-
+    goBack: function() {
+      console.log('Voltar')
+      this.$emit("goBack");
+    },
     updatePaymentData: async function(paymentData) {
       this.proposal.paymentData = paymentData;
       // apiClientProvider.updateProposal(this.proposal);
@@ -132,7 +158,7 @@ export default {
     }
 
     if (!this.proposal.paymentData.method) {
-      this.proposal.paymentData.method = "2"
+      this.proposal.paymentData.method = "2";
     }
   },
   components: {

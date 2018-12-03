@@ -7,7 +7,7 @@
             <PhoneInput label="Celular ou Telefone" id="proposer.phones.0" maxLength="15" :validationMessage="validation.firstError('proposer.phones.0')" v-model.trim="proposer.phones[0]" />
             <v-text-field label="CPF" id="proposer.cpf" :error="!!(validation.firstError('proposer.cpf'))" :error-messages="validation.firstError('proposer.cpf')" mask="###.###.###-##" v-model.trim="proposer.cpf" />
             <v-btn color="primary" @click="onSubmit">{{ submitButtonText }}</v-btn>
-            <v-btn flat @click="onCancel" v-if="showCancelButton"> {{ cancelButtonText }}</v-btn>
+            <v-btn flat @click="onCancel" v-if="showCancelButton"  outline color="primary"> {{ cancelButtonText }}</v-btn>
         </v-flex>
     </v-layout>
 </template>

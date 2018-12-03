@@ -21,7 +21,7 @@
         </v-flex>
         <v-flex xs12>
             <v-btn color="primary" @click="onSubmit">{{ submitButtonText }}</v-btn>
-            <v-btn flat @click="onCancel" v-if="showCancelButton"> {{ cancelButtonText }}</v-btn>
+            <v-btn flat @click="onCancel" v-if="showCancelButton" outline color="primary"> {{ cancelButtonText }}</v-btn>
         </v-flex>
     </v-layout>
 </template>
