@@ -11,7 +11,7 @@ export default {
     }
   },
 
-  translateState:  (value) => {
+  translateState: (value) => {
     switch (parseInt(value)) {
       case 0:
         return "Proposta Gerada";
@@ -33,6 +33,19 @@ export default {
         return "Sem Oferta";
       default:
         return "Desconhecido";
+    }
+  },
+
+  translatePaymentMethod: (value) => {
+    switch (parseInt(value)) {
+      case 1:
+        return "Boleto";
+      case 2:
+        return "Cartão de Crédito";
+      case 3:
+        return "Débito em Conta";
+      default:
+        return "(Desconhecido)"
     }
   }
 

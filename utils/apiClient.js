@@ -7,7 +7,8 @@ const localStore = require('./localStorage')
 function getUrl() {
   if (process.browser) {
     if (window.location.host.indexOf('localhost') != -1) {
-      return 'http://localhost:8080/api/v1'
+      return 'https://backend.cotamos.com/gateway/api/v1'
+      // return 'http://localhost:8080/api/v1'
     }
     else if (window.location.host.indexOf('homolog.cotamos.com') != -1) {
       return 'https://backend-homolog.cotamos.com/gateway/api/v1'

@@ -54,6 +54,11 @@
               <custom-label :label="'Sexo'" :value="proposal.petInsuranceData.gender" :sameLine="true" />
               <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.specie" :sameLine="true" />
             </custom-card>
+
+            <custom-card title="PAGAMENTO" v-if="proposal.paymentData">
+              <custom-label :label="'Método de Pagamento'" :value="translatePaymentMethod(proposal.paymentData.method)" :sameLine="true" v-if="proposal.paymentData.method" />
+              <custom-label :label="'Valor'" :value="formatAmount(proposal.paymentData.amount)" :sameLine="true" v-if="proposal.paymentData.amount" />
+            </custom-card>
   
           </v-card-text>
         </v-card>
@@ -162,6 +167,9 @@ export default {
     }
   },
   methods: {
+    formatAmount(amount){
+      return 'R$ ' + amount.toString().replace('.', ',')
+    },
     formatAddress(address) {
       let result = "";
 
@@ -261,6 +269,9 @@ export default {
       this.loadingEvents = false;
 
       this.showEvent = false;
+    },
+    translatePaymentMethod(method) {
+      return translator.translatePaymentMethod(method);
     }
   },
   components: {
