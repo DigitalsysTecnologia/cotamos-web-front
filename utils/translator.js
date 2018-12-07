@@ -31,6 +31,10 @@ export default {
         return "Aprovada";
       case 21:
         return "Sem Oferta";
+      case 23:
+        return "Proposta Negada";
+      case 24:
+        return "Proposta Paga"
       default:
         return "Desconhecido";
     }
