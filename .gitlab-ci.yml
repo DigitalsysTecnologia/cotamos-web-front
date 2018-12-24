@@ -83,14 +83,14 @@ build_deploy_docker:
     #=======================================================================
     # Set environment variables
     - | 
-        if [ "$CI_COMMIT_REF_NAME" = "develop" ]; then
-          export DEPLOY_ENVIRONMENT="dev"
-        fi
-        if [ "$CI_COMMIT_REF_NAME" = "homolog" ]; then
-          export DEPLOY_ENVIRONMENT="homolog"
-        fi
         if [ "$CI_COMMIT_REF_NAME" = "master" ]; then
           export DEPLOY_ENVIRONMENT="prod"
+        else
+          if [ "$CI_COMMIT_REF_NAME" = "homolog" ]; then
+            export DEPLOY_ENVIRONMENT="homolog"
+          else 
+            export DEPLOY_ENVIRONMENT="dev"
+          fi
         fi
     - export CONTAINER_REGISTRY="us.gcr.io/cotamos-production/web-front"
     - export DEPLOYMENT_NAME="web-front-deployment-$DEPLOY_ENVIRONMENT"
