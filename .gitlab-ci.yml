@@ -34,6 +34,18 @@ deploy_to_storage:
   stage: deploy
   image: docker:latest
   before_script:
+    # Set environment variables
+    - | 
+        if [ "$CI_COMMIT_REF_NAME" = "master" ]; then
+          export DEPLOY_ENVIRONMENT="www.cotamos.com"
+        else
+          if [ "$CI_COMMIT_REF_NAME" = "homolog" ]; then
+            export DEPLOY_ENVIRONMENT="homolog.cotamos.com"
+          else 
+            export DEPLOY_ENVIRONMENT="dev.cotamos.com"
+          fi
+        fi
+    
     # Install CA certs, openssl to https downloads, python for gcloud sdk
     - apk add --update make ca-certificates openssl python
     - update-ca-certificates
@@ -48,7 +60,7 @@ deploy_to_storage:
     - google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
  
   script:
-   - google-cloud-sdk/bin/gsutil cp -r dist/* gs://www.cotamos.com
+   - google-cloud-sdk/bin/gsutil cp -r dist/* gs://$DEPLOY_ENVIRONMENT
   only:
     refs:
       - master
