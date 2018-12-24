@@ -32,9 +32,7 @@ build:
 
 deploy_to_storage:
   stage: deploy
-  variables:
-   DEPLOY_USER: "eduardo" 
-   DEPLOY_DIR: "/var/www/www_cotamos"
+  image: docker:latest
   before_script:
     # Install CA certs, openssl to https downloads, python for gcloud sdk
     - apk add --update make ca-certificates openssl python
