@@ -163,7 +163,6 @@ build_deploy_docker:
     # Authenticate kubectl to use GKE
     - google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-core --zone us-east1-b --project cotamos-production
   script:
-    - docker build -t $DEPLOYMENT_PROJECT_NAME .
     # Create our image. Expected to create an image 'image_id'
     - docker build -t $DEPLOYMENT_PROJECT_NAME .
     
