@@ -1,0 +1,20 @@
+# declare front deployment
+kind: Deployment
+apiVersion: apps/v1beta1
+metadata:
+  name: web-front-deployment-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-front-prod
+      tier: web-front-prod
+  template:
+    metadata:
+      labels:
+        app: web-front-prod
+        tier: web-front-prod
+    spec:
+      containers:
+        - name: web-front
+          image: "us.gcr.io/cotamos-production/web-front:latest"

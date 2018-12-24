@@ -1,0 +1,13 @@
+# declare front service
+kind: Service
+apiVersion: v1
+metadata:
+  name: web-front-service-dev
+spec:
+  selector:
+    app: web-front-dev
+    tier: web-front-dev
+  ports:
+  - port: 80
+    targetPort: 80
+  type: NodePort

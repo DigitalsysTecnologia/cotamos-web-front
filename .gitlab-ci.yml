@@ -8,94 +8,143 @@ variables:
 services:
 - docker:dind
 
-cache:
-  paths:
-  - node_modules/
+# cache:
+#   paths:
+#   - node_modules/
 
 stages:
   - build
   - deploy
 
-build_staging:
-  artifacts:
-    paths:
-      - dist/  
-  stage: build
-  script:
-   - npm install
-   - npm run generate
-  only:
-    refs:
-      - homolog
-      - master
-
-deploy_to_prod_staging:
-  stage: deploy
-  variables:
-   DEPLOY_USER: "eduardo" 
-   DEPLOY_DIR: "/var/www/www_cotamos"
-  before_script:
-   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-   - 'which zip || ( apt-get update -y && apt-get install zip -y )'
-   - echo "$GOOGLE_SSH_KEY" > ssh_key
-   - chmod 400 ssh_key
-   - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$FRONT_HOST uptime
-  script:
-   - mv dist/ deploy/
-   - zip -r deploy.zip deploy/*
-   - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
-  only:
-    refs:
-      - master
-
-deploy_to_homolog_staging:
-  stage: deploy
-  variables:
-   DEPLOY_USER: "eduardo" 
-   DEPLOY_DIR: "/var/www/homolog_cotamos"
-  before_script:
-   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-   - 'which zip || ( apt-get update -y && apt-get install zip -y )'
-   - echo "$GOOGLE_SSH_KEY" > ssh_key
-   - cat ssh_key
-   - chmod 400 ssh_key
-   - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$FRONT_HOST uptime
-  script:
-   - mv dist/ deploy/
-   - zip -r deploy.zip deploy/*
-   - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
-   - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
-  only:
-    refs:
-      - homolog
-
-# docker_push_stage:
-#   image: docker:latest
-#   stage: deploy
+# build_staging:
+#   artifacts:
+#     paths:
+#       - dist/  
+#   stage: build
 #   script:
-#     # Install CA certs, openssl to https downloads, python for gcloud sdk
-#     - apk add --update make ca-certificates openssl python
-#     - update-ca-certificates
-#     # Write our GCP service account private key into a file
-#     - echo $GCLOUD_SERVICE_KEY | base64 -d > ${HOME}/gcloud-service-key.json
-#     # Download and install Google Cloud SDK
-#     - wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
-#     - tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true
-#     - google-cloud-sdk/bin/gcloud --quiet components update
-#     - google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-#     # Create our image. Expected to create an image 'image_id'
-#     - docker build -t $CI_PROJECT_NAME .
-#     # Tag our image for container registry
-#     - docker tag $CI_PROJECT_NAME gcr.io/$GCP_PROJECT_ID/$CI_PROJECT_NAME
-#     # Optionally tag the image with the commit short-sha
-#     - docker tag $CI_PROJECT_NAME gcr.io/$GCP_PROJECT_ID/$CI_PROJECT_NAME:$(echo $CI_COMMIT_SHA | cut -c1-8)
-#     - google-cloud-sdk/bin/gcloud docker -- push gcr.io/$GCP_PROJECT_ID/$CI_PROJECT_NAME:latest
-#     - google-cloud-sdk/bin/gcloud docker -- push gcr.io/$GCP_PROJECT_ID/$CI_PROJECT_NAME:$(echo $CI_COMMIT_SHA | cut -c1-8)
-#   # Only run builds for these refs
+#    - npm install
+#    - npm run generate
 #   only:
-#     - master
+#     refs:
+#       - homolog
+#       - master
+
+# deploy_to_prod_staging:
+#   stage: deploy
+#   variables:
+#    DEPLOY_USER: "eduardo" 
+#    DEPLOY_DIR: "/var/www/www_cotamos"
+#   before_script:
+#    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+#    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
+#    - echo "$GOOGLE_SSH_KEY" > ssh_key
+#    - chmod 400 ssh_key
+#    - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$FRONT_HOST uptime
+#   script:
+#    - mv dist/ deploy/
+#    - zip -r deploy.zip deploy/*
+#    - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
+#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
+#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
+#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
+#   only:
+#     refs:
+#       - master
+
+# deploy_to_homolog_staging:
+#   stage: deploy
+#   variables:
+#    DEPLOY_USER: "eduardo" 
+#    DEPLOY_DIR: "/var/www/homolog_cotamos"
+#   before_script:
+#    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+#    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
+#    - echo "$GOOGLE_SSH_KEY" > ssh_key
+#    - cat ssh_key
+#    - chmod 400 ssh_key
+#    - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$FRONT_HOST uptime
+#   script:
+#    - mv dist/ deploy/
+#    - zip -r deploy.zip deploy/*
+#    - scp -i ssh_key deploy.zip $DEPLOY_USER@$FRONT_HOST:$DEPLOY_DIR
+#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
+#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
+#    - ssh -i ssh_key $DEPLOY_USER@$FRONT_HOST "rm $DEPLOY_DIR/deploy.zip"
+#   only:
+#     refs:
+#       - homolog
+
+build_deploy_docker:
+  image: docker:latest
+  stage: deploy
+  variables:
+   DEPLOYMENT_PROJECT_NAME: "web-front"
+  before_script:
+    #=======================================================================
+    # Set environment variables
+    - | 
+        if [ "$CI_COMMIT_REF_NAME" = "master" ]; then
+          export DEPLOY_ENVIRONMENT="prod"
+        else
+          if [ "$CI_COMMIT_REF_NAME" = "homolog" ]; then
+            export DEPLOY_ENVIRONMENT="homolog"
+          else 
+            export DEPLOY_ENVIRONMENT="dev"
+          fi
+        fi
+    - export CONTAINER_REGISTRY="us.gcr.io/cotamos-production/web-front"
+    - export DEPLOYMENT_NAME="web-front-deployment-$DEPLOY_ENVIRONMENT"
+    - export IMAGE_TAG=$(echo $CI_COMMIT_SHA | cut -c1-8)
+
+    #=======================================================================
+
+    # Install CA certs, openssl to https downloads, python for gcloud sdk
+    - apk add --update make ca-certificates openssl python
+    - update-ca-certificates
+
+    # Write our GCP service account private key into a file
+    - echo $GCLOUD_SERVICE_KEY | base64 -d > ${HOME}/gcloud-service-key.json
+
+    # Download and install Google Cloud SDK
+    - wget https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz
+    - tar zxvf google-cloud-sdk.tar.gz && ./google-cloud-sdk/install.sh --usage-reporting=false --path-update=true
+    - google-cloud-sdk/bin/gcloud --quiet components update
+    - google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+
+    # Set the Kubernetes version as found in the UCP Dashboard or API
+    - k8sversion=v1.8.11
+
+    # Get the kubectl binary.
+    - wget https://storage.googleapis.com/kubernetes-release/release/$k8sversion/bin/linux/amd64/kubectl
+
+    # Make the kubectl binary executable.
+    - chmod +x ./kubectl
+
+    # Move the kubectl executable to /usr/local/bin.
+    - mv ./kubectl /usr/local/bin/kubectl
+
+    # Authenticate kubectl to use GKE
+    - google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-core --zone us-east1-b --project cotamos-production
+  script:
+    - docker build -t $DEPLOYMENT_PROJECT_NAME .
+    # Create our image. Expected to create an image 'image_id'
+    - docker build -t $DEPLOYMENT_PROJECT_NAME .
+    
+    # Tag our image for container registry
+    - docker tag $DEPLOYMENT_PROJECT_NAME $CONTAINER_REGISTRY
+    
+    # Optionally tag the image with the commit short-sha
+    - docker tag $DEPLOYMENT_PROJECT_NAME $CONTAINER_REGISTRY:$IMAGE_TAG
+    - google-cloud-sdk/bin/gcloud docker -- push $CONTAINER_REGISTRY:latest
+    - echo "google-cloud-sdk/bin/gcloud docker -- push $CONTAINER_REGISTRY:$IMAGE_TAG"
+    - google-cloud-sdk/bin/gcloud docker -- push $CONTAINER_REGISTRY:$IMAGE_TAG
+    
+    # Update deployment image
+    - echo "kubectl set image deployments/$DEPLOYMENT_NAME $DEPLOYMENT_PROJECT_NAME=$CONTAINER_REGISTRY:$IMAGE_TAG --record"
+    - kubectl set image deployments/$DEPLOYMENT_NAME $DEPLOYMENT_PROJECT_NAME=$CONTAINER_REGISTRY:$IMAGE_TAG --record
+
+  # Only run builds for these refs
+  only:
+    - master
+    - homolog
+    - develop
