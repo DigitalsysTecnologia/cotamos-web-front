@@ -31,7 +31,7 @@ deploy:
   before_script:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
-   - echo "$DIGITALOCEAN_SSH_KEY" > ssh_key
+   - echo "$SSH_KEY" > ssh_key
    - chmod 400 ssh_key
    - ssh -i ssh_key -o StrictHostKeyChecking=no $DEPLOY_USER@$APP_HOST uptime
   script:
