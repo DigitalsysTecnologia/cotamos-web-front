@@ -2,36 +2,88 @@
   <div>
     <div class="row section">
       <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Seja Nosso Parceiro</h2>
-        
+        <h3 class="subtitle">Você sabe o que é plano de saúde pet?</h3>
+
+        <h3
+          class="subtitle"
+        >É a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora</h3>
       </div>
     </div>
-
 
     <div class="row section">
       <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Dúvidas frequentes</h2>
-
-        <v-expansion-panel>
-          <v-expansion-panel-content
-            v-for="(faq,i) in faqs" :key="i" >
-            <div slot="header">
-              {{i + 1}}. <span style="font-weight:bold;">{{ faq.question }}</span>
-            </div>
-            <v-card>
-              <v-card-text>
-                {{ faq.answer }}
-              </v-card-text>
-            </v-card>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
-
-
-        <CallToAction targetUrl="/fluxo-parceria"> Seja Um Parceiro Cotamos </CallToAction>
-
+        <h2 class="subtitle">Você sabe quanto pode custar a saúde do seu amigo?</h2>
       </div>
     </div>
-    
+
+    <div class="row section">
+      <div class="col-xs-12 text-center">
+        <h2 class="subtitle">Conhece o plano de saúde pet?</h2>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-xs-12 text-center">
+        <h2 class="subtitle">Como funciona a parceria?</h2>
+
+        <CallToAction targetUrl="/fluxo-parceria">Seja Parceiro</CallToAction>
+        <CallToAction targetUrl="/painel/login">Já sou Parceiro</CallToAction>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-xs-12 text-center">
+        <h2 class="subtitle">Vídeos</h2>
+
+        <!-- <Faq :items="faqs"/> -->
+        <CallToAction targetUrl="/fluxo-parceria">Seja Um Parceiro Cotamos</CallToAction>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-xs-12 text-center">
+        <h2 class="subtitle">Dùvidas Comuns</h2>
+
+        <!-- <Faq :items="faqs"/> -->
+        <CallToAction targetUrl="/fluxo-parceria">Seja Um Parceiro Cotamos</CallToAction>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-xs-12 text-center">
+        <h2 class="subtitle">Depoimento</h2>
+
+        <iframe
+          src="https://player.vimeo.com/video/289486967"
+          width="640"
+          height="360"
+          frameborder="0"
+          webkitallowfullscreen
+          mozallowfullscreen
+          allowfullscreen
+        ></iframe>
+        <p>
+          <a href="https://vimeo.com/289486967">DEPOIMENTO LUCINEIDE - HEALTH FOR PET</a> from
+          <a href="https://vimeo.com/user87672817">Bravoz Produ&ccedil;&otilde;es</a> on
+          <a href="https://vimeo.com">Vimeo</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-xs-12 text-center">
+        <h2 class="subtitle">Se o meu pet falasse!</h2>
+
+        <p>Nossos News letters</p>
+      </div>
+    </div>
+
+    <div class="row section">
+      <div class="col-xs-12 text-center">
+        <CallToAction targetUrl="/fluxo-parceria">Seja Parceiro</CallToAction>
+        <CallToAction targetUrl="/painel/login">Já sou Parceiro</CallToAction>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,6 +91,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
+import Faq from "@/components/Faq";
 import ProductCard from "@/components/ProductCard";
 import CallToAction from "@/components/CallToAction";
 import apiClientProvider from "@/utils/apiClient";
@@ -163,6 +216,7 @@ export default {
     createPartner: async function(partner) {}
   },
   components: {
+    Faq: Faq,
     Footer: Footer,
     Header: Header,
     NavBar: NavBar,
