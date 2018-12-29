@@ -38,6 +38,7 @@ deploy:
    - mv dist/ deploy/
    - zip -r deploy.zip deploy/*
    - export DEPLOY_DIR="$DEPLOY_DIR/$CI_COMMIT_REF_NAME"
+   - ssh -i ssh_key $DEPLOY_USER@$APP_HOST "mkdir -p $DEPLOY_DIR"
    - scp -i ssh_key deploy.zip $DEPLOY_USER@$APP_HOST:$DEPLOY_DIR
    - ssh -i ssh_key $DEPLOY_USER@$APP_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
    - ssh -i ssh_key $DEPLOY_USER@$APP_HOST "cp -rf $DEPLOY_DIR/deploy/* $DEPLOY_DIR/"
