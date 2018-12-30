@@ -26,7 +26,6 @@ build:
 deploy:
   stage: deploy
   variables:
-   DEPLOY_USER: "root" 
    DEPLOY_DIR: "/var/www/web-front"
   before_script:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
