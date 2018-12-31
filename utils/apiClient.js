@@ -7,7 +7,7 @@ const localStore = require('./localStorage')
 function getUrl() {
   if (process.browser) {
     if (window.location.host.indexOf('localhost') != -1) {
-      return 'https://backend-homolog.cotamos.com/api/v1'
+      return 'http://localhost:8080/api/v1'
     }
     else if (window.location.host.indexOf('homolog.cotamos.com') != -1) {
       return 'https://backend-homolog.cotamos.com/api/v1'
@@ -131,6 +131,7 @@ class ApiClient {
     }
     const result = await internalPost(urljoin('user', 'login'), payload);
     localStore.userToken = result.token
+    localStore.userId = result.userId
 
     return internalPost(urljoin('user', 'login'), payload);
   }
@@ -162,6 +163,10 @@ class ApiClient {
 
   getAllCompanies() {
     return internalGet('company')
+  }
+
+  getCurrentUser() {
+    return internalGet(urljoin('user', localStore.userId));
   }
 
   getUserById(userId) {
@@ -200,9 +205,6 @@ class ApiClient {
     return internalGet('profession')
   }
 
-  testVuex() {
-
-  }
 }
 
 export default new ApiClient();
