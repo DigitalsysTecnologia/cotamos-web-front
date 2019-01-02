@@ -1,19 +1,17 @@
 <template>
     <v-layout row wrap>
-        <v-flex sm6 xs12>
+        <v-flex sm4 xs12>
             <v-layout align-center justify-center row fill-height>
                 <v-flex xs12 style="margin-left:20px;">
                     <img class="plan-logo" :src="selectedPlan.logo" />
-                    <p>
-                        <span class="plan-name"> {{selectedPlan.name}}</span>
-                        <span class="plan-value" v-if="proposal.paymentData.method"> {{ formatCurrency(planPrice)}} </span>
-                    </p>
+                    <span class="plan-name"> {{selectedPlan.name}}</span>
+                    <span class="plan-value" v-if="proposal.paymentData.method"> {{ formatCurrency(planPrice)}} </span>
                 </v-flex>
             </v-layout>
         </v-flex>
     
-        <v-flex sm6 xs12>
-            <v-radio-group label="" v-model="proposal.paymentData.method" :error="!!(validation.firstError('proposal.paymentData.method'))" :error-messages="validation.firstError('proposal.paymentData.method')">
+        <v-flex sm4 xs12>
+            <v-radio-group label="Forma de Pagamento" v-model="proposal.paymentData.method" :error="!!(validation.firstError('proposal.paymentData.method'))" :error-messages="validation.firstError('proposal.paymentData.method')">
                 <v-radio key="Boleto" label="Boleto" value="1" color="primary" />
                 <v-radio key="Cartão de Crédito" label="Cartão de Crédito" value="2" color="primary" />
                 <v-radio key="Débito em Conta" label="Débito em Conta" value="3" color="primary" />
@@ -122,8 +120,8 @@
             if (!this.proposal.paymentData) {
                 this.proposal.paymentData = {};
             }
-
-            if(this.proposal.paymentData.method) {
+    
+            if (this.proposal.paymentData.method) {
                 this.proposal.paymentData.method = this.proposal.paymentData.method.toString();
             }
         }

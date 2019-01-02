@@ -166,7 +166,7 @@ export default {
   },
   head() {
     return {
-      title: 'Cotamos.com - Plano de Saúde PET'
+      title: 'Cotamos.com - Planos'
     }
   },
   data() {

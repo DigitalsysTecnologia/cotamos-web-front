@@ -41,7 +41,7 @@
 <style scoped>
   .brand {
     float: left;
-    height: 50px;
+    height: 55px;
     font-size: 18px;
     line-height: 20px;
   }
