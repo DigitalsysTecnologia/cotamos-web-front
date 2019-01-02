@@ -1,90 +1,71 @@
 <template>
-  <div>
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h3 class="subtitle">Você sabe o que é plano de saúde pet?</h3>
-
-        <h3
-          class="subtitle"
-        >É a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora</h3>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Você sabe quanto pode custar a saúde do seu amigo?</h2>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Conhece o plano de saúde pet?</h2>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Como funciona a parceria?</h2>
-
-        <CallToAction targetUrl="/fluxo-parceria">Seja Parceiro</CallToAction>
-        <CallToAction targetUrl="/painel/login">Já sou Parceiro</CallToAction>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Vídeos</h2>
-
-        <!-- <Faq :items="faqs"/> -->
-        <CallToAction targetUrl="/fluxo-parceria">Seja Um Parceiro Cotamos</CallToAction>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Dùvidas Comuns</h2>
-
-        <!-- <Faq :items="faqs"/> -->
-        <CallToAction targetUrl="/fluxo-parceria">Seja Um Parceiro Cotamos</CallToAction>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Depoimento</h2>
-
-        <iframe
-          src="https://player.vimeo.com/video/289486967"
-          width="640"
-          height="360"
-          frameborder="0"
-          webkitallowfullscreen
-          mozallowfullscreen
-          allowfullscreen
-        ></iframe>
-        <p>
-          <a href="https://vimeo.com/289486967">DEPOIMENTO LUCINEIDE - HEALTH FOR PET</a> from
-          <a href="https://vimeo.com/user87672817">Bravoz Produ&ccedil;&otilde;es</a> on
-          <a href="https://vimeo.com">Vimeo</a>.
+  <v-container>
+    <v-layout row wrap align-center justify-center>
+      <v-flex xs12>
+        <h1 class="subtitle text-center">Seja um parceiro Cotamos</h1>
+        <p>Com a Cotamos, você pode fazer renda através da venda de produtos seguro.
+          <br>Através da nossa plataforma, você pode vender seus produtos para seus amigos, vizinhos ou mesmo os clientes de seu negócio.
+          <br>Oferecemos todo o suporte para que você possa realizar a venda com tranquilidade e segurança.
         </p>
-      </div>
-    </div>
+      </v-flex>
 
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Se o meu pet falasse!</h2>
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Tipos de parceria</h2>
 
-        <p>Nossos News letters</p>
-      </div>
-    </div>
+        <section class="section">
+          <h3 class="headline mb-0 mt-0 section-title">Para Pessoa Física</h3>
+          <div class="section-body">
+            <p>Você tem um pet? Sabia que ele pode ter um plano de saúde a um preço acessível? Também é possível vender esse tipo de produto para seus amigos da faculdade, trabalho entre outros.</p>
+          </div>
+        </section>
 
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <CallToAction targetUrl="/fluxo-parceria">Seja Parceiro</CallToAction>
-        <CallToAction targetUrl="/painel/login">Já sou Parceiro</CallToAction>
-      </div>
-    </div>
-  </div>
+        <section class="section">
+          <h3 class="headline mb-0 mt-0 section-title">Para Pessoa Jurídica</h3>
+          <div class="section-body">
+            <p>Você é uma agência de viagens? Temos Seguro Viagem para seus clientes, de modo on-line
+              <br>Possui uma contabilidade? Ofereça seguro de vida juntamente com a abertura da empresa de seus clientes
+            </p>
+          </div>
+        </section>
+      </v-flex>
+
+      <v-flex xs12 class="section">
+        <h1 class="subtitle text-center">Como funciona?</h1>
+        <v-carousel :cycle="true">
+          <v-carousel-item :key="0">
+            <p>Nova Página 1</p>
+          </v-carousel-item>
+          <v-carousel-item :key="1">
+            <p>Nova Página 2</p>
+          </v-carousel-item>
+          <v-carousel-item :key="2">
+            <p>Nova Página 3</p>
+          </v-carousel-item>
+        </v-carousel>
+      </v-flex>
+
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Seja Parceiro</h2>
+        <p class="text-center">Cadastre-se e comece a realizar as vendas (totalmente grátis)</p>
+
+        <v-btn color="primary" dark round block href="/fluxo-parceria">Cadastre-se grátis</v-btn>
+        <v-btn color="primary" dark round block href="/painel/login" outline>Já tenho cadastro</v-btn>
+      </v-flex>
+
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Perguntas Frequentes</h2>
+        <Faq :items="faqs"/>
+      </v-flex>
+
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Seja Parceiro</h2>
+        <p class="text-center">Cadastre-se e comece a realizar as vendas (totalmente grátis)</p>
+
+        <v-btn color="primary" dark round block href="/fluxo-parceria">Cadastre-se grátis</v-btn>
+        <v-btn color="primary" dark round block href="/painel/login" outline>Já tenho cadastro</v-btn>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -229,28 +210,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .section {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 20px;
 }
 
-.carousel-inner {
-  background: #00d886;
-  background: -moz-linear-gradient(left, #00d886 0%, #00d6e7 100%);
-  background: -webkit-linear-gradient(left, #00d886 0%, #00d6e7 100%);
-  background: linear-gradient(to right, #00d886 0%, #00d6e7 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d886', endColorstr='#00d6e7',GradientType=1 );
+.section-body {
+  margin-top: 20px;
 }
 
-.form-container {
-  border: 2px solid rgb(5, 62, 66);
-  border-radius: 5px;
-  background-color: white;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+.section-title {
+  color: #00899c;
+  font-weight: bold;
 }
 </style>
