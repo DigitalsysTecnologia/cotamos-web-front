@@ -3,10 +3,11 @@
     <v-layout row wrap align-center justify-center>
       <v-flex xs12>
         <h1 class="subtitle text-center">Seja um parceiro Cotamos</h1>
-        <p>Com a Cotamos, você pode fazer renda através da venda de produtos seguro.
-          <br>Através da nossa plataforma, você pode vender seus produtos para seus amigos, vizinhos ou mesmo os clientes de seu negócio.
-          <br>Oferecemos todo o suporte para que você possa realizar a venda com tranquilidade e segurança.
-        </p>
+        <p>Com a Cotamos, você pode ter uma renda extra com a venda conjugada de plano de saúde PET. </p>
+
+<p>Através da nossa plataforma, você pode vender PLANO DE SAÚDE PET para seus amigos, vizinhos ou mesmo os clientes de seu negócio. 
+<br/>
+Oferecemos todo o suporte para que você possa realizar a venda com tranquilidade, segurança, seriedade e um produto de alta qualidade. </p>
       </v-flex>
 
       <v-flex xs12 class="section">
@@ -15,16 +16,16 @@
         <section class="section">
           <h3 class="headline mb-0 mt-0 section-title">Para Pessoa Física</h3>
           <div class="section-body">
-            <p>Você tem um pet? Sabia que ele pode ter um plano de saúde a um preço acessível? Também é possível vender esse tipo de produto para seus amigos da faculdade, trabalho entre outros.</p>
+            <p>Caso você criador não possua CNPJ, podemos firmar a parceira sem problemas, emitiremos um cartão pré-pago e você controlará todas as transações pela plataforma Cotamos.com e os pagamentos serão automaticamente debitados no seu cartão pré-pago.</p>
           </div>
         </section>
 
         <section class="section">
           <h3 class="headline mb-0 mt-0 section-title">Para Pessoa Jurídica</h3>
           <div class="section-body">
-            <p>Você é uma agência de viagens? Temos Seguro Viagem para seus clientes, de modo on-line
-              <br>Possui uma contabilidade? Ofereça seguro de vida juntamente com a abertura da empresa de seus clientes
-            </p>
+            <p>Basta cadastrar sua empresa na plataforma cotamos.com que terá todas as transações efetuadas com o total acompanhamento e controle de todas as etapas evolutiva da venda. 
+              <br/>
+              Desde o cadastramento da proposta até pagamento das comissões na conta corrente da empresa.                     </p>
           </div>
         </section>
       </v-flex>
