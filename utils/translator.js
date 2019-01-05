@@ -1,6 +1,5 @@
 export default {
-
-  translateProduct: (value) => {
+  translateProduct: value => {
     switch (parseInt(value)) {
       case 2:
         return "Seguro Saúde";
@@ -11,7 +10,7 @@ export default {
     }
   },
 
-  translateState: (value) => {
+  translateState: value => {
     switch (parseInt(value)) {
       case 0:
         return "Proposta Gerada";
@@ -23,10 +22,12 @@ export default {
         return "Ofertas Visualizadas";
       case 4:
         return "Plano Escolhido";
-      case 11:
-        return "Aguardando disponibilidade de área";
       case 10:
         return "Pronto para Integração";
+      case 11:
+        return "Aguardando disponibilidade de Área";
+      case 12:
+        return "Aguardando Pagamento";
       case 20:
         return "Aprovada";
       case 21:
@@ -34,13 +35,13 @@ export default {
       case 23:
         return "Proposta Negada";
       case 24:
-        return "Proposta Paga"
+        return "Proposta Paga";
       default:
         return "Desconhecido";
     }
   },
 
-  translatePaymentMethod: (value) => {
+  translatePaymentMethod: value => {
     switch (parseInt(value)) {
       case 1:
         return "Boleto";
@@ -49,8 +50,7 @@ export default {
       case 3:
         return "Débito em Conta";
       default:
-        return "(Desconhecido)"
+        return "(Desconhecido)";
     }
   }
-
-}
+};

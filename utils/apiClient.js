@@ -1,111 +1,109 @@
-'use strict';
+"use strict";
 
-const axios = require('axios');
-const urljoin = require('url-join');
-const localStore = require('./localStorage')
+const axios = require("axios");
+const urljoin = require("url-join");
+const localStore = require("./localStorage");
 
 function getUrl() {
   if (process.browser) {
-    if (window.location.host.indexOf('localhost') != -1) {
-      return 'https://backend-homolog.cotamos.com/api/v1'
-    }
-    else if (window.location.host.indexOf('homolog.cotamos.com') != -1) {
-      return 'https://backend-homolog.cotamos.com/api/v1'
-    }
-    else if (window.location.host.indexOf('dev.cotamos.com') != -1) {
-      return 'https://backend-homolog.cotamos.com/api/v1'
-    }
-    else {
-      return 'https://backend.cotamos.com/api/v1'
+    switch (window.location.hostname) {
+      case "localhost":
+        return "http://localhost:8080/api/v1";
+      case "www.cotamos.com":
+        return "https://backend.cotamos.com/api/v1";
+      case "homolog.cotamos.com":
+        return "https://backend-homolog.cotamos.com/api/v1";
+      case "dev.cotamos.com":
+        return "https://backend-homolog.cotamos.com/api/v1";
     }
   }
-  return process.env.baseUrl
+  return process.env.baseUrl;
 }
 
 function internalRequest(method, url, data) {
   let baseUrl = getUrl();
-  let apiKey = '';
-
+  let apiKey = "";
 
   apiKey = localStore.userToken;
 
   return axios({
     method: method,
     headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'apiKey': apiKey
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      apiKey: apiKey
     },
     crossdomain: true,
     url: urljoin(baseUrl, url),
     data: data
-  }).then(function (res) {
-    if (res.data)
-      return res.data;
+  })
+    .then(function(res) {
+      if (res.data) return res.data;
 
-    return null;
-  }).catch(function (err) {
-    var exception = {};
+      return null;
+    })
+    .catch(function(err) {
+      var exception = {};
 
-    if (err.response && err.response.data) {
-      exception.data = err.response.data;
-      exception.statusCode = err.response.status
-    }
+      if (err.response && err.response.data) {
+        exception.data = err.response.data;
+        exception.statusCode = err.response.status;
+      }
 
-    throw exception;
-  });
+      throw exception;
+    });
 }
 
 function internalDelete(url, data) {
-  return internalRequest('delete', url, null);
+  return internalRequest("delete", url, null);
 }
 
 function internalGet(url) {
-  return internalRequest('get', url, null);
+  return internalRequest("get", url, null);
 }
 
 function internalPost(url, data) {
-  return internalRequest('post', url, data);
+  return internalRequest("post", url, data);
 }
 
 function internalPut(url, data) {
-  return internalRequest('put', url, data);
+  return internalRequest("put", url, data);
 }
 
 class ApiClient {
   createUser(user) {
-    return internalPost('user', user);
+    return internalPost("user", user);
   }
 
   createChatBotLog(chatBotLog) {
-    return internalPost('chatBotLog', chatBotLog);
+    return internalPost("chatBotLog", chatBotLog);
   }
 
   generateProposal(productCode, isSimulation) {
     let queryParams = [];
-    queryParams.push(`product=${productCode}`)
+    queryParams.push(`product=${productCode}`);
 
     if (isSimulation) {
-      queryParams.push("simulation=true")
+      queryParams.push("simulation=true");
     }
 
     return internalGet(`proposal/generate/?${queryParams.join("&")}`);
   }
 
   getProposalsByFilter(filter) {
-    return internalPost('proposal/list-by-filter', filter);
+    return internalPost("proposal/list-by-filter", filter);
   }
 
   async getAllStates() {
-    return await internalGet(`state/all`);    
+    return await internalGet(`state/all`);
   }
 
   createPartner(partner) {
-    return internalPost('partner', partner);
+    return internalPost("partner", partner);
   }
 
   updatePartner(partner) {
-    return internalPut('partner', partner);
+    return internalPut("partner", partner);
   }
 
   getProposalById(proposalId) {
@@ -113,59 +111,64 @@ class ApiClient {
   }
 
   getAddressByZipCode(zipCode) {
-    return internalGet(urljoin('address', 'by-zipcode', `?zipCode=${zipCode}`));
+    return internalGet(urljoin("address", "by-zipcode", `?zipCode=${zipCode}`));
   }
 
   addProposalEvent(event) {
-    return internalPost('proposal-event', event)
+    return internalPost("proposal-event", event);
   }
 
   getEventsByProposal(proposalId) {
-    return internalGet(urljoin('proposal-event', `?proposalId=${proposalId}`))
+    return internalGet(urljoin("proposal-event", `?proposalId=${proposalId}`));
   }
 
   async login(login, password) {
     const payload = {
       login: login,
       password: password
-    }
-    const result = await internalPost(urljoin('user', 'login'), payload);
-    localStore.userToken = result.token
+    };
+    const result = await internalPost(urljoin("user", "login"), payload);
+    localStore.userToken = result.token;
+    localStore.userId = result.userId;
 
-    return internalPost(urljoin('user', 'login'), payload);
+    return internalPost(urljoin("user", "login"), payload);
   }
   updateProposal(proposal) {
-    return internalPut(urljoin('proposal'), proposal);
+    return internalPut(urljoin("proposal"), proposal);
   }
 
   setNextState(proposal, nextState) {
     const payload = {
       proposalId: proposal._id,
       nextState: nextState
-    }
-    return internalPost(urljoin('proposal', 'set-next-state'), payload);
+    };
+    return internalPost(urljoin("proposal", "set-next-state"), payload);
   }
   getServiceArea(proposalId) {
-    return internalGet(urljoin('proposal', 'get-service-area', proposalId));
+    return internalGet(urljoin("proposal", "get-service-area", proposalId));
   }
   async checkSession(token) {
     const payload = {
       token: token
     };
 
-    return internalPost(urljoin('user-token', 'check-session'), payload)
+    return internalPost(urljoin("user-token", "check-session"), payload);
   }
 
   getAllUsers() {
-    return internalGet('user')
+    return internalGet("user");
   }
 
   getAllCompanies() {
-    return internalGet('company')
+    return internalGet("company");
+  }
+
+  getCurrentUser() {
+    return internalGet(urljoin("user", localStore.userId));
   }
 
   getUserById(userId) {
-    return internalGet(urljoin('user', userId));
+    return internalGet(urljoin("user", userId));
   }
 
   checkAvailabilityForProduct(product, zipCode) {
@@ -173,35 +176,31 @@ class ApiClient {
       product: product,
       zipCode: zipCode
     };
-    return internalPost(urljoin('product', 'check-availability'), payload);
+    return internalPost(urljoin("product", "check-availability"), payload);
   }
 
   getCompanyById(companyId) {
-    return internalGet(urljoin('company', companyId));
+    return internalGet(urljoin("company", companyId));
   }
 
   updateCompany(company) {
-    return internalPut('company', company);
+    return internalPut("company", company);
   }
 
   updateUser(user) {
-    return internalPut('user', user);
+    return internalPut("user", user);
   }
 
   createCompany(company) {
-    return internalPost('company', company);
+    return internalPost("company", company);
   }
 
   getAllProducts() {
-    return internalGet('product')
+    return internalGet("product");
   }
 
   getAllProfessions() {
-    return internalGet('profession')
-  }
-
-  testVuex() {
-
+    return internalGet("profession");
   }
 }
 

@@ -1,90 +1,68 @@
 <template>
-  <div>
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h3 class="subtitle">Você sabe o que é plano de saúde pet?</h3>
+  <v-container>
+    <v-layout row wrap align-center justify-center>
+      <v-flex xs12>
+        <h1 class="subtitle text-center">Seja um parceiro Cotamos</h1>
+        <p>Com a Cotamos, você pode ter uma renda extra com a venda conjugada de plano de saúde PET.</p>
 
-        <h3
-          class="subtitle"
-        >É a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora</h3>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Você sabe quanto pode custar a saúde do seu amigo?</h2>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Conhece o plano de saúde pet?</h2>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Como funciona a parceria?</h2>
-
-        <CallToAction targetUrl="/fluxo-parceria">Seja Parceiro</CallToAction>
-        <CallToAction targetUrl="/painel/login">Já sou Parceiro</CallToAction>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Vídeos</h2>
-
-        <!-- <Faq :items="faqs"/> -->
-        <CallToAction targetUrl="/fluxo-parceria">Seja Um Parceiro Cotamos</CallToAction>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Dùvidas Comuns</h2>
-
-        <!-- <Faq :items="faqs"/> -->
-        <CallToAction targetUrl="/fluxo-parceria">Seja Um Parceiro Cotamos</CallToAction>
-      </div>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Depoimento</h2>
-
-        <iframe
-          src="https://player.vimeo.com/video/289486967"
-          width="640"
-          height="360"
-          frameborder="0"
-          webkitallowfullscreen
-          mozallowfullscreen
-          allowfullscreen
-        ></iframe>
-        <p>
-          <a href="https://vimeo.com/289486967">DEPOIMENTO LUCINEIDE - HEALTH FOR PET</a> from
-          <a href="https://vimeo.com/user87672817">Bravoz Produ&ccedil;&otilde;es</a> on
-          <a href="https://vimeo.com">Vimeo</a>.
+        <p>Através da nossa plataforma, você pode vender PLANO DE SAÚDE PET para seus amigos, vizinhos ou mesmo os clientes de seu negócio.
+          <br>Oferecemos todo o suporte para que você possa realizar a venda com tranquilidade, segurança, seriedade e um produto de alta qualidade.
         </p>
-      </div>
-    </div>
+      </v-flex>
 
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Se o meu pet falasse!</h2>
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Tipos de parceria</h2>
 
-        <p>Nossos News letters</p>
-      </div>
-    </div>
+        <section class="section">
+          <h3 class="headline mb-0 mt-0 section-title">Para Pessoa Física</h3>
+          <div class="section-body">
+            <p>Caso você criador não possua CNPJ, podemos firmar a parceira sem problemas, emitiremos um cartão pré-pago e você controlará todas as transações pela plataforma Cotamos.com e os pagamentos serão automaticamente debitados no seu cartão pré-pago.</p>
+          </div>
+        </section>
 
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <CallToAction targetUrl="/fluxo-parceria">Seja Parceiro</CallToAction>
-        <CallToAction targetUrl="/painel/login">Já sou Parceiro</CallToAction>
-      </div>
-    </div>
-  </div>
+        <section class="section">
+          <h3 class="headline mb-0 mt-0 section-title">Para Pessoa Jurídica</h3>
+          <div class="section-body">
+            <p>Basta cadastrar sua empresa na plataforma cotamos.com que terá todas as transações efetuadas com o total acompanhamento e controle de todas as etapas evolutiva da venda.
+              <br>Desde o cadastramento da proposta até pagamento das comissões na conta corrente da empresa.
+            </p>
+          </div>
+        </section>
+      </v-flex>
+
+      <v-flex xs12 class="section" style="border-radius:15px;">
+        <h1 class="subtitle text-center">Como funciona?</h1>
+
+        <v-carousel :hide-controls="true" :height="350"  style="border-radius:15px;">
+          <v-carousel-item v-for="(item, idx) in carouselItems" :key="idx" style="background-color: #00899c;">
+            <InfoCard :name="item.title" :imgUrl="item.imgUrl" :description="item.description"/>
+            </v-carousel-item>
+        </v-carousel>
+       
+      </v-flex>
+
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Seja Parceiro</h2>
+        <p class="text-center">Cadastre-se e comece a realizar as vendas (totalmente grátis)</p>
+
+        <v-btn color="primary" dark round block href="/fluxo-parceria">Cadastre-se grátis</v-btn>
+        <v-btn color="primary" dark round block href="/painel/login" outline>Já tenho cadastro</v-btn>
+      </v-flex>
+
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Perguntas Frequentes</h2>
+        <Faq :items="faqs"/>
+      </v-flex>
+
+      <v-flex xs12 class="section">
+        <h2 class="subtitle text-center">Seja Parceiro</h2>
+        <p class="text-center">Cadastre-se e comece a realizar as vendas (totalmente grátis)</p>
+
+        <v-btn color="primary" dark round block href="/fluxo-parceria">Cadastre-se grátis</v-btn>
+        <v-btn color="primary" dark round block href="/painel/login" outline>Já tenho cadastro</v-btn>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
@@ -92,7 +70,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import Faq from "@/components/Faq";
-import ProductCard from "@/components/ProductCard";
+import InfoCard from "@/components/InfoCard";
 import CallToAction from "@/components/CallToAction";
 import apiClientProvider from "@/utils/apiClient";
 
@@ -209,6 +187,24 @@ export default {
           answer:
             "A garantia é da própria Seguradora Porto Seguro, empresa renomada e respeitada no ramo Brasil no ramo de seguros. A Cotamos.com é uma corretora credenciada pela Porto Seguro e certificada pela SUSEP."
         }
+      ],
+      carouselItems: [
+        {
+          title:"Fale com seus clientes sobre nossos produtos",
+          description: "",
+          imgUrl: "/img/icons/business.png"
+        },
+        {
+          title:"Simule o plano para seu cliente",
+          description: "Através de nossa plataforma automatizada",
+          imgUrl: "/img/icons/simulation.png"
+        },
+        
+        {
+          title:"Seja comissionado",
+          description: "Você recebe sua comissão em até 45 dias após a confirmação de pagamento do seu cliente",
+          imgUrl: "/img/icons/payment.png"
+        }
       ]
     };
   },
@@ -221,7 +217,7 @@ export default {
     Header: Header,
     NavBar: NavBar,
     CallToAction: CallToAction,
-    ProductCard: ProductCard
+    InfoCard: InfoCard
   }
 };
 </script>
@@ -229,28 +225,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .section {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 20px;
 }
 
-.carousel-inner {
-  background: #00d886;
-  background: -moz-linear-gradient(left, #00d886 0%, #00d6e7 100%);
-  background: -webkit-linear-gradient(left, #00d886 0%, #00d6e7 100%);
-  background: linear-gradient(to right, #00d886 0%, #00d6e7 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d886', endColorstr='#00d6e7',GradientType=1 );
+.section-body {
+  margin-top: 20px;
 }
 
-.form-container {
-  border: 2px solid rgb(5, 62, 66);
-  border-radius: 5px;
-  background-color: white;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+.section-title {
+  color: #00899c;
+  font-weight: bold;
 }
 </style>

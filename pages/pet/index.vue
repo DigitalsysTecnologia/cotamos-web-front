@@ -1,20 +1,21 @@
 <template>
-    <div>
-
-  </div>
-
+  <div></div>
 </template>
 
 <script>
 export default {
   name: "Pet",
   beforeMount() {
+    let queryParams = this.$route.query;
+
+    if (!queryParams.utm_source && !queryParams.utm_campaign) {
+      queryParams.utm_source = "flyer";
+      queryParams.utm_campaign = "pet_flyer";
+    }
+
     this.$router.push({
       path: "/plano-de-saude-pet",
-      query: {
-        utm_source: "flyer",
-        utm_campaign: "pet_flyer"
-      }
+      query: queryParams
     });
   },
   components: {}

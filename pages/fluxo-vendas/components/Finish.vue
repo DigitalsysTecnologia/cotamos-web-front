@@ -18,7 +18,7 @@
               <span>Telefone: <i class="fab fa-whatsapp-square"/> (11) 3297-3864</span>
             </li>
             <li>
-              <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94783-1054</span>
+              <span>WhatsApp: <i class="fab fa-whatsapp-square"/> (11) 94060-1680</span>
             </li>
             <li>
               <span>E-mail: <i class="fas fa-envelope-square"/> contato@cotamos.com</span>
