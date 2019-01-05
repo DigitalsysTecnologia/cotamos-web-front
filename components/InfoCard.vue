@@ -1,6 +1,6 @@
 <template>
-    <section class="col-md-3 col-sm-4 col-xs-12 box-ancora">
-        <div class="product-container">
+    <section class="box-ancora">
+        <div class="product-container" style="background-color:white">
             <div class="product-info">
                 <div class="product-img">
                     <img :src="imgUrl" alt="Enviar" class="img-responsive center-block"/>
@@ -8,7 +8,6 @@
                 <h3 class="card-title">{{name}}</h3>
                 <p class="card-description">{{description}}</p>
             </div>
-            <v-btn color="primary" round :targetUrl="callToActionUrl">{{callToActionText}}</v-btn>
         </div>
     </section>
 </template>
@@ -16,7 +15,7 @@
 <script>
 import CallToAction from "@/components/CallToAction";
 export default {
-  name: "ProductCard",
+  name: "InfoCard",
   props: {
     name: {
       type: String,
@@ -24,26 +23,11 @@ export default {
     },
     description: {
       type: String,
-      required: true
-    },
-    callToActionText: {
-      type: String,
-      required: true
-    },
-    callToActionUrl: {
-      type: String,
-      required: true
+      required: false
     },
     imgUrl: {
       type: String,
       required: true
-    }
-  },
-  methods: {
-    GoToUrl(path) {
-      this.$router.push({
-        path: path
-      });
     }
   },
   components: {
@@ -61,18 +45,20 @@ export default {
     min-height: 50px;
 }
 .product-container {
-    padding-top: 10px;
+    padding-top: 30px;
     padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
     border: 1px solid;
     border-radius: 10px;
     border-color: #00899c;
+    min-height: 200px;
 }
 
 .box-ancora {
   margin-top: 25px;
   margin-bottom: 25px;
+  
 }
 
 .box-ancora > .product-info > p {
@@ -95,7 +81,7 @@ export default {
 
 .product-img > img {
   width: 90px;
-   position: absolute;
+  height: 90px;
    bottom: 0;
    right: 0;
    left: 0;

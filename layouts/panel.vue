@@ -37,6 +37,10 @@ export default {
           text: "Conta Corrente"
         },
         {
+          url: "/painel/links-de-venda",
+          text: "Links de Venda"
+        },
+        {
           url: "/painel/sair",
           text: "Sair"
         }
