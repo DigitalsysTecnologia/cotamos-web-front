@@ -191,7 +191,7 @@ export default {
       carouselItems: [
         {
           title:"Fale com seus clientes sobre nossos produtos",
-          description: "",
+          description: "Será bom para ele e bom para você",
           imgUrl: "/img/icons/business.png"
         },
         {
