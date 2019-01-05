@@ -50,7 +50,7 @@
       </v-flex>
 
       <v-flex xs12 class="section">
-        <h2 class="subtitle text-center">Perguntas Frequentes</h2>
+        <h2 class="subtitle text-center">Possíveis Dúvidas</h2>
         <Faq :items="faqs"/>
       </v-flex>
 
