@@ -30,19 +30,15 @@
         </section>
       </v-flex>
 
-      <v-flex xs12 class="section">
+      <v-flex xs12 class="section" style="border-radius:15px;">
         <h1 class="subtitle text-center">Como funciona?</h1>
-        <v-carousel :cycle="true">
-          <v-carousel-item :key="0">
-            <p>Nova Página 1</p>
-          </v-carousel-item>
-          <v-carousel-item :key="1">
-            <p>Nova Página 2</p>
-          </v-carousel-item>
-          <v-carousel-item :key="2">
-            <p>Nova Página 3</p>
-          </v-carousel-item>
+
+        <v-carousel :hide-controls="true" :height="350"  style="border-radius:15px;">
+          <v-carousel-item v-for="(item, idx) in carouselItems" :key="idx" style="background-color: #00899c;">
+            <InfoCard :name="item.title" :imgUrl="item.imgUrl" :description="item.description"/>
+            </v-carousel-item>
         </v-carousel>
+       
       </v-flex>
 
       <v-flex xs12 class="section">
@@ -74,7 +70,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import Faq from "@/components/Faq";
-import ProductCard from "@/components/ProductCard";
+import InfoCard from "@/components/InfoCard";
 import CallToAction from "@/components/CallToAction";
 import apiClientProvider from "@/utils/apiClient";
 
@@ -191,6 +187,24 @@ export default {
           answer:
             "A garantia é da própria Seguradora Porto Seguro, empresa renomada e respeitada no ramo Brasil no ramo de seguros. A Cotamos.com é uma corretora credenciada pela Porto Seguro e certificada pela SUSEP."
         }
+      ],
+      carouselItems: [
+        {
+          title:"Fale com seus clientes sobre nossos produtos",
+          description: "",
+          imgUrl: "/img/icons/business.png"
+        },
+        {
+          title:"Simule o plano para seu cliente",
+          description: "Através de nossa plataforma automatizada",
+          imgUrl: "/img/icons/simulation.png"
+        },
+        
+        {
+          title:"Seja comissionado",
+          description: "Você recebe sua comissão em até 45 dias após a confirmação de pagamento do seu cliente",
+          imgUrl: "/img/icons/payment.png"
+        }
       ]
     };
   },
@@ -203,7 +217,7 @@ export default {
     Header: Header,
     NavBar: NavBar,
     CallToAction: CallToAction,
-    ProductCard: ProductCard
+    InfoCard: InfoCard
   }
 };
 </script>
