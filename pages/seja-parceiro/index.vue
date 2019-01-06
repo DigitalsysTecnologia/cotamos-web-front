@@ -50,11 +50,7 @@
       </v-flex>
 
       <v-flex xs12 class="section">
-<<<<<<< HEAD
         <h2 class="subtitle text-center">Possíveis Dúvidas</h2>
-=======
-        <h2 class="subtitle text-center">Perguntas Frequentes</h2>
->>>>>>> master
         <Faq :items="faqs"/>
       </v-flex>
 
@@ -195,11 +191,7 @@ export default {
       carouselItems: [
         {
           title:"Fale com seus clientes sobre nossos produtos",
-<<<<<<< HEAD
           description: "Será bom para ele e bom para você",
-=======
-          description: "",
->>>>>>> master
           imgUrl: "/img/icons/business.png"
         },
         {
