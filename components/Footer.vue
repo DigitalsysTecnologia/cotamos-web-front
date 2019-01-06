@@ -14,7 +14,7 @@
             <v-flex primary lighten-2 py-3 text-center white--text xs12>
                 <span class="footer-item">CNPJ 30.249.014/0001-04</span>
                 <span class="footer-item">SUSEP 20.2021328.0</span>
-                <span class="footer-item">&copy;2018 — <strong>Cotamos.com</strong></span>
+                <span class="footer-item">&copy;2019 — <strong>Cotamos.com</strong></span>
             </v-flex>
         </v-layout>
     </v-footer>
