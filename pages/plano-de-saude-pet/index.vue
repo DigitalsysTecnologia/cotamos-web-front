@@ -46,81 +46,61 @@
         </div>
       </section>        
 
-      <section class="container-fluid section">
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8 text-center">
-              <h2 class="subtitle">Por que eu deveria contratar um plano de saúde pet?</h2>
+      <section class="descricao">
+        <div class="box-2">
+            <img src="/img/dog-flor-cropped.png" alt="Contrate um plano pet!">
+            <div class="texto">
+                <h2>POR QUE EU DEVERIA CONTRATAR <br> UM PLANO DE SAÚDE PET?</h2>
+                <div class="line-2"></div>
+                <p> Assim como os humanos, os pets também tem necessidades de cuidados com a saúde.
+                    Com os planos de saúde, você tem acesso a uma série de clínicas para tratamento veterinário.
+                </p>
             </div>
-          </div>
-          
-          <div class="row" style="padding-top:15px;">
-            <div class="col-md-offset-2 col-md-8 col-sm-12">
-              <p>
-                Assim como os humanos, os pets também tem necessidades de cuidados com a saúde. 
-                Com os planos de saúde, você tem acesso a uma série de clínicas para tratamento veterinário.
-              </p>
+            <div class="line">
             </div>
+        </div>
+    </section>
 
-          </div>
-
-      </section>
-
-      <section class="container-fluid section">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
-            <h3>PARA OS FILHOTES</h3>
-          </div>
-          <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/filhote_cao_gato.png" class="img-responsive center-block" />
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 text-center">
-            <p class="section-text">
-              Quando um filhote canino ou felino passa por fases delicadas, como a construção da imunidade e adaptação à sua nova alimentação, ele pode ficar mais predisposto à instabilidades gastrointestinais e algumas alergias, gerando mais idas ao veterinário. 
-              A descoberta do mundo e de sua nova casa também podem expor seu pet a riscos bastante comuns, como acidentes ou a ingestão de corpos estranhos. Esses incidentes ocorrem em 1 a cada 3 pets por ano.
-            </p>
+      <section class="planos">
+        <div class="cards">
+          <div class="card-pet MarRight">
+                <img src="/img/pet-dog-filhotes.png" alt="Filhotes">
+                <h3>Para os Filhotes</h3>
+                <p>Quando um filhote canino ou felino passa por fases delicadas, 
+                  ele pode ficar mais predisposto à instabilidades gastrointestinais 
+                  e algumas alergias, gerando mais idas ao veterinário. 
+                  A descoberta do mundo e de sua nova casa também podem expor 
+                  seu pet a riscos bastante comuns. Esses incidentes ocorrem em 
+                  1 a cada 3 pets por ano.</p>
             <CallToAction v-on:click="GoToForm">
-              &nbsp; CONHEÇA OS PLANOS DISPONÍVEIS
+              &nbsp; PLANOS DISPONÍVEIS
             </CallToAction>
           </div>
-        </div>
-      </section>
-
-      <section class="container-fluid section">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
-            <h3>PARA OS ADULTOS</h3>
-          </div>
-          <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/adulto_cao_gato.png" class="img-responsive center-block" />
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 text-center">
-            <p class="section-text">
-              Ainda que o seu pet se mostre saudável, nunca se dê por satisfeito.
-              É importante que você o observe periodicamente e com atenção e, diante de qualquer indício de que algo não anda bem, leve-o de imediato ao veterinário.
-              Um pet adulto tem que ser revacinado a cada ano, durante toda sua vida. E a desparasitação deve ser periódica, já que ele se expõe constantemente ao risco de contrair parasitas.
-              Por isso, um plano de saúde é muito importante nessa fase da vida.
-            </p>
+        <div class="card-pet MarRight">
+                <img src="img/pet-dog-adultos.png" alt="Adultos">
+                <h3>Para os Adultos</h3>
+                <p>Ainda que o seu pet se mostre saudável, nunca se dê por satisfeito.
+                   É importante que você o observe periodicamente e com atenção e, 
+                   diante de qualquer indício de que algo não anda bem, leve-o de imediato 
+                   ao veterinário. Um pet adulto tem que ser revacinado a cada ano, 
+                   durante toda sua vida. E a desparasitação deve ser periódica, 
+                   já que ele se expõe constantemente ao risco de contrair parasitas. 
+                   Por isso, um plano de saúde é muito importante nessa fase da vida. </p>
             <CallToAction v-on:click="GoToForm">
-              &nbsp; CONHEÇA OS PLANOS DISPONÍVEIS
+              &nbsp; PLANOS DISPONÍVEIS
             </CallToAction>
           </div>
-        </div>
-      </section>
-
-      <section class="container-fluid section">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
-            <h3>PARA OS SENIORES</h3>
-          </div>
-          <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/velho_cao_gato.png" class="img-responsive center-block" />
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 text-center">
-            <p class="section-text">
-              O tempo de vida dos pets varia muito dependendo da raça, do porte do animal e dos cuidados que ele recebe durante a vida. Porém, a expectativa é que os cães vivam em média 15 anos, enquanto os gatos podem chegar a 20. Mas o importante mesmo é que sempre se tenha atenção com a saúde e o bem-estar dos bichinhos, principalmente quando eles estiverem idosos e precisando ainda mais do nosso amor e cuidado.
-            </p>
+        <div class="card-pet">
+                <img src="img/pet-dog-seniores.png" alt="Seniores">
+                <h3>Para os Seniores</h3>
+                <p>O tempo de vida dos pets varia muito dependendo da raça, do porte
+                   do animal e dos cuidados que ele recebe durante a vida. Porém, a 
+                   expectativa é que os cães vivam em média 15 anos, enquanto os gatos
+                    podem chegar a 20. Mas o importante mesmo é que sempre se tenha atenção 
+                    com a saúde e o bem-estar dos bichinhos, principalmente quando eles estiverem 
+                    idosos e precisando ainda mais do nosso amor e cuidado.</p>
             <CallToAction v-on:click="GoToForm">
-              &nbsp; CONHEÇA OS PLANOS DISPONÍVEIS
+              &nbsp; PLANOS DISPONÍVEIS
             </CallToAction>
           </div>
         </div>
@@ -213,5 +193,137 @@ h3 {
   border: 2px solid rgb(5, 62, 66);
   border-radius: 5px; 
   background-color: white; 
+}
+
+/* Pet e Flor*/
+
+.descricao {
+  display: flex;
+  justify-content: center;
+}
+.descricao .box-2{
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    width: 1039.2px;
+    
+}
+.descricao .box-2 img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+}
+.descricao .box-2 .texto {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 80px;
+}
+
+.descricao .box-2 .texto h2 {
+    font-size: 2rem;
+    flex-wrap: wrap;
+    text-align: left;
+    padding-bottom: 0;
+}
+.descricao .box-2 .texto p {
+    max-width: 450px;
+    padding-left: 50px;
+    text-align: justify;
+    font-size: 1rem;
+
+}
+.descricao .box-2 .line{
+  position: relative;
+  width: 1px;
+  height: 350px;
+  background-color: #b3b3b3;
+}
+
+.descricao .box-2 .line::after{
+  content: "";
+  position: absolute;
+  top: 100px;
+  right: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #15bfc1
+}
+
+@media (max-width: 850px) {
+    .descricao .box-2{
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+    .descricao .box-2 img{
+        display: none;
+    }
+    .descricao .box-2 .line{
+      display: none;
+    }
+    .descricao .box-2 .texto .line-2{
+      width: 200px;
+      height: 4px;
+      margin-bottom: 30px;
+      background-color: #15bfc1;
+    }
+    .descricao .box-2 .line::after{
+      display: none;
+    }
+
+}
+/* Planos */
+.planos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 50px;
+}
+.planos .cards {
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    flex-basis: 60%;
+}
+.planos .cards .card-pet {
+  display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 8px 0 #dadada86;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.planos .cards .MarRight {
+  margin-right: 5px;
+}
+.planos .cards img {
+    padding: 15px;
+}
+.planos .cards h3 {
+    text-align: center;
+    padding: 5px;
+}
+.planos .cards p{
+    font-size: 1rem;
+    text-align: justify;
+    color: #b3b3b3;
+    padding: 30px;
+}
+@media (max-width: 850px) {
+    .planos .cards {
+        flex-direction: column;
+    }
+    .planos .cards .MarRight{
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+    .planos .cards .card-pet{
+        margin-right: 0;
+        margin-bottom: 50px;
+        border-radius: 15px;
+    }
 }
 </style>getLandingQueryParams
