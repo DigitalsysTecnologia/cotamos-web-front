@@ -62,20 +62,20 @@ export default {
 .topHeader::before {
   position: absolute;
   content: "";
-  height: 450px;
+  height: 365px;
   width: 1px;
   margin-left: 7vw;
-  top: 0;
+  top: 85px;
   background-color: #dadada;
 }
 
 .topHeader::after {
   position: absolute;
   content: "";
-  height: 750px;
+  height: 665px;
   width: 1px;
   margin-left: 14vw;
-  top: 0;
+  top: 85px;
   background-color: #dadada;
 }
 
