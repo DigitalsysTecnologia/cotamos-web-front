@@ -1,7 +1,7 @@
 <template>
   <div class="topHeader">
     <a class="brand" :href="homeLink">
-      <img class="logoHeader" src="/img/logo_branco.png" alt="Cotamos.com">
+      <img class="logoHeader" src="/img/logo_nome_branco.png" alt="Cotamos.com">
     </a>
     <div class="topnav" id="myTopnav">
       <a href="javascript:void(0);" class="icon" v-on:click="menuMob">
@@ -56,7 +56,7 @@ export default {
   height: 100px;
   margin-right: -15px;
   z-index: 1;
-  background-color: #222222a9;
+  background-color: #2222223f;
 }
 
 .topHeader::before {
@@ -121,6 +121,7 @@ export default {
     display: none;
     padding: 10px;
   }
+
   .topnav a.icon {
     font-size: 24px;
     float: right;
@@ -146,13 +147,14 @@ export default {
     display: block;
     text-align: center;
     top: 0;
-    color: #fff;
-    background-color: #00456a;
+    color: #00456a;
+    background-color: #fff;
   }
 
   .topHeader {
     height: 100px;
     justify-content: space-between;
+    background-color: #222222a9;
   }
   .topHeader::after {
     display: none;
