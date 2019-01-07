@@ -4,9 +4,16 @@
       <img class="logoFooter" src="/img/favicon.png" alt="Cotamos.com">
     </a>
     <div class="footerInfo">
+      <div class="containerIcons">
+        <v-btn v-for="icon in icons" :key="icon.icon" class="iconFooter" icon :href="icon.url">
+          <v-icon size="24px">{{ icon.icon }}</v-icon>
+        </v-btn>
+      </div>
+
       <span class="footer-item">CNPJ 30.249.014/0001-04</span>
       <span class="footer-item">SUSEP 20.2021328.0</span>
-      <span class="footer-item">Copyright &copy; 2018 -
+      <span class="footer-item">
+        Copyright &copy; 2018 -
         <strong>Cotamos.com</strong> - Todos os direitos resevados
       </span>
     </div>
@@ -22,8 +29,8 @@ export default {
         {
           icon: "fab fa-facebook",
           url: "https://www.facebook.com/cotamoscorretora"
-        }
-        /* { icon: "fab fa-twitter" },
+        },
+        /*{ icon: "fab fa-twitter" }
         { icon: "fab fa-google-plus" },
         { icon: "fab fa-linkedin" },
         { icon: "fab fa-instagram" } */
@@ -53,7 +60,7 @@ export default {
   justify-content: center;
   align-items: center;
   align-self: center;
-  height: 200px;
+  height: 150px;
   width: 70%;
 }
 
@@ -80,24 +87,45 @@ export default {
   left: 0;
 }
 
-.logoFooter { height: 70px; }
+.logoFooter {
+  height: 70px;
+}
+
+.containerIcons{
+  display: flex;
+}
+
+.iconFooter {
+  color: #00456a;
+}
 
 @media screen and (max-width: 1000px) {
-  .bottomFooter{
+  .bottomFooter {
     background-color: #4d4d4d;
     height: 150px;
     width: 100%;
     align-items: center;
   }
-  .brand{ position: relative; }
-  .logoFooter { height: 55px; }
-  .bottomFooter::before{display: none}
-  .footerInfo{
+  .brand {
+    position: relative;
+  }
+  .logoFooter {
+    display: flex;
+    flex-direction: row;
+    height: 55px;
+  }
+  .bottomFooter::before {
+    display: none;
+  }
+  .footerInfo {
     color: #fff;
     width: 60%;
     font-size: 13px;
     text-align: center;
     margin-left: 8%;
+  }
+  .iconFooter{
+    color: #fff;
   }
 }
 </style>
