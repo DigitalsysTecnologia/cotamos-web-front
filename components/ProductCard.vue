@@ -8,7 +8,7 @@
                 <h3 class="card-title">{{name}}</h3>
                 <p class="card-description">{{description}}</p>
             </div>
-            <v-btn color="primary" round :targetUrl="callToActionUrl">{{callToActionText}}</v-btn>
+            <v-btn color="primary" round :href="callToActionUrl">{{callToActionText}}</v-btn>
         </div>
     </section>
 </template>
