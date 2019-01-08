@@ -43,13 +43,14 @@
               </div>
               
               <div class="col-sm-6 col-xs-12">
-                <v-text-field
-                    label="Idade do pet (em anos)" 
-                    id="proposal.petInsuranceData.age"
-                    type="number"
-                    :error="!!(validation.firstError('proposal.petInsuranceData.age'))"
-                    :error-messages="validation.firstError('proposal.petInsuranceData.age')"
-                    v-model="proposal.petInsuranceData.age" />
+                <v-select 
+                  :items="petAges" 
+                  label="Idade do pet" 
+                  item-text="text" 
+                  item-value="value" 
+                  :error="!!(validation.firstError('proposal.petInsuranceData.age'))" 
+                  :error-messages="validation.firstError('proposal.petInsuranceData.age')" 
+                  v-model="proposal.petInsuranceData.age" />
               </div>
 
               <div class="col-sm-6 col-xs-12">
@@ -132,6 +133,19 @@ export default {
     return {
       loading: false,
       e1: 0,
+      petAges: [{
+            text: "Menos de 1 ano",
+            value: 0
+          },
+          {
+            text: "Entre 1 e 8 anos",
+            value: 3
+          },
+          {
+            text: "Acima de 8 anos",
+            value: 10
+          }
+      ],
       proposal: {
         petInsuranceData: {
           name: "",
