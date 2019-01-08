@@ -69,7 +69,6 @@
                             :error-messages="validation.firstError('proposal.proposer.email')"
                             v-model.trim="proposal.proposer.email" />
               </div>
-
               <div class="col-xs-12 center">
                 <CallToAction className='large' v-on:click="submitProposal">
                   Ver Opções &nbsp;
@@ -77,40 +76,6 @@
                 </CallToAction>
               </div>
             </v-card>
-          </v-stepper-content>
-
-          <v-stepper-content step="2">
-            <v-card
-              class="mb-5"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
-
-            <v-btn
-              color="primary"
-              @click="e1 = 3"
-            >
-              Continue
-            </v-btn>
-
-            <v-btn flat>Cancel</v-btn>
-          </v-stepper-content>
-
-          <v-stepper-content step="3">
-            <v-card
-              class="mb-5"
-              color="grey lighten-1"
-              height="200px"
-            ></v-card>
-
-            <v-btn
-              color="primary"
-              @click="e1 = 1"
-            >
-              Continue
-            </v-btn>
-
-            <v-btn flat>Cancel</v-btn>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>  
