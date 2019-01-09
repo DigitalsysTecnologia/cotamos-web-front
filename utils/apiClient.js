@@ -105,6 +105,10 @@ class ApiClient {
   updatePartner(partner) {
     return internalPut("partner", partner);
   }
+  
+  listPartner() {
+    return internalGet("partner/list");
+  }
 
   getProposalById(proposalId) {
     return internalGet(`proposal/get/${proposalId}`);
