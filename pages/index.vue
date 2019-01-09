@@ -27,7 +27,7 @@
       <div class="descHome">
         <h1>Seguro sem Complicações</h1>
         <h3>Lorem ipsum dolor sit amet, adipiscing elit.</h3>
-        <a>
+        <a href="#servicos">
           <h5>Simule Grátis</h5>
           <span>
             <i class="fas fa-caret-right"></i>
@@ -116,9 +116,6 @@ export default {
 </script>
 
 <style scoped>
-#home {
-  height: 750px;
-}
 
 .imgMob {
   display: none;
@@ -126,13 +123,13 @@ export default {
 
 .svgImg {
   position: absolute;
-  right: -30px;
+  right: -24px;
   top: -125px;
   width: 65%;
 }
 
 .descHome {
-  margin: 25vh 0 0 19vw;
+  margin: 25vh 0 150px 19vw;
   width: 30%;
   padding-left: 20px;
   border-left: 1px solid #dadada;
@@ -192,16 +189,21 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
+  #home{
+    height: 540px;
+    margin-bottom: 20px;
+  }
+
   .svgImg {
     display: none;
   }
 
   .imgMob {
-    display: block;
     position: absolute;
-    top: -100px;
-    margin: -16px 0 0 -16px;
-    width: calc(100% + 48px);
+    top: 0;
+    display: block;
+    margin: -116px 0 0 -16px;
+    width: calc(100% + 32px);
     height: 640px;
     background-image: url(/img/home_navbar.png);
     background-position: center;
@@ -211,10 +213,11 @@ export default {
   }
 
   .imgMob div {
+    position: absolute;
     width: 100%;
+    top: 100px;
     height: 540px;
-    margin-top: 100px;
-    background-color: #222222a9;
+    background-color: rgba(34, 34, 34, 0.663);
   }
 
   .descHome {
@@ -267,7 +270,7 @@ export default {
   }
 
   .descHome a h5 {
-    font-size: 5vw;
+    font-size: 5vmin;
     font-weight: 700;
     color: #fff;
     margin-left: 0;
