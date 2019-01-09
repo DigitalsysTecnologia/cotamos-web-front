@@ -8,9 +8,9 @@
         <i class="fa fa-bars"></i>
       </a>
       <a href="#home" class="menuItem">Home</a>
-      <a href="#news" class="menuItem">Sobre</a>
-      <a href="#contact" class="menuItem">Serviços</a>
-      <a href="#about" class="menuItem">Contato</a>
+      <a href="#sobre" class="menuItem">Sobre</a>
+      <a href="#servicos" class="menuItem">Serviços</a>
+      <a href="#contato" class="menuItem">Contato</a>
       
     </div>
   </div>
@@ -54,7 +54,6 @@ export default {
   position: relative;
   align-items: center;
   height: 100px;
-  margin-right: -15px;
   z-index: 1;
   background-color: #2222223f;
 }
@@ -62,20 +61,20 @@ export default {
 .topHeader::before {
   position: absolute;
   content: "";
-  height: 365px;
+  height: 350px;
   width: 1px;
   margin-left: 7vw;
-  top: 85px;
+  top: 0;
   background-color: #dadada;
 }
 
 .topHeader::after {
   position: absolute;
   content: "";
-  height: 665px;
+  height: 650px;
   width: 1px;
   margin-left: 14vw;
-  top: 85px;
+  top: 0;
   background-color: #dadada;
 }
 
@@ -154,7 +153,7 @@ export default {
   .topHeader {
     height: 100px;
     justify-content: space-between;
-    background-color: #222222a9;
+    background-color: hsla(0, 0%, 13%, 0.663);
   }
   .topHeader::after {
     display: none;
