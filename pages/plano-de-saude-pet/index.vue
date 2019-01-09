@@ -48,7 +48,11 @@
 
       <section class="descricao">
         <div class="box-2">
-            <img src="/img/dog-flor-cropped.png" alt="Contrate um plano pet!">
+            <div class="grid-image">
+                  <div class="img hole-1"></div>
+                  <div class="img hole-2"></div>
+                  <div class="img hole-3"></div>
+           </div>
             <div class="texto">
                 <h2>POR QUE EU DEVERIA CONTRATAR <br> UM PLANO DE SAÚDE PET?</h2>
                 <div class="line-2"></div>
@@ -66,12 +70,14 @@
           <div class="card-pet MarRight">
                 <img src="/img/pet-dog-filhotes.png" alt="Filhotes">
                 <h3>Para os Filhotes</h3>
+                <div class="text">
                 <p>Quando um filhote canino ou felino passa por fases delicadas, 
                   ele pode ficar mais predisposto à instabilidades gastrointestinais 
                   e algumas alergias, gerando mais idas ao veterinário. 
                   A descoberta do mundo e de sua nova casa também podem expor 
                   seu pet a riscos bastante comuns. Esses incidentes ocorrem em 
                   1 a cada 3 pets por ano.</p>
+                </div>
             <CallToAction v-on:click="GoToForm">
               &nbsp; PLANOS DISPONÍVEIS
             </CallToAction>
@@ -79,6 +85,7 @@
         <div class="card-pet MarRight">
                 <img src="img/pet-dog-adultos.png" alt="Adultos">
                 <h3>Para os Adultos</h3>
+                <div class="text">
                 <p>Ainda que o seu pet se mostre saudável, nunca se dê por satisfeito.
                    É importante que você o observe periodicamente e com atenção e, 
                    diante de qualquer indício de que algo não anda bem, leve-o de imediato 
@@ -86,6 +93,7 @@
                    durante toda sua vida. E a desparasitação deve ser periódica, 
                    já que ele se expõe constantemente ao risco de contrair parasitas. 
                    Por isso, um plano de saúde é muito importante nessa fase da vida. </p>
+                </div>
             <CallToAction v-on:click="GoToForm">
               &nbsp; PLANOS DISPONÍVEIS
             </CallToAction>
@@ -93,12 +101,14 @@
         <div class="card-pet">
                 <img src="img/pet-dog-seniores.png" alt="Seniores">
                 <h3>Para os Seniores</h3>
+                <div class="text">
                 <p>O tempo de vida dos pets varia muito dependendo da raça, do porte
                    do animal e dos cuidados que ele recebe durante a vida. Porém, a 
                    expectativa é que os cães vivam em média 15 anos, enquanto os gatos
                     podem chegar a 20. Mas o importante mesmo é que sempre se tenha atenção 
                     com a saúde e o bem-estar dos bichinhos, principalmente quando eles estiverem 
                     idosos e precisando ainda mais do nosso amor e cuidado.</p>
+                </div>
             <CallToAction v-on:click="GoToForm">
               &nbsp; PLANOS DISPONÍVEIS
             </CallToAction>
@@ -208,10 +218,35 @@ h3 {
     width: 1039.2px;
     
 }
-.descricao .box-2 img {
+.descricao .box-2 .grid-image {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     width: 300px;
     height: 300px;
-    border-radius: 10px;
+}
+.descricao .box-2 .grid-image .img{
+    background-image: url("/img/pet-dog-flor.png");
+    background-repeat: no-repeat;
+    /* border: 1px solid #ccc; */
+}
+.descricao .box-2 .grid-image .hole-1{
+    background-position: 40% 30%;
+    border-radius: 15px;
+    width:45%;
+    height: 50%;
+}
+.descricao .box-2 .grid-image .hole-2{
+    background-position: 70% 38%;
+    border-radius: 15px;
+    width: 45%;
+    height: 50%;
+}
+.descricao .box-2 .grid-image .hole-3{
+    background-position:  55% 99%;
+    border-radius: 15px;
+    width: 95%;
+    height: 40%;
 }
 .descricao .box-2 .texto {
     display: flex;
@@ -256,7 +291,7 @@ h3 {
         flex-direction: column-reverse;
         flex-wrap: wrap;
     }
-    .descricao .box-2 img{
+    .descricao .box-2 .grid-image{
         display: none;
     }
     .descricao .box-2 .line{
@@ -311,6 +346,16 @@ h3 {
     text-align: justify;
     color: #b3b3b3;
     padding: 30px;
+}
+@media (min-width: 850px) {
+  .planos .cards .card-pet:hover {
+        box-shadow: 0px 4px 8px 0 #a0a0a086;
+        margin-right: 25px;
+        margin-left: 25px;
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
 }
 @media (max-width: 850px) {
     .planos .cards {
