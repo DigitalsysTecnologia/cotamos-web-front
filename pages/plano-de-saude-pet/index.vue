@@ -34,14 +34,14 @@
       <section class="container-fluid section">
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
-            <v-card :raised="true" :tile="true">
-               <v-card-title primary-title>
-                 <v-layout align-center justify-center row fill-height>
-                  <h2 class="subtitle">FAÇA UMA COTAÇÃO ON-LINE</h2>
-                  </v-layout>
-               </v-card-title>
-                <BasicForm v-on:submitProposal="submitProposal"/>
-              </v-card>
+            <v-card :tile="true">
+              <v-card-title primary-title>
+                <v-layout align-center justify-center row fill-height>
+                  <h2 class="subtitle">Faça uma cotação On-line </h2>
+                </v-layout>
+              </v-card-title>
+            <BasicForm v-on:submitProposal="submitProposal"/>
+            </v-card>
           </div>
         </div>
       </section>        
@@ -181,11 +181,22 @@ export default {
 h3 {
   color: #00899c;
 }
+
+.theme--light.v-card {
+  border-radius: 20px;
+  border: 1px solid rgba(89,89,89,0.20);
+  -webkit-box-shadow: 0px 0px 30px 2px rgba(89,89,89,0.2);
+  -moz-box-shadow: 0px 0px 30px 2px rgba(89,89,89,0.2);
+  box-shadow: 0px 0px 30px 2px rgba(89,89,89,0.2);
+}
+
 .subtitle {
-  font-size: 30px;
-  text-transform: uppercase;
-  font-weight: 800;
-  color: #00899c;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: .2px;
+  font-size: 40px;
+  text-transform: capitalize;
+  font-weight: 400;
+  color: #00456a;
   margin-bottom: 20px;
   margin-top: 0px;
   text-shadow: 0 1px 7px rgba(255, 255, 255, 0.8);
