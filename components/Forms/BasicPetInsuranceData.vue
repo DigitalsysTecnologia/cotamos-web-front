@@ -60,13 +60,22 @@
 
       <div class="col-sm-12 col-xs-12">
         <v-select
-          :items="partners"
+          :items="hasIndicationItems"
           label="Você foi indicado por alguém?"
+          item-text="text"
+          item-value="value"
+          v-model="hasIndication"
+        />
+      </div>
+
+      <div class="col-sm-12 col-xs-12" v-if="hasIndication">
+        <v-select
+          :items="partners"
+          label="Quem te indicou?"
           item-text="name"
           item-value="_id"
           no-data-text="Sem parceiros disponíveis"
           v-model="proposal.partnerId"
-          :disabled="disableParner"
         />
       </div>
 
@@ -93,6 +102,8 @@ export default {
   data() {
     return {
       loading: false,
+      hasIndication: false,
+      hasIndicationItems: [{ "text": "Sim", "value": true}, { "text": "Não", "value": false}],
       partners: [],
       petAges: [
         {
