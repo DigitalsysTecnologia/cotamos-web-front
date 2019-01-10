@@ -14,7 +14,7 @@
             <v-radio-group label="Forma de Pagamento" v-model="proposal.paymentData.method" :error="!!(validation.firstError('proposal.paymentData.method'))" :error-messages="validation.firstError('proposal.paymentData.method')">
                 <v-radio key="Boleto" label="Boleto" value="1" color="primary" />
                 <v-radio key="Cartão de Crédito" label="Cartão de Crédito" value="2" color="primary" />
-                <v-radio key="Débito em Conta" label="Débito em Conta" value="3" color="primary" />
+                <v-radio key="Débito em Conta (somente para Itaú e Santander)" label="Débito em Conta" value="3" color="primary" />
             </v-radio-group>
         </v-flex>
         <v-flex xs12>
