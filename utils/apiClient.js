@@ -8,7 +8,7 @@ function getUrl() {
   if (process.browser) {
     switch (window.location.hostname) {
       case "localhost":
-        return "http://localhost:8080/api/v1";
+      return "https://backend-homolog.cotamos.com/api/v1";
       case "www.cotamos.com":
         return "https://backend.cotamos.com/api/v1";
       case "homolog.cotamos.com":
@@ -104,6 +104,10 @@ class ApiClient {
 
   updatePartner(partner) {
     return internalPut("partner", partner);
+  }
+
+  listPartner() {
+    return internalGet("partner/list");
   }
 
   getProposalById(proposalId) {
