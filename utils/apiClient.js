@@ -8,7 +8,7 @@ function getUrl() {
   if (process.browser) {
     switch (window.location.hostname) {
       case "localhost":
-      return "https://backend-homolog.cotamos.com/api/v1";
+        return "https://backend-homolog.cotamos.com/api/v1";
       case "www.cotamos.com":
         return "https://backend.cotamos.com/api/v1";
       case "homolog.cotamos.com":
@@ -110,8 +110,23 @@ class ApiClient {
     return internalGet("partner/list");
   }
 
-  getProposalById(proposalId) {
-    return internalGet(`proposal/get/${proposalId}`);
+  normalizeProposal(proposal) {
+    if(!proposal.proposer) {
+      proposal.proposer = {}
+    }
+
+    if(!proposal.proposer.bankingData) {
+      proposal.proposer.bankingData = {}
+    }
+
+    console.log('proposal', proposal)
+    return proposal;
+  }
+
+  async getProposalById(proposalId) {
+    let proposal = await internalGet(`proposal/get/${proposalId}`);
+    proposal = this.normalizeProposal(proposal);
+    return proposal;
   }
 
   getAddressByZipCode(zipCode) {
