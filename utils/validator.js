@@ -199,6 +199,7 @@ export default {
             .minLength(4, "Por favor, nos informe a conta bancária.")
     },
     validateBankBranch: (value) => {
+        console.log('validateBankBranch', value)
         return Validator.value(value)
             .required("Por favor, nos informe a agência bancária.")
             .minLength(4, "Por favor, nos informe a agência bancária.")

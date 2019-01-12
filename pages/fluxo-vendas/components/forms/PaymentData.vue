@@ -28,7 +28,7 @@
       </v-radio-group>
     </v-flex>
 
-    <v-flex sm4 xs12 v-if="proposal.paymentData.method == '3'">
+    <!-- <v-flex sm4 xs12 v-if="proposal.paymentData.method == '3'">
       <v-select
         :items="[{text:'Itaú', value: '341'}, {text:'Santander', value: '033'}]"
         label="Banco"
@@ -52,7 +52,9 @@
         id="proposal.proposer.bankingData.account"
         v-model="proposal.proposer.bankingData.account"
       />
-    </v-flex>
+    </v-flex> -->
+
+    <BankingData :proposal="proposal" v-if="proposal.paymentData.method == '3'"/>
 
     <v-flex xs12>
       <v-btn color="primary" @click="onSubmit">{{ submitButtonText }}</v-btn>
@@ -72,6 +74,7 @@ import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
 import apiClientProvider from "@/utils/apiClient";
+import BankingData from "./BankingData"
 
 export default {
   name: "PaymentData",
@@ -135,7 +138,7 @@ export default {
       this.$emit("onCancel");
     },
     onSubmit: async function() {
-      const isValid = await this.$validate();
+      const isValid = await validator.validatePage(this);
       if (isValid) {
         let cloneObj = JSON.parse(JSON.stringify(this.proposal.paymentData));
         cloneObj.amount = this.planPrice;
@@ -150,7 +153,9 @@ export default {
     }
   },
   validators: {},
-  components: {},
+  components: {
+    BankingData:BankingData
+  },
   beforeMount() {
     this.plans = petInsuranceProvider.getPlansByPetAge(
       this.proposal.petInsuranceData.age
