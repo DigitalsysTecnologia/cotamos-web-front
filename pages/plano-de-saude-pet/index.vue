@@ -1,37 +1,6 @@
 <template>
     <div  class="container-fluid">
       <section class="container-fluid section">
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8 text-center">
-              <h2 class="subtitle">O que é plano de saúde pet?</h2>
-            </div>
-          </div>
-          
-          <div class="row" style="padding-top:15px;">
-            <div class="col-md-offset-2 col-md-2 col-sm-12 col-sm-offset-0">
-              <img class="img-responsive center-block" src="/img/dr_cao.png" style="max-height: 200px;"/>
-            </div>
-
-            <div class="col-md-6 col-sm-12 col-sm-offset-0">
-              <p>
-                O plano de saúde pet <span style="font-weight:bold;">para cães e gatos</span> é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
-              </p>
-
-              <p>
-                Em resumo, plano de saúde pet é uma forma  inteligente para proporcionar: 
-                <ul style="margin-top:10px;">
-                  <li><span style="font-weight:bold;">Economia</span>;</li>
-                  <li><span style="font-weight:bold;">Segurança</span>;</li>
-                  <li><span style="font-weight:bold;">Tranquilidade</span>.</li>
-                </ul>
-              </p>
-            </div>
-
-          </div>
-
-      </section>
-
-      <section class="container-fluid section">
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
             <v-card :tile="true">
