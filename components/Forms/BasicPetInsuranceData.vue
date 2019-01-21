@@ -81,8 +81,7 @@
 
       <div class="col-xs-12">
         <CallToAction class="pull-right" v-on:click="submitProposal">
-          Ver Opções &nbsp;
-          <i class="fas fa-forward"/>
+          SIMULE AGORA
         </CallToAction>
       </div>
     </div>
