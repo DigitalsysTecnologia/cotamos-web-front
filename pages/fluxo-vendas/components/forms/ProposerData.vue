@@ -6,8 +6,8 @@
             <v-text-field label="E-mail" id="proposer.email" :error="!!(validation.firstError('proposer.email'))" :error-messages="validation.firstError('proposer.email')" v-model.trim="proposer.email" v-if="showField['proposer.email']" />
             <PhoneInput label="Celular ou Telefone" id="proposer.phones.0" maxLength="15" :validationMessage="validation.firstError('proposer.phones.0')" v-model.trim="proposer.phones[0]" />
             <v-text-field label="CPF" id="proposer.cpf" :error="!!(validation.firstError('proposer.cpf'))" :error-messages="validation.firstError('proposer.cpf')" mask="###.###.###-##" v-model.trim="proposer.cpf" />
-            <v-btn color="primary" @click="onSubmit">{{ submitButtonText }}</v-btn>
-            <v-btn flat @click="onCancel" v-if="showCancelButton"  outline color="primary"> {{ cancelButtonText }}</v-btn>
+            <button class="btn call-to-action large" :class="className" :style="{ 'color': textColor}" v-on:click="onSubmit"> {{ submitButtonText }} </button>
+            <button class="btn call-to-action-white large" :class="className" :style="{ 'color': textColor}" v-on:click="onCancel"> {{ cancelButtonText }} </button>
         </v-flex>
     </v-layout>
 </template>
@@ -97,5 +97,36 @@
 </script>
 
 <style scoped>
-    
+    .call-to-action, .call-to-action-white {
+    vertical-align: middle;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: -0.5px;
+    border-radius: 100px;
+    padding: 10px 30px;
+    font-size: 16;
+    color: #FFF;    
+    cursor: pointer;
+    text-align: center;
+    background-color: #ff9e1b;
+    transition: all .6s ease-out;
+    margin: 0 .2rem
+    }
+    .large {
+    padding: 10px 30px;
+    font-size: 20px;
+    }
+
+    .small {
+    padding: 5px 30px;
+    font-size: 14px;
+    }
+
+    .call-to-action:hover, .call-to-action-white {
+    background-color: #ff8400;
+    }
+    .call-to-action-white {
+        color: #969699;
+        background-color: #FFF;
+        border: 1px solid #969699
+    }
 </style>

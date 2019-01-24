@@ -4,51 +4,59 @@
       <v-layout row wrap>
         <v-flex sm12>
           <h3 class="subtitle">Vamos obter os dados finais para finalizar sua proposta</h3>
+          <v-stepper v-model="currentStep">
+            <v-stepper-header>
+              <v-stepper-step :complete="currentStep > 1" step="1">Forma de Pagamento</v-stepper-step>
 
-          <v-stepper v-model="currentStep" vertical>
-            <v-stepper-step :complete="currentStep > 1" step="1">Forma de Pagamento</v-stepper-step>
-            <v-stepper-content step="1">
-              <PaymentData
-                :proposal="proposal"
-                v-on:onSubmit="updatePaymentData"
-                :showCancelButton="true"
-                cancelButtonText="Voltar"
-                v-on:onCancel="goBack"
-              />
-            </v-stepper-content>
+              <v-divider></v-divider>
 
-            <v-stepper-step :complete="currentStep > 2" step="2">Dados Pessoais</v-stepper-step>
-            <v-stepper-content step="2">
-              <ProposerData 
-                  :proposer="proposal.proposer" 
-                  v-on:onSubmit="updateProposer"
+              <v-stepper-step :complete="currentStep > 2" step="2">Dados Pessoais</v-stepper-step>
+
+              <v-divider></v-divider>
+
+              <v-stepper-step :complete="currentStep > 3" step="3">Endereço</v-stepper-step>
+
+              <v-divider></v-divider>
+              <v-stepper-step step="4">Dados do PET</v-stepper-step>
+            </v-stepper-header>
+            <v-stepper-items>
+              <v-stepper-content step="1">
+                <PaymentData
+                  :proposal="proposal"
+                  v-on:onSubmit="updatePaymentData"
+                  :showCancelButton="true"
+                  cancelButtonText="Voltar"
+                  v-on:onCancel="goBack"
+                />
+              </v-stepper-content>
+              <v-stepper-content step="2">
+                <ProposerData 
+                    :proposer="proposal.proposer" 
+                    v-on:onSubmit="updateProposer"
+                    v-on:onCancel="currentStep--"
+                    cancelButtonText="Voltar"
+                    :showCancelButton="true"
+                />
+              </v-stepper-content>
+              <v-stepper-content step="3">
+                <AddressData
+                  :address="proposal.proposer.homeAddress"
+                  cancelButtonText="Voltar"
+                  :showCancelButton="true"
+                  v-on:onSubmit="updateAddress"
+                  v-on:onCancel="currentStep--"
+                />
+              </v-stepper-content>
+              <v-stepper-content step="4">
+                <PetInsuranceData
+                  :petInsuranceData="proposal.petInsuranceData"
+                  v-on:onSubmit="finishProposal"
                   v-on:onCancel="currentStep--"
                   cancelButtonText="Voltar"
                   :showCancelButton="true"
-              />
-            </v-stepper-content>
-
-            <v-stepper-step :complete="currentStep > 3" step="3">Endereço</v-stepper-step>
-            <v-stepper-content step="3">
-              <AddressData
-                :address="proposal.proposer.homeAddress"
-                cancelButtonText="Voltar"
-                :showCancelButton="true"
-                v-on:onSubmit="updateAddress"
-                v-on:onCancel="currentStep--"
-              />
-            </v-stepper-content>
-
-            <v-stepper-step step="4">Dados do PET</v-stepper-step>
-            <v-stepper-content step="4">
-              <PetInsuranceData
-                :petInsuranceData="proposal.petInsuranceData"
-                v-on:onSubmit="finishProposal"
-                v-on:onCancel="currentStep--"
-                cancelButtonText="Voltar"
-                :showCancelButton="true"
-              />
-            </v-stepper-content>
+                />
+              </v-stepper-content>
+            </v-stepper-items>
           </v-stepper>
         </v-flex>
       </v-layout>
@@ -174,3 +182,4 @@ export default {
 
 <style scoped>
 </style>
+    

@@ -58,26 +58,6 @@ export default {
   background-color: #2222223f;
 }
 
-.topHeader::before {
-  position: absolute;
-  content: "";
-  height: 350px;
-  width: 1px;
-  margin-left: 7vw;
-  top: 0;
-  background-color: #dadada;
-}
-
-.topHeader::after {
-  position: absolute;
-  content: "";
-  height: 650px;
-  width: 1px;
-  margin-left: 14vw;
-  top: 0;
-  background-color: #dadada;
-}
-
 .brand {
   margin-left: 18%;
 }
@@ -154,12 +134,6 @@ export default {
     height: 100px;
     justify-content: space-between;
     background-color: hsla(0, 0%, 13%, 0.663);
-  }
-  .topHeader::after {
-    display: none;
-  }
-  .topHeader::before {
-    display: none;
   }
   .brand {
     margin-left: 0;
