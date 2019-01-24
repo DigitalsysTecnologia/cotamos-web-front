@@ -301,7 +301,7 @@ h3 {
     flex-direction: row;
     justify-content: space-between;
     padding: 15px;
-    flex-basis: 60%;
+    flex-basis: 50%;
 }
 .planos .cards .card-pet {
   display: flex;
@@ -335,7 +335,7 @@ h3 {
         -webkit-transform: scale(1.1);
         -ms-transform: scale(1.1);
         transform: scale(1.1);
-        transition-delay: 0.25s;
+        transition-duration: 0.3s;
     }
 }
 @media (max-width: 850px) {
