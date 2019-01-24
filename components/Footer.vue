@@ -22,7 +22,7 @@
           <i class="fas fa-envelope"></i>
         </span>
         <span>
-          <a href="www.cotamos.com">www.cotamos.com</a>
+          <a href="contato@cotamos.com">contato@cotamos.com</a>
         </span>
       </div>
     </div>
@@ -51,11 +51,11 @@ export default {
         {
           icon: "fab fa-facebook",
           url: "https://www.facebook.com/cotamoscorretora"
-        },
-        { icon: "fab fa-twitter" },
+        }
+        /* { icon: "fab fa-twitter" },
         { icon: "fab fa-linkedin" },
         { icon: "fab fa-instagram" },
-        { icon: "fab fa-google-plus" }, 
+        { icon: "fab fa-google-plus" },  */
       ]
     };
   },
