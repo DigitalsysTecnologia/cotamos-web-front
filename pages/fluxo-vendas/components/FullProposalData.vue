@@ -1,5 +1,25 @@
+<style scoped>
+.proposal-wrapper {
+  margin-top: 7.8rem;
+  margin-left: 3rem;
+  width: 50%;
+}
+
+@media screen and (max-width: 845px) {
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row wrap;
+  }
+  .proposal-wrapper {
+    margin: 0;
+    margin: 1rem 0 7rem 0; 
+  }
+}
+</style>
 <template>
-  <v-layout justify-top>
+  <v-layout justify-top class="wrapper">
     <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex sm12>
@@ -61,6 +81,12 @@
         </v-flex>
       </v-layout>
     </v-container>
+    <div class="proposal-wrapper">
+      <ProposalCard 
+        :proposal="proposal"
+        v-on:onSubmit="updatePaymentData"
+       />
+    </div>
   </v-layout>
 </template>
 
@@ -72,7 +98,7 @@ import ProposerData from "./forms/ProposerData";
 import AddressData from "./forms/AddressData";
 import PetInsuranceData from "./forms/PetInsuranceData";
 import PaymentData from "./forms/PaymentData";
-
+import ProposalCard from './ProposalCard'
 export default {
   name: "FullProposalData",
   data() {
@@ -84,6 +110,12 @@ export default {
     proposal: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    get() {
+      console.log(proposal.proposer)
+      return true;
     }
   },
   methods: {
@@ -170,6 +202,7 @@ export default {
     }
   },
   components: {
+    ProposalCard: ProposalCard,
     ProposerData: ProposerData,
     AddressData: AddressData,
     PetInsuranceData: PetInsuranceData,
@@ -180,6 +213,5 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+
     
