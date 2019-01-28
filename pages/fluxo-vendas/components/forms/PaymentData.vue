@@ -2,26 +2,6 @@
     <v-layout row wrap>
         <v-flex sm6 xs12>
             <div class="wrapper">
-                <div class="payment-wrapper" :class="classLight">
-                    <div class="upper-box" :class="classLight">
-                        <div class="title" :class="classDark">
-                            <span>Healt4Pet</span><br />
-                            <span>{{selectedPlan.name}}</span><br />
-                        </div>
-                        <div class="plan-details">
-                            <span>Tipo de Cobertura:</span><br />
-                            <span>Ambulatorial</span>
-                            <div class="ref">
-                            <span> Ver rede referênciada </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lower-box" :class="classDark">
-                        
-                        <span> {{formatCurrency(planPrice).split(",")[0]}}</span><span>,{{formatCurrency(planPrice).split(",")[1]}}</span><br />
-                        <span class="month">/mês</span>
-                    </div>
-                </div>
                 <v-flex xs12 style="margin-top: 2rem">
                     <v-radio-group label="" v-model="proposal.paymentData.method" :error="!!(validation.firstError('proposal.paymentData.method'))" :error-messages="validation.firstError('proposal.paymentData.method')" row>
                         <v-radio key="Boleto" label="Boleto" value="1" color="primary" />
@@ -43,11 +23,12 @@
     import petInsuranceProvider from "@/utils/petInsuranceProvider";
     import apiClientProvider from "@/utils/apiClient";
     import CallToAction from '@/components/CallToAction' 
-    
+    import ProposalCard from '@/pages/fluxo-vendas/components/ProposalCard'    
     export default {
         name: "PaymentData",
         components: {
-            CallToAction
+            CallToAction,
+            ProposalCard
         },
         data() {
             return {
@@ -178,65 +159,19 @@
 </script>
 
 <style scoped>
-    .payment-wrapper {
-        width: 22rem;
-        height: auto;
-        color: #FFF;
-        font-family: 'Roboto', sans-serif;
-        -webkit-box-shadow: 0px 0px 30px 2px rgba(89,89,89,0.2);
-        -moz-box-shadow: 0px 0px 30px 2px rgba(89,89,89,0.2);
-        box-shadow: 0px 0px 30px 2px rgba(89,89,89,0.2);
-    }
-    .title {
-        text-align: center;
-        padding: .5rem;
-        background: #b71c1c;
-        font-weight: 900;
-        font-size: 2rem !important;
-    }
-    .plan-details {
-      margin: 2rem 0 0 1rem;
-      font-size: 1.2rem !important;
-    }
-    .plan-details span:first-child {
-      font-weight: 900;
-    }
-    .ref {
-      margin: 1rem 0 0 0;
-    }
-    .uper-box {
-        background: #e57373;
-        position: absolute;
-    }
-    .lower-box {
-        margin: 0 auto;
-        top: 2rem;
-        position: relative;
-        width: 15rem;
-        border: .5rem solid #fff;
-        text-align: center;
-        font-weight: bolder;   
-        padding: .5rem;
-    }
-    .month {
-      font-size: 1.2rem !important; 
-    }
-    .lower-box span:first-child {
-        font-size: 2.5rem !important;    
-    }
     .call-to-action, .call-to-action-white {
-    vertical-align: middle;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: -0.5px;
-    border-radius: 100px;
-    padding: 10px 30px;
-    font-size: 16;
-    color: #FFF;    
-    cursor: pointer;
-    text-align: center;
-    background-color: #ff9e1b;
-    transition: all .6s ease-out;
-    margin: 0 .2rem
+        vertical-align: middle;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: -0.5px;
+        border-radius: 100px;
+        padding: 10px 30px;
+        font-size: 16;
+        color: #FFF;    
+        cursor: pointer;
+        text-align: center;
+        background-color: #ff9e1b;
+        transition: all .6s ease-out;
+        margin: 0 .2rem
     }
     .large {
     padding: 10px 30px;
@@ -256,18 +191,4 @@
         background-color: #FFF;
         border: 1px solid #969699
     }
-
-    .primLight{background-color: #83E8A0}
-    .secLight{background-color: #75DDD8}
-    .terLight{background-color: #4483C1}
-    .quarLight{background-color: #52CFE8}
-    .quinLight{background-color: #F65B70}
-    .defaltLight{background-color: #414141}
-
-    .primDark{background-color: #49DF79}
-    .secDark{background-color: #44CAC6}
-    .terDark{background-color: #3672AA}
-    .quarDark{background-color: #1FBADA}
-    .quinDark{background-color: #DD4B5D}
-    .defaltDark{background-color: #252525}
 </style>
