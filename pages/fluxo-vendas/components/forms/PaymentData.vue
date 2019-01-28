@@ -2,9 +2,9 @@
     <v-layout row wrap>
         <v-flex sm6 xs12>
             <div class="wrapper">
-                <div class="payment-wrapper">
-                    <div class="upper-box">
-                        <div class="title">
+                <div class="payment-wrapper" :class="classLight">
+                    <div class="upper-box" :class="classLight">
+                        <div class="title" :class="classDark">
                             <span>Healt4Pet</span><br />
                             <span>{{selectedPlan.name}}</span><br />
                         </div>
@@ -16,7 +16,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lower-box">
+                    <div class="lower-box" :class="classDark">
                         
                         <span> {{formatCurrency(planPrice).split(",")[0]}}</span><span>,{{formatCurrency(planPrice).split(",")[1]}}</span><br />
                         <span class="month">/mês</span>
@@ -28,8 +28,8 @@
                         <v-radio key="Cartão de Crédito" label="Cartão de Crédito" value="2" color="primary" />
                         <v-radio key="Débito em Conta" label="Débito em Conta" value="3" color="primary" />
                     </v-radio-group>
-                    <button class="btn call-to-action large" :class="className" :style="{ 'color': textColor}" v-on:click="onSubmit"> {{ submitButtonText }} </button>
-                    <button class="btn call-to-action-white large" :class="className" :style="{ 'color': textColor}" v-on:click="onCancel"> {{ cancelButtonText }} </button>
+                    <button class="btn call-to-action large"  v-on:click="onSubmit"> {{ submitButtonText }} </button>
+                    <button class="btn call-to-action-white large" v-on:click="onCancel"> {{ cancelButtonText }} </button>
                 </v-flex>
             </div>
         </v-flex>
@@ -60,94 +60,125 @@
                     return this.proposal.petInsuranceData.selectedPlan.code;
                 }
             },
-            planPrice: {
-                get() {
-                    const paymentMethod = parseInt(this.proposal.paymentData.method);
-                    let value = null;
-    
-                    switch (paymentMethod) {
-                        case 1:
-                            value = this.selectedPlan.value.bankSlip;
-                            break;
-                        case 2:
-                            value = this.selectedPlan.value.creditCard;
-                            break;
-                        case 3:
-                            value = this.selectedPlan.value.automaticDebit;
-                            break;
-                        default:
-                            return "";
+            classLight: function (){
+                switch (this.proposal.petInsuranceData.selectedPlan.code) {
+                    case "pet_basic":
+                        return {primLight:true };
+                    case "pet_light":
+                        return {secLight:true};
+                    case "pet_plus":
+                        return {terLight:true};
+                    case "pet_total":
+                        return {quarLight:true};
+                    case "pet_premium":
+                        return {quinLight:true};
+                    default:
+                        return {defaltLight:true};
                     }
-    
-                    return value;
+                },
+                classDark: function (){
+                    switch (this.proposal.petInsuranceData.selectedPlan.code) {
+                        case "pet_basic":
+                            return {primDark:true };
+                        case "pet_light":
+                            return {secDark:true};
+                        case "pet_plus":
+                            return {terDark:true};
+                        case "pet_total":
+                            return {quarDark:true};
+                        case "pet_premium":
+                            return {quinDark:true};
+                        default:
+                            return {defaltDark:true};
+                        }
+                    },
+                planPrice: {
+                    get() {
+                        const paymentMethod = parseInt(this.proposal.paymentData.method);
+                        let value = null;
+        
+                        switch (paymentMethod) {
+                            case 1:
+                                value = this.selectedPlan.value.bankSlip;
+                                break;
+                            case 2:
+                                value = this.selectedPlan.value.creditCard;
+                                break;
+                            case 3:
+                                value = this.selectedPlan.value.automaticDebit;
+                                break;
+                            default:
+                                return "";
+                        }
+        
+                        return value;
+                    }
                 }
-            }
-        },
-        props: {
-            proposal: {
-                type: Object,
-                required: true
             },
-            showCancelButton: {
-                type: Boolean,
-                required: false,
-                default: false
-            },
-            cancelButtonText: {
-                type: String,
-                required: false,
-                default: "Cancelar"
-            },
-            submitButtonText: {
-                type: String,
-                required: false,
-                default: "Continuar"
-            }
-        },
-        methods: {
-            onCancel: async function() {
-                this.$emit("onCancel");
-            },
-            onSubmit: async function() {
-                const isValid = await this.$validate();
-                if (isValid) {
-                    let cloneObj = JSON.parse(JSON.stringify(this.proposal.paymentData))
-                    cloneObj.amount = this.planPrice;
-                    cloneObj.method = parseInt(cloneObj.method);
-                    this.$emit("onSubmit", cloneObj);
+            props: {
+                proposal: {
+                    type: Object,
+                    required: true
+                },
+                showCancelButton: {
+                    type: Boolean,
+                    required: false,
+                    default: false
+                },
+                cancelButtonText: {
+                    type: String,
+                    required: false,
+                    default: "Cancelar"
+                },
+                submitButtonText: {
+                    type: String,
+                    required: false,
+                    default: "Continuar"
                 }
             },
-            formatCurrency(value) {
-                value = value.toFixed(2);
-                value = value.replace(".", ",");
-                return `R$ ${value}`;
-            }
-        },
-        validators: {},
-        components: {},
-        beforeMount() {
-            this.plans = petInsuranceProvider.getPlansByPetAge(
-                this.proposal.petInsuranceData.age
-            );
-    
-            const plans = this.plans.filter(plan => plan.code == this.planCode);
-            this.selectedPlan = plans[0];
-            console.log("this.selectedPlan", this.selectedPlan);
-    
-            if (!this.proposal.paymentData) {
-                this.proposal.paymentData = {};
-            }
+            methods: {
+                onCancel: async function() {
+                    this.$emit("onCancel");
+                },
+                onSubmit: async function() {
+                    const isValid = await this.$validate();
+                    if (isValid) {
+                        let cloneObj = JSON.parse(JSON.stringify(this.proposal.paymentData))
+                        cloneObj.amount = this.planPrice;
+                        cloneObj.method = parseInt(cloneObj.method);
+                        this.$emit("onSubmit", cloneObj);
+                    }
+                },
+                formatCurrency(value) {
+                    value = value.toFixed(2);
+                    value = value.replace(".", ",");
+                    return `R$ ${value}`;
+                }
+            },
+            validators: {},
+            components: {},
+            beforeMount() {
+                this.plans = petInsuranceProvider.getPlansByPetAge(
+                    this.proposal.petInsuranceData.age
+                );
 
-            if(this.proposal.paymentData.method) {
-                this.proposal.paymentData.method = this.proposal.paymentData.method.toString();
+                const plans = this.plans.filter(plan => plan.code == this.planCode);
+                this.selectedPlan = plans[0];
+                console.log("this.selectedPlan", this.selectedPlan);
+
+                if (!this.proposal.paymentData) {
+                    this.proposal.paymentData = {};
+                }
+
+                if(this.proposal.paymentData.method) {
+                    this.proposal.paymentData.method = this.proposal.paymentData.method.toString();
+                }
             }
-        }
     };
 </script>
 
 <style scoped>
     .payment-wrapper {
-        background: #e57373;
         width: 22rem;
         height: auto;
         color: #FFF;
@@ -181,7 +212,6 @@
         margin: 0 auto;
         top: 2rem;
         position: relative;
-        background: #b71c1c;
         width: 15rem;
         border: .5rem solid #fff;
         text-align: center;
@@ -226,4 +256,18 @@
         background-color: #FFF;
         border: 1px solid #969699
     }
+
+    .primLight{background-color: #83E8A0}
+    .secLight{background-color: #75DDD8}
+    .terLight{background-color: #4483C1}
+    .quarLight{background-color: #52CFE8}
+    .quinLight{background-color: #F65B70}
+    .defaltLight{background-color: #414141}
+
+    .primDark{background-color: #49DF79}
+    .secDark{background-color: #44CAC6}
+    .terDark{background-color: #3672AA}
+    .quarDark{background-color: #1FBADA}
+    .quinDark{background-color: #DD4B5D}
+    .defaltDark{background-color: #252525}
 </style>
