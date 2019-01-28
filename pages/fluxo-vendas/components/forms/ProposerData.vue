@@ -6,8 +6,8 @@
             <v-text-field label="E-mail" id="proposer.email" :error="!!(validation.firstError('proposer.email'))" :error-messages="validation.firstError('proposer.email')" v-model.trim="proposer.email" v-if="showField['proposer.email']" />
             <PhoneInput label="Celular ou Telefone" id="proposer.phones.0" maxLength="15" :validationMessage="validation.firstError('proposer.phones.0')" v-model.trim="proposer.phones[0]" />
             <v-text-field label="CPF" id="proposer.cpf" :error="!!(validation.firstError('proposer.cpf'))" :error-messages="validation.firstError('proposer.cpf')" mask="###.###.###-##" v-model.trim="proposer.cpf" />
-            <button class="btn call-to-action large" :class="className" :style="{ 'color': textColor}" v-on:click="onSubmit"> {{ submitButtonText }} </button>
-            <button class="btn call-to-action-white large" :class="className" :style="{ 'color': textColor}" v-on:click="onCancel"> {{ cancelButtonText }} </button>
+            <button class="btn call-to-action large"  v-on:click="onSubmit"> {{ submitButtonText }} </button>
+            <button class="btn call-to-action-white large"  v-on:click="onCancel"> {{ cancelButtonText }} </button>
         </v-flex>
     </v-layout>
 </template>

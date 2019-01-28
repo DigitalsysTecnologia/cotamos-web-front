@@ -17,8 +17,8 @@
             </v-radio-group>    
         </v-flex>
         <v-flex sm12>
-            <button class="btn call-to-action large" :class="className" :style="{ 'color': textColor}" v-on:click="onSubmit"> {{ submitButtonText }} </button>
-            <button class="btn call-to-action-white large" :class="className" :style="{ 'color': textColor}" v-on:click="onCancel"> {{ cancelButtonText }} </button>
+            <button class="btn call-to-action large" v-on:click="onSubmit"> {{ submitButtonText }} </button>
+            <button class="btn call-to-action-white large"  v-on:click="onCancel"> {{ cancelButtonText }} </button>
 
         </v-flex>
     </v-layout>
