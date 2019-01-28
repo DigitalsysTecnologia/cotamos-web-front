@@ -35,12 +35,19 @@
         </a>
       </div>
     </section>
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Conheça Nossos Produtos</h2>
+    <div class="productCard">
+      
+      <div class="rotulo">
+        <Span>Serviços</Span>
       </div>
-
-      <article class="col-xs-12 text-center">
+      <div class="circulos">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="circle c3"></div>
+        <div class="circle c4"></div>
+      </div> 
+      <div class="cards">
+        <div class="card">
         <ProductCard
           name="Plano de Saúde Pet"
           description="Segurança para o seu pet, com um plano de saúde sob medida"
@@ -48,31 +55,35 @@
           callToActionUrl="/plano-de-saude-pet"
           imgUrl="/img/icons/health-for-pet.png"
         />
-
-        <ProductCard
+        </div>
+         <div class="card">
+          <ProductCard
           name="Carro Por Assinatura"
-          description="Seu carro por assinatura, sob medida"
+          description="O seu serviço de carro por assinatura,sob medida"
           callToActionText="Saiba Mais"
           callToActionUrl="/wl/carro-facil"
           imgUrl="/img/icons/carro-facil.png"
         />
-
-        <ProductCard
+        </div>
+         <div class="card">
+          <ProductCard
           name="Seguro de Vida"
-          description="Proteção para quem você mais ama"
+          description="Proteger quem você ama é mais fácil e rápido do que você imagina."
           callToActionText="Saiba Mais"
           callToActionUrl="/wl/seguro-vida"
           imgUrl="/img/icons/seguro-vida.png"
         />
-
-        <ProductCard
+        </div>
+         <div class="card">
+          <ProductCard
           name="Seguro Viagem"
-          description="Viaje com tranquilidade"
+          description="Uma viagem mais tranquila começa aqui."
           callToActionText="Saiba Mais"
           callToActionUrl="/wl/seguro-viagem"
           imgUrl="/img/icons/travel.png"
         />
-      </article>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -293,5 +304,113 @@ export default {
 }
 .featured-text {
   font-weight: bold;
+}
+
+.productCard{
+  display: flex;
+}
+.cards{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.productCard .rotulo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 15vh;
+  background-color:#15bfc1;
+  margin-top: 30px;
+  height: 20vh;
+  z-index: 1;
+}
+.productCard span{
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.productCard::before{
+  content: "";
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #e0e0e0ad;
+  position: absolute;
+  z-index: 0;
+  margin-top: 70px;
+}
+.circulos{
+  display: none;
+}
+.productCard span{
+  color: #fff;
+  font-size: 20px;
+}
+.productCard::before{
+  height: 90px;
+}
+@media (max-width: 700px){
+.productCard{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  
+}
+.cards{
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.card{
+  flex-grow: 1;
+}
+.productCard .rotulo{
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  left: 0;
+}
+.productCard .rotulo span{
+  font-size: 15px;
+}
+.productCard::before{
+  width: 1px;
+  height: 1400px;
+  top: 425px;
+  left: 5px;
+}
+.circulos{
+  display: block;
+  position: absolute;
+  height: 1120px;
+  width: 200px;
+  left: 0;
+}
+.circle{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #15bfc1;
+  margin-bottom: 350px;
+}
+}
+@media (max-width: 840px){
+  
+  .cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+  .card{
+  display: flex; 
+  flex-basis:40%;
+  justify-content: center;
+  flex-direction: column;
+}
 }
 </style>
