@@ -2,7 +2,10 @@
 .proposal-wrapper {
   margin-top: 7.8rem;
   margin-left: 3rem;
-  width: 50%;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 845px) {
@@ -14,7 +17,8 @@
   }
   .proposal-wrapper {
     margin: 0;
-    margin: 1rem 0 7rem 0; 
+    margin: 1rem 0 4rem 0; 
+    padding: 0;
   }
 }
 </style>
