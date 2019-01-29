@@ -47,6 +47,7 @@ export default {
   border-radius: 100px;
   padding: 10px 30px;
   font-size: 16;
+  color: #FFF;   
   cursor: pointer;
   text-align: center;
   background-color: #ff9e1b;
