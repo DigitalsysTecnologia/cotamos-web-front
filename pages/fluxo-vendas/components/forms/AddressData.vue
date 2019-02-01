@@ -6,8 +6,8 @@
             <v-text-field label="Cidade" id="address.city" :error="!!(validation.firstError('address.city'))" :error-messages="validation.firstError('address.city')" v-model.trim.lazy="address.city" />
             <v-text-field label="Logradouro" id="address.street" :error="!!(validation.firstError('address.street'))" :error-messages="validation.firstError('address.street')" v-model.trim.lazy="address.street" />
             <v-text-field label="Número" id="address.number" :error="!!(validation.firstError('address.number'))" :error-messages="validation.firstError('address.number')" v-model.trim.lazy="address.number" />
-             <button class="btn call-to-action large" :class="className" :style="{ 'color': textColor}" v-on:click="onSubmit"> {{ submitButtonText }} </button>
-                    <button class="btn call-to-action-white large" :class="className" :style="{ 'color': textColor}" v-on:click="onCancel"> {{ cancelButtonText }} </button>
+             <button class="btn call-to-action large"  v-on:click="onSubmit"> {{ submitButtonText }} </button>
+                <button class="btn call-to-action-white large" v-on:click="onCancel"> {{ cancelButtonText }} </button>
         </v-flex>
     </v-layout>
 </template>
