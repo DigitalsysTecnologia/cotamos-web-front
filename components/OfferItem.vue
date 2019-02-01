@@ -285,6 +285,7 @@ export default {
   justify-content: center;
   width: 120px;
   height: 80px;
+  margin: auto;
 }
 
 .fa-caret-right {
@@ -293,7 +294,6 @@ export default {
 }
 
 .label div {
-  padding-left: 50%;
   font-size: 11px;
   color: #4d4d4d;
   cursor: pointer;
@@ -305,7 +305,6 @@ export default {
   font-size: 14px;
   font-weight: 700;
   padding: 5px;
-  margin-left: 30px;
   width: 80px;
 }
 
