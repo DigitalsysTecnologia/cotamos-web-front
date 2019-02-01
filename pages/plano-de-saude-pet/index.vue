@@ -326,6 +326,7 @@ h3 {
     text-align: justify;
     color: #b3b3b3;
     padding: 30px;
+    height: 330px;
 }
 @media (min-width: 850px) {
   .planos .cards .card-pet:hover {
