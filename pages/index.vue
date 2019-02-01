@@ -378,8 +378,8 @@ export default {
 }
 .productCard::before{
   width: 1px;
-  height: 1400px;
-  top: 425px;
+  height: 1290px;
+  top: 740px;
   left: 5px;
 }
 .circulos{

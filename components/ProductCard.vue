@@ -58,13 +58,13 @@ export default {
     text-align: left;
     width: 75%;
     color: black;
-    padding-left: 15%;
+    padding-left: 25%;
     font-weight: 500;
 }
 .card-description {
-    min-height: 50px;
+    width: 200px;
     text-decoration-style: none;
-    height: 90px;
+    height: 120px;
     text-align: left;
     padding-left: 25%;
     padding-right: 25%;
