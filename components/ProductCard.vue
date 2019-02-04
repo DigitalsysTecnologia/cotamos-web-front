@@ -55,19 +55,33 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .card-title {
-    color: #00899c;
+    text-align: left;
+    width: 75%;
+    color: black;
+    padding-left: 15%;
+    font-weight: 500;
 }
 .card-description {
     min-height: 50px;
+    text-decoration-style: none;
+    height: 90px;
+    text-align: left;
+    padding-left: 25%;
+    padding-right: 25%;
+    color: #b3b3b3;
 }
 .product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
-    border: 1px solid;
-    border-radius: 10px;
-    border-color: #00899c;
+    border-radius: 30px;
+    border-color: #fff;
+    width: 15vw;
+    height: 95%;
+    background-color: #fff;
 }
 
 .box-ancora {
@@ -77,6 +91,7 @@ export default {
 
 .box-ancora > .product-info > p {
   margin-bottom: 5px;
+
 }
 
 .box-ancora > .product-info > h3 {
@@ -101,5 +116,10 @@ export default {
    left: 0;
    margin-right: auto;
    margin-left:auto;
+}
+@media (max-width: 840px) {
+  .product-container{
+    width: 200px;
+  }
 }
 </style>

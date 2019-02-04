@@ -1,90 +1,84 @@
 <template>
   <div>
-    <div class="row form-container" v-if="isLoading">
-      <Loading :messages="['Submetendo proposta,', 'Aguarde um instante por favor...']"/>
-    </div>
+    <div class="row form-container text-left">
 
-    <div class="row form-container text-left" v-else>
-      <div class="col-xs-12 col-sm-12">
-        <v-text-field
-          :label="isSimulation ? 'Nome do Cliente' :'Seu Nome'"
-          id="proposal.proposer.name"
-          :error="!!(validation.firstError('proposal.proposer.name'))"
-          :error-messages="validation.firstError('proposal.proposer.name')"
-          v-model="proposal.proposer.name"
-        />
-      </div>
+      <v-stepper v-model="e1">
 
-      <div class="col-xs-12 col-sm-12">
-        <v-text-field
-          label="Nome do PET"
-          id="proposal.petInsuranceData.name"
-          :error="!!(validation.firstError('proposal.petInsuranceData.name'))"
-          :error-messages="validation.firstError('proposal.petInsuranceData.name')"
-          v-model="proposal.petInsuranceData.name"
-        />
-      </div>
+        <v-stepper-header>
+          <v-stepper-step :complete="e1 > 1" step="1"><span class='text--blue'>Disponibilidade</span></v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :complete="e1 > 2" step="2">Escolha de Ofertas</v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :complete="e1 > 3" step="3">Cadastro Completo</v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step step="4">Finalizar</v-stepper-step>
+        </v-stepper-header>
 
-      <div class="col-sm-6 col-xs-12">
-        <v-select
-          :items="petAges"
-          label="Idade do pet"
-          item-text="text"
-          item-value="value"
-          :error="!!(validation.firstError('proposal.petInsuranceData.age'))"
-          :error-messages="validation.firstError('proposal.petInsuranceData.age')"
-          v-model="proposal.petInsuranceData.age"
-        />
-      </div>
+        <v-stepper-items>
+          <v-stepper-content step="1">
 
-      <div class="col-sm-6 col-xs-12">
-        <v-text-field
-          :label="isSimulation ? 'CEP do cliente' : 'CEP da sua residência'"
-          id="proposal.proposer.homeAddress.zipCode"
-          :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
-          :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
-          mask="#####-###"
-          v-model.trim="proposal.proposer.homeAddress.zipCode"
-        />
-      </div>
+            <v-card v-if="isLoading">
+              <div class="row form-container">
+                <Loading :messages="['Submetendo proposta,', 'Aguarde um instante por favor...']"/>
+              </div>
+            </v-card>
 
-      <div class="col-sm-12 col-xs-12">
-        <v-text-field
-          :label="isSimulation ? 'E-mail do cliente' :'E-mail'"
-          id="proposal.proposer.email"
-          :error="!!(validation.firstError('proposal.proposer.email'))"
-          :error-messages="validation.firstError('proposal.proposer.email')"
-          v-model.trim="proposal.proposer.email"
-        />
-      </div>
+            <v-card style="padding: 0 50px" v-else>
+              <div class="col-xs-12 col-sm-12">
+                <v-text-field 
+                          :label="isSimulation ? 'Nome do Cliente' :'Seu Nome'"
+                          id="proposal.proposer.name"
+                          :error="!!(validation.firstError('proposal.proposer.name'))"
+                          :error-messages="validation.firstError('proposal.proposer.name')"
+                          v-model="proposal.proposer.name" />
+              </div>
 
-      <div class="col-sm-12 col-xs-12">
-        <v-select
-          :items="hasIndicationItems"
-          label="Você foi indicado por alguém?"
-          item-text="text"
-          item-value="value"
-          v-model="hasIndication"
-        />
-      </div>
+              <div class="col-xs-12 col-sm-12">
+                <v-text-field 
+                    label="Nome do PET"
+                    id="proposal.petInsuranceData.name"
+                    :error="!!(validation.firstError('proposal.petInsuranceData.name'))"
+                    :error-messages="validation.firstError('proposal.petInsuranceData.name')"
+                    v-model="proposal.petInsuranceData.name" />
+              </div>
+              
+              <div class="col-sm-6 col-xs-12">
+                <v-select 
+                  :items="petAges" 
+                  label="Idade do pet" 
+                  item-text="text" 
+                  item-value="value" 
+                  :error="!!(validation.firstError('proposal.petInsuranceData.age'))" 
+                  :error-messages="validation.firstError('proposal.petInsuranceData.age')" 
+                  v-model="proposal.petInsuranceData.age" />
+              </div>
 
-      <div class="col-sm-12 col-xs-12" v-if="hasIndication">
-        <v-select
-          :items="partners"
-          label="Quem te indicou?"
-          item-text="name"
-          item-value="_id"
-          no-data-text="Sem parceiros disponíveis"
-          v-model="proposal.partnerId"
-        />
-      </div>
+              <div class="col-sm-6 col-xs-12">
+                <v-text-field  :label="isSimulation ? 'CEP do cliente' : 'CEP da sua residência'"
+                            id="proposal.proposer.homeAddress.zipCode"
+                            :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
+                            :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
+                            mask="#####-###"
+                            v-model.trim="proposal.proposer.homeAddress.zipCode" />
+              </div>
 
-      <div class="col-xs-12">
-        <CallToAction class="pull-right" v-on:click="submitProposal">
-          Ver Opções &nbsp;
-          <i class="fas fa-forward"/>
-        </CallToAction>
-      </div>
+              <div class="col-sm-12 col-xs-12">
+                <v-text-field  :label="isSimulation ? 'E-mail do cliente' :'E-mail'" 
+                            id="proposal.proposer.email"
+                            :error="!!(validation.firstError('proposal.proposer.email'))"
+                            :error-messages="validation.firstError('proposal.proposer.email')"
+                            v-model.trim="proposal.proposer.email" />
+              </div>
+              <div class="col-xs-12 center">
+                <CallToAction className='large' v-on:click="submitProposal">
+                  Ver Opções &nbsp;
+                  <i class="fas fa-play"/>
+                </CallToAction>
+              </div>
+            </v-card>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>  
     </div>
   </div>
 </template>
@@ -94,32 +88,28 @@ import Loading from "@/components/Loading";
 import DateInput from "@/components/DateInput";
 import PhoneInput from "@/components/PhoneInput.vue";
 import validator from "@/utils/validator";
-import CallToAction from "@/components/CallToAction";
 import apiClientProvider from "@/utils/apiClient";
+import CallToAction from "@/components/CallToAction";
 
 export default {
   name: "BasicPetInsuranceData",
   data() {
     return {
       loading: false,
-      hasIndication: false,
-      hasIndicationItems: [{ "text": "Sim", "value": true}, { "text": "Não", "value": false}],
-      partners: [],
-      petAges: [
-        {
-          text: "Menos de 1 ano",
-          value: 0
-        },
-        {
-          text: "Entre 1 e 8 anos",
-          value: 3
-        },
-        {
-          text: "Acima de 8 anos",
-          value: 10
-        }
+      e1: 0,
+      petAges: [{
+            text: "Menos de 1 ano",
+            value: 0
+          },
+          {
+            text: "Entre 1 e 8 anos",
+            value: 3
+          },
+          {
+            text: "Acima de 8 anos",
+            value: 10
+          }
       ],
-      disableParner: false,
       proposal: {
         petInsuranceData: {
           name: "",
@@ -166,7 +156,6 @@ export default {
   methods: {
     submitProposal: async function() {
       const isValid = await validator.validatePage(this);
-
       if (!isValid) {
         return;
       }
@@ -199,7 +188,6 @@ export default {
       } else {
         this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
       }
-
       this.$emit("submitProposal", this.proposal);
     }
   },
@@ -221,6 +209,23 @@ export default {
 </script>
 
 <style scoped>
+.text--blue {
+  color: #00456a;
+}
+.v-stepper,.v-stepper__header{
+  box-shadow: none !important;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+.theme--light.v-label {
+  font-weight: lighter !important;
+}
+.primary--text {
+  color: #b3b3b3 !important;
+  caret-color: #b3b3b3 !important;
+}
 .form-line {
   margin-left: 0px;
 }

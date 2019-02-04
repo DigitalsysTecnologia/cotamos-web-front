@@ -1,7 +1,5 @@
 <template>
-  <v-layout justify-top>
-    <v-container fluid grid-list-md>
-      <v-layout row wrap>
+  <div class="all">
   
         <v-flex xs12 v-if="false">
           <v-card>
@@ -26,14 +24,34 @@
         <v-flex sm12 v-if="loadingOffers">
           <Loading :messages="['Obtendo ofertas,', 'Aguarde um instante por favor...']" />
         </v-flex>
-  
-        <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm6 lg4 v-else>
+        <div class="feature-column">
+          <ul>
+            <li><p>Urgência e emergência (48h após chipagem) </p></li>
+            <li><p>Atendimento Ambulatorial (Carência de 30 dias)</p></li>
+            <li><p>Vacinas¹ (Carência de 180 dias)</p></li>
+            <li><p>Implantação do Microchip</p></li>
+            <li><p>PetHome – atendimento domiciliar (Carência de 30 dias)</p></li>
+            <li><p>PetPhone – teleatendimento com veterinários de plantão 24h</p></li>
+            <li><p>PetNutri</p></li>
+            <li><p>Passaporte eletrônico</p></li>
+            <li><p>Exames laboratoriais (Carência de 30 dias)</p></li>
+            <li><p>Consulta com especialistas (Carência de 60 dias)</p></li>
+            <li><p>Atendimento Hospitalar (Carência de 30 dias)</p></li>
+            <li><p>Internação (Carência de 60 dias)</p></li>
+            <li><p>Cirurgia (Carência de 60 dias)</p></li>
+            <li><p>Exames por Imagem (Carência de 60 dias)</p></li>
+            <li><p>Castração (Carência de 360 dias)</p></li>
+            <li><p>Farma4Pet</p></li>
+            <li><p>Reembolso - Livre escolha³</p></li>
+            <li><p>Limpeza de Tártaro (Carência de 360 dias)</p></li>
+            <li><p>Concierge</p></li>
+          </ul>
+        </div>
+        <div v-for="(card, idx) in availablePlans" :key="`card_${idx}`" class="item">
           <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan" :isSimulation="proposal.isSimulation" />
-        </v-flex>
+        </div>
   
-      </v-layout>
-    </v-container>
-  </v-layout>
+      </div>
 </template>
 
 <script>
@@ -242,5 +260,70 @@
 </script>
 
 <style scoped>
-  
+  .all{
+    display: flex;
+    justify-content: center;
+    padding: 1vmin;
+  }
+  .item{
+    padding: 1.5vmin;
+    height: 100%;
+  }
+  .feature-column ul{
+    width: 15vw;
+    margin-top: 200px;
+    box-shadow: 0px 0px 8px 0px #b3b3b3aa;
+    padding: 0;
+    margin-right: 1.5vh;
+  }
+
+  .feature-column ul li {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    padding: 0 15px;
+    list-style: none;
+    border-bottom: 1px solid #b3b3b3aa;
+  }
+  .feature-column li p {
+      font-size: 12px;
+      padding: 0;
+      margin: 0;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .feature-column{
+      display: flex;
+      justify-content: center;
+      position: absolute;
+    }
+    .feature-column ul{
+    width: 80%;
+    
+    margin-top: 100px;
+    box-shadow: none;
+    padding: 0;
+    margin-right: 0;
+  }
+
+  .feature-column ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 95px;
+    padding: 0 15px;
+    list-style: none;
+    border-bottom: none;
+  }
+  .feature-column li p {
+      font-size: 12px;
+      text-align: center;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+  }
+    .item{padding: 0}
+    .all{padding: 0;
+    margin-left: 0}
+  }
 </style>
