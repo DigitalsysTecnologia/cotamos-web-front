@@ -1,9 +1,7 @@
 <template>
   <div>
     <section id="home">
-      <div class="imgMob">
-        <div></div>
-      </div>
+      <div class="imgMob"></div>
       <svg viewBox="0 0 221.39262 179.24785" class="svgImg">
         <defs>
           <clipPath id="imgClip">
@@ -26,8 +24,8 @@
 
       <div class="descHome">
         <h1>Seguro sem Complicações</h1>
-        <h3>Lorem ipsum dolor sit amet, adipiscing elit.</h3>
-        <a>
+        <h3>Proteção para que você ama.</h3>
+        <a href="/plano-de-saude-pet">
           <h5>Simule Grátis</h5>
           <span>
             <i class="fas fa-caret-right"></i>
@@ -35,80 +33,68 @@
         </a>
       </div>
     </section>
-    <div class="productCard">
-      
-      <div class="rotulo">
-        <Span>Serviços</Span>
+
+    <section>
+      <div class="productCard">
+        <div class="rotulo">
+          <Span>Serviços</Span>
+        </div>
+        <div class="circulos">
+          <div class="circle c1"></div>
+          <div class="circle c2"></div>
+          <div class="circle c3"></div>
+          <div class="circle c4"></div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <ProductCard
+              name="Plano de Saúde Pet"
+              description="Segurança para o seu pet, com um plano de saúde sob medida"
+              callToActionText="Saiba Mais"
+              callToActionUrl="/plano-de-saude-pet"
+              imgUrl="/img/icons/health-for-pet.png"
+            />
+          </div>
+          <div class="card">
+            <ProductCard
+              name="Carro Por Assinatura"
+              description="O seu serviço de carro por assinatura,sob medida"
+              callToActionText="Saiba Mais"
+              callToActionUrl="/wl/carro-facil"
+              imgUrl="/img/icons/carro-facil.png"
+            />
+          </div>
+          <div class="card">
+            <ProductCard
+              name="Seguro de Vida"
+              description="Proteger quem você ama é mais fácil e rápido do que você imagina."
+              callToActionText="Saiba Mais"
+              callToActionUrl="/wl/seguro-vida"
+              imgUrl="/img/icons/seguro-vida.png"
+            />
+          </div>
+          <div class="card">
+            <ProductCard
+              name="Seguro Viagem"
+              description="Uma viagem mais tranquila começa aqui."
+              callToActionText="Saiba Mais"
+              callToActionUrl="/wl/seguro-viagem"
+              imgUrl="/img/icons/travel.png"
+            />
+          </div>
+        </div>
       </div>
-      <div class="circulos">
-        <div class="circle c1"></div>
-        <div class="circle c2"></div>
-        <div class="circle c3"></div>
-        <div class="circle c4"></div>
-      </div> 
-      <div class="cards">
-        <div class="card">
-        <ProductCard
-          name="Plano de Saúde Pet"
-          description="Segurança para o seu pet, com um plano de saúde sob medida"
-          callToActionText="Saiba Mais"
-          callToActionUrl="/plano-de-saude-pet"
-          imgUrl="/img/icons/health-for-pet.png"
-        />
-        </div>
-         <div class="card">
-          <ProductCard
-          name="Carro Por Assinatura"
-          description="O seu serviço de carro por assinatura,sob medida"
-          callToActionText="Saiba Mais"
-          callToActionUrl="/wl/carro-facil"
-          imgUrl="/img/icons/carro-facil.png"
-        />
-        </div>
-         <div class="card">
-          <ProductCard
-          name="Seguro de Vida"
-          description="Proteger quem você ama é mais fácil e rápido do que você imagina."
-          callToActionText="Saiba Mais"
-          callToActionUrl="/wl/seguro-vida"
-          imgUrl="/img/icons/seguro-vida.png"
-        />
-        </div>
-         <div class="card">
-          <ProductCard
-          name="Seguro Viagem"
-          description="Uma viagem mais tranquila começa aqui."
-          callToActionText="Saiba Mais"
-          callToActionUrl="/wl/seguro-viagem"
-          imgUrl="/img/icons/travel.png"
-        />
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
 import ProductCard from "@/components/ProductCard";
 import CallToAction from "@/components/CallToAction";
 import ApiClient from "@/utils/apiClient";
 
 export default {
   name: "Home",
-  computed: {
-    carouselItems: {
-      get() {
-        return [
-          {
-            src: "/img/carousel-img-2.png"
-          }
-        ];
-      }
-    }
-  },
   methods: {
     GoToUrl(path) {
       this.$router.push({
@@ -117,9 +103,6 @@ export default {
     }
   },
   components: {
-    Footer: Footer,
-    Header: Header,
-    NavBar: NavBar,
     CallToAction: CallToAction,
     ProductCard: ProductCard
   }
@@ -169,7 +152,7 @@ export default {
   margin-top: 3vw;
   font-size: 1.7vw;
   width: 80%;
-  color: #b3b3b3;
+  color: #525252;
 }
 
 .descHome a {
@@ -306,33 +289,33 @@ export default {
   font-weight: bold;
 }
 
-.productCard{
+.productCard {
   display: flex;
 }
-.cards{
+.cards {
   display: flex;
   justify-content: space-around;
   width: 100%;
 }
-.productCard .rotulo{
+.productCard .rotulo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
   width: 15vh;
-  background-color:#15bfc1;
+  background-color: #15bfc1;
   margin-top: 30px;
   height: 20vh;
   z-index: 1;
 }
-.productCard span{
+.productCard span {
   color: #fff;
   font-size: 28px;
   font-weight: 700;
 }
 
-.productCard::before{
+.productCard::before {
   content: "";
   left: 0;
   width: 100%;
@@ -342,75 +325,73 @@ export default {
   z-index: 0;
   margin-top: 70px;
 }
-.circulos{
+.circulos {
   display: none;
 }
-.productCard span{
+.productCard span {
   color: #fff;
   font-size: 20px;
 }
-.productCard::before{
+.productCard::before {
   height: 90px;
 }
-@media (max-width: 700px){
-.productCard{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  
+@media (max-width: 700px) {
+  .productCard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .cards {
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .card {
+    flex-grow: 1;
+  }
+  .productCard .rotulo {
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    left: 0;
+  }
+  .productCard .rotulo span {
+    font-size: 15px;
+  }
+  .productCard::before {
+    width: 1px;
+    height: 1290px;
+    top: 740px;
+    left: 5px;
+  }
+  .circulos {
+    display: block;
+    position: absolute;
+    height: 1120px;
+    width: 200px;
+    left: 0;
+  }
+  .circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #15bfc1;
+    margin-bottom: 350px;
+  }
 }
-.cards{
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
-}
-.card{
-  flex-grow: 1;
-}
-.productCard .rotulo{
-  width: 120px;
-  height: 30px;
-  border-radius: 5px;
-  left: 0;
-}
-.productCard .rotulo span{
-  font-size: 15px;
-}
-.productCard::before{
-  width: 1px;
-  height: 1290px;
-  top: 740px;
-  left: 5px;
-}
-.circulos{
-  display: block;
-  position: absolute;
-  height: 1120px;
-  width: 200px;
-  left: 0;
-}
-.circle{
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #15bfc1;
-  margin-bottom: 350px;
-}
-}
-@media (max-width: 840px){
-  
-  .cards{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-}
-  .card{
-  display: flex; 
-  flex-basis:40%;
-  justify-content: center;
-  flex-direction: column;
-}
+@media (max-width: 840px) {
+  .cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .card {
+    display: flex;
+    flex-basis: 40%;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 </style>

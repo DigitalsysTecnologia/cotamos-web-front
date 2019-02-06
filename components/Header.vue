@@ -7,7 +7,7 @@
       <a href="javascript:void(0);" class="icon" v-on:click="menuMob">
         <i class="fa fa-bars"></i>
       </a>
-      <a href="#home" class="menuItem">Home</a>
+      <a href="/" class="menuItem">Home</a>
       <a href="#sobre" class="menuItem">Sobre</a>
       <a href="#servicos" class="menuItem">Serviços</a>
       <a href="#contato" class="menuItem">Contato</a>
