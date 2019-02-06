@@ -1,61 +1,103 @@
 <template>
   <div>
-    <div class="row form-container" v-if="isLoading">
-      <Loading :messages="['Submetendo proposta,', 'Aguarde um instante por favor...']" />
-    </div>
-  
-    <div class="row form-container text-left" v-else>
-      <div class="col-xs-12 col-sm-12">
-        <v-text-field :label="isSimulation ? 'Nome do Cliente' :'Seu Nome'" id="proposal.proposer.name" :error="!!(validation.firstError('proposal.proposer.name'))" :error-messages="validation.firstError('proposal.proposer.name')" v-model="proposal.proposer.name"
-        />
-      </div>
-  
-      <div class="col-xs-12 col-sm-12">
-        <v-text-field label="Nome do PET" id="proposal.petInsuranceData.name" :error="!!(validation.firstError('proposal.petInsuranceData.name'))" :error-messages="validation.firstError('proposal.petInsuranceData.name')" v-model="proposal.petInsuranceData.name"
-        />
-      </div>
-  
-      <div class="col-sm-6 col-xs-12">
-  
-        <v-select :items="petAges" label="Idade do pet" item-text="text" item-value="value" :error="!!(validation.firstError('proposal.petInsuranceData.age'))" :error-messages="validation.firstError('proposal.petInsuranceData.age')" v-model="proposal.petInsuranceData.age"
-        />
-  
-      </div>
-  
-      <div class="col-sm-6 col-xs-12">
-        <v-text-field :label="isSimulation ? 'CEP do cliente' : 'CEP da sua residência'" id="proposal.proposer.homeAddress.zipCode" :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))" :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
-          mask="#####-###" v-model.trim="proposal.proposer.homeAddress.zipCode" />
-      </div>
-  
-      <div class="col-sm-12 col-xs-12">
-        <v-text-field :label="isSimulation ? 'E-mail do cliente' :'E-mail'" id="proposal.proposer.email" :error="!!(validation.firstError('proposal.proposer.email'))" :error-messages="validation.firstError('proposal.proposer.email')" v-model.trim="proposal.proposer.email"
-        />
-      </div>
-  
-      <div class="col-xs-12">
-        <CallToAction className='pull-right' v-on:click="submitProposal">
-          Ver Opções &nbsp;
-          <i class="fas fa-forward" />
-        </CallToAction>
-      </div>
+    <div class="row form-container text-left">
+
+      <v-stepper v-model="e1">
+
+        <v-stepper-header>
+          <v-stepper-step :complete="e1 > 1" step="1"><span class='text--blue'>Disponibilidade</span></v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :complete="e1 > 2" step="2">Escolha de Ofertas</v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step :complete="e1 > 3" step="3">Cadastro Completo</v-stepper-step>
+          <v-divider></v-divider>
+          <v-stepper-step step="4">Finalizar</v-stepper-step>
+        </v-stepper-header>
+
+        <v-stepper-items>
+          <v-stepper-content step="1">
+
+            <v-card v-if="isLoading">
+              <div class="row form-container">
+                <Loading :messages="['Submetendo proposta,', 'Aguarde um instante por favor...']"/>
+              </div>
+            </v-card>
+
+            <v-card style="padding: 0 50px" v-else>
+              <div class="col-xs-12 col-sm-12">
+                <v-text-field 
+                          :label="isSimulation ? 'Nome do Cliente' :'Seu Nome'"
+                          id="proposal.proposer.name"
+                          :error="!!(validation.firstError('proposal.proposer.name'))"
+                          :error-messages="validation.firstError('proposal.proposer.name')"
+                          v-model="proposal.proposer.name" />
+              </div>
+
+              <div class="col-xs-12 col-sm-12">
+                <v-text-field 
+                    label="Nome do PET"
+                    id="proposal.petInsuranceData.name"
+                    :error="!!(validation.firstError('proposal.petInsuranceData.name'))"
+                    :error-messages="validation.firstError('proposal.petInsuranceData.name')"
+                    v-model="proposal.petInsuranceData.name" />
+              </div>
+              
+              <div class="col-sm-6 col-xs-12">
+                <v-select 
+                  :items="petAges" 
+                  label="Idade do pet" 
+                  item-text="text" 
+                  item-value="value" 
+                  :error="!!(validation.firstError('proposal.petInsuranceData.age'))" 
+                  :error-messages="validation.firstError('proposal.petInsuranceData.age')" 
+                  v-model="proposal.petInsuranceData.age" />
+              </div>
+
+              <div class="col-sm-6 col-xs-12">
+                <v-text-field  :label="isSimulation ? 'CEP do cliente' : 'CEP da sua residência'"
+                            id="proposal.proposer.homeAddress.zipCode"
+                            :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
+                            :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')"
+                            mask="#####-###"
+                            v-model.trim="proposal.proposer.homeAddress.zipCode" />
+              </div>
+
+              <div class="col-sm-12 col-xs-12">
+                <v-text-field  :label="isSimulation ? 'E-mail do cliente' :'E-mail'" 
+                            id="proposal.proposer.email"
+                            :error="!!(validation.firstError('proposal.proposer.email'))"
+                            :error-messages="validation.firstError('proposal.proposer.email')"
+                            v-model.trim="proposal.proposer.email" />
+              </div>
+              <div class="col-xs-12 center">
+                <CallToAction className='large' v-on:click="submitProposal">
+                  Ver Opções &nbsp;
+                  <i class="fas fa-play"/>
+                </CallToAction>
+              </div>
+            </v-card>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>  
     </div>
   </div>
 </template>
 
 <script>
-  import Loading from "@/components/Loading";
-  import DateInput from "@/components/DateInput";
-  import PhoneInput from "@/components/PhoneInput.vue";
-  import validator from "@/utils/validator";
-  import CallToAction from "@/components/CallToAction";
-  import apiClientProvider from "@/utils/apiClient";
-  
-  export default {
-    name: "BasicPetInsuranceData",
-    data() {
-      return {
-        loading: false,
-        petAges: [{
+import Loading from "@/components/Loading";
+import DateInput from "@/components/DateInput";
+import PhoneInput from "@/components/PhoneInput.vue";
+import validator from "@/utils/validator";
+import apiClientProvider from "@/utils/apiClient";
+import CallToAction from "@/components/CallToAction";
+
+export default {
+  name: "BasicPetInsuranceData",
+  data() {
+    return {
+      loading: false,
+      e1: 0,
+      petAges: [{
             text: "Menos de 1 ano",
             value: 0
           },
@@ -67,106 +109,131 @@
             text: "Acima de 8 anos",
             value: 10
           }
-        ],
-        proposal: {
-          petInsuranceData: {
-            name: "",
-            age: ""
-          },
-          proposer: {
-            name: "",
-            email: "",
-            phones: [{
+      ],
+      proposal: {
+        petInsuranceData: {
+          name: "",
+          age: ""
+        },
+        proposer: {
+          name: "",
+          email: "",
+          phones: [
+            {
               areaCode: "",
               number: ""
-            }],
-            homeAddress: {
-              zipCode: ""
             }
+          ],
+          homeAddress: {
+            zipCode: ""
           }
         }
-      };
-    },
-    computed: {
-      isLoading: {
-        get() {
-          return this.loading;
-        }
       }
-    },
-    props: {
-      isSimulation: {
-        type: Boolean,
-        required: false,
-        default: false
+    };
+  },
+  computed: {
+    isLoading: {
+      get() {
+        return this.loading;
       }
-    },
-    methods: {
-      submitProposal: async function() {
-        const isValid = await validator.validatePage(this);
-  
-        if (!isValid) {
-          return;
-        }
-  
-        this.loading = true;
-  
-        if (!this.proposal._id) {
-          let newProposal = await apiClientProvider.generateProposal(
-            5,
-            this.isSimulation
-          );
-          this.proposal = Object.assign(newProposal, this.proposal);
-        }
-  
-        this.proposal.petInsuranceData.age = parseInt(
-          this.proposal.petInsuranceData.age
-        );
-  
-        await apiClientProvider.updateProposal(this.proposal);
-        const product = await apiClientProvider.checkAvailabilityForProduct(
-          5,
-          this.proposal.proposer.homeAddress.zipCode
-        );
-  
-        if (!product.isAvailable) {
-          this.proposal = await apiClientProvider.setNextState(this.proposal, 11);
-          alert('Infelizmente, sua região ainda não é atendida.');
-          this.loading = false;
-          return;
-        } else {
-          this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
-        }
-  
-        this.$emit("submitProposal", this.proposal);
-      }
-    },
-    validators: {
-      "proposal.proposer.name": value => validator.validateClientName(value),
-      "proposal.petInsuranceData.name": value => validator.validatePetName(value),
-      "proposal.proposer.homeAddress.zipCode": value =>
-        validator.validateZipCode(value),
-      "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
-      "proposal.proposer.email": value => validator.validateEmail(value)
-    },
-    components: {
-      PhoneInput: PhoneInput,
-      DateInput: DateInput,
-      CallToAction: CallToAction,
-      Loading: Loading
     }
-  };
+  },
+  props: {
+    isSimulation: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+  async mounted() {
+    this.partners = await apiClientProvider.listPartner();
+    const { partnerId } = this.$route.query;
+    if (partnerId) {
+      this.proposal.partnerId = partnerId;
+      this.disableParner = true;
+    }
+  },
+  methods: {
+    submitProposal: async function() {
+      const isValid = await validator.validatePage(this);
+      if (!isValid) {
+        return;
+      }
+
+      this.loading = true;
+
+      if (!this.proposal._id) {
+        let newProposal = await apiClientProvider.generateProposal(
+          5,
+          this.isSimulation
+        );
+        this.proposal = Object.assign(newProposal, this.proposal);
+      }
+
+      this.proposal.petInsuranceData.age = parseInt(
+        this.proposal.petInsuranceData.age
+      );
+
+      await apiClientProvider.updateProposal(this.proposal);
+      const product = await apiClientProvider.checkAvailabilityForProduct(
+        5,
+        this.proposal.proposer.homeAddress.zipCode
+      );
+
+      if (!product.isAvailable) {
+        this.proposal = await apiClientProvider.setNextState(this.proposal, 11);
+        alert("Infelizmente, sua região ainda não é atendida.");
+        this.loading = false;
+        return;
+      } else {
+        this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
+      }
+      this.$emit("submitProposal", this.proposal);
+    }
+  },
+  validators: {
+    "proposal.proposer.name": value => validator.validateClientName(value),
+    "proposal.petInsuranceData.name": value => validator.validatePetName(value),
+    "proposal.proposer.homeAddress.zipCode": value =>
+      validator.validateZipCode(value),
+    "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
+    "proposal.proposer.email": value => validator.validateEmail(value)
+  },
+  components: {
+    PhoneInput: PhoneInput,
+    DateInput: DateInput,
+    CallToAction: CallToAction,
+    Loading: Loading
+  }
+};
 </script>
 
 <style scoped>
-  .form-line {
-    margin-left: 0px;
-  }
-  
-  .form-container {
-    margin-left: 1px;
-    margin-right: 1px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
+.text--blue {
+  color: #00456a;
+}
+.v-stepper,.v-stepper__header{
+  box-shadow: none !important;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+.theme--light.v-label {
+  font-weight: lighter !important;
+}
+.primary--text {
+  color: #b3b3b3 !important;
+  caret-color: #b3b3b3 !important;
+}
+.form-line {
+  margin-left: 0px;
+}
+
+.form-container {
+  margin-left: 1px;
+  margin-right: 1px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 </style>
