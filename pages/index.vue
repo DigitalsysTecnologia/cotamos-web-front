@@ -29,6 +29,7 @@
       <div class="col-xs-12 text-center">
         <h2 class="subtitle">Conheça Nossos Produtos</h2>
       </div>
+    </section>
 
       <article class="col-xs-12 text-center">
         <ProductCard
@@ -91,36 +92,17 @@
       <div class="col-xs-12 text-center">
         <h2 class="subtitle">Seja Parceiro</h2>
       </div>
-
-      <article class="col-xs-12 text-center">
-        <p>Seja parceiro da Cotamos, tenha uma renda extra vendendo nossos produtos.</p>
-        <v-btn color="primary" round href="/seja-parceiro">Saiba Mais</v-btn>
-      </article>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
 import ProductCard from "@/components/ProductCard";
 import CallToAction from "@/components/CallToAction";
 import ApiClient from "@/utils/apiClient";
 
 export default {
   name: "Home",
-  computed: {
-    carouselItems: {
-      get() {
-        return [
-          {
-            src: "/img/carousel-img-2.png"
-          }
-        ];
-      }
-    }
-  },
   methods: {
     GoToUrl(path) {
       this.$router.push({
@@ -129,9 +111,6 @@ export default {
     }
   },
   components: {
-    Footer: Footer,
-    Header: Header,
-    NavBar: NavBar,
     CallToAction: CallToAction,
     ProductCard: ProductCard
   }

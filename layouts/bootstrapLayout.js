@@ -2,8 +2,8 @@ import Vue from "vue";
 import Vuetify from "vuetify";
 Vue.use(Vuetify, {
   theme: {
-    primary: "#00899c",
-    secondary: "#00899c",
+    primary: "#00456a",
+    secondary: "#00456a",
     accent: "#8c9eff",
     error: "#FF0000"
   }
