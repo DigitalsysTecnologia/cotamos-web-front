@@ -29,9 +29,9 @@
       <div class="col-xs-12 text-center">
         <h2 class="subtitle">Conheça Nossos Produtos</h2>
       </div>
-    </section>
+    </div>
 
-      <article class="col-xs-12 text-center">
+    <article class="col-xs-12 text-center">
         <ProductCard
           name="Plano de Saúde Pet"
           description="Segurança para o seu pet, com um plano de saúde sob medida"
@@ -64,35 +64,36 @@
           imgUrl="/img/icons/travel.png"
         />
       </article>
-    </div>
-    <section class="descricao">
-      <div class="box-2">
-        <div class="texto">
-          <h2>Lorem ipsum dolor sit amet, <br />consectetur adipiscing elit</h2>
-          <div class="line-2"></div>
-          <p>  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          </p>
+      <div class="row section">
+      </div>
+       <section class="descricao">
+        <div class="box-2">
+          <div class="texto">
+            <h2>Lorem ipsum dolor sit amet, <br />consectetur adipiscing elit</h2>
+            <div class="line-2"></div>
+            <p>  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+            </p>
+          </div>
+          <div class="line"></div>
+          <div class="desc-wrapper"> 
+            
+            <div class="desc-upper">
+              <div class="desc-title">
+              </div>
+              <div class="desc-img">
+              </div>
+            </div>
+            <div class="desc-footer">
+            </div>
+          </div>
         </div>
-        <div class="line"></div>
-        <div class="desc-wrapper"> 
-          
-          <div class="desc-upper">
-            <div class="desc-title">
-            </div>
-            <div class="desc-img">
-            </div>
-          </div>
-          <div class="desc-footer">
-          </div>
+      </section>
 
+      <div class="row section">
+        <div class="col-xs-12 text-center">
+          <h2 class="subtitle">Seja Parceiro</h2>
         </div>
       </div>
-    </section>
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Seja Parceiro</h2>
-      </div>
-    </section>
   </div>
 </template>
 
