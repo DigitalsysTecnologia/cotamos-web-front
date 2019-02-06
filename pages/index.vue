@@ -360,7 +360,7 @@ export default {
   }
   .productCard::before {
     width: 1px;
-    height: 1290px;
+    height: 1320px;
     top: 740px;
     left: 5px;
   }
