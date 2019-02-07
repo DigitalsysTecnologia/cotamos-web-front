@@ -32,7 +32,7 @@
           </span>
         </a>
       </div>
-    </section>
+    </div>
 
     <section>
       <div class="productCard">
@@ -138,6 +138,28 @@ export default {
   font-weight: 700;
 }
 
+.about-img {
+  background: url("../static/img/home-sobre-nos.png");
+  background-position: 96% 20%;
+  width: 125px;
+  height: 150px;
+  margin: 1rem;
+  border-radius: 25px;
+}
+.about-footer {
+  background: url("../static/img/home-sobre-nos.png");
+  background-position: 95% 93%;
+  width: 266px;
+  height: 100px;
+  border-radius: 25px;
+}
+.about-title, .desc-title, .desc-img {
+  width: 125px;
+  height: 150px;
+  margin: 1rem;
+  border-radius: 25px;
+  background: #15bfc1;
+}
 .descHome h1::after {
   position: absolute;
   bottom: -15px;
@@ -183,6 +205,22 @@ export default {
   border-radius: 50%;
   color: #ffffff;
   background-color: #15bfc1;
+}
+
+.desc-img {
+  background: url("../static/img/home-graph.png");
+  background-position: 93% 5%;
+}
+.desc-footer {
+  background: url("../static/img/home-graph.png");
+  background-position: 87% 85%;
+  width: 266px;
+  height: 100px;
+  border-radius: 25px;
+}
+.desc-footer {
+  width: 316px;
+  height: 115px;
 }
 
 @media screen and (max-width: 768px) {
