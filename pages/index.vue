@@ -555,7 +555,40 @@ export default {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    padding-top: 80px;
+    width: 100%;
+  }
+  .card {
+    flex-grow: 1;
+  }
+  .productCard .rotulo {
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    left: 0;
+  }
+  .productCard .rotulo span {
+    font-size: 15px;
+  }
+  .productCard::before {
+    width: 1px;
+    height: 1320px;
+    top: 740px;
+    left: 5px;
+  }
+  .circulos {
+    display: block;
+    position: absolute;
+    height: 1120px;
+    width: 200px;
+    left: 0;
+  }
+  .circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #15bfc1;
+    margin-bottom: 350px;
+  }
 }
 
 .descricao .box-2 .texto h2 {
