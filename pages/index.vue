@@ -35,10 +35,13 @@
         </a>
       </div>
     </section>
+    
     <section class="descricao">
       <div class="box-2">
+        <div class="title-mobile">
+          <span>Sobre nós </span>
+        </div>
         <div class="about-title-wrapper"> 
-          
           <div class="about-upper">
             <div class="about-title">
               Sobre nós
@@ -112,8 +115,8 @@
 
     <div class="row section">
       </div>
-       <section class="descricao">
-        <div class="box-2">
+       <section class="descricao" id="mobile">
+        <div class="box-2" >
           <div class="texto">
             <h2>Lorem ipsum dolor sit amet, <br />consectetur adipiscing elit</h2>
             <div class="line-2"></div>
@@ -172,6 +175,7 @@ export default {
 </script>
 
 <style scoped>
+
 #home {
   height: 450px;
 }
@@ -588,7 +592,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    padding-top: 80px;
+    padding-top: 40px;
 }
 
 
@@ -623,10 +627,13 @@ export default {
   border-radius: 50%;
   background-color: #15bfc1
 }
-
+.title-mobile {
+  display: none;
+}
 @media (max-width: 850px) {
     .descricao .box-2{
-        flex-direction: column-reverse;
+        margin-top: 15vh;
+        flex-direction:column !important;
         flex-wrap: wrap;
     }
     .descricao .box-2 img{
@@ -640,10 +647,59 @@ export default {
       height: 4px;
       margin-bottom: 30px;
       background-color: #15bfc1;
+      display: flex;
+      justify-content: center;
+    }
+    .descricao .box-2 {
+      padding: 0;
     }
     .descricao .box-2 .line::after{
       display: none;
     }
 
+  .title-mobile {
+    z-index: 999;
+    display: flex !important;
+  }
+  .title-mobile span {
+    padding: .5rem 2rem .5rem 2rem;
+    background-color: #15bfc1;
+    font-size: 15px;
+    color: #fff;
+    font-family: Roboto,sans-serif;
+    font-weight: bold;
+    line-height: 1.5;
+    border-radius: 5px;
+    
+  }
+  .texto {
+    border: 1px solid rgba(224, 224, 224, 0.67);
+    border-left: none;
+    width: 100%;
+    margin-top:0;
+    padding-bottom: 40px;
+    margin-bottom: 1rem;
+    margin-top: -1.2rem;
+    margin-bottom: -3.2rem;
+    z-index: 0;
+  }
+}
+
+
+
+@media (max-width: 840px) {
+  .about-title-wrapper {
+    display: none !important;
+  }
+  .desc-wrapper {
+    display: none !important;
+  }
+
+  #mobile {
+    display: none;
+  }
+
+  
+  
 }
 </style>
