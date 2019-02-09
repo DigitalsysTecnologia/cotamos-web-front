@@ -118,15 +118,11 @@ export default {
       this.nextStep();
     },
     generateBasicProposal: async function(proposal) {
-      router.push({
-        path: "/fluxo-vendas",
-        query: {
-          id: proposal._id
-        }
-      });
+      console.log('caiu no generateBasicProposal', router)
+      window.location = `/fluxo-vendas?id=${proposal._id}`
 
-      this.loading = false;
-      this.existingProposal = proposal;
+      // this.loading = false;
+      // this.existingProposal = proposal;
     },
     backToBasicProposalForm: async function() {
       this.loadingMessage = [
