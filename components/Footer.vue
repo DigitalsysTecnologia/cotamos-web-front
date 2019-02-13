@@ -1,43 +1,19 @@
 <template>
-  <div class="footerBottom">
-    <div class="containerAling wrapper">
-      <img src="/img/logo_nome_branco.png" alt class="imgFooter">
-    </div>
-
-    <div class="wrapper">
-      <div class="itemContatos">
-        <span class="iconFooter">
-          <i class="fas fa-map-marker-alt"></i>
-        </span>
-        <span>Rua Dom Érico Ferrari, São Paulo</span>
+  <div class="bottomFooter">
+    <a class="brand" :href="homeLink">
+      <img class="logoFooter" src="/img/favicon.png" alt="Cotamos.com">
+    </a>
+    <div class="footerInfo">
+      <div class="containerIcons">
+        <v-btn v-for="icon in icons" :key="icon.icon" class="iconFooter" icon :href="icon.url">
+          <v-icon size="24px">{{ icon.icon }}</v-icon>
+        </v-btn>
       </div>
-      <div class="itemContatos">
-        <span class="iconFooter">
-          <i class="fas fa-phone"></i>
-        </span>
-        <span>(11) 3297-3864</span>
-      </div>
-      <div class="itemContatos">
-        <span class="iconFooter">
-          <i class="fas fa-envelope"></i>
-        </span>
-        <span>
-          <a href="contato@cotamos.com">contato@cotamos.com</a>
-        </span>
-      </div>
-    </div>
-
-    <div class="wrapper containerAling">
-      <div class="infoItem">
-        <h2>Dados da Empresa</h2>
-        <span>CNPJ 30.249.014/0001-04</span>
-        <span>SUSEP 20.2021328.0</span>
-        <div class="infoItemRedes">
-          <v-btn v-for="icon in icons" :key="icon.icon" class="iconRedes" icon :href="icon.url">
-            <v-icon size="24px">{{ icon.icon }}</v-icon>
-          </v-btn>
-        </div>
-      </div>
+      <span class="footer-item">CNPJ 30.249.014/0001-04</span>
+      <span class="footer-item">SUSEP 20.2021328.0</span>
+      <span class="footer-item">Copyright &copy; 2018 -
+        <strong>Cotamos.com</strong> - Todos os direitos resevados
+      </span>
     </div>
   </div>
 </template>
@@ -53,9 +29,9 @@ export default {
           url: "https://www.facebook.com/cotamoscorretora"
         }
         /* { icon: "fab fa-twitter" },
+        { icon: "fab fa-google-plus" },
         { icon: "fab fa-linkedin" },
-        { icon: "fab fa-instagram" },
-        { icon: "fab fa-google-plus" },  */
+        { icon: "fab fa-instagram" } */
       ]
     };
   },
@@ -76,98 +52,76 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.footerBottom {
-  bottom: 0;
+.bottomFooter {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  background-color: #222;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height: 150px;
+  width: 70%;
 }
 
-.wrapper {
+.bottomFooter::before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  top: 0;
+  background-color: #dadada;
+}
+
+.footerInfo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 350px;
-  width: 34%;
-  background-color: #222;
-}
-
-.containerAling {
+  align-self: center;
   align-items: center;
-}
-.imgFooter {
-  width: 80%;
-}
-
-.itemContatos {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  color: #fff;
   font-size: 16px;
-  font-weight: 700;
+  color: #4d4d4d;
+}
+
+.brand {
+  position: absolute;
+  left: 0;
+}
+
+.logoFooter {
+  height: 70px;
+}
+
+.containerIcons{
+  display: flex;
 }
 
 .iconFooter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #3d3d3d;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 20px;
+  color: #00456a;
 }
 
-.infoItem {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
 
-.infoItem h2 {
-  margin: 0 0 20px 0;
-  padding: 0;
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.infoItem span {
-  color: #6e6e6e;
-  font-size: 14px;
-}
-
-.iconRedes {
-  color: #fff;
-  margin: 20px 20px 0 -7px;
-}
-
-@media screen and (max-width: 768px) {
-  .footerBottom {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .wrapper {
+@media screen and (max-width: 1000px) {
+  .bottomFooter{
+    background-color: #4d4d4d;
+    height: 180px;
     width: 100%;
     align-items: center;
   }
-  .imgFooter {
-    width: 80%;
+  .brand{ position: relative; }
+  .logoFooter {
+    display: flex;
+    flex-direction: row;
+    height: 55px;
   }
-  .itemContatos {
-    flex-direction: column;
+  .bottomFooter::before{display: none}
+  .footerInfo{
+    color: #fff;
+    width: 60%;
+    font-size: 13px;
+    text-align: center;
+    margin-left: 8%;
   }
-  .iconFooter {
-    margin: 0;
+  .iconFooter{
+    color: #fff;
   }
-  .infoItem {
-    align-items: center;
-  }
-  .infoItemRedes {
-    padding-left: 20px;
-  }
+
 }
 </style>

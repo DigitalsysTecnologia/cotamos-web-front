@@ -16,7 +16,7 @@
           <image
             y="22.590771"
             x="-132.53722"
-            xlink:href="/img/home_navbar.png"
+            xlink:href="/img/home_navbar.jpg"
             height="178.51721"
             width="267.81406"
             clip-path="url(#imgClip)"
@@ -27,7 +27,7 @@
       <div class="descHome">
         <h1>Seguro sem Complicações</h1>
         <h3>Lorem ipsum dolor sit amet, adipiscing elit.</h3>
-        <a>
+        <a href="#servicos">
           <h5>Simule Grátis</h5>
           <span>
             <i class="fas fa-caret-right"></i>
@@ -176,6 +176,27 @@ export default {
 
 <style scoped>
 
+#home::before {
+  position: absolute;
+  top: -115px;
+  content: "";
+  height: 350px;
+  width: 1px;
+  margin-left: 7vw;
+  background-color: #dadada;
+}
+
+#home::after {
+  position: absolute;
+  top: -115px;
+  content: "";
+  height: 650px;
+  width: 1px;
+  margin-left: 14vw;
+  background-color: #dadada;
+}
+
+
 #home {
   height: 450px;
 }
@@ -188,7 +209,7 @@ export default {
   position: absolute;
   right: -30px;
   top: -125px;
-  width: 65%;
+  width: 900px;
 }
 
 .descHome {
@@ -256,12 +277,19 @@ export default {
     display: none;
   }
 
+  #home::after {
+    display: none;
+  }
+  #home::before {
+    display: none;
+  }
+
   .imgMob {
     display: block;
     position: absolute;
     top: -100px;
     margin: -16px 0 0 -16px;
-    width: calc(100% + 48px);
+    width: calc(100% + 32px);
     height: 640px;
     background-image: url(/img/home_navbar.png);
     background-position: center;

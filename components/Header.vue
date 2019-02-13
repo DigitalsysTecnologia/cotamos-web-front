@@ -1,7 +1,7 @@
 <template>
   <div class="topHeader">
     <a class="brand" :href="homeLink">
-      <img class="logoHeader" src="/img/logo_nome_branco.png" alt="Cotamos.com">
+      <div class="imgLogo"></div><!-- <img class="logoHeader" src="/img/logo_nome_branco.png" alt="Cotamos.com"> -->
     </a>
     <div class="topnav" id="myTopnav">
       <a href="javascript:void(0);" class="icon" v-on:click="menuMob">
@@ -10,7 +10,7 @@
       <a href="/" class="menuItem">Home</a>
       <a href="#sobre" class="menuItem">Sobre</a>
       <a href="#servicos" class="menuItem">Serviços</a>
-      <a href="#contato" class="menuItem">Contato</a>
+      <a href="#sejaParceiro" class="menuItem">Seja Parceiro</a>
       
     </div>
   </div>
@@ -55,15 +55,19 @@ export default {
   align-items: center;
   height: 100px;
   z-index: 1;
-  background-color: #2222223f;
 }
 
 .brand {
   margin-left: 18%;
 }
 
-.logoHeader {
+.imgLogo {
+  background-image: url('../static/img/logo_nome_azul.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   height: 60px;
+  width: 200px;
 }
 
 .topnav {
@@ -75,9 +79,9 @@ export default {
 .topnav a {
   float: left;
   display: block;
-  color: #ffffff;
+  color: #00456a;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   text-transform: uppercase;
   text-align: center;
   padding: 15px;
@@ -105,6 +109,7 @@ export default {
     font-size: 24px;
     float: right;
     display: block;
+    color: #fff
   }
 
   .topnav.responsive {
@@ -138,8 +143,9 @@ export default {
   .brand {
     margin-left: 0;
   }
-  .logoHeader {
-    margin-left: 20px;
+  .imgLogo {
+    background-image: url('../static/img/logo_nome_branco.png');
+    margin-left: 15px;
     height: 50px;
   }
 }
