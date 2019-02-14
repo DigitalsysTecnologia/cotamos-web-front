@@ -209,6 +209,23 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 840px) { 
+  .v-stepper__header {
+      display: none;
+  }
+
+  .v-stepper__content {
+    padding: 0; 
+  }
+  .subtitle {
+    padding: 3rem;
+  }
+  .col-xs-12 {
+    padding: 0;
+  }
+}
+
+
 .text--blue {
   color: #00456a;
 }
