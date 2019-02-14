@@ -35,33 +35,10 @@
         </a>
       </div>
     </section>
-    
-    <section class="descricao">
-      <div class="box-2">
-        <div class="title-mobile">
-          <span>Sobre nós </span>
-        </div>
-        <div class="about-title-wrapper"> 
-          <div class="about-upper">
-            <div class="about-title">
-              Sobre nós
-            </div>
-            <div class="about-img">
-            </div>
-          </div>
-          <div class="about-footer">
-          </div>
 
-        </div>
-        <div class="texto">
-          <h2>Lorem ipsum dolor sit amet, <br />consectetur adipiscing elit</h2>
-          <div class="line-2"></div>
-          <p>  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          </p>
-        </div>
-        <div class="line"></div>
-      </div>
-    </section>
+    <Description data="1" />
+
+
       <div class="productCard">
             
           <div class="rotulo">
@@ -112,50 +89,16 @@
             </div>
           </div>
         </div>
+        
+    <Description data="2" />
 
-    <div class="row section">
-      </div>
-       <section class="descricao" id="mobile">
-        <div class="box-2" >
-          <div class="texto">
-            <h2>Lorem ipsum dolor sit amet, <br />consectetur adipiscing elit</h2>
-            <div class="line-2"></div>
-            <p>  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            </p>
-          </div>
-          <div class="line"></div>
-          <div class="desc-wrapper"> 
-            
-            <div class="desc-upper">
-              <div class="desc-title">
-              </div>
-              <div class="desc-img">
-              </div>
-            </div>
-            <div class="desc-footer">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="row section">
-          <div class="col-xs-12 text-center">
-            <h2 class="subtitle">Seja Parceiro</h2>
-          </div>
-
-          <article class="col-xs-12 text-center">
-            <p>Seja parceiro da Cotamos, tenha uma renda extra vendendo nossos produtos.</p>
-            <v-btn color="primary" round href="/seja-parceiro">Saiba Mais</v-btn>
-          </article>
-        </div>
-
-      
   </div>
 </template>
 
 <script>
 import ProductCard from "@/components/ProductCard";
 import CallToAction from "@/components/CallToAction";
+import Description from "@/components/Description";
 import ApiClient from "@/utils/apiClient";
 
 export default {
@@ -169,7 +112,8 @@ export default {
   },
   components: {
     CallToAction: CallToAction,
-    ProductCard: ProductCard
+    ProductCard: ProductCard,
+    Description: Description
   }
 };
 </script>
@@ -366,66 +310,6 @@ export default {
     right: 0;
   }
 }
-.about-title-wrapper, .desc-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column nowrap;
-  color: #fff;
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold;
-  font-size: 30px !important;
-}
-
-.about-upper, .desc-upper {
-  display: flex;
-  justify-content: center;
-}
-
-.about-title, .desc-title{
-  padding: 0 2rem;
-  text-align: left;
-}
-
-.about-img {
-  background: url("../static/img/home-sobre-nos.png");
-  background-position: 96% 20%;
-  width: 125px;
-  height: 150px;
-  margin: 1rem;
-  border-radius: 25px;
-}
-.about-footer {
-  background: url("../static/img/home-sobre-nos.png");
-  background-position: 95% 93%;
-  width: 266px;
-  height: 100px;
-  border-radius: 25px;
-}
-.about-title, .desc-title, .desc-img {
-  width: 125px;
-  height: 150px;
-  margin: 1rem;
-  border-radius: 25px;
-  background: #15bfc1;
-}
-
-.desc-title, .desc-img{ 
-  width: 150px;
-  height: 210px;
-}
-
-.about-img, .desc-img {
-  margin-left: 0;
-}
-
-.about-title, .desc-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
 
 .productCard{
   display: flex;
@@ -568,166 +452,4 @@ export default {
   }
 }
 
-.desc-img {
-  background: url("../static/img/home-graph.png");
-  background-position: 93% 5%;
-}
-.desc-footer {
-  background: url("../static/img/home-graph.png");
-  background-position: 87% 85%;
-  width: 266px;
-  height: 100px;
-  border-radius: 25px;
-}
-.desc-footer {
-  width: 316px;
-  height: 115px;
-}
-.article-text {
-  margin-top: 20px;
-}
-.section {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-.carousel-container {
-  padding-left: 0px;
-  padding-right: 0px;
-  min-height: 300px;
-}
-.featured-text {
-  font-weight: bold;
-}
-
-.descricao {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.descricao .box-2{
-    display: flex;
-    justify-content: space-around;
-    padding: 15px;
-    width: 1039.2px;
-    
-}
-.descricao .box-2 img {
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
-}
-.descricao .box-2 .texto {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding-top: 40px;
-}
-
-
-
-.descricao .box-2 .texto h2 {
-    font-size: 2rem;
-    flex-wrap: wrap;
-    text-align: left;
-    padding-bottom: 0;
-}
-.descricao .box-2 .texto p {
-    max-width: 450px;
-    padding-left: 50px;
-    text-align: justify;
-    font-size: 1rem;
-
-}
-.descricao .box-2 .line{
-  position: relative;
-  width: 1px;
-  height: 350px;
-  background-color: #b3b3b3;
-}
-
-.descricao .box-2 .line::after{
-  content: "";
-  position: absolute;
-  top: 100px;
-  right: -4px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #15bfc1
-}
-.title-mobile {
-  display: none;
-}
-@media (max-width: 850px) {
-    .descricao .box-2{
-        margin-top: 15vh;
-        flex-direction:column !important;
-        flex-wrap: wrap;
-    }
-    .descricao .box-2 img{
-        display: none;
-    }
-    .descricao .box-2 .line{
-      display: none;
-    }
-    .descricao .box-2 .texto .line-2{
-      width: 200px;
-      height: 4px;
-      margin-bottom: 30px;
-      background-color: #15bfc1;
-      display: flex;
-      justify-content: center;
-    }
-    .descricao .box-2 {
-      padding: 0;
-    }
-    .descricao .box-2 .line::after{
-      display: none;
-    }
-
-  .title-mobile {
-    z-index: 999;
-    display: flex !important;
-  }
-  .title-mobile span {
-    padding: .5rem 2rem .5rem 2rem;
-    background-color: #15bfc1;
-    font-size: 15px;
-    color: #fff;
-    font-family: Roboto,sans-serif;
-    font-weight: bold;
-    line-height: 1.5;
-    border-radius: 5px;
-    
-  }
-  .texto {
-    border: 1px solid rgba(224, 224, 224, 0.67);
-    border-left: none;
-    width: 100%;
-    margin-top:0;
-    padding-bottom: 40px;
-    margin-bottom: 1rem;
-    margin-top: -1.2rem;
-    margin-bottom: -3.2rem;
-    z-index: 0;
-  }
-}
-
-
-
-@media (max-width: 840px) {
-  .about-title-wrapper {
-    display: none !important;
-  }
-  .desc-wrapper {
-    display: none !important;
-  }
-
-  #mobile {
-    display: none;
-  }
-
-  
-  
-}
 </style>
