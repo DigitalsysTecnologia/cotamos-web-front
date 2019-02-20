@@ -39,19 +39,19 @@
     <Description data="1" />
 
 
-      <div class="productCard">
+      <div class="containerCards">
             
           <div class="rotulo">
             <Span>Serviços</Span>
           </div>
           <div class="circulos">
-            <div class="circle c1"></div>
-            <div class="circle c2"></div>
-            <div class="circle c3"></div>
-            <div class="circle c4"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
           </div> 
           <div class="cards">
-            <div class="card">
+
             <ProductCard
               name="Plano de Saúde Pet"
               description="Segurança para o seu pet, com um plano de saúde sob medida"
@@ -59,8 +59,7 @@
               callToActionUrl="/plano-de-saude-pet"
               imgUrl="/img/icons/health-for-pet.png"
             />
-            </div>
-            <div class="card">
+
               <ProductCard
               name="Carro Por Assinatura"
               description="O seu serviço de carro por assinatura,sob medida"
@@ -68,8 +67,7 @@
               callToActionUrl="/wl/carro-facil"
               imgUrl="/img/icons/carro-facil.png"
             />
-            </div>
-            <div class="card">
+
               <ProductCard
               name="Seguro de Vida"
               description="Proteger quem você ama é mais fácil e rápido do que você imagina."
@@ -77,8 +75,7 @@
               callToActionUrl="/wl/seguro-vida"
               imgUrl="/img/icons/seguro-vida.png"
             />
-            </div>
-            <div class="card">
+
               <ProductCard
               name="Seguro Viagem"
               description="Uma viagem mais tranquila começa aqui."
@@ -86,7 +83,6 @@
               callToActionUrl="/wl/seguro-viagem"
               imgUrl="/img/icons/travel.png"
             />
-            </div>
           </div>
         </div>
         
@@ -310,8 +306,8 @@ export default {
     right: 0;
   }
 }
-
-.productCard{
+/*Cards de Produtos */
+.containerCards{
   display: flex;
 }
 .cards{
@@ -319,7 +315,7 @@ export default {
   justify-content: space-around;
   width: 100%;
 }
-.productCard .rotulo{
+.containerCards .rotulo{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -328,16 +324,16 @@ export default {
   width: 15vh;
   background-color:#15bfc1;
   margin-top: 30px;
-  height: 20vh;
+  height: 170px;
   z-index: 1;
 }
-.productCard span{
+.containerCards span{
   color: #fff;
   font-size: 28px;
   font-weight: 700;
 }
 
-.productCard::before{
+.containerCards::before{
   content: "";
   left: 0;
   width: 100%;
@@ -350,42 +346,33 @@ export default {
 .circulos{
   display: none;
 }
-.productCard span{
+.containerCards span{
   color: #fff;
   font-size: 20px;
 }
-.productCard::before{
-  height: 90px;
-}
-@media (max-width: 700px){
-.productCard{
-  display: flex;
+@media (max-width: 767px){
+.containerCards{
   flex-wrap: wrap;
-  align-items: center;
-  
+  align-items: center; 
+  border-left: 1px solid #e0e0e0ad;
 }
 .cards{
   flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
+  width: 300px;
+  height: 1550px;
+  margin: auto;
 }
-.card{
-  flex-grow: 1;
-}
-.productCard .rotulo{
-  width: 120px;
+.containerCards .rotulo{
+  width: 130px;
   height: 30px;
   border-radius: 5px;
-  left: 0;
+  margin-top: 0;
 }
-.productCard .rotulo span{
+.containerCards .rotulo span{
   font-size: 15px;
 }
-.productCard::before{
-  width: 1px;
-  height: 1400px;
-  top: 425px;
-  left: 5px;
+.containerCards::before{
+  display: none;
 }
 .circulos{
   display: block;
@@ -402,53 +389,42 @@ export default {
   margin-bottom: 350px;
 }
 } 
-@media (max-width: 840px){
-  
+@media (min-width: 768px) and (max-width: 840px){
+  .containerCards{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;  
+  }
   .cards{
   display: flex;
-  justify-content: center;
+   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-}
-  .card{
-    display: flex; 
-    flex-basis:40%;
-    justify-content: center;
-    flex-direction: column;
+  margin-top: -15px;
+  height: 800px;
+  border: 1px solid #e0e0e0ad;
+  border-left: 0px;
+  border-radius: 15px; 
   }
-
-   .card {
-    flex-grow: 1;
-  }
-  .productCard .rotulo {
+  .containerCards .rotulo {
     width: 120px;
     height: 30px;
     border-radius: 5px;
     left: 0;
   }
-  .productCard .rotulo span {
+  .containerCards .rotulo span {
     font-size: 15px;
   }
-  .productCard::before {
-    width: 1px;
-    height: 1320px;
-    top: 740px;
-    left: 5px;
+  .containerCards::before {
+    display: none;
   }
   .circulos {
-    display: block;
-    position: absolute;
-    height: 1120px;
-    width: 200px;
-    left: 0;
+   display: none;
   }
   .circle {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #15bfc1;
-    margin-bottom: 350px;
+   display: none;
   }
 }
 
