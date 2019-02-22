@@ -1,6 +1,6 @@
 <template>
-    <div  class="container-fluid">
-      <section class="container-fluid section">
+    <div>
+      <section class="section">
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
             <v-card :tile="true">
