@@ -3,51 +3,51 @@
     <v-flex sm12 xs12>
       <v-stepper v-model="step">
         <v-stepper-header v-if="!proposal || proposal.state != 11">
-  
+
           <v-stepper-step :complete="step > 1" step="1">Verificar Disponibilidade</v-stepper-step>
           <v-divider></v-divider>
-  
+
           <v-stepper-step :complete="step > 2" step="2">Escolha de ofertas</v-stepper-step>
           <v-divider></v-divider>
-  
+
           <v-stepper-step :complete="step > 3" step="3">Cadastro Completo</v-stepper-step>
           <v-divider></v-divider>
-  
+
           <v-stepper-step :complete="step > 4" step="4">Finalização</v-stepper-step>
           <v-divider></v-divider>
-  
+
         </v-stepper-header>
         <v-layout row wrap>
-                    
+
           <v-flex md10 offset-md1 v-if="isLoading" style="padding-top:30px;">
             <div v-if="isLoading">
               <Loading :messages="loadingMessages" />
             </div>
           </v-flex>
-  
+
           <v-flex md10 offset-md1 v-else>
-            
+
             <v-stepper-items>
               <v-stepper-content step="1" v-if="step==1">
                 <h3 class="subtitle">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
                 <BasicProposalData v-on:submitProposal="generateBasicProposal" />
               </v-stepper-content>
-  
+
               <v-stepper-content step="2" v-if="step==2">
                 <Offers :proposal="proposal" v-on:selectPlan="selectPlan" />
               </v-stepper-content>
-  
+
               <v-stepper-content step="3" v-if="step==3">
                 <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" v-on:goBack="previousStep" />
               </v-stepper-content>
-  
+
               <v-stepper-content step="4" v-if="step==4">
                 <div v-if="proposal.state == 11">
                   <WaitingForAvailability />
                 </div>
                 <div v-else>
                   <Finish :loading="loading" />
-                </div>                
+                </div>
               </v-stepper-content>
             </v-stepper-items>
           </v-flex>
@@ -61,7 +61,6 @@
 import BasicProposalData from "@/components/Forms/BasicPetInsuranceData";
 import DeniedProposal from "./components/DeniedProposal";
 import Offers from "@/components/Offers";
-import OffersV2 from "@/components/OffersV2";
 import Loading from "@/components/Loading";
 import FullProposalData from "./components/FullProposalData";
 import Finish from "./components/Finish";
@@ -150,9 +149,9 @@ export default {
     },
     getStep: function() {
       const { query } = this.$route;
-      if (query.step) 
+      if (query.step)
         return query.step;
-      
+
       switch (this.existingProposal.state) {
         case 0:
           return 1;
@@ -225,7 +224,6 @@ export default {
     FullProposalData: FullProposalData,
     WaitingForAvailability: WaitingForAvailability,
     Offers: Offers,
-    OffersV2: OffersV2,
     Finish: Finish
   }
 };

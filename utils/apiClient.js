@@ -27,22 +27,21 @@ function internalRequest(method, url, data) {
   apiKey = localStore.userToken;
 
   return axios({
-    method: method,
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      apiKey: apiKey
-    },
-    crossdomain: true,
-    url: urljoin(baseUrl, url),
-    data: data
-  })
-    .then(function(res) {
+      method: method,
+      headers: {
+        "Authorization": apiKey,
+        "Content-Type": "application/json"
+      },
+      crossdomain: true,
+      url: urljoin(baseUrl, url),
+      data: data
+    })
+    .then(function (res) {
       if (res.data) return res.data;
 
       return null;
     })
-    .catch(function(err) {
+    .catch(function (err) {
       var exception = {};
 
       if (err.response && err.response.data) {
@@ -111,11 +110,11 @@ class ApiClient {
   }
 
   normalizeProposal(proposal) {
-    if(!proposal.proposer) {
+    if (!proposal.proposer) {
       proposal.proposer = {}
     }
 
-    if(!proposal.proposer.bankingData) {
+    if (!proposal.proposer.bankingData) {
       proposal.proposer.bankingData = {}
     }
 
@@ -164,7 +163,7 @@ class ApiClient {
     return internalPost(urljoin("proposal", "set-next-state"), payload);
   }
   getServiceArea(proposalId) {
-    return internalGet(urljoin("proposal", "get-service-area", proposalId));
+    return internalGet(`proposal/get-service-area/${proposalId}`);
   }
   async checkSession(token) {
     const payload = {

@@ -1,12 +1,12 @@
 <template>
   <v-hover>
-  
+
     <v-card style="margin-bottom:20px;" slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
       <v-container fill-height fluid pa-2>
         <v-layout align-center row wrap justify-center>
           <v-flex xs2>
             <v-img :src="card.logo" width="43" height="41" />
-            
+
           </v-flex>
           <v-flex xs7 offset-xs-1 flexbox justify-end>
             <p class="card-title" style="font-family: Roboto;display:block;"> Health4Pet </p>
@@ -33,10 +33,10 @@
               Contratar
             </CallToAction>
           </v-flex>
-          
+
         </v-layout>
       </v-container>
-  
+
       <v-card-actions class="card-actions">
         <v-btn flat @click="show = !show">
           <v-icon>{{ !show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon> Detalhes
@@ -46,15 +46,15 @@
         <v-card-text v-show="show">
           <p> {{ card.description }} </p>
         </v-card-text>
-  
+
       </v-slide-y-transition>
-  
+
       <v-dialog v-model="networkModalDialog" width="500">
         <v-card>
           <v-card-title class="headline primary lighten-2" primary-title style="font-weight:bold;">
             Rede Referenciada
           </v-card-title>
-  
+
           <v-card-text style="max-height:250px;overflow-y: scroll;overflow-x: hidden;">
             <v-list>
               <template v-for="(map,idx) in places">
@@ -82,7 +82,7 @@
           Cobertura
         </v-card-title>
 
-        <v-card-text style="max-height:250px;overflow-y: scroll;overflow-x: hidden;">
+        <v-card-text style="max-height:250px;overflow-y: scroll;overflow-x: hidden;" v-if"!hideCoverage">
           <v-list>
 <template v-for="(item,idx) in currentPlanCoverage">
   <v-list-tile-content :key="idx" style="margin-bottom:15px;">
@@ -103,7 +103,7 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>    
+    </v-dialog>
   </v-card>
 </v-hover>
 </template>
@@ -197,6 +197,11 @@
         required: false,
         default: false
       },
+      hideCoverage: {
+        type: Boolean,
+        required: false,
+        default: false
+      },
       places: {
         type: Array,
         required: true
@@ -213,24 +218,24 @@
     font-weight: bold;
     margin-bottom: 0px;
   }
-  
+
   .label-title {
     font-weight: bold;
   }
-  
+
   .label-value {}
-  
+
   .card-actions {
     background-color: #efefef;
   }
-  
+
   .price {
     font-family: Roboto, sans-serif;
     font-size: 24px;
     color: #00899c;
     margin-bottom: 5px;
   }
-  
+
   .price-value {
     font-weight: bold;
   }

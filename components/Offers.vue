@@ -2,7 +2,7 @@
   <v-layout justify-top>
     <v-container fluid grid-list-md>
       <v-layout row wrap>
-  
+
         <v-flex xs12 v-if="false">
           <v-card>
             <v-card-text>
@@ -22,15 +22,15 @@
             </v-card-text>
           </v-card>
         </v-flex>
-  
+
         <v-flex sm12 v-if="loadingOffers">
           <Loading :messages="['Obtendo ofertas,', 'Aguarde um instante por favor...']" />
         </v-flex>
-  
-        <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm6 lg4 v-else>
+
+        <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm4 lg4 v-else>
           <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan" :isSimulation="proposal.isSimulation" />
         </v-flex>
-  
+
       </v-layout>
     </v-container>
   </v-layout>
@@ -49,8 +49,8 @@
   import Header from "@/components/Header";
   import Footer from "@/components/Footer";
   import Loading from "@/components/Loading";
-  import OfferItem from "@/components/OfferItem";
-  
+  import OfferItem from "@/components/Offer.2";
+
   export default {
     name: "InsuranceOffers",
     data() {
@@ -73,18 +73,18 @@
     methods: {
       getOffers: async function() {
         this.loadingOffers = true;
-  
+
         if (this.proposal.petInsuranceData.age <= 8) {
           this.serviceArea = await apiClientProvider.getServiceArea(
             this.proposal._id
           );
         }
-  
+
         this.availablePlans = petInsuranceProvider.getPlansByPetAge(
           this.proposal.petInsuranceData.age
         );
-  
-        this.loadingOffers = false;  
+
+        this.loadingOffers = false;
       },
       formatDistance: function(distance) {
         let result = distance.toFixed(2);
@@ -134,7 +134,7 @@
       },
       getCoverageProgressBarByPlan(plan) {
         const planName = plan.name.toUpperCase();
-  
+
         if (planName.indexOf("BASIC") != -1) {
           return {
             text: "Regular",
@@ -184,7 +184,7 @@
           if (!this.serviceArea) {
             return [];
           }
-  
+
           return this.serviceArea;
         }
       },
@@ -222,11 +222,11 @@
           this.proposal._id
         );
       }
-  
+
       this.availablePlans = petInsuranceProvider.getPlansByPetAge(
         this.proposal.petInsuranceData.age
       );
-  
+
       this.loading = false;
     },
     components: {
@@ -242,5 +242,5 @@
 </script>
 
 <style scoped>
-  
+
 </style>

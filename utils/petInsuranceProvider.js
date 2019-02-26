@@ -174,7 +174,7 @@ export default {
                     {
                         code: 'pet_basic',
                         logo: "/img/pet-insurance/icon_pet_basic.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET BASIC",
                         coverage: "Ambulatorial",
                         color: "rgb(241, 218, 0)",
@@ -189,7 +189,7 @@ export default {
                     {
                         code: 'pet_light',
                         logo: "/img/pet-insurance/icon_pet_light.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET LIGHT",
                         coverage: "Ambulatorial",
                         color: "rgb(141, 198, 63)",
@@ -204,7 +204,7 @@ export default {
                     {
                         code: 'pet_plus',
                         logo: "/img/pet-insurance/icon_pet_plus.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET PLUS",
                         coverage: "Ambulatorial + Hospitalar",
                         color: "rgb(133, 96, 168)",
@@ -219,7 +219,7 @@ export default {
                     {
                         code: 'pet_total',
                         logo: "/img/pet-insurance/icon_pet_total.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET TOTAL",
                         coverage: "Completo",
                         color: "rgb(247, 148, 29)",
@@ -234,7 +234,7 @@ export default {
                     {
                         code: 'pet_premium',
                         logo: "/img/pet-insurance/icon_pet_premium.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET PREMIUM",
                         coverage: "Completo + Reembolso",
                         color: "rgb(67, 132, 193)",
@@ -252,7 +252,7 @@ export default {
                     {
                         code: 'pet_basic',
                         logo: "/img/pet-insurance/icon_pet_basic.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET BASIC",
                         coverage: "Ambulatorial",
                         color: "rgb(241, 218, 0)",
@@ -267,7 +267,7 @@ export default {
                     {
                         code: 'pet_light',
                         logo: "/img/pet-insurance/icon_pet_light.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET LIGHT",
                         coverage: "Ambulatorial",
                         color: "rgb(141, 198, 63)",
@@ -282,7 +282,7 @@ export default {
                     {
                         code: 'pet_plus',
                         logo: "/img/pet-insurance/icon_pet_plus.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET PLUS",
                         coverage: "Ambulatorial + Hospitalar",
                         color: "rgb(133, 96, 168)",
@@ -297,7 +297,7 @@ export default {
                     {
                         code: 'pet_total',
                         logo: "/img/pet-insurance/icon_pet_total.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET TOTAL",
                         coverage: "Completo",
                         color: "rgb(247, 148, 29)",
@@ -312,7 +312,7 @@ export default {
                     {
                         code: 'pet_premium',
                         logo: "/img/pet-insurance/icon_pet_premium.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET PREMIUM",
                         coverage: "Completo + Reembolso",
                         color: "rgb(67, 132, 193)",
@@ -330,7 +330,7 @@ export default {
                     {
                         code: 'pet_senior',
                         logo: "/img/pet-insurance/icon_pet_senior.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET SENIOR",
                         color: "rgb(174, 143, 68)",
                         description:
@@ -346,7 +346,7 @@ export default {
                 return [
                     {
                         logo: "/img/pet-insurance/icon_pet_senior.png",
-                        insurancerLogo: "/img/porto_seguro_logo.png",
+                        insurancerLogo: "/img/empresas/health4pet.png",
                         name: "PET SENIOR",
                         color: "rgb(174, 143, 68)",
                         description:

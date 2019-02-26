@@ -20,3 +20,10 @@ Vue.use(VueLocalStorage);
 
 import VueScrollTo from "vue-scrollto";
 Vue.use(VueScrollTo);
+
+// import * as VueGoogleMaps from 'vue2-google-maps'
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: 'AIzaSyAMF279fS7pB-90qXpBSCt4XU463dV18mI'
+//   }
+// })
