@@ -71,7 +71,9 @@ export default {
   flex-flow: column nowrap;
   width: 50%;
 }
-
+.text-wrapper {
+  width: 30%;
+}
 .text {
   font-family: 'Raleway' sans-serif;
   font-size: 2rem;
@@ -84,9 +86,12 @@ export default {
   margin-right: 3rem;
   color: #b3b3b3;
 }
-
+.text-wrapper .p {
+  padding: 0;
+  margin: 0;
+}
 .bt-wrapper {
-  padding-left: 4rem;
+  margin-top: 2rem;
 }
 
 .line {
