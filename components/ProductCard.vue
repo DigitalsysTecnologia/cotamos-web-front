@@ -56,17 +56,18 @@ export default {
 <style scoped>
 .card-title {
     text-align: left;
-    width: 75%;
+    width: 85%;
     color: black;
-    padding-left: 25%;
+    padding-left: 8%;
     font-weight: 500;
+    font-size: 20px;
 }
 .card-description {
     width: 200px;
     text-decoration-style: none;
     height: 120px;
     text-align: left;
-    padding-left: 25%;
+    padding-left: 15%;
     padding-right: 25%;
     color: #b3b3b3;
 }
@@ -78,10 +79,11 @@ export default {
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 30px;
-    border-color: #fff;
-    width: 15vw;
-    height: 95%;
+    width: 250px;
+    height: 300px;
     background-color: #fff;
+    box-shadow: 0px 4px 8px 0 #dadada86;
+    margin: auto;
 }
 
 .box-ancora {
@@ -117,9 +119,9 @@ export default {
    margin-right: auto;
    margin-left:auto;
 }
-@media (max-width: 840px) {
+@media (min-width: 1000px) and (max-width: 1600px){
   .product-container{
-    width: 200px;
+    width: 175px;
   }
 }
 </style>

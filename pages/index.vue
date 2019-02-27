@@ -309,11 +309,11 @@ export default {
 /*Cards de Produtos */
 .containerCards{
   display: flex;
+  margin-left: 14vw;
 }
 .cards{
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
+  width: 80%;
+  /* margin-left: 25px; */
 }
 .containerCards .rotulo{
   display: flex;
@@ -321,27 +321,29 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  width: 15vh;
+  width: 140px;
   background-color:#15bfc1;
-  margin-top: 30px;
-  height: 170px;
+  margin-top: 25px;
+  height: 180px;
   z-index: 1;
+  box-shadow: 0px 4px 8px 0 #dadada86;
 }
-.containerCards span{
+.containerCards .rotulo span{
   color: #fff;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
 }
 
 .containerCards::before{
   content: "";
   left: 0;
-  width: 100%;
+  width: 87%;
   height: 100px;
   background-color: #e0e0e0ad;
   position: absolute;
   z-index: 0;
   margin-top: 70px;
+  margin-left: 14vw;
 }
 .circulos{
   display: none;
@@ -352,15 +354,14 @@ export default {
 }
 @media (max-width: 767px){
 .containerCards{
-  flex-wrap: wrap;
-  align-items: center; 
+  flex-wrap: wrap; 
   border-left: 1px solid #e0e0e0ad;
+  margin-left: 0;
 }
 .cards{
   flex-direction: column;
-  width: 300px;
-  height: 1550px;
   margin: auto;
+  height: 1400px;
 }
 .containerCards .rotulo{
   width: 130px;
@@ -377,33 +378,34 @@ export default {
 .circulos{
   display: block;
   position: absolute;
-  height: 1120px;
-  width: 200px;
+  width: 30px;
   left: 0;
+  margin-top: 200px;
 }
 .circle{
   width: 25px;
   height: 25px;
   border-radius: 50%;
   background-color: #15bfc1;
-  margin-bottom: 350px;
+  margin-bottom: 320px;
 }
 } 
-@media (min-width: 768px) and (max-width: 840px){
+@media (min-width: 768px) and (max-width: 1000px){
   .containerCards{
   display: flex;
   flex-wrap: wrap;
   align-items: center;  
+  margin-left: 0;
   }
   .cards{
   display: flex;
-   flex-direction: column;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
   margin-top: -15px;
-  height: 800px;
+  height: 820px;
   border: 1px solid #e0e0e0ad;
   border-left: 0px;
   border-radius: 15px; 
@@ -427,5 +429,14 @@ export default {
    display: none;
   }
 }
+@media (min-width: 1000px) and (max-width: 1200px){
+  .containerCards{
+  margin-left: 7vw;
+}
+.containerCards::before{
+  width: 95%;
+  margin-left: 7vw;
+}
 
+}
 </style>
