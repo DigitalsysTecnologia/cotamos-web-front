@@ -124,4 +124,9 @@ export default {
     width: 175px;
   }
 }
+@media (max-width: 370px){
+  .product-container{
+    width: 200px;
+  }
+}
 </style>
