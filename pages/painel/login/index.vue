@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="row">
+    <h1> Em manutenção </h1>
+    <!-- <div class="row">
       <div class="col-md-offset-2 col-md-8 col-xs-12 offset-xs-0">
         <form @submit="doLogin">
           <div class="form-group">
@@ -19,7 +20,7 @@
         </div>
 
       </div>  
-    </div>
+    </div> -->
 
   </div>
 </template>

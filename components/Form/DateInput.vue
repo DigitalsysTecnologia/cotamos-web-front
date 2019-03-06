@@ -1,20 +1,21 @@
 <template>
-  <v-text-field  :label="label" 
-              :icon="icon" 
-              :id="id"
-              mask="##/##/####"
-              :return-masked-value="true"
-              maxLength=10
-              type="text"
-              @input="updateValue()"
-              :error="!!(validation.firstError('dateInputValue') || validationMessage)"
-              :error-messages="validation.firstError('dateInputValue') || validationMessage"
-              v-model="dateInputValue" />
+  <Input
+    :label="label"
+    :icon="icon"
+    :id="id"
+    mask="##/##/####"
+    :return-masked-value="true"
+    maxlength="10"
+    type="text"
+    @input="updateValue()"
+    :validationMessage="validation.firstError('dateInputValue') || validationMessage"
+    v-model="dateInputValue"
+  />
 </template>
 
 <script>
 import StringMask from "string-mask";
-import FormInput from "@/components/FormInput";
+import Input from "@/components/Form/Input";
 import moment from "moment-timezone";
 import validator from "@/utils/validator";
 
@@ -92,7 +93,7 @@ export default {
   },
   validators: {
     dateInputValue: value => {
-      return validator.validateDate(value)
+      return validator.validateDate(value);
     }
   },
   data() {
@@ -121,7 +122,7 @@ export default {
     }
   },
   components: {
-    FormInput: FormInput
+    Input
   },
   methods: {
     async updateValue(truncate) {

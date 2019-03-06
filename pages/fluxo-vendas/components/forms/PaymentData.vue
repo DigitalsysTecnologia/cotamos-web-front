@@ -1,80 +1,54 @@
 <template>
-  <v-layout row wrap>
-    <v-flex sm4 xs12>
-      <v-layout align-center justify-center row fill-height>
-        <v-flex xs12 style="margin-left:20px;">
-          <img class="plan-logo" :src="selectedPlan.logo">
-          <span class="plan-name">{{selectedPlan.name}}</span>
-          <span class="plan-value" v-if="proposal.paymentData.method">{{ formatCurrency(planPrice)}}</span>
-        </v-flex>
-      </v-layout>
-    </v-flex>
+  <section class="section">
+    <div class="columns has-text-centered">
+      <div class="column is-half">
+        <img :src="selectedPlan.logo">
+        <span class="plan-name">{{selectedPlan.name}}</span>
+        <span class="plan-value" v-if="proposal.paymentData.method">{{ formatCurrency(planPrice)}}</span>
+      </div>
+      <div class="column is-half">
 
-    <v-flex sm8 xs12>
-      <v-radio-group
-        label="Forma de Pagamento"
-        v-model="proposal.paymentData.method"
-        :error="!!(validation.firstError('proposal.paymentData.method'))"
-        :error-messages="validation.firstError('proposal.paymentData.method')"
-      >
-        <v-radio key="Boleto" label="Boleto" value="1" color="primary"/>
-        <v-radio key="Cartão de Crédito" label="Cartão de Crédito" value="2" color="primary"/>
-        <v-radio
-          key="Débito em Conta"
-          label="Débito em Conta (somente para Itaú e Santander)"
-          value="3"
-          color="primary"
-        />
-      </v-radio-group>
-    </v-flex>
-
-    <!-- <v-flex sm4 xs12 v-if="proposal.paymentData.method == '3'">
-      <v-select
-        :items="[{text:'Itaú', value: '341'}, {text:'Santander', value: '033'}]"
-        label="Banco"
-        v-model="proposal.proposer.bankingData.bankNumber"
-        item-text="text"
-        item-value="value"
-      />
-    </v-flex>
-    <v-flex sm4 xs12 v-if="proposal.paymentData.method == '3'">
-      <v-text-field
-        label="Agência (Sem Dígito)"
-        id="proposal.proposer.bankingData.branch"
-        mask="######"
-        v-model="proposal.proposer.bankingData.branch"
-      />
-    </v-flex>
-    <v-flex sm4 xs12 v-if="proposal.paymentData.method == '3'">
-      <v-text-field
-        label="Conta-Corrente (Com Dígito)"
-        mask="###########"
-        id="proposal.proposer.bankingData.account"
-        v-model="proposal.proposer.bankingData.account"
-      />
-    </v-flex> -->
-
+        <div class="field">
+          <label class="label">Forma de Pagamento</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" name="answer" value="1" v-model="proposal.paymentData.method">
+              Boleto
+            </label>
+            <br>
+            <label class="radio">
+              <input type="radio" name="answer" value="2" v-model="proposal.paymentData.method">
+              Cartão de Crédito
+            </label>
+            <br>
+            <label class="radio">
+              <input type="radio" name="answer" value="3" v-model="proposal.paymentData.method">
+              Débito em Conta (somente para Itaú e Santander)
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     <BankingData :proposal="proposal" v-if="proposal.paymentData.method == '3'"/>
 
-    <v-flex xs12>
-      <v-btn color="primary" @click="onSubmit">{{ submitButtonText }}</v-btn>
-      <v-btn
-        flat
-        @click="onCancel"
-        v-if="showCancelButton"
-        outline
-        color="primary"
-      >{{ cancelButtonText }}</v-btn>
-    </v-flex>
-  </v-layout>
+    <div class="columns">
+      <div class="column">
+        <Button textColor="black" backgroundColor="rgb(0, 216, 137)" :isFullWidth="true" @click="onSubmit">{{ submitButtonText }}</Button>
+      </div>
+      <div class="column">
+        <Button @click="onCancel" :isFullWidth="true" v-if="showCancelButton">{{ cancelButtonText }}</Button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
+import Button from "@/components/Form/Button";
 import apiClientProvider from "@/utils/apiClient";
-import BankingData from "./BankingData"
+import BankingData from "./BankingData";
 
 export default {
   name: "PaymentData",
@@ -154,7 +128,8 @@ export default {
   },
   validators: {},
   components: {
-    BankingData:BankingData
+    BankingData,
+    Button
   },
   beforeMount() {
     this.plans = petInsuranceProvider.getPlansByPetAge(

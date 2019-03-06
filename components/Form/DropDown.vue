@@ -1,30 +1,42 @@
 <template>
-    <div :class="{'form-group': true, 'error': validationMessage}">
-      <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
-        <div class="input-group">
-            <div class="input-group-addon">
-                <i :class="`fa ${icon}`" aria-hidden="true"/>
-            </div>
-            <select class="form-control custom-select" :id="id" @input="updateValue()" ref="inputValue" >
-              <option selected="true" disabled="disabled"></option>
-              <option v-for="(option) in options" 
-                      :key="option.id != null? option.id : option" 
-                      :value="option.id != null? option.id : option"> 
-                {{ option.text || option}} 
-              </option>
-            </select>
-        </div>
-        <div class="message"> {{ validationMessage  }}</div>
+  <div class="field">
+    <label class="label">{{ label }}</label>
+    <div v-bind:class="{ 'control': true,'has-icons-left': !!(validationMessage) }">
+      <div
+        v-bind:class="{ 'select': true, 'is-fullwidth': true, 'is-danger': !!(validationMessage) }"
+      >
+        <select @input="updateValue()" ref="inputValue">
+          <option selected="true" disabled="disabled"></option>
+          <option
+            v-for="(option) in items"
+            :key="getItemValue(option)"
+            :value="getItemValue(option)"
+          >{{ getItemText(option)}}</option>
+        </select>
+        <span class="icon is-small is-left" v-if="!!(validationMessage)">
+          <i class="fas fa-exclamation-triangle"></i>
+        </span>
+      </div>
+      <p class="help is-danger" v-if="!!(validationMessage)">{{ validationMessage }}</p>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "FormSelect",
+  name: "DropDown",
   props: {
-    options: {
+    items: {
       type: Array,
       required: true
+    },
+    "item-text": {
+      type: String,
+      required: false
+    },
+    "item-value": {
+      type: String,
+      required: false
     },
     label: {
       type: String,
@@ -49,6 +61,26 @@ export default {
   },
   computed: {},
   methods: {
+    getItemValue(option) {
+      const property = this.itemValue || "value";
+      let result = null;
+      if (option[property] != null) {
+        result = option[property];
+      } else {
+        result = option;
+      }
+      return result;
+    },
+    getItemText(option) {
+      const property = this.itemText || "text";
+      let result = null;
+      if (option[property] != null) {
+        result = option[property];
+      } else {
+        result = option;
+      }
+      return result;
+    },
     async updateValue(truncate) {
       if (!this.$refs.inputValue) {
         return;
@@ -58,8 +90,7 @@ export default {
       let result = null;
       if (!isNaN(parseInt(value))) {
         result = parseInt(value);
-      }
-      else {
+      } else {
         result = value;
       }
 
@@ -71,7 +102,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.form-group.error i {
+/* .form-group.error i {
   color: red;
 }
 .form-group.error .input-group-addon {
@@ -131,5 +162,5 @@ export default {
   margin-left: 5px;
   margin-bottom: 0px;
   color: #017787;
-}
+} */
 </style>

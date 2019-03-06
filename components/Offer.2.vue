@@ -1,5 +1,30 @@
 <template>
-  <v-hover>
+  <div class="card">
+    <div class="card-image">
+      <figure class="image has-text-centered">
+        <img :src="card.insurancerLogo" style="width:50%;">
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img :src="card.logo">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4">{{ card.name }}</p>
+          <p class="subtitle is-6">{{ formatCurrency(card.value.creditCard) }} / mês</p>
+        </div>
+      </div>
+
+      <div class="content has-text-centered">
+        <CallToAction :targetUrl="getDetailsUrl(card)">VER DETALHES</CallToAction>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <v-hover>
     <v-card
       style="margin-bottom:20px;"
       slot-scope="{ hover }"
@@ -8,7 +33,7 @@
       <div
         style="padding-top:10px;padding-bottom:10px; margin-bottom:10px; background-color:rgb(241, 241, 241);"
       >
-        <v-img :src="card.insurancerLogo" style="width:30%; margin-left: 35%"/>
+        <img :src="card.insurancerLogo" style="width:30%; margin-left: 35%"/>
       </div>
 
       <v-card-title primary-title style="padding-top:0;">
@@ -46,7 +71,7 @@
         </v-layout>
       </v-card-title>
     </v-card>
-  </v-hover>
+  </v-hover> -->
 </template>
 
 <script>
@@ -70,10 +95,11 @@ export default {
       const { id } = this.$route.query;
       const insuranceProductCode = product.code;
       window.location = `/fluxo-vendas/detalhe-plano?id=${id}&insuranceProductCode=${insuranceProductCode}`
-      // this.$router.push({
-      //   path: "/fluxo-vendas/detalhe-plano",
-      //   query: { id, insuranceProductCode }
-      // });
+    },
+    getDetailsUrl: function(product) {
+      const { id } = this.$route.query;
+      const insuranceProductCode = product.code;
+      return `/fluxo-vendas/detalhe-plano?id=${id}&insuranceProductCode=${insuranceProductCode}`
     },
     selectPlan: function() {
       this.$emit("selectPlan", this.card);
@@ -107,33 +133,17 @@ export default {
 </script>
 
 <style scoped>
-.card-title {
-  font-weight: bold;
-  font-size: 24px !important;
-  margin-bottom: 0px;
-  font-size: 16px;
-  color: #757272;
+.card-image .image{
+    justify-content: center;
+    display: flex;
 }
-
-.label-title {
-  font-weight: bold;
+.card-image img {
+    width: 50%;
+    height: 50%;
+    margin-top: 1.25rem;
 }
-
-.label-value {
-}
-
-.card-actions {
-  background-color: #efefef;
-}
-
-.price {
-  font-family: Roboto, sans-serif;
-  font-size: 20px;
-  color: #00899c;
-  margin-bottom: 5px;
-}
-
-.price-value {
-  font-weight: bold;
+.card-image {
+    padding-bottom: 15px;
+    background-color: #f3f3f3;
 }
 </style>

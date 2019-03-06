@@ -1,41 +1,42 @@
  <template>
-  <v-layout row wrap style="margin: initial;">
-    <v-flex sm12 xs12>
-      <v-select
-        :items="[{text:'Itaú', value: '341'}, {text:'Santander', value: '033'}]"
+  <div class="columns">
+    <div class="column is-one-third">
+      <DropDown
+        :items="[{text:'Itaú', value: '341'}, {text:'Santander', value: '33'}]"
         label="Banco"
         id="proposal.proposer.bankingData.bankNumber"
         v-model="proposal.proposer.bankingData.bankNumber"
-        :error="!!(validation.firstError('proposal.proposer.bankingData.bankNumber'))" 
-        :error-messages="validation.firstError('proposal.proposer.bankingData.bankNumber')"
+        :validationMessage="validation.firstError('proposal.proposer.bankingData.bankNumber')"
         item-text="text"
         item-value="value"
       />
-    </v-flex>
-    <v-flex sm6 xs12>
-      <v-text-field
+    </div>
+
+    <div class="column is-one-third">
+      <Input
         label="Agência (Sem Dígito)"
         id="proposal.proposer.bankingData.branch"
-        :error="!!(validation.firstError('proposal.proposer.bankingData.branch'))" 
-        :error-messages="validation.firstError('proposal.proposer.bankingData.branch')"
+        :validationMessage="validation.firstError('proposal.proposer.bankingData.branch')"
         mask="######"
         v-model="proposal.proposer.bankingData.branch"
       />
-    </v-flex>
-    <v-flex sm6 xs12>
-      <v-text-field
+    </div>
+
+    <div class="column is-one-third">
+      <Input
         label="Conta-Corrente (Com Dígito)"
         mask="###########"
         id="proposal.proposer.bankingData.account"
-        :error="!!(validation.firstError('proposal.proposer.bankingData.account'))" 
-        :error-messages="validation.firstError('proposal.proposer.bankingData.account')"
+        :validationMessage="validation.firstError('proposal.proposer.bankingData.account')"
         v-model="proposal.proposer.bankingData.account"
       />
-    </v-flex>
-  </v-layout>
+    </div>
+  </div>
 </template>
 
 <script>
+import DropDown from "@/components/Form/DropDown";
+import Input from "@/components/Form/Input";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
@@ -62,6 +63,10 @@ export default {
       validator.validateBankBranch(value),
     "proposal.proposer.bankingData.account": value =>
       validator.validateBankAccount(value)
+  },
+  components: {
+    DropDown,
+    Input
   }
 };
 </script>

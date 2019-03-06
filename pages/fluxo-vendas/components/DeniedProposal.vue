@@ -6,14 +6,14 @@
     <div>
       <div class="col-sm-12 col-xs-12">
         <FormInput  label="Nome"
-                    icon="fa-user" 
+                    icon="fa-user"
                     id="proposal.proposer.name"
                     :validationMessage="validation.firstError('proposal.proposer.name')"
                     v-model.trim="proposal.proposer.name" />
       </div>
       <div class="col-sm-12 col-xs-12">
-        <FormInput  label="E-mail" 
-                    icon="fa-at" 
+        <FormInput  label="E-mail"
+                    icon="fa-at"
                     id="proposal.proposer.email"
                     :validationMessage="validation.firstError('proposal.proposer.email')"
                     v-model.trim="proposal.proposer.email" />
@@ -33,8 +33,7 @@
 </template>
 
 <script>
-import FormInput from "@/components/FormInput";
-import FormSelect from "@/components/FormSelect.vue";
+import FormInput from "@/components/Form/Input";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import CallToAction from "@/components/CallToAction.vue";
@@ -64,7 +63,6 @@ export default {
   },
   components: {
     FormInput: FormInput,
-    FormSelect: FormSelect,
     CallToAction: CallToAction
   }
 };

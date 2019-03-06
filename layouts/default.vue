@@ -1,11 +1,7 @@
 <template>
   <v-app>
     <Header />
-    <v-container fluid>
-      <v-content>
-        <nuxt/>
-      </v-content>
-    </v-container>
+    <nuxt/>
     <Footer :hideLogo="true" />
   </v-app>
 </template>

@@ -1,7 +1,14 @@
 <template>
-  <button class="btn call-to-action" :class="className" :style="{ 'color': textColor}" v-on:click="this.onClick">
-    <slot />
-  </button>
+  <div>
+    <a
+      :href="this.targetUrl"
+      v-bind:class="{ 'button is-large is-fullwidth call-to-action': true, 'is-loading': isLoading }"
+      :style="{ 'color': textColor}"
+      v-on:click="this.onClick"
+    >
+      <slot/>
+    </a>
+  </div>
 </template>
 
 <script>
@@ -10,14 +17,7 @@ import StringMask from "string-mask";
 export default {
   name: "CallToAction",
   methods: {
-    onClick: function() {
-  
-      if (this.targetUrl) {
-        this.$router.push({
-          path: this.targetUrl
-        });
-      }
-      
+    onClick: function(e) {
       this.$emit("click", null);
     }
   },
@@ -33,6 +33,10 @@ export default {
     },
     targetUrl: {
       type: String,
+      required: false
+    },
+    isLoading: {
+      type: Boolean,
       required: false
     }
   }
@@ -51,6 +55,11 @@ export default {
   padding: 5px 30px;
   text-align: center;
   background-image: linear-gradient(to bottom, orange, #ff8400);
+  padding-top: 10px;
+  padding-bottom: 10px;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+.button {
+  font-weight: bold;
 }
 </style>

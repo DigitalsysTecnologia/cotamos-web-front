@@ -118,7 +118,22 @@ class ApiClient {
       proposal.proposer.bankingData = {}
     }
 
-    console.log('proposal', proposal)
+    if (proposal.proposer.bankingData.bankNumber) {
+      proposal.proposer.bankingData.bankNumber = proposal.proposer.bankingData.bankNumber.toString();
+    }
+
+    if (!proposal.paymentData) {
+      proposal.paymentData = {}
+    }
+
+    if (proposal.paymentData.method) {
+      try {
+        proposal.paymentData.method = parseInt(proposal.paymentData.method);
+      }
+      catch(err) {
+        proposal.paymentData.method = 0;
+      }      
+    }
     return proposal;
   }
 
@@ -152,6 +167,7 @@ class ApiClient {
     return internalPost(urljoin("user", "login"), payload);
   }
   updateProposal(proposal) {
+    proposal = this.normalizeProposal(proposal);
     return internalPut(urljoin("proposal"), proposal);
   }
 

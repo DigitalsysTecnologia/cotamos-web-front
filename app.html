@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html {{ HTML_ATTRS }}>
+<html {{ HTML_ATTRS }} class="has-navbar-fixed-top">
 
 <head>
   <meta http-equiv="pragma" content="no-cache" />
   <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
   <META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
+
+
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
   <!-- Google Tag Manager -->
   <script>
     (function (w, d, s, l, i) {
@@ -24,19 +30,19 @@
 
   </script>
   <!-- End Google Tag Manager -->
-  <meta charset="utf-8">
 
+  <meta charset="utf-8">
   <link rel="icon" href="/img/favicon.png" />
   <!--Estilo-->
-  <link href="/css/estilo.css" rel="stylesheet">
+  <!-- <link href="/css/estilo.css" rel="stylesheet"> -->
   <!--Fonte-->
-  <link rel="stylesheet" href="/fonts/fontawesome/css/solid.min.css" />
+  <!-- <link rel="stylesheet" href="/fonts/fontawesome/css/solid.min.css" />
   <link rel="stylesheet" href="/fonts/fontawesome/css/regular.min.css" />
   <link rel="stylesheet" href="/fonts/fontawesome/css/brands.min.css" />
   <link rel="stylesheet" href="/fonts/fontawesome/css/fontawesome.min.css" />
   <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ HEAD }}
 </head>
 
@@ -51,18 +57,20 @@
 
   <div id="root" style="display: unset"></div>
 
-  <!--JQuery-->
+  <!-- <link href="css/bulma.min.css"></link> -->
+  <!-- JQuery -->
   <script src="/js/jquery.min.js"></script>
+
   <!--Bootstrap-->
-  <script src="/js/bootstrap.min.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMF279fS7pB-90qXpBSCt4XU463dV18mI">
+  <!-- <script src="/js/bootstrap.min.js"></script>  -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMF279fS7pB-90qXpBSCt4XU463dV18mI"></script>
+  <!-- <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script> -->
   </script>
 
   <script type="text/javascript">
     $(document).ready(function () {
       Raven.config('https://b4d892cee59f4d8a8c0c004468573e0d@sentry.io/239315').install()
     });
-
   </script>
 </body>
 

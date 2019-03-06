@@ -1,5 +1,34 @@
 <template>
-  <v-layout row wrap>
+  <div>
+    <div v-if="isLoading">
+      <Loading :messages="loadingMessages" />
+    </div>
+
+    <section class="section" v-else>
+      <div step="1" v-if="step==1">
+        <h3 class="subtitle">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
+        <BasicProposalData v-on:submitProposal="generateBasicProposal" />
+      </div>
+      <div step="2" v-if="step==2">
+        <h2 class="is-size-2 subtitle has-text-centered">Veja abaixo o que temos para você</h2>
+        <Offers :proposal="proposal" v-on:selectPlan="selectPlan" />
+      </div>
+      <div step="3" v-if="step==3">
+        <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" v-on:goBack="previousStep" />
+      </div>
+      <div step="4" v-if="step==4">
+        <div v-if="proposal.state == 11">
+          <WaitingForAvailability />
+        </div>
+        <div v-else>
+          <Finish :loading="loading" />
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- <v-layout row wrap>
     <v-flex sm12 xs12>
       <v-stepper v-model="step">
         <v-stepper-header v-if="!proposal || proposal.state != 11">
@@ -17,6 +46,7 @@
           <v-divider></v-divider>
 
         </v-stepper-header>
+
         <v-layout row wrap>
 
           <v-flex md10 offset-md1 v-if="isLoading" style="padding-top:30px;">
@@ -54,7 +84,8 @@
         </v-layout>
       </v-stepper>
     </v-flex>
-  </v-layout>
+  </v-layout> -->
+
 </template>
 
 <script>
@@ -202,8 +233,6 @@ export default {
     router = this.$router;
     const { query, step } = this.$route;
 
-    this.loadingMessage = ["Carregando...", "Aguarde um instante por favor..."];
-
     if (query && query.id) {
       this.loadingMessage = [
         "Carregando sua proposta",
@@ -211,6 +240,7 @@ export default {
       ];
       this.existingProposal = await apiClientProvider.getProposalById(query.id);
     } else {
+      this.loadingMessage = ["Carregando...", "Aguarde um instante por favor..."];
       this.existingProposal = factory.generateEmptyProposal();
     }
 
