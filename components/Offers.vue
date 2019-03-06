@@ -1,39 +1,11 @@
 <template>
-  <v-layout justify-top>
-    <v-container fluid grid-list-md>
-      <v-layout row wrap>
-
-        <v-flex xs12 v-if="false">
-          <v-card>
-            <v-card-text>
-              <v-layout row wrap>
-                <v-flex sm4 xs12>
-                  <v-text-field label="Idade do pet (em anos)" id="proposal.petInsuranceData.age" type="number" :error="!!(validation.firstError('proposal.petInsuranceData.age'))" :error-messages="validation.firstError('proposal.petInsuranceData.age')" v-model="proposal.petInsuranceData.age"
-                  />
-                </v-flex>
-                <v-flex sm8 xs12>
-                  <v-text-field label="CEP da sua residência" id="proposal.proposer.homeAddress.zipCode" :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))" :error-messages="validation.firstError('proposal.proposer.homeAddress.zipCode')" mask="#####-###"
-                    v-model.trim="proposal.proposer.homeAddress.zipCode" />
-                </v-flex>
-                <v-flex xs12>
-                  <v-btn color="primary" @click="getOffers" :block="true">Consultar Ofertas</v-btn>
-                </v-flex>
-              </v-layout>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-
-        <v-flex sm12 v-if="loadingOffers">
-          <Loading :messages="['Obtendo ofertas,', 'Aguarde um instante por favor...']" />
-        </v-flex>
-
-        <v-flex v-for="(card, idx) in availablePlans" :key="`card_${idx}`" xs12 sm4 lg4 v-else>
-          <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan" :isSimulation="proposal.isSimulation" />
-        </v-flex>
-
-      </v-layout>
-    </v-container>
-  </v-layout>
+  <div>
+    <div class="columns is-multiline">
+      <div v-for="(card, idx) in availablePlans" :key="`card_${idx}`" class="column is-full-mobile is-half-tablet is-one-quarter-widescreen is-one-fifth-fullhd">
+        <OfferItem :card="card" :places="places" v-on:selectPlan="selectPlan" :isSimulation="proposal.isSimulation" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -1,139 +1,126 @@
 <template>
-  <v-container fluid>
-    <v-layout row wrap justify-center v-if="isLoading">
-      <v-flex xs12 style="margin-top:15px;">
+  <div>
+    <div v-if="isLoading">
+      <section class="section is-medium">
         <Loading :messages="loadingMessages"/>
-      </v-flex>
-    </v-layout>
-
-    <v-layout align-center justify-center row wrap v-else>
-      <v-flex sm10 offset-sm1 class="wrapper elevation-8">
-        <v-layout row wrap>
-          <v-flex sm12 class="section">
-            <h3>PLANO DE SAÚDE PET - {{product.name}}</h3>
-          </v-flex>
-
-          <v-flex sm12 style="margin-top:20px;display:flex;">
-            <v-flex sm2 offset-sm1 offset-xs0 xs12 class="section">
-              <img :src="product.logo" class="product-container">
-            </v-flex>
-            <v-flex sm9 offset-xs0 xs12 class="section">
-              <h3>Preço:</h3>
-              <span style="display: block;color: #37a3b7;font-size: 24px;">
-                a partir de
-                <span>{{ formatCurrency(product.value.creditCard) }} / mês</span>
-              </span>
-              <v-btn color="primary" v-on:click="selectPlan">COMPRAR</v-btn>
-            </v-flex>
-          </v-flex>
-
-          <v-flex sm12 class="section">
-            <hr>
-            <h3>Descrição</h3>
-            <p>{{product.description}}</p>
-          </v-flex>
-
-          <v-flex sm12 xs12 offset-xs0 class="section">
-            <hr>
-            <h3>Rede Referenciada</h3>
-            <v-layout row wrap>
-              <v-flex sm6 xs12>
-                <div id="map" style="width: 100%; height:500px;"></div>
-              </v-flex>
-              <v-flex sm6 xs12>
-                <div style="width: 100%; height:500px; overflow: scroll">
-                  <p v-for="(map,idx) in serviceArea" :key="idx">
-                    <span style="display:block;">
-                      <span style="font-weight: bold;">Nome:</span>
-                      {{map.name}}
-                    </span>
-
-                    <span style="display:block;">
-                      <span style="font-weight: bold;color:black;">Endereço:</span>
-                      {{ formatAddress(map) }}
-                    </span>
-
-                    <span style="display:block;">
-                      <span style="font-weight: bold;color:black;">Distância:</span>
-                      {{ formatDistance(map.distance) }}
-                    </span>
-                  </p>
+      </section>
+    </div>
+    <div v-else>
+      <section class="section is-medium has-text-dark has-text-justified">
+        <h2 class="is-size-2 subtitle has-text-centered">PLANO DE SAÚDE PET</h2>
+        <div class="columns" style="margin-top: 2rem;">
+          <div class="column is-half has-text-centered">
+            <img src="/img/dr_dog_and_cat.jpg">
+          </div>
+          <div class="column is-half has-text-centered" style="padding-top: 3rem;">
+            <h2 class="is-size-2 subtitle has-text-centered">{{product.name}}</h2>
+            <div class="columns">
+              <div class="column has-text-centered">
+                <span style="display: block; font-size: 24px;font-weight:bold;">
+                  <span>{{ formatCurrency(product.value.creditCard) }} / mês</span>
+                </span>
+              </div>
+              <div class="column has-text-left-desktop" v-if="false">
+                <div class="payment-condition">
+                  <div class="select is-rounded">
+                    <select>
+                      <option>Cartão de Crédito</option>
+                      <option>Débito em Conta</option>
+                      <option>Boleto</option>
+                    </select>
+                  </div>
                 </div>
-              </v-flex>
-            </v-layout>
-          </v-flex>
-
-          <v-flex sm12 xs12 class="section">
-            <hr>
-            <h3>Cobertura</h3>
-            <div>
-              <p v-for="(coverageItem, idx) in coverage" :key="idx">
-                <span v-if="coverageItem[product.code]">{{ coverageItem.name }}</span>
-              </p>
+              </div>
             </div>
-          </v-flex>
+            <div class="call-to-action-container">
+              <CallToAction v-on:click="selectPlan" :isLoading="btnIsLoading">COMPRAR</CallToAction>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <!-- <v-flex sm12 class="section">
-            <hr>
-            <h3>Processo de Contratação</h3>
-            <p>{{product.description}}</p>
-          </v-flex>-->
-          <!-- <v-flex sm12 class="section">
-            <hr>
-            <h3>Demais Produtos</h3>
-            <p>{{product.description}}</p>
-          </v-flex>-->
-        </v-layout>
-      </v-flex>
+      <section class="section primary-color-background has-text-light">
+        <p class="is-size-3 has-text-justified">{{product.description}}</p>
+      </section>
 
-      <v-flex sm10 offset-sm1 class="wrapper elevation-8" style="margin-top:30px;">
-        <v-layout row wrap>
-          <v-flex sm12 class="section">
-            <h3>DEMAIS PRODUTOS</h3>
+      <section class="section has-text-dark">
+        <h2
+          class="is-size-2 subtitle has-text-centered"
+        >Rede Referenciada ({{serviceArea.length}} clínicas próximas a você)</h2>
+        <accredited-network
+          :serviceArea="serviceArea"
+          :homeLocation="proposal.proposer.homeAddress.location"
+        />
+        <div class="call-to-action-container">
+          <CallToAction v-on:click="selectPlan" :isLoading="btnIsLoading">COMPRAR</CallToAction>
+        </div>
+      </section>
 
-            <Carousel :navigationEnabled="true" class="hidden-xs">
-              <Slide v-for="(card, idx) in availablePlans" :key="`card_${idx}`">
-                <div style="margin-right: 15px;margin-left: 15px;">
-                  <OfferItem
-                    :card="card"
-                    v-on:selectPlan="selectPlan"
-                    :isSimulation="proposal.isSimulation"
-                    :hideCoverage="true"
-                  />
+      <section class="section primary-color-background has-text-light">
+        <h2 class="is-size-2 subtitle has-text-centered">Cobertura</h2>
+        <table class="table is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr class="has-text-centered">
+              <th colspan="2">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(coverageItem, idx) in coverage"
+              :key="idx"
+              v-bind:class="{'hasCoverage': coverageItem[product.code], 'notHasCoverage': !coverageItem[product.code]}"
+            >
+              <td style="font-weight: bold;">{{ coverageItem.name }}</td>
+              <td class="has-text-centered">
+                <span class="icon coverage-icon">
+                  <i
+                    v-bind:class="{'fas fa-check': coverageItem[product.code], 'fas fa-times': !coverageItem[product.code]}"
+                  ></i>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="border-radius: 15px;">&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section has-text-dark">
+        <h2 class="is-size-2 subtitle has-text-centered">Processo de contratação</h2>
+
+        <div class="columns">
+          <div class="column" v-for="(hiringStep, idx) in hiringSteps" :key="idx">
+            <div class="step-container">
+              <div class="columns">
+                <div class="column is-narrow">
+                  <div class="centered-index">{{idx+1}}</div>
                 </div>
-              </Slide>
-            </Carousel>
+                <div class="column">
+                  <span>{{hiringStep.description}}</span>
+                </div>
+              </div>
 
-            <v-layout row wrap class="hidden-sm-and-up">
-              <v-flex
-                v-for="(card, idx) in availablePlans"
-                :key="`card_${idx}`"
-                xs12
-                sm4
-                lg4
-                offset-sm1
-              >
-                <OfferItem
-                  :card="card"
-                  v-on:selectPlan="selectPlan"
-                  :isSimulation="proposal.isSimulation"
-                  :hideCoverage="true"
-                />
-              </v-flex>
-            </v-layout>
-          </v-flex>
-        </v-layout>
-      </v-flex>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    </v-layout>
-  </v-container>
+      <section class="section has-text-dark">
+        <h2 class="is-size-2 subtitle has-text-centered">Demais Produtos</h2>
+        <Offers :proposal="proposal"/>
+      </section>
+    </div>
+  </div>
 </template>
 
 <script>
 import Loading from "@/components/Loading";
+import CallToAction from "@/components/CallToAction";
+import AccreditedNetwork from "@/components/AccreditedNetwork";
 import apiClientProvider from "@/utils/apiClient";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
-import OfferItem from "@/components/Offer.2";
+import Offers from "@/components/Offers";
 import utils from "@/utils/index";
 import { Carousel, Slide } from "vue-carousel";
 let router = null;
@@ -141,55 +128,51 @@ let router = null;
 export default {
   name: "InsurancePlanDetail",
   methods: {
-    submitOffer() {
-      console.log("Teste");
-    },
+    submitOffer() {},
     selectPlan: async function(plan) {
-      this.proposal.petInsuranceData.selectedPlan = {
-        code: this.product.code
-      };
-
-      await apiClientProvider.updateProposal(this.proposal);
-      this.proposal = await apiClientProvider.setNextState(this.proposal, 4);
-      this.$router.push({
-        path: "/fluxo-vendas",
-        query: { id: this.proposal._id }
-      });
+      try {
+        this.btnIsLoading = true;
+        this.proposal.petInsuranceData.selectedPlan = {
+          code: this.product.code
+        };
+        await apiClientProvider.updateProposal(this.proposal);
+        this.proposal = await apiClientProvider.setNextState(this.proposal, 4);
+        this.$router.push({
+          path: "/fluxo-vendas",
+          query: { id: this.proposal._id }
+        });
+      } finally {
+        this.btnIsLoading = false;
+      }
     },
     formatCurrency(value) {
       value = value.toFixed(2);
       value = value.replace(".", ",");
       return `R$ ${value}`;
-    },
-    formatDistance: function(distance) {
-      let result = distance.toFixed(2);
-      result = result.replace(".", ",");
-      return result + " Km";
-    },
-    formatAddress: function(mapItem) {
-      return (
-        mapItem.street +
-        ", " +
-        mapItem.number +
-        ", " +
-        mapItem.neighborhood +
-        " - " +
-        mapItem.city +
-        ", " +
-        mapItem.state
-      );
     }
   },
   data() {
     return {
       isLoading: true,
+      btnIsLoading: false,
       loadingMessages: ["Carregando o plano"],
       proposal: null,
       product: null,
       coverage: null,
       serviceArea: null,
       mapCreated: false,
-      availablePlans: []
+      availablePlans: [],
+      hiringSteps: [
+        { description: "Faça a contratação através da nossa plataforma (totalmente on-line)" },
+        {
+          description:
+            "Efetue o pagamento através de cartão de crédito, boleto ou depósito em conta"
+        },
+        {
+          description:
+            "Agende com a Health4Pet a avaliação de saúde e implantação do microchip"
+        }
+      ]
     };
   },
 
@@ -235,38 +218,55 @@ export default {
   },
   components: {
     Loading,
-    OfferItem,
-    Carousel,
-    Slide
+    Offers,
+    AccreditedNetwork,
+    CallToAction
   }
 };
 </script>
 
 <style scoped>
-.product-container {
-  border: 1px solid #aaa;
-  border-radius: 10px;
-  padding: 25px;
+.accredited-network {
+  max-height: 300px;
+  overflow-y: scroll;
 }
-.section {
-  justify-content: center;
-  text-align: center;
-  display: inline-block;
-  margin-bottom: 35px;
+.hasCoverage {
+  color: rgb(6, 115, 123);
 }
-.section h3 {
-  color: #37a3b7;
-  font-size: 30px;
+.notHasCoverage {
+  color: #e44747;
+}
+.coverage-icon {
+  font-size: 20px;
+}
+.table {
+  border-radius: 12px;
+}
+.call-to-action-container {
+  margin-top: 1.5rem;
+}
+.centered-index {
+  width: 50px;
+  height: 50px;
+  background-color: #00d887;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  color: white;
   font-weight: bold;
+  justify-content: center;
 }
-.section p {
-  font-size: 16px;
-  text-align: justify;
+
+.step-container {
+  border: 1px solid #00d887;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
 }
-.wrapper {
-  border: 1px solid #aaa;
-  padding-left: 60px;
-  padding-right: 60px;
-  border-radius: 30px;
+
+.step-container span
+{
+  color: #00899c;
+  font-weight: bold;
 }
 </style>

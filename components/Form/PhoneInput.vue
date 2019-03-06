@@ -1,6 +1,6 @@
 <template>
-  <v-text-field :label="label" 
-                :prepend-icon="icon" 
+  <Input :label="label"
+                :icon="icon"
                 :id="id"
                 :mask="getFullPhoneMask(phoneValue)"
                 :maxLength="maxLength || '15'"
@@ -8,14 +8,12 @@
                 @input="updateValue()"
                 ref="input"
                 :validationMessage="validation.firstError('phoneValue') || validationMessage"
-                :error="!!(validation.firstError('phoneValue') || validationMessage)"
-                :error-messages="validation.firstError('phoneValue') || validationMessage"
                 v-model="phoneValue" />
 </template>
 
 <script>
 import StringMask from "string-mask";
-import FormInput from "@/components/FormInput";
+import Input from "@/components/Form/Input";
 import validator from "@/utils/validator";
 
 export default {
@@ -86,7 +84,7 @@ export default {
     }
   },
   components: {
-    FormInput: FormInput
+    Input
   },
   methods: {
     async updateValue() {

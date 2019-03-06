@@ -1,6 +1,6 @@
 <template>
-          <FormInput  :label="label" 
-                      :icon="icon" 
+          <FormInput  :label="label"
+                      :icon="icon"
                       :id="id"
                       mask="#####-###"
                       maxLength=9
@@ -11,7 +11,7 @@
 
 <script>
 import StringMask from "string-mask";
-import FormInput from "@/components/FormInput";
+import FormInput from "@/components/Form/Input";
 import apiClientProvider from "@/utils/apiClient";
 import moment from "moment-timezone";
 import validator from "@/utils/validator";

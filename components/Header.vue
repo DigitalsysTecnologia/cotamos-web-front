@@ -1,59 +1,77 @@
 <template>
-  <v-layout justify-center row wrap align-center>
-    <v-toolbar color="primary lighten-1">
-      <v-toolbar-title>
-        <a class="brand" :href="homeLink">
-          <img class="img-responsive center-block" src="/img/logo_branco.png" alt="Cotamos.com" style="padding-left:15px;" />
-        </a>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat :nuxt="true" v-for="(link, idx) in links" :key="idx" :to="link.url">
-          <span class="menu-item"> {{ link.text }} </span>
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-  </v-layout>
+  <nav class="navbar is-transparent is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/img/logo_cor.png" width="112" height="28">
+      </a>
+
+      <a
+        role="button"
+        class="navbar-burger burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarBasicExample"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <!-- <div class="navbar-start">
+
+        <a class="navbar-item">Home</a>
+
+        <a class="navbar-item">Documentation</a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">More</a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item">About</a>
+            <a class="navbar-item">Jobs</a>
+            <a class="navbar-item">Contact</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="#">Report an issue</a>
+          </div>
+        </div>
+
+      </div> -->
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
-  export default {
-    name: "Header",
-    data() {
-      return {};
+export default {
+  name: "Header",
+  data() {
+    return {};
+  },
+  props: {
+    links: {
+      type: Array,
+      required: false,
+      default: null
     },
-    props: {
-      links: {
-        type: Array,
-        required: false,
-        default: null
-      },
-      homeLink: {
-        type: String,
-        required: false,
-        default: '/'
-      }
+    homeLink: {
+      type: String,
+      required: false,
+      default: "/"
     }
-  };
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .brand {
-    float: left;
-    height: 55px;
-    font-size: 18px;
-    line-height: 20px;
-  }
-  
-  .brand>img {
-    width: 200px;
-    display: block;
-    padding-top: 4px;
-  }
-  
-  .menu-item {
-    font-weight: bold;
-    color: white;
-  }
+
 </style>

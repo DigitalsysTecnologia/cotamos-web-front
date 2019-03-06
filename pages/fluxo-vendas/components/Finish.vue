@@ -1,8 +1,8 @@
 <template>
-  <div class="container-fluid" >
+  <div class="has-text-center">
 
-    <div class="row">
-      <div class="col-xs-12">
+
+
         <h3>Sua proposta foi enviada com sucesso</h3>
         <p>
           Em breve seu pet já estará com o plano de saúde. </p>
@@ -28,25 +28,16 @@
         <p>
           Muito Obrigado - Equipe Cotamos
         </p>
-      </div>
-    </div>
-    
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-
 export default {
   name: "Finish",
   data() {
     return {};
   },
-
   components: {
-    Header: Header,
-    Footer: Footer
   }
 };
 </script>

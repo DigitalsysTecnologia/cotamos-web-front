@@ -1,137 +1,98 @@
 <template>
-    <div  class="container-fluid">
-      <section class="container-fluid section">
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8 text-center">
-              <h2 class="subtitle">O que é plano de saúde pet?</h2>
-            </div>
+  <div>
+    <section class="section is-medium">
+      <h2 class="is-size-2 subtitle has-text-centered">O que é plano de saúde pet?</h2>
+      <p>
+        O plano de saúde pet
+        <span style="font-weight:bold;">para cães e gatos</span> é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
+      </p>
+
+      <p>Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade</p>
+    </section>
+
+    <section class="section is-medium primary-color-background has-text-light">
+      <h2 class="is-size-2 subtitle has-text-centered">Como funciona o plano de saúde pet?</h2>
+      <p>O plano de saúde pet é muito semelhante a um plano de saúde para seres humanos.</p>
+      <p>Por um pagamento mensal, seu pet tem acesso a uma rede credenciada com diversas clínicas veterinárias para atendimento.</p>
+      <p>De acordo com o plano escolhido, existem coberturas e carências diferenciadas, por isso, é importante prestar atenção aos serviços oferecidos em cada plano</p>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-half">
+            <img src="/img/filhote_cao.jpg">
           </div>
-          
-          <div class="row" style="padding-top:15px;">
-            <div class="col-md-offset-2 col-md-2 col-sm-12 col-sm-offset-0">
-              <img class="img-responsive center-block" src="/img/dr_cao.png" style="max-height: 200px;"/>
-            </div>
+          <div class="column is-half has-text-justified">
+            <article class="message is-primary">
+              <div class="message-header">
+                <p>Qualquer pet pode ter um plano de saúde?</p>
+              </div>
+              <div class="message-body">
+                Atualmente, os planos de saúde pet estão disponíveis apenas para
+                <span
+                  class="strong"
+                >cães</span> e
+                <span class="strong">gatos</span>.
+              </div>
+            </article>
 
-            <div class="col-md-6 col-sm-12 col-sm-offset-0">
-              <p>
-                O plano de saúde pet <span style="font-weight:bold;">para cães e gatos</span> é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
-              </p>
+            <article class="message is-primary">
+              <div class="message-header">
+                <p>Pets de qualquer idade podem aderir ao plano?</p>
+              </div>
+              <div class="message-body">
+                <p>
+                  Podem existir restrições de cobertura dependendo da idade em que o pet
+                  <span
+                    class="strong"
+                  >aderir</span> ao plano.
+                </p>
+                <p>Entretanto, após a adesão ao plano de saúde, a cobertura do plano é válida por toda a vida do seu pet.</p>
+                <p>Ou seja, quanto mais cedo for feito o plano de saúde do pet, mais tranquilidade você terá com relação aos cuidados veterinários dele.</p>
+              </div>
+            </article>
 
-              <p>
-                Em resumo, plano de saúde pet é uma forma  inteligente para proporcionar: 
-                <ul style="margin-top:10px;">
-                  <li><span style="font-weight:bold;">Economia</span>;</li>
-                  <li><span style="font-weight:bold;">Segurança</span>;</li>
-                  <li><span style="font-weight:bold;">Tranquilidade</span>.</li>
-                </ul>
-              </p>
-            </div>
-
-          </div>
-
-      </section>
-
-      <section class="container-fluid section">
-        <div class="row">
-          <div class="col-sm-8 col-sm-offset-2 col-xs-12 text-center">
-            <v-card :raised="true" :tile="true">
-               <v-card-title primary-title>
-                 <v-layout align-center justify-center row fill-height>
-                  <h2 class="subtitle">FAÇA UMA COTAÇÃO ON-LINE</h2>
-                  </v-layout>
-               </v-card-title>
-                <BasicForm v-on:submitProposal="submitProposal"/>
-              </v-card>
+            <article class="message is-primary">
+              <div class="message-header">
+                <p>O plano de saúde pet tem cobertura nacional?</p>
+              </div>
+              <div class="message-body">
+                <p>Não, o plano de saúde está disponível em apenas alguns locais do Brasil.</p>
+                <p>Devido à isso, precisamos de algumas informações para verificar a disponibilidade do plano para você e informações sobre o seu pet para lhe informar os valores.</p>
+              </div>
+            </article>
           </div>
         </div>
-      </section>        
+      </div>
+    </section>
 
-      <section class="container-fluid section">
-          <div class="row">
-            <div class="col-md-offset-2 col-md-8 text-center">
-              <h2 class="subtitle">Por que eu deveria contratar um plano de saúde pet?</h2>
-            </div>
-          </div>
-          
-          <div class="row" style="padding-top:15px;">
-            <div class="col-md-offset-2 col-md-8 col-sm-12">
-              <p>
-                Assim como os humanos, os pets também tem necessidades de cuidados com a saúde. 
-                Com os planos de saúde, você tem acesso a uma série de clínicas para tratamento veterinário.
-              </p>
-            </div>
+    <section class="section is-medium primary-color-background has-text-light">
+      <h2 class="is-size-2 subtitle has-text-centered">O plano de saúde é um produto da Cotamos?</h2>
+      <p class="is-size-3">Não, a Cotamos é uma corretora e como tal, apenas realiza o intermédio da venda de plano saúde pet.</p>
+    </section>
 
-          </div>
-
-      </section>
-
-      <section class="container-fluid section">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
-            <h3>PARA OS FILHOTES</h3>
-          </div>
-          <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/filhote_cao_gato.png" class="img-responsive center-block" />
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 text-center">
-            <p class="section-text">
-              Quando um filhote canino ou felino passa por fases delicadas, como a construção da imunidade e adaptação à sua nova alimentação, ele pode ficar mais predisposto à instabilidades gastrointestinais e algumas alergias, gerando mais idas ao veterinário. 
-              A descoberta do mundo e de sua nova casa também podem expor seu pet a riscos bastante comuns, como acidentes ou a ingestão de corpos estranhos. Esses incidentes ocorrem em 1 a cada 3 pets por ano.
-            </p>
-            <CallToAction v-on:click="GoToForm">
-              &nbsp; CONHEÇA OS PLANOS DISPONÍVEIS
-            </CallToAction>
+    <section class="section is-medium has-text-dark" style="padding-left:0">
+      <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação on-line</h2>
+      <div class="columns">
+        <div class="column is-half is-hidden-touch">
+          <img src="/img/dog_on_pc.png" style="margin-top: 150px;">
+        </div>
+        <div class="column is-half-desktop">
+          <div class="container-form">
+            <BasicForm v-on:submitProposal="submitProposal"/>
           </div>
         </div>
-      </section>
-
-      <section class="container-fluid section">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
-            <h3>PARA OS ADULTOS</h3>
-          </div>
-          <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/adulto_cao_gato.png" class="img-responsive center-block" />
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 text-center">
-            <p class="section-text">
-              Ainda que o seu pet se mostre saudável, nunca se dê por satisfeito.
-              É importante que você o observe periodicamente e com atenção e, diante de qualquer indício de que algo não anda bem, leve-o de imediato ao veterinário.
-              Um pet adulto tem que ser revacinado a cada ano, durante toda sua vida. E a desparasitação deve ser periódica, já que ele se expõe constantemente ao risco de contrair parasitas.
-              Por isso, um plano de saúde é muito importante nessa fase da vida.
-            </p>
-            <CallToAction v-on:click="GoToForm">
-              &nbsp; CONHEÇA OS PLANOS DISPONÍVEIS
-            </CallToAction>
-          </div>
-        </div>
-      </section>
-
-      <section class="container-fluid section">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
-            <h3>PARA OS SENIORES</h3>
-          </div>
-          <div class="col-md-offset-2 col-md-2 col-sm-6 col-xs-12">
-            <img src="/img/velho_cao_gato.png" class="img-responsive center-block" />
-          </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 text-center">
-            <p class="section-text">
-              O tempo de vida dos pets varia muito dependendo da raça, do porte do animal e dos cuidados que ele recebe durante a vida. Porém, a expectativa é que os cães vivam em média 15 anos, enquanto os gatos podem chegar a 20. Mas o importante mesmo é que sempre se tenha atenção com a saúde e o bem-estar dos bichinhos, principalmente quando eles estiverem idosos e precisando ainda mais do nosso amor e cuidado.
-            </p>
-            <CallToAction v-on:click="GoToForm">
-              &nbsp; CONHEÇA OS PLANOS DISPONÍVEIS
-            </CallToAction>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
 import Loading from "@/components/Loading";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import FormInput from "@/components/Form/Input";
 import BasicForm from "@/components/Forms/BasicPetInsuranceData";
 import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";
@@ -148,10 +109,13 @@ export default {
     GoToForm(event) {
       let partnerId = null;
 
-      if(queryParams) {
-        partnerId = queryParams.partnerId
+      if (queryParams) {
+        partnerId = queryParams.partnerId;
       }
-      router.push({ path: "/fluxo-vendas", query: { product: 5, partnerId: partnerId } });
+      router.push({
+        path: "/fluxo-vendas",
+        query: { product: 5, partnerId: partnerId }
+      });
     },
     submitProposal(proposal) {
       router.push({ path: "/fluxo-vendas", query: { id: proposal._id } });
@@ -166,52 +130,45 @@ export default {
   },
   head() {
     return {
-      title: 'Cotamos.com - Plano de Saúde PET'
-    }
+      title: "Cotamos.com - Plano de Saúde PET"
+    };
   },
   data() {
-    return {};
+    return {zipCode: ""};
   },
   async beforeMount() {
     router = this.$router;
-    queryParams = this.$route.query
+    queryParams = this.$route.query;
     utils.saveLandingQueryParams(this.$route.query);
   },
+    validators: {
+    "zipCode": value =>
+      validator.validateZipCode(value)
+  },
   components: {
-    Header: Header,
-    Footer: Footer,
-    BasicForm: BasicForm,
-    Loading: Loading,
-    CallToAction: CallToAction
+    Header,
+    Footer,
+    BasicForm,
+    Loading,
+    CallToAction,
+    FormInput
   }
 };
 </script>
 
 <style scoped>
-h3 {
-  color: #00899c;
-}
-.subtitle {
-  font-size: 30px;
-  text-transform: uppercase;
-  font-weight: 800;
-  color: #00899c;
-  margin-bottom: 20px;
-  margin-top: 0px;
-  text-shadow: 0 1px 7px rgba(255, 255, 255, 0.8);
-}
-.section {
-  padding-top: 15px;
-  padding-bottom: 25px;
-}
-.section-text {
-  margin-top: 15px;
-  text-align: justify;
+.container {
+  margin-top: 30px;
 }
 
-.form-container {
-  border: 2px solid rgb(5, 62, 66);
-  border-radius: 5px; 
-  background-color: white; 
+.container-form {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #000;
+  -webkit-box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
+  -moz-box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
+  box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
 }
+
 </style>getLandingQueryParams

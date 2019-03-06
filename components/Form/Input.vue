@@ -1,37 +1,29 @@
 <template>
-    <!-- <div :class="{'form-group': true, 'error': validationMessage}"> -->
-        <!-- <label :class="{'input-label': true, 'label-error': validationMessage}">{{label}}:</label>
-        <div class="input-group">
-            <div :class="['input-group-addon', {'disabled-group-addon': disabled}]" >
-                <i :class="`fa ${icon}`" aria-hidden="true" v-if="icon"/>
-            </div>
-            <input  :type="type" 
-                    class="form-control"
-                    :id="id"
-                    :name="id"
-                    :disabled="disabled"
-                    @input="updateValue()"
-                    :maxLength="maxLength"
-                    ref="inputValue"
-                    :pattern="pattern" 
-                    novalidate
-                    :value="value"
-                    />
-        </div>
-        <div class="message"> {{ validationMessage  }}</div> -->
-
-        <v-text-field 
-        :label="label"
-        :id="id"
-        :error="!!(validationMessage)"
-        :error-messages="validationMessage"
+  <div class="field">
+    <label class="label">{{ label }}</label>
+    <div
+      v-bind:class="{ 'control': true, 'has-icons-left': !!(icon), 'has-icons-right': !!(validationMessage) }"
+    >
+      <input
+        v-bind:class="{'input': true,  'is-danger': !!(validationMessage)}"
+        :type="type"
+        :placeholder="placeholder"
         ref="inputValue"
-        :mask="mask"
-        :prepend-icon="icon"
-        />
-    <!-- </div> -->
-
-
+        :value="value"
+        :id="id"
+        :name="id"
+        :disabled="disabled"
+        @input="updateValue()"
+      >
+      <span class="icon is-small is-left" v-if="!!(icon)">
+        <i :class="icon"></i>
+      </span>
+      <span class="icon is-small is-right" v-if="!!(validationMessage)">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+    </div>
+    <p class="help is-danger" v-if="!!(validationMessage)">{{ validationMessage }}</p>
+  </div>
 </template>
 
 <script>
@@ -58,6 +50,11 @@ export default {
       required: false
     },
     validationMessage: {
+      type: String,
+      default: "",
+      required: false
+    },
+    placeholder: {
       type: String,
       default: "",
       required: false
@@ -112,11 +109,6 @@ export default {
     }
   },
   methods: {
-    testMethod(newValue) {
-      if (this.value != newValue) {
-        this.value = newValue;
-      }
-    },
     maskString(mask, value, truncate) {
       if (!mask) {
         return value;
@@ -158,7 +150,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.form-group.error i {
+/* .form-group.error i {
   color: red;
 }
 .form-group.error .input-group-addon {
@@ -219,5 +211,5 @@ export default {
 
 .disabled-group-addon {
   background-color: #eee;
-}
+} */
 </style>

@@ -1,129 +1,91 @@
+
 <template>
   <div>
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Quem Somos</h2>
+    <section class="section primary-color-background has-text-light">
+      <h2 class="is-size-2 subtitle has-text-centered">Digital, para sua comodidade</h2>
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-half has-text-centered">
+              <img class="is-rounded" src="/img/white_logo.png">
+            </div>
+            <div class="column is-half">
+              <p>A Cotamos tem como objetivo facilitar a sua vida, através de tecnologia, fazemos a venda de maneira on-line.</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <article class="col-sm-6 text-right">
-        <img class="responsive-img img-rounded" src="/img/corretor.jpg">
-      </article>
-
-      <article class="col-sm-6 text-left article-text">
-        <p>A Cotamos é uma corretora de seguros, especializada nos ramos de vida e previdência.</p>
-        <p>
-          Também oferecemos produtos inovadores como o
-          <span class="featured-text">Carro Fácil</span> e
-          <span class="featured-text">Health For Pet</span>.
-        </p>
-      </article>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Conheça Nossos Produtos</h2>
+    <section class="section has-text-dark">
+      <h2 class="is-size-2 subtitle has-text-centered">Nossos produtos</h2>
+      <div class="columns is-multiline">
+        <div
+          v-for="(card, idx) in cards"
+          :key="`card_${idx}`"
+          class="column is-full-mobile is-half-tablet is-one-quarter-widescreen is-one-quarter-fullhd"
+        >
+          <ProductCard
+            :name="card.name"
+            :description="card.description"
+            :callToActionText="card.callToActionText"
+            :callToActionUrl="card.callToActionUrl"
+            :imgUrl="card.imgUrl"
+          />
+        </div>
       </div>
-
-      <article class="col-xs-12 text-center">
-        <ProductCard
-          name="Plano de Saúde Pet"
-          description="Segurança para o seu pet, com um plano de saúde sob medida"
-          callToActionText="Saiba Mais"
-          callToActionUrl="/plano-de-saude-pet"
-          imgUrl="/img/icons/health-for-pet.png"
-        />
-
-        <ProductCard
-          name="Carro Por Assinatura"
-          description="Seu carro por assinatura, sob medida"
-          callToActionText="Saiba Mais"
-          callToActionUrl="/wl/carro-facil"
-          imgUrl="/img/icons/carro-facil.png"
-        />
-
-        <ProductCard
-          name="Seguro de Vida"
-          description="Proteção para quem você mais ama"
-          callToActionText="Saiba Mais"
-          callToActionUrl="/wl/seguro-vida"
-          imgUrl="/img/icons/seguro-vida.png"
-        />
-
-        <ProductCard
-          name="Seguro Viagem"
-          description="Viaje com tranquilidade"
-          callToActionText="Saiba Mais"
-          callToActionUrl="/wl/seguro-viagem"
-          imgUrl="/img/icons/travel.png"
-        />
-      </article>
-    </div>
-
-    <div class="row section">
-      <div class="col-xs-12 text-center">
-        <h2 class="subtitle">Seja Parceiro</h2>
-      </div>
-
-      <article class="col-xs-12 text-center">
-        <p>Seja parceiro da Cotamos, tenha uma renda extra vendendo nossos produtos.</p>
-        <v-btn color="primary" round href="/seja-parceiro">Saiba Mais</v-btn>
-      </article>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
 import ProductCard from "@/components/ProductCard";
-import CallToAction from "@/components/CallToAction";
 import ApiClient from "@/utils/apiClient";
 
 export default {
   name: "Home",
-  computed: {
-    carouselItems: {
-      get() {
-        return [
-          {
-            src: "/img/carousel-img-2.png"
-          }
-        ];
-      }
-    }
+  data() {
+    return {
+      cards: [
+        {
+          name: "Plano de Saúde Pet",
+          description:
+            "Segurança para o seu pet, com um plano de saúde sob medida",
+          callToActionText: "Saiba Mais",
+          callToActionUrl: "/plano-de-saude-pet",
+          imgUrl: "/img/pet-accident-icon.png"
+        },
+        {
+          name: "Carro Por Assinatura",
+          description: "Seu carro por assinatura, sob medida",
+          callToActionText: "Saiba Mais",
+          callToActionUrl: "/wl/carro-facil",
+          imgUrl: "/img/icons/carro-facil.png"
+        },
+        {
+          name: "Seguro de Vida",
+          description: "Proteção para quem você mais ama",
+          callToActionText: "Saiba Mais",
+          callToActionUrl: "/wl/seguro-vida",
+          imgUrl: "/img/icons/seguro-vida.png"
+        },
+        {
+          name: "Seguro Viagem",
+          description: "Viaje com tranquilidade",
+          callToActionText: "Saiba Mais",
+          callToActionUrl: "/wl/seguro-viagem",
+          imgUrl: "/img/icons/travel.png"
+        }
+      ]
+    };
   },
-  methods: {
-    GoToUrl(path) {
-      this.$router.push({
-        path: path
-      });
-    }
-  },
+  computed: {},
+  methods: {},
   components: {
-    Footer: Footer,
-    Header: Header,
-    NavBar: NavBar,
-    CallToAction: CallToAction,
-    ProductCard: ProductCard
+    ProductCard
   }
 };
 </script>
 
 <style scoped>
-.article-text {
-  margin-top: 20px;
-}
-.section {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-.carousel-container {
-  padding-left: 0px;
-  padding-right: 0px;
-  min-height: 300px;
-}
-.featured-text {
-  font-weight: bold;
-}
 </style>
