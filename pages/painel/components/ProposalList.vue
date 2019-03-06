@@ -1,80 +1,49 @@
 <template>
-  <v-layout row wrap>
-    <v-flex xs12 class="text-center">
-      <v-data-table :headers="headers" :items="rowItems" hide-actions class="elevation-1" :loading="loading" no-data-text="Nenhuma proposta encontrada" :disable-initial-sort="true">
-        <template slot="items" slot-scope="props">
-          <tr :class="{'proposal-to-integrate': props.item.state == 2 }">
-            <td class="text-xs-left" >{{ props.item.updatedAt }}</td>
-            <td class="text-xs-left" >
-              {{ translateProduct(props.item.product) }}
-              <span v-if="props.item.state" style="font-size:12px;font-weight:bold;">
-                <br />
-                <span>({{ translateState(props.item.state) }}) </span>
-              </span>
-            </td>
-            <td class="text-xs-left" >
-              {{ props.item.name }}
-              <span v-if="props.item.cpf" style="font-size:12px;font-weight:bold;">
-              <br />
-              CPF: {{ props.item.cpf }}
-              </span>
-            </td>
-            <td class="text-xs-left" >
-              {{ props.item.phone }}
-              <span v-if="props.item.email">
-                <br />
-                {{ props.item.email }}
-              </span>
-            </td>
-
-            <td class="text-xs-center" >
-              <v-btn icon alt="Ver detalhes" color="primary" :to="`/painel/detalhes-proposta?id=${props.item._id}`" :nuxt="true">
-                <v-icon>visibility</v-icon>
-              </v-btn>
-            </td>
-          </tr>
-        </template>
-      </v-data-table>
-      <v-pagination v-model="filterResult.pageIndex" :length="filterResult.pageCount" color="primary" :total-visible="5" style="margin-top:20px;" v-if="filterResult.pageCount"></v-pagination>
-  </v-flex>
-</v-layout>
+  <div>
+    <div
+      :class="{'proposal-card': true, 'proposal-to-integrate': rowItem.state == 2 }"
+      v-for="(rowItem) in rowItems"
+      :key="rowItem._id"
+    >
+      <div class="columns is-multiline">
+        <div class="column is-half">
+          <CustomLabel label="Produto" :value="translateProduct(rowItem.product)" :sameLine="true"/>
+          <CustomLabel
+            label="Situação"
+            :value="translateProduct(rowItem.state)"
+            :sameLine="true"
+            v-if="rowItem.state"
+          />
+          <CustomLabel label="Id da Proposta" :value="rowItem._id" :sameLine="true"/>
+          <CustomLabel label="Atualização" :value="rowItem.updatedAt" :sameLine="true"/>
+        </div>
+        <div class="column is-half">
+          <CustomLabel label="Cliente" :value="rowItem.name" :sameLine="true"/>
+          <CustomLabel label="E-Mail" :value="rowItem.email" :sameLine="true"/>
+          <CustomLabel label="CPF" :value="rowItem.cpf" :sameLine="true"/>
+        </div>
+      </div>
+      <div>
+            <Button
+              textColor="white"
+              backgroundColor="rgb(0, 216, 134)"
+              :targetUrl="`/painel/detalhes-proposta?id=${rowItem._id}`"
+              :isFullWidth="true"
+            >Ver detalhes</Button>
+          </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import Button from "@/components/Form/Button";
+import CustomLabel from "../components/CustomLabel";
 import translator from "@/utils/translator";
 import moment from "moment";
 export default {
   name: "ProposalList",
   data() {
-    return {
-      headers: [
-        {
-          text: "Data",
-          align: "left",
-          value: "updatedAt"
-        },
-        {
-          text: "Produto/Situação",
-          align: "left",
-          value: "product"
-        },
-        {
-          text: "Cliente",
-          align: "left",
-          value: "name"
-        },
-        {
-          text: "Contato",
-          align: "left",
-          value: "phone"
-        },
-        {
-          text: "Ações",
-          align: "center",
-          value: ""
-        }
-      ]
-    };
+    return {};
   },
   computed: {
     rowItems: {
@@ -123,12 +92,16 @@ export default {
     formatDate(date) {
       return moment(date).format("DD/MM/YYYY HH:mm:ss");
     },
-     translateState(state) {
+    translateState(state) {
       return translator.translateState(state);
     },
     translateProduct(product) {
       return translator.translateProduct(product);
     }
+  },
+  components: {
+    Button,
+    CustomLabel
   },
   props: {
     filterResult: {
@@ -152,6 +125,13 @@ export default {
 
 .proposal-to-integrate {
   color: black;
-  background-color: #58bfd3;
+  background-color: #d6f8ff;
+}
+
+.proposal-card {
+  margin: 10px;
+  padding: 14px;
+  border:2px solid rgb(0, 216, 134);
+  border-radius: 10px;
 }
 </style>

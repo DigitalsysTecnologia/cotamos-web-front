@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <section class="section is-medium has-text-centered">
-      <h2 class="is-size-2 subtitle has-text-centered">Painel de Propostas</h2>
-      <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
-    </section>
-  </div>
+  <section class="section is-medium has-text-centered">
+    <h2 class="is-size-2 subtitle has-text-centered">Painel de Propostas</h2>
+    <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
+  </section>
 
   <!-- <v-container>
     <v-layout row wrap align-center justify-center>

@@ -1,12 +1,63 @@
 <template>
-  <div class="container-fluid">
+  <div>
+    <div v-if="!proposal">
+      <Loading />
+    </div>
+    <div v-else>
+      <section class="section">
+        <h2 class="is-size-2 subtitle has-text-centered">Detalhes da Proposta</h2>
+        <h2 class="is-size-2 subtitle has-text-centered">Dados Gerais</h2>
+        <custom-label :label="'Id da Proposta'" :value="proposal._id" :sameLine="true" />
+        <custom-label :label="'Situação da Proposta'" :value="stateName" :sameLine="true" />
+        <custom-label :label="'Plano Escolhido'" :value="proposal.petInsuranceData.selectedPlan.code" :sameLine="true" v-if="proposal.product==5 && proposal.petInsuranceData && proposal.petInsuranceData.selectedPlan && proposal.petInsuranceData.selectedPlan.code" />
+        <custom-label :label="'Data de Criação'" :value="formatDate(proposal.createdAt)" :sameLine="true" />
+        <custom-label :label="'Data de Atualização'" :value="formatDate(proposal.updatedAt)" :sameLine="true" />
+      </section>
+      
+      <section class="section">
+        <h2 class="is-size-2 subtitle has-text-centered">Proponente</h2>
+        <custom-label :label="'Nome'" :value="proposal.proposer.name" :sameLine="true" />
+        <custom-label :label="'E-mail'" :value="proposal.proposer.email" :sameLine="true" />
+        <custom-label :label="'Telefone(s)'" :value="formatPhones(proposal.proposer.phones)" :sameLine="true" />
+        <custom-label :label="'Data de Nascimento'" :value="getAge(proposal.proposer.dateOfBirth)" :sameLine="true" />
+        <custom-label :label="'CPF'" :value="proposal.proposer.cpf" :sameLine="true" />
+        <div v-if="proposal.proposer.homeAddress">
+          <custom-label :label="'Endereço Residencial'" :value="formatAddress(proposal.proposer.homeAddress)" />
+        </div>
+        <div v-if="proposal.proposer.dependents && proposal.proposer.dependents.length > 0" class="mt-4">
+          <h2 class="form-subtitle">Dependentes:</h2>
+          <div v-for="(dependent, idx) in proposal.proposer.dependents" :key="idx">
+            <custom-label :label="'Nome'" :value="dependent.name" :sameLine="true" />
+            <custom-label :label="'Idade'" :value="getAge(dependent.dateOfBirth)" :sameLine="true" />
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <h2 class="is-size-2 subtitle has-text-centered">PET</h2>
+        <custom-label :label="'Nome'" :value="proposal.petInsuranceData.name" :sameLine="true" v-if="proposal.petInsuranceData.name" />
+        <custom-label :label="'Data de Nascimento'" :value="getAge(proposal.petInsuranceData.dateOfBirth)" :sameLine="true" v-if="proposal.petInsuranceData.dateOfBirth" />
+        <custom-label :label="'Idade'" :value="proposal.petInsuranceData.age + ' anos'" :sameLine="true" v-else/>
+        <custom-label :label="'Sexo'" :value="proposal.petInsuranceData.gender" :sameLine="true" />
+        <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.specie" :sameLine="true" />
+      </section>
+      <section class="section">
+        <h2 class="is-size-2 subtitle has-text-centered">PAGAMENTO</h2>
+        <custom-label :label="'Método de Pagamento'" :value="translatePaymentMethod(proposal.paymentData.method)" :sameLine="true" v-if="proposal.paymentData.method" />
+        <custom-label :label="'Valor'" :value="formatAmount(proposal.paymentData.amount)" :sameLine="true" v-if="proposal.paymentData.amount" />
+      </section>
+    </div>
+  </div>
+
+                
+
+  <!-- <div class="container-fluid">
     <h2 class="subtitle text-center">Detalhes da Proposta</h2>
-  
+
     <v-tabs v-model="currentTab" color="primary" dark slider-color="white" v-if="proposal" fixed-tabs>
       <v-tab ripple>
         <span style="font-weight:bold;">Dados da Proposta</span>
       </v-tab>
-  
+
       <v-tab ripple>
         <span style="font-weight:bold;">Histórico</span>
       </v-tab>
@@ -14,52 +65,20 @@
       <v-tab ripple>
         <span style="font-weight:bold;">Ofertas</span>
       </v-tab>
- 
+
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-  
-            <custom-card title="Dados Gerais">
-              <custom-label :label="'Id da Proposta'" :value="proposal._id" :sameLine="true" />
-              <custom-label :label="'Situação da Proposta'" :value="stateName" :sameLine="true" />
-              <custom-label :label="'Plano Escolhido'" :value="proposal.petInsuranceData.selectedPlan.code" :sameLine="true" v-if="proposal.product==5 && proposal.petInsuranceData && proposal.petInsuranceData.selectedPlan && proposal.petInsuranceData.selectedPlan.code"
-              />
-              <custom-label :label="'Data de Criação'" :value="formatDate(proposal.createdAt)" :sameLine="true" />
-              <custom-label :label="'Data de Atualização'" :value="formatDate(proposal.updatedAt)" :sameLine="true" />
-            </custom-card>
-  
-  
+
+   
+
+
             <custom-card title="Proponente">
-              <custom-label :label="'Nome'" :value="proposal.proposer.name" :sameLine="true" />
-              <custom-label :label="'E-mail'" :value="proposal.proposer.email" :sameLine="true" />
-              <custom-label :label="'Telefone(s)'" :value="formatPhones(proposal.proposer.phones)" :sameLine="true" />
-              <custom-label :label="'Data de Nascimento'" :value="getAge(proposal.proposer.dateOfBirth)" :sameLine="true" />
-              <custom-label :label="'CPF'" :value="proposal.proposer.cpf" :sameLine="true" />
-              <div v-if="proposal.proposer.homeAddress">
-                <custom-label :label="'Endereço Residencial'" :value="formatAddress(proposal.proposer.homeAddress)" />
-              </div>
-              <div v-if="proposal.proposer.dependents && proposal.proposer.dependents.length > 0" class="mt-4">
-                <h2 class="form-subtitle">Dependentes:</h2>
-                <div v-for="(dependent, idx) in proposal.proposer.dependents" :key="idx">
-                  <custom-label :label="'Nome'" :value="dependent.name" :sameLine="true" />
-                  <custom-label :label="'Idade'" :value="getAge(dependent.dateOfBirth)" :sameLine="true" />
-                </div>
-              </div>
-            </custom-card>
-  
-            <custom-card title="PET">
-              <custom-label :label="'Nome'" :value="proposal.petInsuranceData.name" :sameLine="true" v-if="proposal.petInsuranceData.name" />
-              <custom-label :label="'Data de Nascimento'" :value="getAge(proposal.petInsuranceData.dateOfBirth)" :sameLine="true" v-if="proposal.petInsuranceData.dateOfBirth" />
-              <custom-label :label="'Idade'" :value="proposal.petInsuranceData.age + ' anos'" :sameLine="true" v-else/>
-              <custom-label :label="'Sexo'" :value="proposal.petInsuranceData.gender" :sameLine="true" />
-              <custom-label :label="'Tipo'" :value="proposal.petInsuranceData.specie" :sameLine="true" />
+              
             </custom-card>
 
-            <custom-card title="PAGAMENTO" v-if="proposal.paymentData">
-              <custom-label :label="'Método de Pagamento'" :value="translatePaymentMethod(proposal.paymentData.method)" :sameLine="true" v-if="proposal.paymentData.method" />
-              <custom-label :label="'Valor'" :value="formatAmount(proposal.paymentData.amount)" :sameLine="true" v-if="proposal.paymentData.amount" />
-            </custom-card>
-  
+
+
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -67,7 +86,7 @@
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-    
+
             <custom-card title="Inserir Histórico">
               <v-layout align-start align-center row fill-height wrap pa-3>
                 <v-flex xs12>
@@ -81,7 +100,7 @@
                 </v-flex>
               </v-layout>
             </custom-card>
-  
+
             <custom-card title="Histórico">
               <v-layout row wrap pa-3>
                 <v-flex sm12 v-for="(event,idx) in proposalEvents" :key="idx">
@@ -89,7 +108,7 @@
                 </v-flex>
               </v-layout>
             </custom-card>
-  
+
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -102,12 +121,12 @@
       </v-tab-item>
 
     </v-tabs>
-  </div>
+  </div> -->
 </template>
 
 <script>
 import apiClient from "@/utils/apiClient";
-import CustomLabel from "./components/CustomLabel";
+import CustomLabel from "../components/CustomLabel";
 import CustomCard from "./components/CustomCard";
 import EventCard from "./components/EventCard";
 import factory from "@/utils/factory";
