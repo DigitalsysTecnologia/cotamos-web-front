@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar is-transparent is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+      <a class="navbar-item" :href="homeLink">
         <img src="/img/logo_cor.png" width="112" height="28">
       </a>
 
