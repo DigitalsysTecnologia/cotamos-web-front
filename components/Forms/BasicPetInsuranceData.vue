@@ -61,7 +61,7 @@
             v-model="hasIndication"
           />
         </div>          
-        <div class="column is-half-desktop is-half-tablet">
+        <div class="column">
           <DropDown
             :items="partners"
             label="Quem te indicou?"

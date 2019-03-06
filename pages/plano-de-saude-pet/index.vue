@@ -1,13 +1,14 @@
 <template>
   <div>
-    <section class="section is-medium">
+    <section class="section is-medium has-text-centered">
+      <img src="/img/pets_looking_down.jpg" />
       <h2 class="is-size-2 subtitle has-text-centered">O que é plano de saúde pet?</h2>
-      <p>
-        O plano de saúde pet
-        <span style="font-weight:bold;">para cães e gatos</span> é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
+      <p class="has-text-justified">
+O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
       </p>
-
-      <p>Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade</p>
+      <p class="has-text-justified">
+        Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade
+      </p>
     </section>
 
     <section class="section is-medium primary-color-background has-text-light">
@@ -72,11 +73,11 @@
       <p class="is-size-3">Não, a Cotamos é uma corretora e como tal, apenas realiza o intermédio da venda de plano saúde pet.</p>
     </section>
 
-    <section class="section is-medium has-text-dark" style="padding-left:0">
+    <section class="section is-medium has-text-dark">
       <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação on-line</h2>
       <div class="columns">
-        <div class="column is-half is-hidden-touch">
-          <img src="/img/dog_on_pc.png" style="margin-top: 150px;">
+        <div class="column is-half is-hidden-touch" style="margin-left:-24px;">
+          <img src="/img/dog_on_pc.png" style="margin-top: 50px;">
         </div>
         <div class="column is-half-desktop">
           <div class="container-form">
@@ -165,7 +166,7 @@ export default {
   background-color: white;
   padding: 1.5rem;
   border-radius: 0.5rem;
-  border: 1px solid #000;
+  border: 1px solid #FFF;
   -webkit-box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
   -moz-box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
   box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);

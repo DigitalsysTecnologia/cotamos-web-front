@@ -1,34 +1,35 @@
 <template>
-  <div>
-    <h1> Em manutenção </h1>
-    <!-- <div class="row">
-      <div class="col-md-offset-2 col-md-8 col-xs-12 offset-xs-0">
-        <form @submit="doLogin">
-          <div class="form-group">
-            <input type="text" class="form-control" id="login" placeholder="Login" v-model="user.login">
-          </div>
-          
-          <div class="form-group">
-            <input type="password" class="form-control" id="password" placeholder="Senha" v-model="user.password">
-          </div>
-
-          <v-btn :block="true" color="primary" @click="doLogin" :loading="loading" type="submit">Login</v-btn>
-        </form>
-
-        <div class="alert alert-danger" role="alert" v-if="this.errorMessage">
-          <strong>Erro:</strong> {{ this.errorMessage }}
-        </div>
-
-      </div>  
-    </div> -->
-
+  <div class="section">
+    
+    <div class="columns">
+      <div class="column">
+        <Input
+            label="Login"
+            id="user.login"
+            v-model="user.login"
+        />
+      </div>
+      <div class="column">
+        <Input
+        type="password"
+            label="Senha"
+            id="user.password"
+            v-model="user.password"
+        />
+      </div>
+    </div>
+    <Button textColor="white" backgroundColor="rgb(0, 216, 134)" @click="doLogin" :isLoading="loading" :isFullWidth="true">Login</Button>
+      <div class="notification is-danger" v-if="this.errorMessage">
+        Erro: {{ this.errorMessage }}
+      </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
 import moment from "moment";
 import apiClient from "@/utils/apiClient";
+import Input from "@/components/Form/Input"
+import Button from "@/components/Form/Button"
 import localStorage from "@/utils/localStorage";
 import { mapState } from 'vuex'
 
@@ -56,10 +57,13 @@ export default {
       }      
     }
   },
-  components: {},
+  components: {
+    Input,
+    Button
+  },
   methods: {
-    async doLogin(e) {
-      e.preventDefault();
+    async doLogin() {
+      
 
       try {
         this.errorMessage = "";
@@ -81,6 +85,9 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
+.notification {
+  margin-top: 25px;
+}
 </style>

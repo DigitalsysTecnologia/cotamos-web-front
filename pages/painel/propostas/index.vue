@@ -1,5 +1,12 @@
 <template>
-  <v-container>
+  <div>
+    <section class="section is-medium has-text-centered">
+      <h2 class="is-size-2 subtitle has-text-centered">Painel de Propostas</h2>
+      <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
+    </section>
+  </div>
+
+  <!-- <v-container>
     <v-layout row wrap align-center justify-center>
       <v-flex xs12>
         <h2 class="subtitle text-center">Painel de Propostas</h2>
@@ -14,7 +21,7 @@
         <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
       </v-flex>
     </v-layout>
-  </v-container>
+  </v-container> -->
 </template>
 
 <script>
@@ -96,13 +103,13 @@
     margin-top: 0px;
     text-shadow: 0 1px 7px rgba(255, 255, 255, 0.8);
   }
-  
+
   .form-container {
     border: 2px solid rgb(5, 62, 66);
     border-radius: 20px;
     background-color: white;
   }
-  
+
   .result-table {
     margin-top: 15px;
   }
