@@ -3,14 +3,13 @@
     <div
       :class="{'proposal-card': true, 'proposal-to-integrate': rowItem.state == 2 }"
       v-for="(rowItem) in rowItems"
-      :key="rowItem._id"
-    >
+      :key="rowItem._id">
       <div class="columns is-multiline">
         <div class="column is-half">
           <CustomLabel label="Produto" :value="translateProduct(rowItem.product)" :sameLine="true"/>
           <CustomLabel
             label="Situação"
-            :value="translateProduct(rowItem.state)"
+            :value="translateState(rowItem.state)"
             :sameLine="true"
             v-if="rowItem.state"
           />
@@ -30,13 +29,29 @@
               :targetUrl="`/painel/detalhes-proposta?id=${rowItem._id}`"
               :isFullWidth="true"
             >Ver detalhes</Button>
-          </div>
+      </div>
+      <!-- <Pagination 
+          v-model="filterResult.pageIndex" 
+          :length="filterResult.pageCount" 
+          color="primary" 
+          :total-visible="5" 
+          style="margin-top:20px;" 
+          v-if="filterResult.pageCount"></v-pagination> -->
     </div>
+    <Pagination 
+            :total="filterResult.pageCount"
+            :current.sync="filterResult.pageIndex"
+            :order="'is-centered'"
+            :rounded="true"
+            :per-page="5">
+    </Pagination>
+
   </div>
 </template>
 
 <script>
 import Button from "@/components/Form/Button";
+import Pagination from "@/components/Pagination"
 import CustomLabel from "../components/CustomLabel";
 import translator from "@/utils/translator";
 import moment from "moment";
@@ -101,7 +116,8 @@ export default {
   },
   components: {
     Button,
-    CustomLabel
+    CustomLabel,
+    Pagination
   },
   props: {
     filterResult: {

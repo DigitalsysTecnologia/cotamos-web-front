@@ -11,6 +11,7 @@ export default {
   },
 
   translateState: value => {
+    console.log('translateState', value)
     switch (parseInt(value)) {
       case 0:
         return "Proposta Gerada";
