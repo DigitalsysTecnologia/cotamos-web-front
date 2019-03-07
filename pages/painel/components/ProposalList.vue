@@ -1,49 +1,45 @@
 <template>
   <div>
-    <div
-      :class="{'proposal-card': true, 'proposal-to-integrate': rowItem.state == 2 }"
-      v-for="(rowItem) in rowItems"
-      :key="rowItem._id">
-      <div class="columns is-multiline">
-        <div class="column is-half">
-          <CustomLabel label="Produto" :value="translateProduct(rowItem.product)" :sameLine="true"/>
-          <CustomLabel
-            label="Situação"
-            :value="translateState(rowItem.state)"
-            :sameLine="true"
-            v-if="rowItem.state"
-          />
-          <CustomLabel label="Id da Proposta" :value="rowItem._id" :sameLine="true"/>
-          <CustomLabel label="Atualização" :value="rowItem.updatedAt" :sameLine="true"/>
+    <div>
+      <div :class="{'proposal-card': true, 'proposal-to-integrate': rowItem.state == 2 }"
+          v-for="(rowItem) in rowItems"
+          :key="rowItem._id">
+        <div class="columns is-multiline">
+          <div class="column is-half">
+            <CustomLabel label="Produto" :value="translateProduct(rowItem.product)" :sameLine="true"/>
+            <CustomLabel
+              label="Situação"
+              :value="translateState(rowItem.state)"
+              :sameLine="true"
+              v-if="rowItem.state"
+            />
+            <!-- <CustomLabel label="Id da Proposta" :value="rowItem._id" :sameLine="true"/> -->
+            <CustomLabel label="Data / Hora" :value="rowItem.updatedAt" :sameLine="true"/>
+          </div>
+          <div class="column is-half">
+            <CustomLabel label="Cliente" :value="rowItem.name" :sameLine="true"/>
+            <CustomLabel label="E-Mail" :value="rowItem.email" :sameLine="true"/>
+            <CustomLabel label="CPF" :value="rowItem.cpf" :sameLine="true"/>
+          </div>
         </div>
-        <div class="column is-half">
-          <CustomLabel label="Cliente" :value="rowItem.name" :sameLine="true"/>
-          <CustomLabel label="E-Mail" :value="rowItem.email" :sameLine="true"/>
-          <CustomLabel label="CPF" :value="rowItem.cpf" :sameLine="true"/>
+        <div>
+          <Button
+            textColor="white"
+            backgroundColor="rgb(0, 216, 134)"
+            :targetUrl="`/painel/detalhes-proposta?id=${rowItem._id}`"
+            :isFullWidth="true">
+            Ver detalhes
+          </Button>
         </div>
       </div>
-      <div>
-            <Button
-              textColor="white"
-              backgroundColor="rgb(0, 216, 134)"
-              :targetUrl="`/painel/detalhes-proposta?id=${rowItem._id}`"
-              :isFullWidth="true"
-            >Ver detalhes</Button>
-      </div>
-      <!-- <Pagination 
-          v-model="filterResult.pageIndex" 
-          :length="filterResult.pageCount" 
-          color="primary" 
-          :total-visible="5" 
-          style="margin-top:20px;" 
-          v-if="filterResult.pageCount"></v-pagination> -->
     </div>
+    <Loading v-if="loading" />
     <Pagination 
-            :total="filterResult.pageCount"
-            :current.sync="filterResult.pageIndex"
-            :order="'is-centered'"
-            :rounded="true"
-            :per-page="5">
+              :total="filterResult.pageCount * filterResult.pageSize"
+              :current.sync="filterResult.pageIndex"
+              :order="'is-centered'"
+              :rounded="true"
+              :per-page="filterResult.pageSize">
     </Pagination>
 
   </div>
@@ -52,6 +48,7 @@
 <script>
 import Button from "@/components/Form/Button";
 import Pagination from "@/components/Pagination"
+import Loading from "@/components/Loading"
 import CustomLabel from "../components/CustomLabel";
 import translator from "@/utils/translator";
 import moment from "moment";
@@ -117,7 +114,8 @@ export default {
   components: {
     Button,
     CustomLabel,
-    Pagination
+    Pagination,
+    Loading
   },
   props: {
     filterResult: {
@@ -149,5 +147,9 @@ export default {
   padding: 14px;
   border:2px solid rgb(0, 216, 134);
   border-radius: 10px;
+}
+.column {
+  padding-top: 0;
+    padding-bottom: 0;
 }
 </style>

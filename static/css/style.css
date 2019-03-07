@@ -47,3 +47,8 @@ p {
   background-color: #00d886;
   color: #fff;
 }
+
+.pagination-link.is-current {
+    background-color: #00d889;
+    border-color: #00bf78; 
+}

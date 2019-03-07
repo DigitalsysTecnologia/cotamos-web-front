@@ -3,23 +3,6 @@
     <h2 class="is-size-2 subtitle has-text-centered">Painel de Propostas</h2>
     <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
   </section>
-
-  <!-- <v-container>
-    <v-layout row wrap align-center justify-center>
-      <v-flex xs12>
-        <h2 class="subtitle text-center">Painel de Propostas</h2>
-      </v-flex>
-      <v-flex xs12>
-        <v-btn color="primary" :block="true" @click="toggleShowFilter">
-          {{ showFilter ? "Ocultar Filtro de Propostas" : "Exibir Filtro de Propostas" }}
-        </v-btn>
-        <ProposalFilter v-on:searchProposals="searchProposals" v-if="showFilter"/>
-      </v-flex>
-      <v-flex xs12 mt-4>
-        <ProposalList :filterResult="proposalFilterResult" v-if="proposalFilterResult" v-on:onChangePagination="onChangePagination" :loading="isLoading" />
-      </v-flex>
-    </v-layout>
-  </v-container> -->
 </template>
 
 <script>
@@ -41,7 +24,7 @@
             email: ""
           },
           pageIndex: 1,
-          pageSize: 5
+          pageSize: 3
         },
         proposalFilterResult: null,
         showFilter: false,
