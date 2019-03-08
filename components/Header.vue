@@ -20,7 +20,6 @@
 
     <!-- <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-
         <a class="navbar-item">Home</a>
 
         <a class="navbar-item">Documentation</a>
@@ -36,17 +35,15 @@
             <a class="navbar-item" href="#">Report an issue</a>
           </div>
         </div>
-
-      </div> -->
+      </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-
-          </div>
+          <div class="buttons"></div>
         </div>
       </div>
-    </div>
+    </div> -->
+
   </nav>
 </template>
 
@@ -73,5 +70,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
