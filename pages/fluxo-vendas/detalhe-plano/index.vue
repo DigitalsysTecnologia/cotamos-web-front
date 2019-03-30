@@ -100,7 +100,6 @@
                   <span>{{hiringStep.description}}</span>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -115,12 +114,12 @@
 </template>
 
 <script>
-import Loading from "@/components/Loading";
-import CallToAction from "@/components/CallToAction";
-import AccreditedNetwork from "@/components/AccreditedNetwork";
+import Loading from "@/components/molecules/Loading";
+import CallToAction from "@/components/atoms/CallToAction";
+import AccreditedNetwork from "@/components/molecules/AccreditedNetwork";
 import apiClientProvider from "@/utils/apiClient";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
-import Offers from "@/components/Offers";
+import Offers from "@/components/organisms/Offers";
 import utils from "@/utils/index";
 import { Carousel, Slide } from "vue-carousel";
 let router = null;
@@ -163,7 +162,10 @@ export default {
       mapCreated: false,
       availablePlans: [],
       hiringSteps: [
-        { description: "Faça a contratação através da nossa plataforma (totalmente on-line)" },
+        {
+          description:
+            "Faça a contratação através da nossa plataforma (totalmente on-line)"
+        },
         {
           description:
             "Efetue o pagamento através de cartão de crédito, boleto ou depósito em conta"
@@ -264,8 +266,7 @@ export default {
   margin: 10px;
 }
 
-.step-container span
-{
+.step-container span {
   color: #00899c;
   font-weight: bold;
 }

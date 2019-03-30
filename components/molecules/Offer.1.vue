@@ -110,7 +110,7 @@
 
 <script>
   import petInsuranceProvider from "@/utils/petInsuranceProvider";
-  import CallToAction from "@/components/CallToAction";
+  import CallToAction from "@/components/atoms/CallToAction";
   export default {
     name: "InsuranceOfferItem",
     data() {

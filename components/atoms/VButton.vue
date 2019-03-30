@@ -15,7 +15,7 @@
 import StringMask from "string-mask";
 
 export default {
-  name: "Button",
+  name: "VButton",
   methods: {
     onClick: function(e) {
       this.$emit("click", null);

@@ -1,14 +1,14 @@
 <template>
   <div>
     <section class="section is-medium has-text-centered">
-      <img src="/img/pets_looking_down.jpg" />
+      <img src="/img/pets_looking_down.jpg">
       <h2 class="is-size-2 subtitle has-text-centered">O que é plano de saúde pet?</h2>
-      <p class="has-text-justified">
-O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.
-      </p>
-      <p class="has-text-justified">
-        Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade
-      </p>
+      <p
+        class="has-text-justified"
+      >O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.</p>
+      <p
+        class="has-text-justified"
+      >Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade</p>
     </section>
 
     <section class="section is-medium primary-color-background has-text-light">
@@ -70,7 +70,9 @@ O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas
 
     <section class="section is-medium primary-color-background has-text-light">
       <h2 class="is-size-2 subtitle has-text-centered">O plano de saúde é um produto da Cotamos?</h2>
-      <p class="is-size-3">Não, a Cotamos é uma corretora e como tal, apenas realiza o intermédio da venda de plano saúde pet.</p>
+      <p
+        class="is-size-3"
+      >Não, a Cotamos é uma corretora e como tal, apenas realiza o intermédio da venda de plano saúde pet.</p>
     </section>
 
     <section class="section is-medium has-text-dark">
@@ -90,15 +92,14 @@ O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas
 </template>
 
 <script>
-import Loading from "@/components/Loading";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import FormInput from "@/components/Form/Input";
-import BasicForm from "@/components/Forms/BasicPetInsuranceData";
+import Loading from "@/components/molecules/Loading";
+import Footer from "@/components/organisms/Footer";
+import Header from "@/components/organisms/Header";
+import BasicForm from "@/components/organisms/BasicPetInsuranceData";
 import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
-import CallToAction from "@/components/CallToAction";
+import CallToAction from "@/components/atoms/CallToAction";
 import utils from "@/utils/index";
 
 let router = null;
@@ -135,24 +136,22 @@ export default {
     };
   },
   data() {
-    return {zipCode: ""};
+    return { zipCode: "" };
   },
   async beforeMount() {
     router = this.$router;
     queryParams = this.$route.query;
     utils.saveLandingQueryParams(this.$route.query);
   },
-    validators: {
-    "zipCode": value =>
-      validator.validateZipCode(value)
+  validators: {
+    zipCode: value => validator.validateZipCode(value)
   },
   components: {
     Header,
     Footer,
     BasicForm,
     Loading,
-    CallToAction,
-    FormInput
+    CallToAction
   }
 };
 </script>
@@ -166,10 +165,9 @@ export default {
   background-color: white;
   padding: 1.5rem;
   border-radius: 0.5rem;
-  border: 1px solid #FFF;
-  -webkit-box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
-  -moz-box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
-  box-shadow: -1px -1px 30px 5px rgba(0,0,0,0.32);
+  border: 1px solid #fff;
+  -webkit-box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
+  -moz-box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
+  box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
 }
-
 </style>getLandingQueryParams

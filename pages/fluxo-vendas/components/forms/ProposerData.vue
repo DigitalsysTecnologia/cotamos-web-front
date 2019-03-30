@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Input
+    <VInput
       label="Nome"
       id="proposer.name"
       :error="!!(validation.firstError('proposer.name'))"
@@ -8,7 +8,7 @@
       v-model.trim="proposer.name"
       v-if="showField['proposer.name']"
     />
-    <DateInput
+    <VDateInput
       label="Data de nascimento"
       id="proposer.dateOfBirth"
       type="text"
@@ -16,7 +16,7 @@
       v-model="proposer.dateOfBirth"
       v-if="showField['proposer.dateOfBirth']"
     />
-    <Input
+    <VInput
       label="E-mail"
       id="proposer.email"
       :error="!!(validation.firstError('proposer.email'))"
@@ -24,37 +24,27 @@
       v-model.trim="proposer.email"
       v-if="showField['proposer.email']"
     />
-    <PhoneInput
+    <VPhoneInput
       label="Celular ou Telefone"
       id="proposer.phones.0"
       maxlength="15"
       :validationMessage="validation.firstError('proposer.phones.0')"
       v-model.trim="proposer.phones[0]"
     />
-    <Input
+    <VInput
       label="CPF"
       id="proposer.cpf"
       :validationMessage="validation.firstError('proposer.cpf')"
       mask="###.###.###-##"
       v-model.trim="proposer.cpf"
     />
-
-    <div class="columns">
-      <div class="column is-narrow">
-        <Button textColor="white" backgroundColor="#00899c" @click="onSubmit">{{ submitButtonText }}</Button>
-      </div>
-      <div class="column  is-narrow">
-        <Button @click="onCancel" v-if="showCancelButton">{{ cancelButtonText }}</Button>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import DateInput from "@/components/Form/DateInput";
-import PhoneInput from "@/components/Form/PhoneInput";
-import Button from "@/components/Form/Button";
-import Input from "@/components/Form/Input";
+import VDateInput from "@/components/atoms/VDateInput";
+import VPhoneInput from "@/components/atoms/VPhoneInput";
+import VInput from "@/components/atoms/VInput";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import apiClientProvider from "@/utils/apiClient";
@@ -126,10 +116,9 @@ export default {
     "proposer.cpf": value => validator.validateCpf(value)
   },
   components: {
-    DateInput,
-    PhoneInput,
-    Button,
-    Input
+    VDateInput,
+    VPhoneInput,
+    VInput
   }
 };
 </script>

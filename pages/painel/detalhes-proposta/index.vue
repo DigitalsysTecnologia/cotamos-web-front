@@ -13,7 +13,7 @@
         <custom-label :label="'Data de Criação'" :value="formatDate(proposal.createdAt)" :sameLine="true" />
         <custom-label :label="'Data de Atualização'" :value="formatDate(proposal.updatedAt)" :sameLine="true" />
       </section>
-      
+
       <section class="section">
         <h2 class="is-size-2 subtitle has-text-centered">Proponente</h2>
         <custom-label :label="'Nome'" :value="proposal.proposer.name" :sameLine="true" />
@@ -48,7 +48,7 @@
     </div>
   </div>
 
-                
+
 
   <!-- <div class="container-fluid">
     <h2 class="subtitle text-center">Detalhes da Proposta</h2>
@@ -70,11 +70,11 @@
         <v-card flat>
           <v-card-text>
 
-   
+
 
 
             <custom-card title="Proponente">
-              
+
             </custom-card>
 
 
@@ -133,8 +133,8 @@ import factory from "@/utils/factory";
 import moment from "moment";
 import translator from "@/utils/translator";
 import sessionHelper from "@/utils/sessionHelper";
-import Offers from "@/components/Offers";
-import Loading from "@/components/Loading";
+import Offers from "@/components/organisms/Offers";
+import Loading from "@/components/molecules/Loading";
 
 export default {
   layout: "panel",

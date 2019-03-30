@@ -1,5 +1,5 @@
 <template>
-  <Input
+  <VInput
     :label="label"
     :icon="icon"
     :id="id"
@@ -15,12 +15,12 @@
 
 <script>
 import StringMask from "string-mask";
-import Input from "@/components/Form/Input";
+import VInput from "@/components/atoms/VInput";
 import moment from "moment-timezone";
 import validator from "@/utils/validator";
 
 export default {
-  name: "DateInput",
+  name: "VDateInput",
   props: {
     label: {
       type: String,
@@ -122,7 +122,7 @@ export default {
     }
   },
   components: {
-    Input
+    VInput
   },
   methods: {
     async updateValue(truncate) {

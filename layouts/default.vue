@@ -1,15 +1,15 @@
 <template>
   <v-app>
-    <Header />
+    <Header/>
     <nuxt/>
-    <Footer :hideLogo="true" />
+    <Footer :hideLogo="true"/>
   </v-app>
 </template>
 
 <script>
 import bootstrapLayout from "./bootstrapLayout";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/organisms/Header";
+import Footer from "@/components/organisms/Footer";
 
 export default {
   name: "default",
@@ -24,5 +24,4 @@ export default {
 </script>
 
 <style>
-
 </style>

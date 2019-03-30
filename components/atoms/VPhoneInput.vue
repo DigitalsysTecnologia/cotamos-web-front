@@ -1,23 +1,25 @@
 <template>
-  <Input :label="label"
-                :icon="icon"
-                :id="id"
-                :mask="getFullPhoneMask(phoneValue)"
-                :maxLength="maxLength || '15'"
-                type="text"
-                @input="updateValue()"
-                ref="input"
-                :validationMessage="validation.firstError('phoneValue') || validationMessage"
-                v-model="phoneValue" />
+  <VInput
+    :label="label"
+    :icon="icon"
+    :id="id"
+    :mask="getFullPhoneMask(phoneValue)"
+    :maxLength="maxLength || '15'"
+    type="text"
+    @input="updateValue()"
+    ref="input"
+    :validationMessage="validation.firstError('phoneValue') || validationMessage"
+    v-model="phoneValue"
+  />
 </template>
 
 <script>
 import StringMask from "string-mask";
-import Input from "@/components/Form/Input";
+import VInput from "@/components/atoms/VInput";
 import validator from "@/utils/validator";
 
 export default {
-  name: "PhoneInput",
+  name: "VPhoneInput",
   props: {
     label: {
       type: String,
@@ -79,12 +81,12 @@ export default {
     };
   },
   validators: {
-    'phoneValue': value => {
+    phoneValue: value => {
       return validator.validateFullPhoneNumber(value);
     }
   },
   components: {
-    Input
+    VInput
   },
   methods: {
     async updateValue() {

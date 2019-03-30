@@ -20,8 +20,8 @@
 
 <script>
 export default {
-  name: "Radio",
-  
+  name: "VRadio",
+
   props: {
     items: {
       type: Array,
@@ -105,10 +105,10 @@ export default {
 .control input {
   margin-right: 3px;
 }
-.with-error label{
+.with-error label {
   color: red;
 }
-.with-error .label{
+.with-error .label {
   color: red;
 }
 </style>

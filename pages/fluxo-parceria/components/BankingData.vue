@@ -43,7 +43,7 @@
 
 <script>
 import validator from "@/utils/validator";
-import CallToAction from "@/components/CallToAction";
+import CallToAction from "@/components/atoms/CallToAction";
 import factory from "@/utils/factory";
 
 export default {

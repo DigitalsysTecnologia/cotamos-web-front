@@ -7,10 +7,12 @@
 
       <a
         role="button"
-        class="navbar-burger burger"
+        :class="{'navbar-burger': true, 'burger': true, 'is-active': isActive}"
         aria-label="menu"
         aria-expanded="false"
         data-target="navbarBasicExample"
+        v-on:click="toggleMenu"
+        v-if="links"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -18,23 +20,14 @@
       </a>
     </div>
 
-    <!-- <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarBasicExample" :class="{'navbar-menu': true, 'is-active': isActive}">
       <div class="navbar-start">
-        <a class="navbar-item">Home</a>
-
-        <a class="navbar-item">Documentation</a>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">More</a>
-
-          <div class="navbar-dropdown">
-            <a class="navbar-item">About</a>
-            <a class="navbar-item">Jobs</a>
-            <a class="navbar-item">Contact</a>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="#">Report an issue</a>
-          </div>
-        </div>
+        <a
+          v-for="(link,idx) in links"
+          class="navbar-item navbar-item-text"
+          :href="link.url"
+          :key="idx"
+        >{{ link.text }}</a>
       </div>
 
       <div class="navbar-end">
@@ -42,8 +35,7 @@
           <div class="buttons"></div>
         </div>
       </div>
-    </div> -->
-
+    </div>
   </nav>
 </template>
 
@@ -51,7 +43,9 @@
 export default {
   name: "Header",
   data() {
-    return {};
+    return {
+      isActive: false
+    };
   },
   props: {
     links: {
@@ -64,10 +58,22 @@ export default {
       required: false,
       default: "/"
     }
+  },
+  methods: {
+    toggleMenu() {
+      console.log("toggleMenu");
+      this.isActive = !this.isActive;
+    },
+    getClassIcon(linkIcon) {
+      return [linkIcon];
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.navbar-item-text {
+  font-weight: bold;
+}
 </style>

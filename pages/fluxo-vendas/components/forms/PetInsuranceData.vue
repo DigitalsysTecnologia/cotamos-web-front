@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Input
+    <VInput
       label="Nome do PET"
       id="petInsuranceData.name"
       :validationMessage="validation.firstError('petInsuranceData.name')"
       v-model="petInsuranceData.name"
     />
-    <DateInput
+    <VDateInput
       label="Data de nascimento do Pet"
       id="petInsuranceData.dateOfBirth"
       type="text"
@@ -16,42 +16,34 @@
 
     <div class="columns">
       <div class="column is-half">
-        <Radio 
-          groupName="petInsuranceData.gender" 
-          :items="[{text:'Macho', value: 'Macho'}, {text:'Fêmea', value: 'Fêmea'}]" 
-          label="Sexo do Pet" 
-          v-model="petInsuranceData.gender" 
+        <VRadio
+          groupName="petInsuranceData.gender"
+          :items="[{text:'Macho', value: 'Macho'}, {text:'Fêmea', value: 'Fêmea'}]"
+          label="Sexo do Pet"
+          v-model="petInsuranceData.gender"
           :validationMessage="validation.firstError('petInsuranceData.gender')"
-          :sameLine="true" />
+          :sameLine="true"
+        />
       </div>
       <div class="column is-half">
-        <Radio 
-          groupName="petInsuranceData.specie" 
-          :items="[{text:'Canino', value: 'Canino'}, {text:'Felino', value: 'Felino'}]" 
-          label="Espécie do Pet" 
+        <VRadio
+          groupName="petInsuranceData.specie"
+          :items="[{text:'Canino', value: 'Canino'}, {text:'Felino', value: 'Felino'}]"
+          label="Espécie do Pet"
           :validationMessage="validation.firstError('petInsuranceData.specie')"
-          v-model="petInsuranceData.specie" 
-          :sameLine="true"/>      
-      </div>
-    </div>
-
-    <div class="columns">
-      <div class="column is-narrow">
-        <Button textColor="white" backgroundColor="#00899c" @click="onSubmit">{{ submitButtonText }}</Button>
-      </div>
-      <div class="column is-narrow">
-        <Button @click="onCancel" v-if="showCancelButton">{{ cancelButtonText }}</Button>
+          v-model="petInsuranceData.specie"
+          :sameLine="true"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import DateInput from "@/components/Form/DateInput";
-import Radio from "@/components/Form/Radio";
-import PhoneInput from "@/components/Form/PhoneInput.vue";
-import Input from "@/components/Form/Input";
-import Button from "@/components/Form/Button";
+import VDateInput from "@/components/atoms/VDateInput";
+import VRadio from "@/components/atoms/VRadio";
+import VPhoneInput from "@/components/atoms/VPhoneInput.vue";
+import VInput from "@/components/atoms/VInput";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import apiClientProvider from "@/utils/apiClient";
@@ -98,11 +90,10 @@ export default {
     "petInsuranceData.specie": value => validator.validatePetSpecie(value)
   },
   components: {
-    DateInput,
-    PhoneInput,
-    Button,
-    Input,
-    Radio
+    VDateInput,
+    VPhoneInput,
+    VInput,
+    VRadio
   }
 };
 </script>

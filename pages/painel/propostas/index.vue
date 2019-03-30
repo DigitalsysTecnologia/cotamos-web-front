@@ -10,7 +10,7 @@
   import ProposalList from "../components/ProposalList";
   import ProposalFilter from "../components/ProposalFilter";
   import sessionHelper from "@/utils/sessionHelper";
-  import Loading from "@/components/Loading";
+  import Loading from "@/components/molecules/Loading";
   export default {
     layout: "panel",
     name: "Proposals",

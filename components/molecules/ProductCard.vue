@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import CallToAction from "@/components/CallToAction";
+import CallToAction from "@/components/atoms/CallToAction";
 export default {
   name: "ProductCard",
   props: {

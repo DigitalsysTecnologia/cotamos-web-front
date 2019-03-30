@@ -12,8 +12,8 @@
 
 <script>
 import bootstrapLayout from "./bootstrapLayout";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/organisms/Header";
+import Footer from "@/components/organisms/Footer";
 
 export default {
   name: "panel",
@@ -22,27 +22,28 @@ export default {
       links: [
         {
           url: "/painel/usuarios",
-          text: "Usuários"
+          text: "Usuários",
+          icon: "fas fa-user"
         },
         {
           url: "/painel/propostas",
-          text: "Propostas"
+          text: "Propostas",
+          icon: "fas fa-file-alt"
         },
         {
           url: "/painel/simulador/pet",
-          text: "Simulador"
-        },
-        {
-          url: "/painel/conta-corrente",
-          text: "Conta Corrente"
+          text: "Simulador",
+          icon: "fas fa-laptop-code"
         },
         {
           url: "/painel/links-de-venda",
-          text: "Links de Venda"
+          text: "Links de Venda",
+          icon: "fas fa-link"
         },
         {
           url: "/painel/sair",
-          text: "Sair"
+          text: "Sair",
+          icon: "fas fa-sign-out-alt"
         }
       ]
     };

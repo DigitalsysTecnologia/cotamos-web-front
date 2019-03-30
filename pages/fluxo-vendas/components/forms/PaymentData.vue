@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section" style="padding: 0px;">
     <div class="columns has-text-centered">
       <div class="column is-half">
         <img :src="selectedPlan.logo">
@@ -7,7 +7,6 @@
         <span class="plan-value" v-if="proposal.paymentData.method">{{ formatCurrency(planPrice)}}</span>
       </div>
       <div class="column is-half">
-
         <div class="field">
           <label class="label">Forma de Pagamento</label>
           <div class="control">
@@ -30,15 +29,6 @@
       </div>
     </div>
     <BankingData :proposal="proposal" v-if="proposal.paymentData.method == '3'"/>
-
-    <div class="columns">
-      <div class="column">
-        <Button textColor="black" backgroundColor="rgb(0, 216, 137)" :isFullWidth="true" @click="onSubmit">{{ submitButtonText }}</Button>
-      </div>
-      <div class="column">
-        <Button @click="onCancel" :isFullWidth="true" v-if="showCancelButton">{{ cancelButtonText }}</Button>
-      </div>
-    </div>
   </section>
 </template>
 
@@ -46,7 +36,6 @@
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
-import Button from "@/components/Form/Button";
 import apiClientProvider from "@/utils/apiClient";
 import BankingData from "./BankingData";
 

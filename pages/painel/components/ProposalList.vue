@@ -1,12 +1,18 @@
 <template>
   <div>
     <div>
-      <div :class="{'proposal-card': true, 'proposal-to-integrate': rowItem.state == 2 }"
-          v-for="(rowItem) in rowItems"
-          :key="rowItem._id">
+      <div
+        :class="{'proposal-card': true, 'proposal-to-integrate': rowItem.state == 2 }"
+        v-for="(rowItem) in rowItems"
+        :key="rowItem._id"
+      >
         <div class="columns is-multiline">
           <div class="column is-half">
-            <CustomLabel label="Produto" :value="translateProduct(rowItem.product)" :sameLine="true"/>
+            <CustomLabel
+              label="Produto"
+              :value="translateProduct(rowItem.product)"
+              :sameLine="true"
+            />
             <CustomLabel
               label="Situação"
               :value="translateState(rowItem.state)"
@@ -23,32 +29,30 @@
           </div>
         </div>
         <div>
-          <Button
+          <VButton
             textColor="white"
             backgroundColor="rgb(0, 216, 134)"
             :targetUrl="`/painel/detalhes-proposta?id=${rowItem._id}`"
-            :isFullWidth="true">
-            Ver detalhes
-          </Button>
+            :isFullWidth="true"
+          >Ver detalhes</VButton>
         </div>
       </div>
     </div>
-    <Loading v-if="loading" />
-    <Pagination 
-              :total="filterResult.pageCount * filterResult.pageSize"
-              :current.sync="filterResult.pageIndex"
-              :order="'is-centered'"
-              :rounded="true"
-              :per-page="filterResult.pageSize">
-    </Pagination>
-
+    <Loading v-if="loading"/>
+    <Pagination
+      :total="filterResult.pageCount * filterResult.pageSize"
+      :current.sync="filterResult.pageIndex"
+      :order="'is-centered'"
+      :rounded="true"
+      :per-page="filterResult.pageSize"
+    ></Pagination>
   </div>
 </template>
 
 <script>
-import Button from "@/components/Form/Button";
-import Pagination from "@/components/Pagination"
-import Loading from "@/components/Loading"
+import VButton from "@/components/atoms/VButton";
+import Pagination from "@/components/molecules/Pagination";
+import Loading from "@/components/molecules/Loading";
 import CustomLabel from "../components/CustomLabel";
 import translator from "@/utils/translator";
 import moment from "moment";
@@ -112,7 +116,7 @@ export default {
     }
   },
   components: {
-    Button,
+    VButton,
     CustomLabel,
     Pagination,
     Loading
@@ -145,11 +149,11 @@ export default {
 .proposal-card {
   margin: 10px;
   padding: 14px;
-  border:2px solid rgb(0, 216, 134);
+  border: 2px solid rgb(0, 216, 134);
   border-radius: 10px;
 }
 .column {
   padding-top: 0;
-    padding-bottom: 0;
+  padding-bottom: 0;
 }
 </style>

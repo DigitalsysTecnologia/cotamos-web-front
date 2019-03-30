@@ -7,23 +7,23 @@
     <div v-else>
       <div class="columns is-multiline">
         <div class="column is-half-desktop is-half-tablet">
-          <Input
+          <VInput
             :label="isSimulation ? 'Nome do Cliente' :'Seu Nome'"
             id="proposal.proposer.name"
             :validationMessage="validation.firstError('proposal.proposer.name')"
             v-model="proposal.proposer.name"
           />
-        </div>          
+        </div>
         <div class="column is-half-desktop is-half-tablet">
-          <Input
+          <VInput
             label="Nome do PET"
             id="proposal.petInsuranceData.name"
             :validationMessage="validation.firstError('proposal.petInsuranceData.name')"
             v-model="proposal.petInsuranceData.name"
           />
-        </div>          
+        </div>
         <div class="column is-half-desktop is-half-tablet">
-          <DropDown
+          <VDropDown
             :items="petAges"
             label="Idade do pet"
             item-text="text"
@@ -31,9 +31,9 @@
             :validationMessage="validation.firstError('proposal.petInsuranceData.age')"
             v-model="proposal.petInsuranceData.age"
           />
-        </div>          
-        <div class="column is-half-desktop is-half-tablet">          
-          <Input
+        </div>
+        <div class="column is-half-desktop is-half-tablet">
+          <VInput
             :label="isSimulation ? 'CEP do cliente' : 'CEP da sua residência'"
             id="proposal.proposer.homeAddress.zipCode"
             :error="!!(validation.firstError('proposal.proposer.homeAddress.zipCode'))"
@@ -41,18 +41,18 @@
             mask="#####-###"
             v-model.trim="proposal.proposer.homeAddress.zipCode"
           />
-        </div>          
+        </div>
         <div class="column is-half-desktop is-half-tablet">
-          <Input
+          <VInput
             :label="isSimulation ? 'E-mail do cliente' :'E-mail'"
             id="proposal.proposer.email"
             :error="!!(validation.firstError('proposal.proposer.email'))"
             :validationMessage="validation.firstError('proposal.proposer.email')"
             v-model.trim="proposal.proposer.email"
           />
-        </div>          
+        </div>
         <div class="column is-half-desktop is-half-tablet">
-          <DropDown
+          <VDropDown
             :items="hasIndicationItems"
             :validationMessage="validation.firstError('hasIndication')"
             label="Você foi indicado por alguém?"
@@ -60,9 +60,9 @@
             item-value="value"
             v-model="hasIndication"
           />
-        </div>          
+        </div>
         <div class="column">
-          <DropDown
+          <VDropDown
             :items="partners"
             label="Quem te indicou?"
             item-text="name"
@@ -79,13 +79,12 @@
 </template>
 
 <script>
-import Loading from "@/components/Loading";
-import DateInput from "@/components/Form/DateInput";
-import PhoneInput from "@/components/Form/PhoneInput.vue";
-import Input from "@/components/Form/Input";
-import DropDown from "@/components/Form/DropDown";
+import Loading from "@/components/molecules/Loading";
+import VPhoneInput from "@/components/atoms/VPhoneInput.vue";
+import VInput from "@/components/atoms/VInput";
+import VDropDown from "@/components/atoms/VDropDown";
 import validator from "@/utils/validator";
-import CallToAction from "@/components/CallToAction";
+import CallToAction from "@/components/atoms/CallToAction";
 import apiClientProvider from "@/utils/apiClient";
 
 export default {
@@ -179,8 +178,8 @@ export default {
         this.proposal.petInsuranceData.age
       );
 
-      if(this.proposal.partnerId) {
-        this.proposal.partnerId  = this.proposal.partnerId.toString()
+      if (this.proposal.partnerId) {
+        this.proposal.partnerId = this.proposal.partnerId.toString();
       }
       await apiClientProvider.updateProposal(this.proposal);
       const product = await apiClientProvider.checkAvailabilityForProduct(
@@ -207,15 +206,14 @@ export default {
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
-    "hasIndicationItems": value => validator.validateIndications(value)
+    hasIndicationItems: value => validator.validateIndications(value)
   },
   components: {
-    PhoneInput,
-    DateInput,
+    VPhoneInput,
     CallToAction,
     Loading,
-    Input,
-    DropDown
+    VInput,
+    VDropDown
   }
 };
 </script>

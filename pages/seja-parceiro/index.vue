@@ -5,7 +5,8 @@
         <h1 class="subtitle text-center">Seja um parceiro Cotamos</h1>
         <p>Com a Cotamos, você pode ter uma renda extra com a venda conjugada de plano de saúde PET.</p>
 
-        <p>Através da nossa plataforma, você pode vender PLANO DE SAÚDE PET para seus amigos, vizinhos ou mesmo os clientes de seu negócio.
+        <p>
+          Através da nossa plataforma, você pode vender PLANO DE SAÚDE PET para seus amigos, vizinhos ou mesmo os clientes de seu negócio.
           <br>Oferecemos todo o suporte para que você possa realizar a venda com tranquilidade, segurança, seriedade e um produto de alta qualidade.
         </p>
       </v-flex>
@@ -23,7 +24,8 @@
         <section class="section">
           <h3 class="headline mb-0 mt-0 section-title">Para Pessoa Jurídica</h3>
           <div class="section-body">
-            <p>Basta cadastrar sua empresa na plataforma cotamos.com que terá todas as transações efetuadas com o total acompanhamento e controle de todas as etapas evolutiva da venda.
+            <p>
+              Basta cadastrar sua empresa na plataforma cotamos.com que terá todas as transações efetuadas com o total acompanhamento e controle de todas as etapas evolutiva da venda.
               <br>Desde o cadastramento da proposta até pagamento das comissões na conta corrente da empresa.
             </p>
           </div>
@@ -33,12 +35,15 @@
       <v-flex xs12 class="section" style="border-radius:15px;">
         <h1 class="subtitle text-center">Como funciona?</h1>
 
-        <v-carousel :hide-controls="true" :height="350"  style="border-radius:15px;">
-          <v-carousel-item v-for="(item, idx) in carouselItems" :key="idx" style="background-color: #00899c;">
+        <v-carousel :hide-controls="true" :height="350" style="border-radius:15px;">
+          <v-carousel-item
+            v-for="(item, idx) in carouselItems"
+            :key="idx"
+            style="background-color: #00899c;"
+          >
             <InfoCard :name="item.title" :imgUrl="item.imgUrl" :description="item.description"/>
-            </v-carousel-item>
+          </v-carousel-item>
         </v-carousel>
-       
       </v-flex>
 
       <v-flex xs12 class="section">
@@ -66,12 +71,12 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import NavBar from "@/components/NavBar";
-import Faq from "@/components/Faq";
-import InfoCard from "@/components/InfoCard";
-import CallToAction from "@/components/CallToAction";
+import Header from "@/components/organisms/Header";
+import Footer from "@/components/organisms/Footer";
+import NavBar from "@/components/organisms/NavBar";
+import Faq from "@/components/molecules/Faq";
+import InfoCard from "@/components/molecules/InfoCard";
+import CallToAction from "@/components/atoms/CallToAction";
 import apiClientProvider from "@/utils/apiClient";
 
 export default {
@@ -190,19 +195,20 @@ export default {
       ],
       carouselItems: [
         {
-          title:"Fale com seus clientes sobre nossos produtos",
+          title: "Fale com seus clientes sobre nossos produtos",
           description: "Será bom para ele e bom para você",
           imgUrl: "/img/icons/business.png"
         },
         {
-          title:"Simule o plano para seu cliente",
+          title: "Simule o plano para seu cliente",
           description: "Através de nossa plataforma automatizada",
           imgUrl: "/img/icons/simulation.png"
         },
-        
+
         {
-          title:"Seja comissionado",
-          description: "Você recebe sua comissão em até 45 dias após a confirmação de pagamento do seu cliente",
+          title: "Seja comissionado",
+          description:
+            "Você recebe sua comissão em até 45 dias após a confirmação de pagamento do seu cliente",
           imgUrl: "/img/icons/payment.png"
         }
       ]

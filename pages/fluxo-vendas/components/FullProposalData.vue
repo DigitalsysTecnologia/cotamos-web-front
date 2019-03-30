@@ -1,11 +1,12 @@
 <template>
   <div>
-    <section class="section has-text-dark">
-      <h2
-        class="is-size-2 subtitle has-text-centered"
-      >Vamos obter os dados para finalizar sua proposta</h2>
+    <section class="section has-text-dark" style="
+    padding-top: 0px;
+    padding-bottom: 0px;
+">
+      <h2 class="subtitle has-text-centered">Contratar Plano</h2>
 
-      <div v-if="currentStep == 1">
+      <div>
         <PaymentData
           :proposal="proposal"
           v-on:onSubmit="updatePaymentData"
@@ -13,8 +14,6 @@
           cancelButtonText="Voltar"
           v-on:onCancel="goBack"
         />
-      </div>
-      <div v-if="currentStep == 2">
         <ProposerData
           :proposer="proposal.proposer"
           v-on:onSubmit="updateProposer"
@@ -22,8 +21,6 @@
           cancelButtonText="Voltar"
           :showCancelButton="true"
         />
-      </div>
-      <div v-if="currentStep == 3">
         <AddressData
           :address="proposal.proposer.homeAddress"
           cancelButtonText="Voltar"
@@ -31,8 +28,6 @@
           v-on:onSubmit="updateAddress"
           v-on:onCancel="currentStep--"
         />
-      </div>
-      <div v-if="currentStep == 4">
         <PetInsuranceData
           :petInsuranceData="proposal.petInsuranceData"
           v-on:onSubmit="finishProposal"
@@ -46,8 +41,8 @@
 </template>
 
 <script>
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/organisms/Header";
+import Footer from "@/components/organisms/Footer";
 import apiClientProvider from "@/utils/apiClient";
 import ProposerData from "./forms/ProposerData";
 import AddressData from "./forms/AddressData";

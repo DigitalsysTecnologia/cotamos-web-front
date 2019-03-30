@@ -1,31 +1,35 @@
 <template>
   <div>
     <div v-if="isLoading">
-      <Loading :messages="loadingMessages" />
+      <Loading :messages="loadingMessages"/>
     </div>
 
     <section class="section" v-else>
       <div step="1" v-if="step==1">
         <h3 class="subtitle">Primeiro, vamos verificar a disponibilidade para sua região, tá bom?</h3>
-        <BasicProposalData v-on:submitProposal="generateBasicProposal" />
+        <BasicProposalData v-on:submitProposal="generateBasicProposal"/>
       </div>
       <div step="2" v-if="step==2">
-        <h2 class="is-size-2 subtitle has-text-centered">Veja abaixo o que temos para você</h2>
-        <Offers :proposal="proposal" v-on:selectPlan="selectPlan" />
+        <h2 class="subtitle has-text-centered">Veja abaixo o que temos para você</h2>
+        <Offers :proposal="proposal" v-on:selectPlan="selectPlan"/>
       </div>
       <div step="3" v-if="step==3">
-        <FullProposalData :proposal="proposal" v-on:submitProposal="finishPurchase" :loading="loading" v-on:goBack="previousStep" />
+        <FullProposalData
+          :proposal="proposal"
+          v-on:submitProposal="finishPurchase"
+          :loading="loading"
+          v-on:goBack="previousStep"
+        />
       </div>
       <div step="4" v-if="step==4">
         <div v-if="proposal.state == 11">
-          <WaitingForAvailability />
+          <WaitingForAvailability/>
         </div>
         <div v-else>
-          <Finish :loading="loading" />
+          <Finish :loading="loading"/>
         </div>
       </div>
     </section>
-
   </div>
 
   <!-- <v-layout row wrap>
@@ -84,15 +88,14 @@
         </v-layout>
       </v-stepper>
     </v-flex>
-  </v-layout> -->
-
+  </v-layout>-->
 </template>
 
 <script>
-import BasicProposalData from "@/components/Forms/BasicPetInsuranceData";
+import BasicProposalData from "@/components/organisms/BasicPetInsuranceData";
 import DeniedProposal from "./components/DeniedProposal";
-import Offers from "@/components/Offers";
-import Loading from "@/components/Loading";
+import Offers from "@/components/organisms/Offers";
+import Loading from "@/components/molecules/Loading";
 import FullProposalData from "./components/FullProposalData";
 import Finish from "./components/Finish";
 import WaitingForAvailability from "./components/WaitingForAvailability";
@@ -148,8 +151,8 @@ export default {
       this.nextStep();
     },
     generateBasicProposal: async function(proposal) {
-      console.log('caiu no generateBasicProposal', router)
-      window.location = `/fluxo-vendas?id=${proposal._id}`
+      console.log("caiu no generateBasicProposal", router);
+      window.location = `/fluxo-vendas?id=${proposal._id}`;
 
       // this.loading = false;
       // this.existingProposal = proposal;
@@ -180,8 +183,7 @@ export default {
     },
     getStep: function() {
       const { query } = this.$route;
-      if (query.step)
-        return query.step;
+      if (query.step) return query.step;
 
       switch (this.existingProposal.state) {
         case 0:
@@ -222,13 +224,12 @@ export default {
     },
     previousStep: async function() {
       const { query, step } = this.$route;
-      console.log('this.step ', this.step);
+      console.log("this.step ", this.step);
       this.step--;
       this.existingProposal = await apiClientProvider.getProposalById(query.id);
     }
   },
-  async mounted() {
-  },
+  async mounted() {},
   async beforeMount() {
     router = this.$router;
     const { query, step } = this.$route;
@@ -240,7 +241,10 @@ export default {
       ];
       this.existingProposal = await apiClientProvider.getProposalById(query.id);
     } else {
-      this.loadingMessage = ["Carregando...", "Aguarde um instante por favor..."];
+      this.loadingMessage = [
+        "Carregando...",
+        "Aguarde um instante por favor..."
+      ];
       this.existingProposal = factory.generateEmptyProposal();
     }
 

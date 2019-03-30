@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "DropDown",
+  name: "VDropDown",
   props: {
     items: {
       type: Array,

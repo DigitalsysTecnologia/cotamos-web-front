@@ -1,25 +1,19 @@
 <template>
-  <v-container>
-    <v-layout row wrap align-center justify-center>
-      
-      <v-flex xs12>
-        <h1 class="subtitle text-center">Links de Venda</h1>
-      </v-flex>
-      
-      <v-flex xs12 v-if="loading">
-        <Loading/>
-      </v-flex>
+  <div>
+    <section class="section is-medium has-text-centered" v-if="loading">
+      <Loading/>
+    </section>
 
-      <v-flex xs12 v-else>
-        <v-text-field label="Plano de Saúde Pet" :value="petInsuranceLink" box></v-text-field>
-      </v-flex>
-      
-    </v-layout>
-  </v-container>
+    <section class="section is-medium has-text-centered" v-else>
+      <h3 class="subtitle">Links de Venda</h3>
+      <label>{{petInsuranceLink}}</label>
+    </section>
+  </div>
 </template>
 
 <script>
-import Loading from "@/components/Loading";
+import Loading from "@/components/molecules/Loading";
+import VInput from "@/components/atoms/VInput";
 import apiClient from "@/utils/apiClient";
 export default {
   layout: "panel",
@@ -39,7 +33,8 @@ export default {
     };
   },
   components: {
-    Loading
+    Loading,
+    VInput
   }
 };
 </script>

@@ -129,10 +129,9 @@ class ApiClient {
     if (proposal.paymentData.method) {
       try {
         proposal.paymentData.method = parseInt(proposal.paymentData.method);
-      }
-      catch(err) {
+      } catch (err) {
         proposal.paymentData.method = 0;
-      }      
+      }
     }
     return proposal;
   }

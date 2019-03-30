@@ -1,37 +1,31 @@
 <template>
   <div class="section">
-    
     <div class="columns">
       <div class="column">
-        <Input
-            label="Login"
-            id="user.login"
-            v-model="user.login"
-        />
+        <VInput label="Login" id="user.login" v-model="user.login"/>
       </div>
       <div class="column">
-        <Input
-        type="password"
-            label="Senha"
-            id="user.password"
-            v-model="user.password"
-        />
+        <VInput type="password" label="Senha" id="user.password" v-model="user.password"/>
       </div>
     </div>
-    <Button textColor="white" backgroundColor="rgb(0, 216, 134)" @click="doLogin" :isLoading="loading" :isFullWidth="true">Login</Button>
-      <div class="notification is-danger" v-if="this.errorMessage">
-        Erro: {{ this.errorMessage }}
-      </div>
+    <VButton
+      textColor="white"
+      backgroundColor="rgb(0, 216, 134)"
+      @click="doLogin"
+      :isLoading="loading"
+      :isFullWidth="true"
+    >Login</VButton>
+    <div class="notification is-danger" v-if="this.errorMessage">Erro: {{ this.errorMessage }}</div>
   </div>
 </template>
 
 <script>
 import moment from "moment";
 import apiClient from "@/utils/apiClient";
-import Input from "@/components/Form/Input"
-import Button from "@/components/Form/Button"
+import VInput from "@/components/atoms/VInput";
+import VButton from "@/components/atoms/VButton";
 import localStorage from "@/utils/localStorage";
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 
 export default {
   name: "PanelLogin",
@@ -48,23 +42,21 @@ export default {
   async beforeMount() {},
   watch: {
     isLogged(newVal) {
-      if(newVal === true) {
+      if (newVal === true) {
         const { redirect } = this.$route.query;
         let url = null;
         url = redirect || "/painel/propostas";
 
         this.$router.push({ path: url });
-      }      
+      }
     }
   },
   components: {
-    Input,
-    Button
+    VInput,
+    VButton
   },
   methods: {
     async doLogin() {
-      
-
       try {
         this.errorMessage = "";
         this.loading = true;

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/molecules/ProductCard";
 import ApiClient from "@/utils/apiClient";
 
 export default {

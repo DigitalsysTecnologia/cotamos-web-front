@@ -5,25 +5,29 @@
     </div>
     <div>
       <div class="col-sm-12 col-xs-12">
-        <FormInput  label="Nome"
-                    icon="fa-user"
-                    id="proposal.proposer.name"
-                    :validationMessage="validation.firstError('proposal.proposer.name')"
-                    v-model.trim="proposal.proposer.name" />
+        <VInput
+          label="Nome"
+          icon="fa-user"
+          id="proposal.proposer.name"
+          :validationMessage="validation.firstError('proposal.proposer.name')"
+          v-model.trim="proposal.proposer.name"
+        />
       </div>
       <div class="col-sm-12 col-xs-12">
-        <FormInput  label="E-mail"
-                    icon="fa-at"
-                    id="proposal.proposer.email"
-                    :validationMessage="validation.firstError('proposal.proposer.email')"
-                    v-model.trim="proposal.proposer.email" />
+        <VInput
+          label="E-mail"
+          icon="fa-at"
+          id="proposal.proposer.email"
+          :validationMessage="validation.firstError('proposal.proposer.email')"
+          v-model.trim="proposal.proposer.email"
+        />
       </div>
       <div class="col-xs-12">
-        <CallToAction className='pull-left' v-on:click="previousStep">
+        <CallToAction class="pull-left" v-on:click="previousStep">
           <i class="fas fa-backward"/>
           &nbsp; Testar com outro CEP
         </CallToAction>
-        <CallToAction className='pull-right' v-on:click="nextStep">
+        <CallToAction class="pull-right" v-on:click="nextStep">
           Quero ser avisado &nbsp;
           <i class="fas fa-forward"/>
         </CallToAction>
@@ -33,10 +37,10 @@
 </template>
 
 <script>
-import FormInput from "@/components/Form/Input";
+import VInput from "@/components/atoms/VInput";
 import validator from "@/utils/validator";
 import factory from "@/utils/factory";
-import CallToAction from "@/components/CallToAction.vue";
+import CallToAction from "@/components/atoms/CallToAction.vue";
 
 export default {
   name: "DeniedProposal",
@@ -59,15 +63,14 @@ export default {
   },
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
-    "proposal.proposer.email": value => validator.validateEmail(value),
+    "proposal.proposer.email": value => validator.validateEmail(value)
   },
   components: {
-    FormInput: FormInput,
-    CallToAction: CallToAction
+    VInput,
+    CallToAction
   }
 };
 </script>
 
 <style scoped>
-
 </style>
