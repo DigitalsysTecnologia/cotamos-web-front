@@ -10,31 +10,51 @@ module.exports = {
     ]
   },
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     title: 'Cotamos.Com - Sua corretora On-Line',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'description', content: 'Cotamos - Corretora On-Line' }
+    meta: [{
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        name: 'description',
+        content: 'Cotamos - Corretora On-Line'
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/img/favicon.ico' }
-    ]
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/img/favicon.ico'
+    }]
   },
   /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
+   ** Customize the progress bar color
+   */
+  loading: {
+    color: '#3B8070'
+  },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
+  plugins: [
+    '~/plugins/vue-localstorage.js',
+    '~/plugins/vue-mask.js',
+    '~/plugins/vue-scrollto.js',
+    '~/plugins/vue-validator.js',
+  ],
   build: {
     /*
-    ** Run ESLint on save
-    */
-    extend(config, { isDev, isClient }) {
+     ** Run ESLint on save
+     */
+    extend(config, {
+      isDev,
+      isClient
+    }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -47,4 +67,3 @@ module.exports = {
     }
   }
 }
-

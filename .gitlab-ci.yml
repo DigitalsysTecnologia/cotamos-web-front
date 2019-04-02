@@ -12,7 +12,7 @@ stages:
 build:
   artifacts:
     paths:
-      - dist/  
+      - dist/
   stage: build
   script:
    - npm install
@@ -26,7 +26,7 @@ build:
 deploy:
   stage: deploy
   variables:
-   DEPLOY_DIR: "/var/www/web-front"
+   DEPLOY_DIR: "/var/cotamos/web-front"
   before_script:
    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
    - 'which zip || ( apt-get update -y && apt-get install zip -y )'
@@ -36,7 +36,7 @@ deploy:
   script:
    - mv dist/ deploy/
    - zip -r deploy.zip deploy/*
-   - export DEPLOY_DIR="$DEPLOY_DIR/$CI_COMMIT_REF_NAME"
+   - export DEPLOY_DIR="$DEPLOY_DIR"
    - ssh -i ssh_key $DEPLOY_USER@$APP_HOST "mkdir -p $DEPLOY_DIR"
    - scp -i ssh_key deploy.zip $DEPLOY_USER@$APP_HOST:$DEPLOY_DIR
    - ssh -i ssh_key $DEPLOY_USER@$APP_HOST "unzip -o $DEPLOY_DIR/deploy.zip -d $DEPLOY_DIR"
@@ -44,6 +44,4 @@ deploy:
    - ssh -i ssh_key $DEPLOY_USER@$APP_HOST "rm $DEPLOY_DIR/deploy.zip"
   only:
     refs:
-      - dev
       - master
-      - homolog

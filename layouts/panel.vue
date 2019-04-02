@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import bootstrapLayout from "./bootstrapLayout";
 import Header from "@/components/organisms/Header";
 import Footer from "@/components/organisms/Footer";
 
