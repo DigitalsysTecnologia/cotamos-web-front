@@ -10,7 +10,7 @@ function getUrl() {
       case "localhost":
         return "https://api.cotamos.com";
       case "www.cotamos.com":
-        return "https://backend.cotamos.com";
+        return "https://api.cotamos.com";
       case "homolog.cotamos.com":
         return "https://backend-homolog.cotamos.com";
       case "dev.cotamos.com":
