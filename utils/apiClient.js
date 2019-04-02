@@ -8,13 +8,13 @@ function getUrl() {
   if (process.browser) {
     switch (window.location.hostname) {
       case "localhost":
-        return "https://backend-homolog.cotamos.com/api/v1";
+        return "https://api.cotamos.com";
       case "www.cotamos.com":
-        return "https://backend.cotamos.com/api/v1";
+        return "https://backend.cotamos.com";
       case "homolog.cotamos.com":
-        return "https://backend-homolog.cotamos.com/api/v1";
+        return "https://backend-homolog.cotamos.com";
       case "dev.cotamos.com":
-        return "https://backend-homolog.cotamos.com/api/v1";
+        return "https://backend-homolog.cotamos.com";
     }
   }
   return process.env.baseUrl;
