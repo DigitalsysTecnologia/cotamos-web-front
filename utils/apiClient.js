@@ -8,9 +8,9 @@ function getUrl() {
   if (process.browser) {
     switch (window.location.hostname) {
       case "localhost":
-        return "https://api.cotamos.com";
+        return "http://localhost:8080";
       case "www.cotamos.com":
-        return "https://api.cotamos.com";
+        return "https://www.cotamos.com/api";
       case "homolog.cotamos.com":
         return "https://backend-homolog.cotamos.com";
       case "dev.cotamos.com":
