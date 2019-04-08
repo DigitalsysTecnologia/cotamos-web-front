@@ -1,14 +1,17 @@
 <template>
   <div>
-    <section class="section is-medium has-text-centered">
-      <img src="/img/pets_looking_down.jpg">
-      <h2 class="is-size-2 subtitle has-text-centered">O que é plano de saúde pet?</h2>
-      <p
-        class="has-text-justified"
-      >O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.</p>
-      <p
-        class="has-text-justified"
-      >Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade</p>
+    <section class="section is-medium has-text-dark">
+      <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação on-line</h2>
+      <div class="columns">
+        <div class="column is-half is-hidden-touch" style="margin-left:-24px;">
+          <img src="/img/dog_on_pc.png" style="margin-top: 50px;">
+        </div>
+        <div class="column is-half-desktop">
+          <div class="container-form">
+            <BasicHealthInsurance v-on:submitProposal="submitProposal"/>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section is-medium primary-color-background has-text-light">
@@ -16,6 +19,16 @@
       <p>O plano de saúde pet é muito semelhante a um plano de saúde para seres humanos.</p>
       <p>Por um pagamento mensal, seu pet tem acesso a uma rede credenciada com diversas clínicas veterinárias para atendimento.</p>
       <p>De acordo com o plano escolhido, existem coberturas e carências diferenciadas, por isso, é importante prestar atenção aos serviços oferecidos em cada plano</p>
+    </section>
+
+    <section class="section is-medium has-text-centered">
+      <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação de plano de saúde</h2>
+      <p
+        class="has-text-justified"
+      >O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.</p>
+      <p
+        class="has-text-justified"
+      >Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade</p>
     </section>
 
     <section class="section">
@@ -74,20 +87,6 @@
         class="is-size-3"
       >Não, a Cotamos é uma corretora e como tal, apenas realiza o intermédio da venda de plano saúde pet.</p>
     </section>
-
-    <section class="section is-medium has-text-dark">
-      <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação on-line</h2>
-      <div class="columns">
-        <div class="column is-half is-hidden-touch" style="margin-left:-24px;">
-          <img src="/img/dog_on_pc.png" style="margin-top: 50px;">
-        </div>
-        <div class="column is-half-desktop">
-          <div class="container-form">
-            <BasicForm v-on:submitProposal="submitProposal"/>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -95,7 +94,7 @@
 import Loading from "@/components/molecules/Loading";
 import Footer from "@/components/organisms/Footer";
 import Header from "@/components/organisms/Header";
-import BasicForm from "@/components/organisms/BasicPetInsuranceData";
+import BasicHealthInsurance from "@/components/organisms/BasicHealthInsurance";
 import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
@@ -107,6 +106,7 @@ let queryParams = null;
 
 export default {
   name: "PetInsurance",
+  layout: "wl/a3/default",
   methods: {
     GoToForm(event) {
       let partnerId = null;
@@ -149,7 +149,7 @@ export default {
   components: {
     Header,
     Footer,
-    BasicForm,
+    BasicHealthInsurance,
     Loading,
     CallToAction
   }
