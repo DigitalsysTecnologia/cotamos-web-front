@@ -194,6 +194,11 @@ class ApiClient {
   createCompany(company) {
     return internalPost("company", company);
   }
+  
+   listPartner() {
+    return internalGet("partner/list");
+  }
+
 
   getAllProducts() {
     return internalGet("product");
