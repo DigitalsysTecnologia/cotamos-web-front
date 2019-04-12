@@ -1,14 +1,14 @@
 <template>
-  <v-app>
+  <div>
     <Header/>
     <nuxt/>
     <Footer :hideLogo="true"/>
-  </v-app>
+  </div>
 </template>
 
 <script>
-import Header from "@/components/organisms/Header";
-import Footer from "@/components/organisms/Footer";
+import Header from "@/components/molecules/Header";
+import Footer from "@/components/molecules/Footer";
 
 export default {
   name: "default",

@@ -41,13 +41,13 @@
 </template>
 
 <script>
-import Header from "@/components/organisms/Header";
-import Footer from "@/components/organisms/Footer";
+import Header from "@/components/molecules/Header";
+import Footer from "@/components/molecules/Footer";
 import apiClientProvider from "@/utils/apiClient";
-import ProposerData from "./forms/ProposerData";
-import AddressData from "./forms/AddressData";
-import PetInsuranceData from "./forms/PetInsuranceData";
-import PaymentData from "./forms/PaymentData";
+import ProposerData from "@/components/molecules/ProposerData";
+import AddressData from "@/components/molecules/AddressData";
+import PetInsuranceData from "@/components/molecules/PetInsuranceData";
+import PaymentData from "@/components/molecules/PaymentData";
 
 export default {
   name: "FullProposalData",

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <section class="section is-medium has-text-dark">
-      <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação on-line</h2>
+    <section class="section has-text-dark">
+      <h2 class="is-size-2 subtitle has-text-centered">Cote conosco sem compromisso</h2>
       <div class="columns">
         <div class="column is-half is-hidden-touch" style="margin-left:-24px;">
-          <img src="/img/dog_on_pc.png" style="margin-top: 50px;">
+          <img src="/img/medico_apontando.jpg" style="margin-top: 0px;">
         </div>
         <div class="column is-half-desktop">
           <div class="container-form">
@@ -12,13 +12,6 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <section class="section is-medium primary-color-background has-text-light">
-      <h2 class="is-size-2 subtitle has-text-centered">Como funciona o plano de saúde pet?</h2>
-      <p>O plano de saúde pet é muito semelhante a um plano de saúde para seres humanos.</p>
-      <p>Por um pagamento mensal, seu pet tem acesso a uma rede credenciada com diversas clínicas veterinárias para atendimento.</p>
-      <p>De acordo com o plano escolhido, existem coberturas e carências diferenciadas, por isso, é importante prestar atenção aos serviços oferecidos em cada plano</p>
     </section>
 
     <section class="section is-medium has-text-centered">
@@ -29,6 +22,13 @@
       <p
         class="has-text-justified"
       >Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade</p>
+    </section>
+
+    <section class="section is-medium primary-color-background has-text-light">
+      <h2 class="is-size-2 subtitle has-text-centered">Como funciona o plano de saúde pet?</h2>
+      <p>O plano de saúde pet é muito semelhante a um plano de saúde para seres humanos.</p>
+      <p>Por um pagamento mensal, seu pet tem acesso a uma rede credenciada com diversas clínicas veterinárias para atendimento.</p>
+      <p>De acordo com o plano escolhido, existem coberturas e carências diferenciadas, por isso, é importante prestar atenção aos serviços oferecidos em cada plano</p>
     </section>
 
     <section class="section">
@@ -92,8 +92,8 @@
 
 <script>
 import Loading from "@/components/molecules/Loading";
-import Footer from "@/components/organisms/Footer";
-import Header from "@/components/organisms/Header";
+import Footer from "@/components/molecules/Footer";
+import Header from "@/components/molecules/Header";
 import BasicHealthInsurance from "@/components/organisms/BasicHealthInsurance";
 import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";
@@ -132,7 +132,7 @@ export default {
   },
   head() {
     return {
-      title: "Cotamos.com - Plano de Saúde PET"
+      title: "A3 Consultoria"
     };
   },
   data() {
@@ -169,5 +169,9 @@ export default {
   -webkit-box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
   -moz-box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
   box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
+}
+
+.primary-color {
+  color: #f1ac2d;
 }
 </style>getLandingQueryParams

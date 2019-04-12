@@ -93,8 +93,8 @@
 
 <script>
 import Loading from "@/components/molecules/Loading";
-import Footer from "@/components/organisms/Footer";
-import Header from "@/components/organisms/Header";
+import Footer from "@/components/molecules/Footer";
+import Header from "@/components/molecules/Header";
 import BasicForm from "@/components/organisms/BasicPetInsuranceData";
 import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";

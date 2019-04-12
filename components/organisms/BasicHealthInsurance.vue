@@ -6,24 +6,24 @@
 
     <div v-else>
       <div class="columns is-multiline">
-        <div class="column is-half-desktop is-half-tablet">
+        <div class="column is-full-desktop">
           <VInput
-            :label="isSimulation ? 'Nome do Cliente' :'Nome'"
+            label="Nome"
             id="proposal.proposer.name"
             :validationMessage="validation.firstError('proposal.proposer.name')"
             v-model="proposal.proposer.name"
           />
         </div>
-        <div class="column is-half-desktop is-half-tablet">
+        <div class="column is-full-desktop">
           <VInput
-            :label="isSimulation ? 'E-mail do cliente' :'E-mail'"
+            label="E-mail"
             id="proposal.proposer.email"
             :error="!!(validation.firstError('proposal.proposer.email'))"
             :validationMessage="validation.firstError('proposal.proposer.email')"
             v-model.trim="proposal.proposer.email"
           />
         </div>
-        <div class="column is-half-desktop is-half-tablet">
+        <div class="column is-full-desktop">
           <VPhoneInput
             label="Celular ou Telefone"
             id="proposer.phones.0"
@@ -32,7 +32,17 @@
             v-model.trim="proposal.proposer.phones[0]"
           />
         </div>
-        <div class="column is-half-desktop is-half-tablet">
+        <div class="column is-full-desktop">
+          <VDropDown
+            :items="hasLegalEntityOptions"
+            label="Possui CNPJ"
+            item-text="text"
+            item-value="value"
+          />
+          <!-- v-model="proposal.healthInsuranceData.hasLegalEntity" -->
+        </div>
+
+        <!-- <div class="column is-half-desktop is-half-tablet">
           <VDropDown
             :items="petAges"
             label="Idade do pet"
@@ -41,7 +51,7 @@
             :validationMessage="validation.firstError('proposal.petInsuranceData.age')"
             v-model="proposal.petInsuranceData.age"
           />
-        </div>
+        </div>-->
       </div>
       <CallToAction class="pull-right" v-on:click="submitProposal">SIMULE AGORA</CallToAction>
     </div>
@@ -63,6 +73,10 @@ export default {
     return {
       loading: false,
       hasIndication: null,
+      hasLegalEntityOptions: [
+        { text: "Sim", value: true },
+        { text: "Não", value: false }
+      ],
       hasIndicationItems: [
         { text: "Sim", value: true },
         { text: "Não", value: false }
