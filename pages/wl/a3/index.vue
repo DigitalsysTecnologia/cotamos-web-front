@@ -1,8 +1,21 @@
 <template>
   <div>
+    <section class="section has-text-dark">
+      <h2 class="is-size-2 subtitle has-text-centered">Cote conosco sem compromisso</h2>
+      <div class="columns">
+        <div class="column is-half is-hidden-touch" style="margin-left:-24px;">
+          <img src="/img/medico_apontando.jpg" style="margin-top: 0px;">
+        </div>
+        <div class="column is-half-desktop">
+          <div class="container-form">
+            <BasicHealthInsurance v-on:submitProposal="submitProposal"/>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section is-medium has-text-centered">
-      <img src="/img/pets_looking_down.jpg">
-      <h2 class="is-size-2 subtitle has-text-centered">O que é plano de saúde pet?</h2>
+      <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação de plano de saúde</h2>
       <p
         class="has-text-justified"
       >O plano de saúde pet para cães e gatos é a oportunidade de passar as despesas com vacinas, consultas, internações e cirurgias do seu pet para uma seguradora.</p>
@@ -74,28 +87,14 @@
         class="is-size-3"
       >Não, a Cotamos é uma corretora e como tal, apenas realiza o intermédio da venda de plano saúde pet.</p>
     </section>
-
-    <section class="section is-medium has-text-dark">
-      <h2 class="is-size-2 subtitle has-text-centered">Faça sua cotação on-line</h2>
-      <div class="columns">
-        <div class="column is-half is-hidden-touch" style="margin-left:-24px;">
-          <img src="/img/dog_on_pc.png" style="margin-top: 50px;">
-        </div>
-        <div class="column is-half-desktop">
-          <div class="container-form">
-            <BasicForm v-on:submitProposal="submitProposal"/>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
 <script>
 import Loading from "@/components/molecules/Loading";
-import Footer from "@/components/organisms/Footer";
-import Header from "@/components/organisms/Header";
-import BasicForm from "@/components/organisms/BasicPetInsuranceData";
+import Footer from "@/components/molecules/Footer";
+import Header from "@/components/molecules/Header";
+import BasicHealthInsurance from "@/components/organisms/BasicHealthInsurance";
 import apiClientProvider from "@/utils/apiClient";
 import validator from "@/utils/validator";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
@@ -107,6 +106,7 @@ let queryParams = null;
 
 export default {
   name: "PetInsurance",
+  layout: "wl/a3/default",
   methods: {
     GoToForm(event) {
       let partnerId = null;
@@ -132,7 +132,7 @@ export default {
   },
   head() {
     return {
-      title: "Cotamos.com - Plano de Saúde PET"
+      title: "A3 Consultoria"
     };
   },
   data() {
@@ -149,7 +149,7 @@ export default {
   components: {
     Header,
     Footer,
-    BasicForm,
+    BasicHealthInsurance,
     Loading,
     CallToAction
   }
@@ -169,5 +169,9 @@ export default {
   -webkit-box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
   -moz-box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
   box-shadow: -1px -1px 30px 5px rgba(0, 0, 0, 0.32);
+}
+
+.primary-color {
+  color: #f1ac2d;
 }
 </style>getLandingQueryParams
