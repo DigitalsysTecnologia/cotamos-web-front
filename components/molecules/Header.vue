@@ -2,7 +2,7 @@
   <nav class="navbar is-transparent is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" :href="homeLink">
-        <img src="/img/logo_cor.png" width="112" height="28">
+        <img :src="logoImage" width="112" height="28" class="logo-image">
       </a>
 
       <a
@@ -53,6 +53,11 @@ export default {
       required: false,
       default: null
     },
+    logoImage: {
+      type: String,
+      required: false,
+      default: "/img/logo_cor.png"
+    },
     homeLink: {
       type: String,
       required: false,
@@ -75,5 +80,8 @@ export default {
 <style scoped>
 .navbar-item-text {
   font-weight: bold;
+}
+.logo-image {
+  margin-left: 20px;
 }
 </style>

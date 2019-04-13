@@ -1,9 +1,9 @@
 <template>
-  <v-app>
-    <v-content>
-      <nuxt/>
-    </v-content>
-  </v-app>
+  <div>
+    <Header logoImage="/img/wl/a3/logo.png"/>
+    <nuxt/>
+    <Footer :hideLogo="true"/>
+  </div>
 </template>
 
 <script>

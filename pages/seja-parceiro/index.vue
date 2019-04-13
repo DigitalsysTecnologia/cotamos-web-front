@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import Header from "@/components/organisms/Header";
-import Footer from "@/components/organisms/Footer";
+import Header from "@/components/molecules/Header";
+import Footer from "@/components/molecules/Footer";
 import NavBar from "@/components/organisms/NavBar";
 import Faq from "@/components/molecules/Faq";
 import InfoCard from "@/components/molecules/InfoCard";

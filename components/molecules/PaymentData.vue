@@ -37,7 +37,7 @@ import validator from "@/utils/validator";
 import factory from "@/utils/factory";
 import petInsuranceProvider from "@/utils/petInsuranceProvider";
 import apiClientProvider from "@/utils/apiClient";
-import BankingData from "./BankingData";
+import BankingData from "@/components/molecules/BankingData";
 
 export default {
   name: "PaymentData",
@@ -117,8 +117,7 @@ export default {
   },
   validators: {},
   components: {
-    BankingData,
-    Button
+    BankingData
   },
   beforeMount() {
     this.plans = petInsuranceProvider.getPlansByPetAge(

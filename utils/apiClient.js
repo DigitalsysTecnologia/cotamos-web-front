@@ -13,8 +13,8 @@ function getUrl() {
         return "https://www.cotamos.com/api";
       case "homolog.cotamos.com":
         return "https://backend-homolog.cotamos.com";
-      case "dev.cotamos.com":
-        return "https://backend-homolog.cotamos.com";
+      case "staging.cotamos.com":
+        return "https://staging.cotamos.com/api";
     }
   }
   return process.env.baseUrl;
