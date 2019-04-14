@@ -25,6 +25,7 @@
         </p>
       </div>
     </footer>
+    <!-- /Footer -->
   </div>
 </template>
 
