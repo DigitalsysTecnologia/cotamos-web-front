@@ -15,6 +15,15 @@
           />
         </div>
         <div class="column is-full-desktop">
+          <VDateInput
+            label="Data de nascimento"
+            id="proposal.proposer.dateOfBirth"
+            type="text"
+            :validationMessage="validation.firstError('proposal.proposer.dateOfBirth')"
+            v-model="proposal.proposer.dateOfBirth"
+          />
+        </div>
+        <div class="column is-full-desktop">
           <VInput
             label="E-mail"
             id="proposal.proposer.email"
@@ -41,17 +50,6 @@
           />
           <!-- v-model="proposal.healthInsuranceData.hasLegalEntity" -->
         </div>
-
-        <!-- <div class="column is-half-desktop is-half-tablet">
-          <VDropDown
-            :items="petAges"
-            label="Idade do pet"
-            item-text="text"
-            item-value="value"
-            :validationMessage="validation.firstError('proposal.petInsuranceData.age')"
-            v-model="proposal.petInsuranceData.age"
-          />
-        </div>-->
       </div>
       <CallToAction class="pull-right" v-on:click="submitProposal">SIMULE AGORA</CallToAction>
     </div>
@@ -62,6 +60,7 @@
 import Loading from "@/components/molecules/Loading";
 import VPhoneInput from "@/components/atoms/VPhoneInput.vue";
 import VInput from "@/components/atoms/VInput";
+import VDateInput from "@/components/atoms/VDateInput";
 import VDropDown from "@/components/atoms/VDropDown";
 import validator from "@/utils/validator";
 import CallToAction from "@/components/atoms/CallToAction";
@@ -190,6 +189,8 @@ export default {
       validator.validateZipCode(value),
     "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
+    "proposal.proposer.dateOfBirth": value =>
+      validator.validateDateOfBirth(value, true),
     hasIndicationItems: value => validator.validateIndications(value)
   },
   components: {
@@ -197,6 +198,7 @@ export default {
     CallToAction,
     Loading,
     VInput,
+    VDateInput,
     VDropDown
   }
 };

@@ -3,10 +3,13 @@
     <section class="section has-text-dark">
       <h2 class="is-size-2 subtitle has-text-centered">Cote conosco sem compromisso</h2>
       <div class="columns">
-        <div class="column is-half is-hidden-touch" style="margin-left:-24px;">
+        <div
+          class="column is-half-desktop is-hidden-touch"
+          style="margin-left:-24px;margin-top: auto;"
+        >
           <img src="/img/medico_apontando.jpg" style="margin-top: 0px;">
         </div>
-        <div class="column is-half-desktop">
+        <div class="column is-half-desktop" style="margin-top: auto;">
           <div class="container-form">
             <BasicHealthInsurance v-on:submitProposal="submitProposal"/>
           </div>
@@ -22,70 +25,6 @@
       <p
         class="has-text-justified"
       >Em resumo, plano de saúde pet é uma forma inteligente para proporcionar Economia, Segurança e Tranquilidade</p>
-    </section>
-
-    <section class="section is-medium primary-color-background has-text-light">
-      <h2 class="is-size-2 subtitle has-text-centered">Como funciona o plano de saúde pet?</h2>
-      <p>O plano de saúde pet é muito semelhante a um plano de saúde para seres humanos.</p>
-      <p>Por um pagamento mensal, seu pet tem acesso a uma rede credenciada com diversas clínicas veterinárias para atendimento.</p>
-      <p>De acordo com o plano escolhido, existem coberturas e carências diferenciadas, por isso, é importante prestar atenção aos serviços oferecidos em cada plano</p>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div class="column is-half">
-            <img src="/img/filhote_cao.jpg">
-          </div>
-          <div class="column is-half has-text-justified">
-            <article class="message is-primary">
-              <div class="message-header">
-                <p>Qualquer pet pode ter um plano de saúde?</p>
-              </div>
-              <div class="message-body">
-                Atualmente, os planos de saúde pet estão disponíveis apenas para
-                <span
-                  class="strong"
-                >cães</span> e
-                <span class="strong">gatos</span>.
-              </div>
-            </article>
-
-            <article class="message is-primary">
-              <div class="message-header">
-                <p>Pets de qualquer idade podem aderir ao plano?</p>
-              </div>
-              <div class="message-body">
-                <p>
-                  Podem existir restrições de cobertura dependendo da idade em que o pet
-                  <span
-                    class="strong"
-                  >aderir</span> ao plano.
-                </p>
-                <p>Entretanto, após a adesão ao plano de saúde, a cobertura do plano é válida por toda a vida do seu pet.</p>
-                <p>Ou seja, quanto mais cedo for feito o plano de saúde do pet, mais tranquilidade você terá com relação aos cuidados veterinários dele.</p>
-              </div>
-            </article>
-
-            <article class="message is-primary">
-              <div class="message-header">
-                <p>O plano de saúde pet tem cobertura nacional?</p>
-              </div>
-              <div class="message-body">
-                <p>Não, o plano de saúde está disponível em apenas alguns locais do Brasil.</p>
-                <p>Devido à isso, precisamos de algumas informações para verificar a disponibilidade do plano para você e informações sobre o seu pet para lhe informar os valores.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section is-medium primary-color-background has-text-light">
-      <h2 class="is-size-2 subtitle has-text-centered">O plano de saúde é um produto da Cotamos?</h2>
-      <p
-        class="is-size-3"
-      >Não, a Cotamos é uma corretora e como tal, apenas realiza o intermédio da venda de plano saúde pet.</p>
     </section>
   </div>
 </template>
@@ -130,11 +69,6 @@ export default {
       }
     }
   },
-  head() {
-    return {
-      title: "A3 Consultoria"
-    };
-  },
   data() {
     return { zipCode: "" };
   },
@@ -173,5 +107,9 @@ export default {
 
 .primary-color {
   color: #f1ac2d;
+}
+
+h2 {
+  color: #ff8900;
 }
 </style>getLandingQueryParams

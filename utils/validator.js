@@ -64,7 +64,7 @@ export default {
         }
       })
   },
-  validateDateOfBirth: (value) => {
+  validateDateOfBirth: (value, allowChild) => {
     return Validator.value(value)
       .required("Por favor, nos informe a sua data de nascimento.")
       .custom(function () {
@@ -88,7 +88,7 @@ export default {
           return "Data inválida";
         }
 
-        if (ageInYears < 18) {
+        if (ageInYears < 18 && (!allowChild)) {
           return "Idade inferior a 18 anos";
         }
 
