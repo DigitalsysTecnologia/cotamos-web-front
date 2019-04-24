@@ -11,7 +11,16 @@
         </div>
         <div class="column is-half-desktop" style="margin-top: auto;">
           <div class="container-form">
-            <BasicHealthInsurance v-on:submitProposal="submitProposal"/>
+            <div v-if="finishedStep">
+              <div style="min-height: 500px;vertical-align: middle;">
+                <p
+                  style="font-size: 1.75rem; font-weight: bold;"
+                >Recebemos seu pedido, em breve, entraremos em contato</p>
+              </div>
+            </div>
+            <div v-else>
+              <BasicHealthInsurance v-on:submitProposal="submitProposal"/>
+            </div>
           </div>
         </div>
       </div>
@@ -47,30 +56,15 @@ export default {
   name: "PetInsurance",
   layout: "wl/a3/default",
   methods: {
-    GoToForm(event) {
-      let partnerId = null;
-
-      if (queryParams) {
-        partnerId = queryParams.partnerId;
-      }
-      router.push({
-        path: "/fluxo-vendas",
-        query: { product: 5, partnerId: partnerId }
-      });
-    },
     submitProposal(proposal) {
-      router.push({ path: "/fluxo-vendas", query: { id: proposal._id } });
-    }
-  },
-  computed: {
-    availablePlans: {
-      get() {
-        return petInsuranceProvider.getAllPlans();
-      }
+      this.finishedStep = true;
     }
   },
   data() {
-    return { zipCode: "" };
+    return {
+      zipCode: "",
+      finishedStep: false
+    };
   },
   async beforeMount() {
     router = this.$router;

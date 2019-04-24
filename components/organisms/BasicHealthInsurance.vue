@@ -48,10 +48,9 @@
             item-text="text"
             item-value="value"
           />
-          <!-- v-model="proposal.healthInsuranceData.hasLegalEntity" -->
         </div>
       </div>
-      <CallToAction class="pull-right" v-on:click="submitProposal">SIMULE AGORA</CallToAction>
+      <CallToAction class="pull-right" @click="submitProposal">SIMULE AGORA</CallToAction>
     </div>
   </div>
 </template>
@@ -67,7 +66,7 @@ import CallToAction from "@/components/atoms/CallToAction";
 import apiClientProvider from "@/utils/apiClient";
 
 export default {
-  name: "BasicPetInsuranceData",
+  name: "BasicHealthInsuranceData",
   data() {
     return {
       loading: false,
@@ -76,31 +75,9 @@ export default {
         { text: "Sim", value: true },
         { text: "Não", value: false }
       ],
-      hasIndicationItems: [
-        { text: "Sim", value: true },
-        { text: "Não", value: false }
-      ],
       partners: [],
-      petAges: [
-        {
-          text: "Menos de 1 ano",
-          value: 0
-        },
-        {
-          text: "Entre 1 e 8 anos",
-          value: 3
-        },
-        {
-          text: "Acima de 8 anos",
-          value: 10
-        }
-      ],
       disableParner: false,
       proposal: {
-        petInsuranceData: {
-          name: "",
-          age: ""
-        },
         proposer: {
           name: "",
           email: "",
@@ -151,47 +128,27 @@ export default {
 
       if (!this.proposal._id) {
         let newProposal = await apiClientProvider.generateProposal(
-          5,
+          2,
           this.isSimulation
         );
         this.proposal = Object.assign(newProposal, this.proposal);
       }
 
-      this.proposal.petInsuranceData.age = parseInt(
-        this.proposal.petInsuranceData.age
-      );
-
       if (this.proposal.partnerId) {
         this.proposal.partnerId = this.proposal.partnerId.toString();
       }
-      await apiClientProvider.updateProposal(this.proposal);
-      const product = await apiClientProvider.checkAvailabilityForProduct(
-        5,
-        this.proposal.proposer.homeAddress.zipCode
-      );
 
-      if (!product.isAvailable) {
-        this.proposal = await apiClientProvider.setNextState(this.proposal, 11);
-        alert("Infelizmente, sua região ainda não é atendida.");
-        this.loading = false;
-        return;
-      } else {
-        this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
-      }
+      await apiClientProvider.updateProposal(this.proposal);
+      this.proposal = await apiClientProvider.setNextState(this.proposal, 3);
 
       this.$emit("submitProposal", this.proposal);
     }
   },
   validators: {
     "proposal.proposer.name": value => validator.validateClientName(value),
-    "proposal.petInsuranceData.name": value => validator.validatePetName(value),
-    "proposal.proposer.homeAddress.zipCode": value =>
-      validator.validateZipCode(value),
-    "proposal.petInsuranceData.age": value => validator.validatePetAge(value),
     "proposal.proposer.email": value => validator.validateEmail(value),
     "proposal.proposer.dateOfBirth": value =>
-      validator.validateDateOfBirth(value, true),
-    hasIndicationItems: value => validator.validateIndications(value)
+      validator.validateDateOfBirth(value, true)
   },
   components: {
     VPhoneInput,

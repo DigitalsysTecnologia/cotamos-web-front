@@ -10,6 +10,7 @@ export default {
 
     // Valida os elementos da página
     result &= await page.$validate()
+    console.log('result', result)
 
     // Valida os elementos filhos da página
     for (let i = 0; i < page.$children.length; i++) {
@@ -179,10 +180,6 @@ export default {
       .required("Idade é obrigatória.");
   },
   validateClientName: (value) => {
-
-    if (!Validator || !value) {
-      debugger
-    }
     return Validator.value(value)
       .required("Por favor, nos informe o seu nome completo.")
       .minLength(5, "Por favor, nos informe o seu nome completo.")
