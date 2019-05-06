@@ -1,0 +1,99 @@
+html,
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+    
+}
+
+section{
+    margin-bottom: 30px;
+}
+
+.firstSection {
+    display: flex;
+    width: 70vw;
+    align-items: center;
+}
+
+.imgAndName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.planLogo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.planEmp {
+    font-size: 24px;
+}
+
+.planName {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.covaregeIco {
+    font-size: 30px;
+    color: #f7941d;
+}
+
+.mais {
+    align-self: center;
+    padding: 0 10px;
+    color: #f7941d
+}
+
+.boxPrice {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    height: 35px;
+}
+
+.fa-credit-card {
+    color: #00aa00;
+    align-self: center;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.cifrao {
+    align-self: flex-start
+}
+
+.planValue {
+    font-size: 35px;
+    font-weight: 300
+}
+
+.button {
+    padding: 10px 10px;
+    background-color: #f7941d;
+    color: #fff;
+    border-radius: 40px;
+    width: 150px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.tableBox{
+    display: flex; 
+    flex-direction: column;
+    margin-bottom: 15px
+}

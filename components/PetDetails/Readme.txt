@@ -1,0 +1,1 @@
+Este arquivo está no formato html, pois não foi possível testar no site original por motivos de mal funcionamento no Backend
